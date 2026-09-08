@@ -1,0 +1,4 @@
+fold,evaluation_period,M8_Sharpe,M13_Sharpe,Delta_Sharpe,M8_Net_Utility,M13_Net_Utility,Delta_Utility,M8_Actual_Risky_TO,M13_Actual_Risky_TO,TC_Difference_bps,M8_Max_Drawdown,M13_Max_Drawdown
+Fold_1,2024-W01_to_2024-W26,1.865,1.868,+0.003,0.002223,0.002344,+0.000121,70.80,73.27,+24.7,-10.88%,-10.26%
+Fold_2,2024-W28_to_2024-W49,0.957,1.203,+0.246,-0.003418,-0.003028,+0.000389,70.28,73.67,+33.8,-5.86%,-6.26%
+Fold_3,2024-W50_to_2025-W20,1.497,2.020,+0.522,-0.000331,0.001658,+0.001988,70.12,73.30,+31.7,-8.09%,-7.74%

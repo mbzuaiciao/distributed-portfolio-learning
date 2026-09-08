@@ -1,0 +1,4 @@
+policy,annual_composition_turnover,annual_cash_sleeve_turnover,annual_scaled_comp_bound,annual_exposure_bound,annual_sum_of_bounds,annual_actual_traded_turnover,annual_interaction_netting,all_triangle_bounds_hold
+M8_Constant,102.49,0.0,72.49,0.0,72.49,72.49,-0.0,True
+M9_RawTiming,102.49,11.17,72.27,11.17,83.44,72.28,11.16,True
+M13_Hysteresis,102.49,6.63,73.25,6.63,79.88,73.25,6.63,True

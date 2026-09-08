@@ -1587,6 +1587,122 @@ def compute_canonical_turnover(
     }
 
 
+def compute_actual_traded_turnover(
+    current_risky_composition: Sequence[float],
+    previous_risky_composition: Optional[Sequence[float]] = None,
+    current_exposure: float = 1.0,
+    previous_exposure: Optional[float] = None,
+    assets: Optional[Sequence[str]] = None,
+    previous_assets: Optional[Sequence[str]] = None,
+) -> Dict[str, Any]:
+    """
+    Compute actual market-traded portfolio turnover under exposure scaling.
+
+    For every asset j:
+        q_j,t = normalized composition of risky sleeve (sum_j q_j,t = 1)
+        s_t   = aggregate risky exposure
+        w_j,t = s_t * q_j,t (actual risky portfolio weight)
+        w_cash,t = 1.0 - s_t (cash allocation)
+
+    Actual risky securities traded between t-1 and t:
+        Delta w_j,t = w_j,t - w_j,t-1 = s_t * q_j,t - s_{t-1} * q_{j,t-1}
+
+    Canonical one-way risky turnover (costed turnover):
+        TO_traded_risky = sum_j |Delta w_j,t|
+
+    Diagnostic composition turnover:
+        TO_comp = sum_j |q_j,t - q_{j,t-1}|
+
+    Decomposition bounds:
+        TO_traded_risky <= s_t * TO_comp + |s_t - s_{t-1}|
+        interaction_netting = (s_t * TO_comp + |s_t - s_{t-1}|) - TO_traded_risky
+
+    Args:
+        current_risky_composition: Normalized weights q_t (or unnormalized base weights).
+        previous_risky_composition: Previous normalized weights q_{t-1} (None for t=0).
+        current_exposure: Current exposure scale s_t in [0.0, 1.0].
+        previous_exposure: Previous exposure scale s_{t-1} (None for t=0).
+        assets: Optional list of asset tickers for current period.
+        previous_assets: Optional list of asset tickers for previous period.
+
+    Returns:
+        Dict[str, Any]: Detailed actual vs composition turnover metrics.
+    """
+    q_cur = np.asarray(current_risky_composition, dtype=float).ravel()
+    s_cur = float(np.clip(current_exposure, 0.0, 1.0))
+
+    # Normalize composition if sum > 0
+    q_cur_sum = np.sum(q_cur)
+    if q_cur_sum > 0:
+        q_cur_norm = q_cur / q_cur_sum
+    else:
+        q_cur_norm = np.zeros_like(q_cur)
+
+    w_actual_cur = s_cur * q_cur_norm
+    w_cash_cur = 1.0 - s_cur
+
+    if previous_risky_composition is None or previous_exposure is None:
+        to_comp = 0.0
+        to_actual_risky = 0.0
+        to_cash = 0.0
+        w_actual_prev = None
+        s_prev = None
+        q_prev_norm = None
+    else:
+        q_prev = np.asarray(previous_risky_composition, dtype=float).ravel()
+        s_prev = float(np.clip(previous_exposure, 0.0, 1.0))
+        q_prev_sum = np.sum(q_prev)
+        if q_prev_sum > 0:
+            q_prev_norm = q_prev / q_prev_sum
+        else:
+            q_prev_norm = np.zeros_like(q_prev)
+
+        w_actual_prev = s_prev * q_prev_norm
+        w_cash_prev = 1.0 - s_prev
+
+        if assets is not None and previous_assets is not None:
+            all_assets = sorted(set(assets) | set(previous_assets))
+            c_q_map = {assets[i]: q_cur_norm[i] for i in range(len(assets))}
+            p_q_map = {previous_assets[i]: q_prev_norm[i] for i in range(len(previous_assets))}
+            c_w_map = {assets[i]: w_actual_cur[i] for i in range(len(assets))}
+            p_w_map = {previous_assets[i]: w_actual_prev[i] for i in range(len(previous_assets))}
+
+            to_comp = float(sum(abs(c_q_map.get(a, 0.0) - p_q_map.get(a, 0.0)) for a in all_assets))
+            to_actual_risky = float(sum(abs(c_w_map.get(a, 0.0) - p_w_map.get(a, 0.0)) for a in all_assets))
+        else:
+            # Assume identical length
+            to_comp = float(np.sum(np.abs(q_cur_norm - q_prev_norm)))
+            to_actual_risky = float(np.sum(np.abs(w_actual_cur - w_actual_prev)))
+
+        to_cash = float(abs(w_cash_cur - w_cash_prev))
+
+    total_l1 = to_actual_risky + to_cash
+    costed = to_actual_risky  # Canonical brokerage rule: fees applied to actual risky trades
+    half = 0.5 * total_l1
+
+    comp_bound = float(s_cur * to_comp) if s_cur is not None else 0.0
+    exp_bound = to_cash
+    interaction = float((comp_bound + exp_bound) - to_actual_risky)
+
+    return {
+        "previous_actual_risky_weights": w_actual_prev.tolist() if w_actual_prev is not None else None,
+        "current_actual_risky_weights": w_actual_cur.tolist(),
+        "previous_risky_composition": q_prev_norm.tolist() if q_prev_norm is not None else None,
+        "current_risky_composition": q_cur_norm.tolist(),
+        "previous_exposure": s_prev,
+        "current_exposure": s_cur,
+        "risky_composition_turnover": to_comp,
+        "actual_risky_traded_turnover": to_actual_risky,
+        "cash_weight_turnover": to_cash,
+        "total_l1_turnover": total_l1,
+        "costed_turnover": costed,
+        "half_turnover": half,
+        "composition_driven_turnover_bound": comp_bound,
+        "exposure_driven_turnover_bound": exp_bound,
+        "interaction_netting": interaction,
+    }
+
+
 def decompose_timing_economic_attribution_rebuilt(
     base_returns: Sequence[float],
     timing_exposures: Sequence[float],
@@ -1700,6 +1816,7 @@ def build_portfolio_ledger(
 
     prev_w_r = None
     prev_w_c = None
+    prev_q = None
     prev_assets = []
     wealth = 1.0
 
@@ -1707,18 +1824,25 @@ def build_portfolio_ledger(
         ep = epochs[t]
         s = float(exposure_path[t])
         w_risky, w_cash = apply_portfolio_exposure_scale(ep["w_base"], scale=s)
+        base_w = np.asarray(ep["w_base"], dtype=float)
+        base_sum = np.sum(base_w)
+        cur_q = base_w / base_sum if base_sum > 0 else np.zeros_like(base_w)
 
         # Asset alignment
         cur_assets = ep["assets"]
         if prev_w_r is None:
             to_r = 0.0
             to_c = 0.0
+            to_comp = 0.0
         else:
             all_a = sorted(set(cur_assets) | set(prev_assets))
             c_map = {cur_assets[i]: w_risky[i] for i in range(len(cur_assets))}
             p_map = {prev_assets[i]: prev_w_r[i] for i in range(len(prev_assets))}
-            to_r = sum(abs(c_map.get(a, 0.0) - p_map.get(a, 0.0)) for a in all_a)
-            to_c = abs(w_cash - prev_w_c)
+            c_q_map = {cur_assets[i]: cur_q[i] for i in range(len(cur_assets))}
+            p_q_map = {prev_assets[i]: prev_q[i] for i in range(len(prev_assets))}
+            to_r = float(sum(abs(c_map.get(a, 0.0) - p_map.get(a, 0.0)) for a in all_a))
+            to_c = float(abs(w_cash - prev_w_c))
+            to_comp = float(sum(abs(c_q_map.get(a, 0.0) - p_q_map.get(a, 0.0)) for a in all_a))
 
         to_tot = to_r + to_c
         to_half = 0.5 * to_tot
@@ -1744,15 +1868,22 @@ def build_portfolio_ledger(
             "date": ep.get("week") or ep.get("date") or f"P_{t:03d}",
             "policy": policy_name,
             "exposure": s,
+            "risky_exposure": round(s, 6),
+            "risky_composition_weights": [round(float(x), 6) for x in cur_q],
+            "actual_risky_weights": [round(float(x), 6) for x in w_risky],
             "risky_weights": [round(float(x), 6) for x in w_risky],
             "cash_weight": round(float(w_cash), 6),
+            "cash_weight_change": to_c,
             "gross_return": gross_r,
             "risky_pnl": risky_pnl,
             "cash_pnl": cash_pnl,
+            "risky_composition_turnover": to_comp,
+            "actual_risky_traded_turnover": to_r,
             "turnover_risky": to_r,
             "turnover_cash": to_c,
             "turnover_total": to_tot,
             "turnover_half": to_half,
+            "costed_turnover": to_r,
             "transaction_cost": tc,
             "net_return": net_r,
             "risk_penalty": risk_penalty,
@@ -1763,6 +1894,7 @@ def build_portfolio_ledger(
 
         prev_w_r = w_risky
         prev_w_c = w_cash
+        prev_q = cur_q
         prev_assets = cur_assets
 
     return ledger

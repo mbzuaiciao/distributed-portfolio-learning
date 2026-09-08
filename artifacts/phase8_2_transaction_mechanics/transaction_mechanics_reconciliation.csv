@@ -1,0 +1,4 @@
+policy,annual_actual_risky_turnover,annual_composition_only_turnover,annual_exposure_driven_turnover,total_transaction_cost_drag_bps,cost_difference_vs_m9_bps,cost_difference_vs_m8_bps
+M8_Constant,72.49,102.49,0.0,724.9,2.1,0.0
+M9_RawTiming,72.28,102.49,11.17,722.8,0.0,-2.1
+M13_Hysteresis,73.25,102.49,6.63,732.5,9.7,7.6

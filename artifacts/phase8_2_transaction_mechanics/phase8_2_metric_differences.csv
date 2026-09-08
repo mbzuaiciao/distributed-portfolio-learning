@@ -1,0 +1,9 @@
+metric,policy,phase8_1_value,phase8_2_value,difference,classification,rationale
+Annual Actual Risky Turnover,M8_Constant,72.49,72.49,0.00,NO_CHANGE,Phase 8.1 already correctly computed turnover on scaled risky weights (s_t * q_t).
+Annual Actual Risky Turnover,M9_RawTiming,72.28,72.28,0.00,NO_CHANGE,Phase 8.1 already correctly computed turnover on scaled risky weights (s_t * q_t).
+Annual Actual Risky Turnover,M13_Hysteresis,72.29,72.29,0.00,NO_CHANGE,Phase 8.1 already correctly computed turnover on scaled risky weights (s_t * q_t).
+Traded Turnover Definition,All,"sum_j |w_{j,t} - w_{j,t-1}|","sum_j |Delta(s_t * q_{j,t})|",0.00,LABEL_CHANGE,Formalized definition explicitly as Delta(s_t * q_t) vs Delta q_t alone.
+Transaction Cost Rule,All,c * TO_risky,c * TO_actual_risky,0.00,NO_CHANGE,Fees apply to actual risky asset trades; cash transfer is frictionless.
+Net Economic Benefit,M13_Hysteresis,+4.77%,+4.77%,0.00%,NO_CHANGE,Exact closure confirms +4.77% net economic benefit over constant exposure.
+Mean Walk-Forward Delta Sharpe,M13_Hysteresis,+0.246,+0.246,0.000,NO_CHANGE,Out-of-sample Sharpe improvement strictly preserved across all 3 folds.
+Mean Walk-Forward Delta Utility,M13_Hysteresis,+0.000991,+0.000991,0.000000,NO_CHANGE,Out-of-sample net utility gain (+9.91 bps/wk) strictly preserved.

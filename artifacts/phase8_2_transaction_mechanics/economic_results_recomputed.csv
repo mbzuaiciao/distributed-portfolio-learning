@@ -1,0 +1,4 @@
+policy,annual_return_pct,annual_volatility_pct,sharpe_ratio,sortino_ratio,max_drawdown_pct,mean_net_utility,cumulative_transaction_cost_bps,losses_avoided_pct,upside_sacrificed_pct,extra_upside_captured_pct,extra_downside_suffered_pct,gross_timing_benefit_pct,incremental_tc_pct,net_economic_benefit_pct,closure_error
+M8_Constant,24.93%,20.92%,1.191,2.167,-10.50%,-0.001699,961.9,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,6.70e-17
+M9_RawTiming,28.10%,20.97%,1.340,2.453,-10.83%,-0.001363,959.1,11.29%,14.43%,12.25%,4.93%,4.18%,-0.03%,4.21%,6.25e-17
+M13_Hysteresis,28.90%,20.60%,1.403,2.418,-11.94%,-0.001150,972.0,10.05%,12.13%,13.27%,5.81%,5.37%,0.10%,5.27%,2.08e-17

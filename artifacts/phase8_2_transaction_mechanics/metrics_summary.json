@@ -1,0 +1,30 @@
+{
+  "phase": "8.2",
+  "title": "Transaction Mechanics Audit for Exposure Scaling",
+  "scientific_verdict": {
+    "status": "Outcome_A",
+    "description": "Existing implementation already correct. Actual risky turnover in build_portfolio_ledger and simulate_portfolio_strategy was already computed on actual scaled risky weights w_{j,t} = s_t * q_{j,t}. Phase 8.1 accounting is economically sound and confirmed without numerical correction."
+  },
+  "toy_tests_passed": [
+    "one_asset_exposure_reduction_80_to_40",
+    "one_asset_exposure_increase_40_to_80",
+    "unchanged_exposure_changing_composition",
+    "changing_exposure_changing_composition",
+    "unchanged_composition_unchanged_exposure"
+  ],
+  "canonical_turnover_definition": "TO_actual_risky = sum_j |s_t * q_{j,t} - s_{t-1} * q_{j,t-1}|",
+  "frozen_m13_parameters": {
+    "tau_enter": 1.2,
+    "tau_exit": 0.2,
+    "s_normal": 0.85,
+    "s_reduced": 0.45
+  },
+  "reconciliation_summary": {
+    "m8_annual_risky_to": 72.48948493854957,
+    "m9_annual_risky_to": 72.28110881932291,
+    "m13_annual_risky_to": 73.25217391304346,
+    "m13_net_economic_benefit": 0.0477,
+    "m13_walkforward_mean_delta_sharpe": 0.24566666666666667,
+    "m13_walkforward_mean_delta_utility": 0.0009913333333333334
+  }
+}

@@ -1,0 +1,7 @@
+seed,variant,mean_exposure,target_exposure,losses_avoided,upside_sacrificed,extra_upside,extra_downside,gross_benefit,incremental_tc,net_economic_benefit,closure_error
+42,M13_Hysteresis_Matched,0.7073,0.7073,10.28%,12.41%,12.24%,5.36%,4.74%,-0.03%,4.77%,1.39e-17
+42,M13_Hysteresis_Raw,0.7167,0.7073,10.05%,12.13%,13.27%,5.81%,5.37%,0.10%,5.27%,2.08e-17
+123,M13_Hysteresis_Matched,0.7284,0.7284,6.32%,7.12%,13.04%,5.00%,7.24%,-0.02%,7.26%,1.39e-17
+123,M13_Hysteresis_Raw,0.7457,0.7284,6.09%,6.86%,15.56%,5.96%,8.82%,0.21%,8.61%,1.39e-17
+777,M13_Hysteresis_Matched,0.6883,0.6883,8.26%,5.90%,10.37%,2.99%,9.74%,-0.02%,9.76%,2.78e-17
+777,M13_Hysteresis_Raw,0.7514,0.6883,7.13%,5.09%,18.58%,5.36%,15.25%,0.84%,14.42%,2.78e-17

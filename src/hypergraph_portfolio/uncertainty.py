@@ -1703,6 +1703,102 @@ def compute_actual_traded_turnover(
     }
 
 
+def compute_canonical_portfolio_metrics(
+    net_returns: Sequence[float],
+    net_utilities: Optional[Sequence[float]] = None,
+    risk_penalties: Optional[Sequence[float]] = None,
+    turnovers: Optional[Sequence[float]] = None,
+    cost_bps: float = 0.0010,
+    ann_factor: float = 52.0,
+    gamma: float = 1.0,
+) -> Dict[str, float]:
+    """
+    Compute single canonical portfolio performance metrics from period-level net returns.
+
+    Standard mathematical definitions:
+        annualized_return = mean(r_net) * ann_factor
+        annualized_volatility = std(r_net, ddof=1) * sqrt(ann_factor)
+        sharpe_ratio = annualized_return / annualized_volatility
+        downside_volatility = std([r for r in r_net if r < 0], ddof=1) * sqrt(ann_factor)
+        sortino_ratio = annualized_return / downside_volatility
+        max_drawdown = min((W - cummax(W)) / cummax(W)) where W_t = prod_{i<=t} (1 + r_net,i)
+        mean_net_utility = mean(u_net)
+
+    Args:
+        net_returns: 1D array of net periodic returns r_{net, t}.
+        net_utilities: Optional 1D array of net utilities u_{net, t}.
+        risk_penalties: Optional 1D array of risk penalties 0.5 * gamma * var_t.
+        turnovers: Optional 1D array of period costed turnovers.
+        cost_bps: Proportional transaction cost per unit of turnover.
+        ann_factor: Annualization factor (52.0 for weekly).
+        gamma: Risk aversion parameter.
+
+    Returns:
+        Dict[str, float]: Standardized canonical portfolio performance metrics.
+    """
+    r_arr = np.asarray(net_returns, dtype=float).ravel()
+    T = len(r_arr)
+    if T == 0:
+        return {
+            "annualized_return": 0.0,
+            "annualized_volatility": 0.0,
+            "sharpe_ratio": 0.0,
+            "downside_volatility": 0.0,
+            "sortino_ratio": 0.0,
+            "max_drawdown": 0.0,
+            "mean_net_utility": 0.0,
+            "annual_costed_turnover": 0.0,
+            "annual_tc_drag_bps": 0.0,
+        }
+
+    ann_ret = float(np.mean(r_arr) * ann_factor)
+    ann_vol = float(np.std(r_arr, ddof=1) * np.sqrt(ann_factor)) if T > 1 else 0.0
+    sharpe = float(ann_ret / ann_vol) if ann_vol > 1e-12 else 0.0
+
+    downside = [r for r in r_arr if r < 0.0]
+    if len(downside) > 1:
+        down_vol = float(np.std(downside, ddof=1) * np.sqrt(ann_factor))
+    else:
+        down_vol = ann_vol
+    sortino = float(ann_ret / down_vol) if down_vol > 1e-12 else 0.0
+
+    # Compounded wealth trajectory for exact drawdown
+    wealth = np.cumprod(1.0 + r_arr)
+    peaks = np.maximum.accumulate(wealth)
+    drawdowns = (wealth - peaks) / peaks
+    max_dd = float(np.min(drawdowns)) if len(drawdowns) > 0 else 0.0
+
+    if net_utilities is not None:
+        mean_u = float(np.mean(net_utilities))
+    elif risk_penalties is not None:
+        p_arr = np.asarray(risk_penalties, dtype=float).ravel()
+        mean_u = float(np.mean(r_arr - p_arr))
+    else:
+        # Approximate variance penalty from sample variance if not provided
+        sample_var = float(np.var(r_arr, ddof=1)) if T > 1 else 0.0
+        mean_u = float(np.mean(r_arr) - 0.5 * gamma * sample_var)
+
+    if turnovers is not None:
+        to_arr = np.asarray(turnovers, dtype=float).ravel()
+        ann_to = float(np.sum(to_arr) * (ann_factor / T))
+        tc_drag_bps = float(ann_to * cost_bps * 10000.0)
+    else:
+        ann_to = 0.0
+        tc_drag_bps = 0.0
+
+    return {
+        "annualized_return": ann_ret,
+        "annualized_volatility": ann_vol,
+        "sharpe_ratio": sharpe,
+        "downside_volatility": down_vol,
+        "sortino_ratio": sortino,
+        "max_drawdown": max_dd,
+        "mean_net_utility": mean_u,
+        "annual_costed_turnover": ann_to,
+        "annual_tc_drag_bps": tc_drag_bps,
+    }
+
+
 def decompose_timing_economic_attribution_rebuilt(
     base_returns: Sequence[float],
     timing_exposures: Sequence[float],

@@ -1,0 +1,7 @@
+metric,policy,phase8_value,phase8_2_value,canonical_value,classification,rationale
+Sharpe Ratio (M8),M8_Constant,1.508,1.191,1.191 (Seed 42) / 1.507 (Mean 3-Seeds),AGGREGATION_CHANGE,Phase 8 reported 3-seed arithmetic mean; Phase 8.2 reported Seed 42 alone. Both values are mathematically valid when properly labeled.
+Sharpe Ratio (M13),M13_Hysteresis,1.702,1.403,1.403 (Seed 42) / 1.732 (Mean 3-Seeds),AGGREGATION_CHANGE,Phase 8 reported 3-seed arithmetic mean; Phase 8.2 reported Seed 42 alone.
+Annual Return (M9),M9_RawTiming,35.48%,28.10%,28.10% (Seed 42) / 37.14% (Mean 3-Seeds),AGGREGATION_CHANGE,Phase 8 reported 3-seed mean; Phase 8.2 reported Seed 42 alone.
+Transaction Cost Subtraction,All,Double-subtraction (utility & return),Single-subtraction on net return,Single-subtraction on net return,ACCOUNTING_CHANGE,Phase 8 double-counted transaction cost in net utility; fixed in Phase 8.1/8.2.
+M13 Exposure Matching,M13_Hysteresis,Matched to target exposure (0.707),Raw unscaled exposure (0.717),Matched to target exposure (0.707),ACCOUNTING_CHANGE,Phase 8.2 evaluated raw unscaled exposure path; Phase 8.3 restores strict exposure matching (+4.77% net benefit).
+Turnover Traded Definition,All,Total / Cash conflation,Actual risky traded volume Delta(s_t * q_t),Actual risky traded volume Delta(s_t * q_t),LABEL_CHANGE,"Clarified that broker fees apply to physical risky-asset trades, not cash sleeve."

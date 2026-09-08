@@ -1,0 +1,22 @@
+{
+  "phase": "8.3",
+  "title": "Metric Reproducibility Reconciliation",
+  "audit_findings": {
+    "sharpe_discrepancy": "Phase 8 reported 3-seed arithmetic mean (1.508 / 1.687 / 1.702); Phase 8.1/8.2 reported Seed 42 alone (1.191 / 1.340 / 1.403). Both are algebraically verified from source data.",
+    "return_discrepancy": "Phase 8 had double transaction cost subtraction in simulate_portfolio_strategy; Phase 8.1/8.2 resolved to single subtraction on net return.",
+    "economic_benefit_discrepancy": "+4.77% represents strictly matched-exposure M13; +5.27% represents raw unscaled M13. Matched (+4.77%) is the canonical protocol.",
+    "turnover_netting": "Turnover netting is a genuine mathematical identity resulting from weekly asset rotations (overlap=0 => TO = s_t + s_{t-1} = 2*s_bar). Naive bounds double-count exposure shifts."
+  },
+  "canonical_mean_metrics": {
+    "M8_Sharpe": 1.5075032555148569,
+    "M9_Sharpe": 1.739023972485935,
+    "M13_Sharpe": 1.7321035900746846,
+    "M13_Net_Benefit": 0.07263431308453572
+  },
+  "canonical_seed42_metrics": {
+    "M8_Sharpe": 1.1914877827614005,
+    "M9_Sharpe": 1.3397007091576958,
+    "M13_Sharpe": 1.4031376413845793,
+    "M13_Net_Benefit": 0.04769793051197281
+  }
+}

@@ -910,3 +910,176 @@ def apply_portfolio_exposure_scale(
 
     return w_risky, w_cash
 
+
+# =============================================================================
+# Phase 6: Relative Epistemic Uncertainty & Matched-Exposure Timing
+# =============================================================================
+
+
+def compute_relative_epistemic_uncertainty(
+    history_uncertainty: Sequence[float],
+    current_uncertainty: float,
+    window: int = 13,
+    method: str = "zscore",
+    min_history: int = 4,
+) -> float:
+    """
+    Compute causal relative epistemic uncertainty using strictly trailing history up to t-1.
+
+    Guarantees:
+        - Strict zero-leakage: history_uncertainty contains only past periods up to t-1.
+        - Robust handling of zero-variance or zero-MAD history.
+        - Deterministic fallback when history length < min_history.
+
+    Methods:
+        - 'zscore': (u_t - mean_{t-1}) / std_{t-1}
+        - 'robust_zscore': (u_t - median_{t-1}) / (1.4826 * MAD_{t-1})
+        - 'ratio': u_t / median_{t-1}
+        - 'percentile_rank': fraction of trailing history where u_t >= u_{t-k}
+
+    Args:
+        history_uncertainty: Sequence of scalar aggregate uncertainties observed up to t-1.
+        current_uncertainty: Aggregate uncertainty at decision epoch t (u_t >= 0).
+        window: Trailing window length (default 13 weeks).
+        method: 'zscore', 'robust_zscore', 'ratio', or 'percentile_rank'.
+        min_history: Minimum required history length before dynamic normalization (default 4).
+
+    Returns:
+        float: Normalized relative uncertainty metric.
+    """
+    u_t = float(current_uncertainty)
+    hist = list(history_uncertainty)[-window:]
+
+    # Fallback if insufficient trailing history
+    if len(hist) < min_history:
+        if method in ("zscore", "robust_zscore"):
+            return 0.0
+        elif method == "ratio":
+            return 1.0
+        elif method == "percentile_rank":
+            return 0.5
+
+    arr = np.asarray(hist, dtype=float)
+
+    if method == "zscore":
+        mean_val = float(np.mean(arr))
+        std_val = float(np.std(arr, ddof=1)) if len(arr) > 1 else 0.0
+        if std_val < 1e-8:
+            return 0.0
+        return float((u_t - mean_val) / std_val)
+
+    elif method == "robust_zscore":
+        med_val = float(np.median(arr))
+        mad_val = float(np.median(np.abs(arr - med_val)))
+        denom = 1.4826 * mad_val
+        if denom < 1e-8:
+            # Fall back to sample std if MAD is zero (e.g., discrete values)
+            std_val = float(np.std(arr, ddof=1)) if len(arr) > 1 else 0.0
+            if std_val < 1e-8:
+                return 0.0
+            return float((u_t - med_val) / std_val)
+        return float((u_t - med_val) / denom)
+
+    elif method == "ratio":
+        med_val = float(np.median(arr))
+        if med_val < 1e-8:
+            return 1.0
+        return float(u_t / med_val)
+
+    elif method == "percentile_rank":
+        return float(np.mean(u_t >= arr))
+
+    else:
+        raise ValueError(f"Unknown relative uncertainty normalization method: {method}")
+
+
+def compute_relative_epistemic_exposure_scale(
+    relative_uncertainty: float,
+    s_base: float = 0.70,
+    lambda_rel: float = 0.20,
+    tau: float = 0.0,
+    s_min: float = 0.0,
+    s_max: float = 1.0,
+    smooth: bool = False,
+    k_smooth: float = 2.0,
+) -> float:
+    """
+    Compute dynamic exposure scale based on relative (abnormally elevated) uncertainty.
+
+    Piecewise linear rule:
+        s_t = clip(s_base - lambda_rel * max(0, z_t - tau), s_min, s_max)
+
+    Smooth logistic rule:
+        s_t = s_min + (s_max - s_min) / (1 + exp(k * (z_t - tau)))
+
+    Guarantees:
+        - Weakly decreasing in relative_uncertainty.
+        - Clamped strictly in [s_min, s_max].
+        - No leverage (s_max <= 1.0 unless explicitly configured).
+
+    Args:
+        relative_uncertainty: Relative uncertainty metric (e.g. z-score).
+        s_base: Baseline exposure under normal uncertainty (z <= tau).
+        lambda_rel: Sensitivity penalty per unit of excess relative uncertainty.
+        tau: Threshold above which de-risking begins (default 0.0).
+        s_min: Minimum exposure floor in [0.0, 1.0] (default 0.0).
+        s_max: Maximum exposure ceiling in [s_min, 1.0] (default 1.0).
+        smooth: If True, uses smooth logistic mapping instead of piecewise linear.
+        k_smooth: Logistic steepness parameter.
+
+    Returns:
+        float: Exposure scale s_t in [s_min, s_max].
+    """
+    z = float(relative_uncertainty)
+
+    if smooth:
+        scale = s_min + (s_max - s_min) / (1.0 + float(np.exp(k_smooth * (z - tau))))
+    else:
+        excess = max(0.0, z - tau)
+        scale = s_base - lambda_rel * excess
+
+    return float(np.clip(scale, s_min, s_max))
+
+
+def generate_placebo_exposure_paths(
+    actual_exposure_path: Sequence[float],
+    n_placebos: int = 1000,
+    method: str = "circular_shift",
+    seed: int = 42,
+) -> np.ndarray:
+    """
+    Generate placebo exposure trajectories that preserve the exact empirical distribution
+    (mean, variance, quantiles) of actual exposures while altering temporal sequencing.
+
+    Methods:
+        - 'circular_shift': Shifts exposure trajectory by random lag k in [1, T-1].
+        - 'permutation': Randomly shuffles the sequence of exposure values.
+
+    Args:
+        actual_exposure_path: 1D array of realized exposure values s_t.
+        n_placebos: Number of placebo paths to generate (default 1,000).
+        method: 'circular_shift' or 'permutation'.
+        seed: Random seed for reproducibility.
+
+    Returns:
+        np.ndarray: Matrix of shape (n_placebos, T) of permuted exposure paths.
+    """
+    arr = np.asarray(actual_exposure_path, dtype=float)
+    T = len(arr)
+    rng = np.random.default_rng(seed)
+
+    placebos = np.zeros((n_placebos, T), dtype=float)
+
+    if method == "circular_shift":
+        shifts = rng.integers(1, T, size=n_placebos)
+        for i, s in enumerate(shifts):
+            placebos[i] = np.roll(arr, s)
+    elif method == "permutation":
+        for i in range(n_placebos):
+            placebos[i] = rng.permutation(arr)
+    else:
+        raise ValueError(f"Unknown placebo generation method: {method}")
+
+    return placebos
+
+

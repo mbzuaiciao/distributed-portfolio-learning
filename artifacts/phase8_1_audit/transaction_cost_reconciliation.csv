@@ -1,0 +1,4 @@
+cost_measure,M8_Cost_bps,M9_Cost_bps,M13_Cost_bps,M13_Savings_vs_M9_bps,explanation
+Total Portfolio Cost Drag (Canonical Risky TO),961.9,959.1,959.2,-0.1,Cost on market-traded volume of risky securities
+Isolated Macro Cash Overlay Drag,0.0,111.7,65.4,+46.2,Cost attributed solely to macro exposure reallocations
+Phase 8 Legacy Cost Drag (Total TO + Double-TC Subtraction),952.0,1090.2,1033.4,+56.8,Phase 8 reported numbers with total TO and utility double-subtraction

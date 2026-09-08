@@ -1,0 +1,4 @@
+policy,annual_risky_weight_turnover,annual_cash_sleeve_turnover,annual_total_weight_turnover,costed_turnover,transaction_cost_bps
+M8_Constant,72.49,0.00,72.49,72.49,961.9
+M9_RawTiming,72.28,11.17,83.45,72.28,959.1
+M13_Hysteresis,72.29,6.54,78.84,72.29,959.2

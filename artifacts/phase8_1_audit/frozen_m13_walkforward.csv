@@ -1,0 +1,4 @@
+fold,evaluation_period,M8_Sharpe,M13_Sharpe,Delta_Sharpe,M8_Net_Utility,M13_Net_Utility,Delta_Utility,M8_Turnover,M13_Turnover,M8_Max_Drawdown,M13_Max_Drawdown
+Fold_1,2024-W01_to_2024-W26,1.865,1.876,+0.011,0.002230,0.002426,+0.000195,70.91,70.52,-10.88%,-9.80%
+Fold_2,2024-W28_to_2024-W49,0.957,1.203,+0.246,-0.003435,-0.002606,+0.000829,70.46,70.56,-5.88%,-5.99%
+Fold_3,2024-W50_to_2025-W20,1.497,1.977,+0.480,-0.000412,0.001538,+0.001950,70.50,70.61,-8.14%,-7.42%

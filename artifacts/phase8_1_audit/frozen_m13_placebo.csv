@@ -1,0 +1,7 @@
+seed,placebo_type,actual_net_utility,placebo_mean,percentile_rank,empirical_pval
+42,circular_shift,-0.001048,-0.002190,89.1%,0.1090
+42,block_permutation_b4,-0.001048,-0.002197,88.6%,0.1140
+123,circular_shift,0.001078,-0.000361,95.5%,0.0450
+123,block_permutation_b4,0.001078,-0.000031,90.0%,0.1000
+777,circular_shift,0.001766,0.000100,100.0%,0.0000
+777,block_permutation_b4,0.001766,0.000152,99.2%,0.0080

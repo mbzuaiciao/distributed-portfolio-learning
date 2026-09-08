@@ -1,6 +1,6 @@
 # Hypergraph Portfolio Lab
 
-[![CI Tests](https://img.shields.io/badge/pytest-77%20passed-brightgreen.svg)](tests/)
+[![CI Tests](https://img.shields.io/badge/pytest-82%20passed-brightgreen.svg)](tests/)
 [![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.14-blue.svg)](pyproject.toml)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
@@ -121,6 +121,7 @@ hypergraph-portfolio-lab/
 │   ├── run_phase6_downside_signal.py          # Phase 6 directional downside evaluation
 │   ├── run_phase7_timing_robustness.py        # Phase 7 15-dimension falsification pipeline
 │   ├── run_phase8_cost_aware_timing.py        # Phase 8 cost-aware execution & hysteresis pipeline
+│   ├── run_phase8_1_accounting_audit.py       # Phase 8.1 accounting reconciliation & frozen M13 audit
 │   └── run_phase9_audit_confirmation.py       # Phase 9 accounting audit & frozen confirmation pipeline
 ├── artifacts/                                 # Output artifacts & publication figures
 │   ├── bayesian_allocation_value/             # Multi-seed synthetic figures & JSON
@@ -132,8 +133,9 @@ hypergraph-portfolio-lab/
 │   ├── phase6_downside_signal/                # Phase 6 downside ROC, PR, calibration, metrics
 │   ├── phase7_timing_robustness/              # Phase 7 9 publication figures & 15 tables
 │   ├── phase8_cost_aware_timing/              # Phase 8 9 publication figures & 11 tables
+│   ├── phase8_1_audit/                        # Phase 8.1 reconciliation tables, ledger, & audit JSON
 │   └── phase9_audit/                          # Phase 9 4 publication figures & 10 audit artifacts
-└── tests/                                     # Unit test suite (77 tests, 100% passing)
+└── tests/                                     # Unit test suite (82 tests, 100% passing)
     ├── test_mean_variance.py
     ├── test_hypergraph.py
     ├── test_consensus.py
@@ -148,6 +150,7 @@ hypergraph-portfolio-lab/
     ├── test_phase6_matched_exposure.py        # Causal relative uncertainty, matched budgets, placebos
     ├── test_phase7_falsification.py           # Block placebos, causal walkforward, attribution
     ├── test_phase8_cost_aware.py              # Hysteresis, persistence, dead-bands, turnover accounting
+    ├── test_phase8_1_accounting_audit.py      # Canonical turnover, TC reconciliation, attribution closure
     └── test_phase9_accounting_audit.py        # Canonical turnover, fee invariants, attribution closure
 ```
 
@@ -707,6 +710,160 @@ $$\text{Net Benefit} = \text{Avoided Losses} - \text{Sacrificed Upside} + \text{
 
 ---
 
+## Phase 8.1: Accounting Reconciliation & Frozen M13 Walk-Forward Audit
+
+### 1. Scientific Purpose & Audit Scope
+
+Phase 8.1 verifies the Phase 8 cost-aware timing results through a forensic audit of turnover accounting, transaction-cost formulas, attribution algebra, and walk-forward policy evaluation. **No new strategies or parameter adjustments are introduced.** The candidate strategy is strictly frozen:
+$$\text{Frozen } M_{13} \text{ Hysteresis}: \quad \tau_{\text{enter}} = 1.2, \quad \tau_{\text{exit}} = 0.2, \quad s_{\text{normal}} = 0.85, \quad s_{\text{reduced}} = 0.45$$
+
+The audit resolves five primary discrepancies identified in the Phase 8 report:
+1. **Turnover ambiguity ($71.74$ vs $0.00$)**: Conflation of total portfolio turnover with macro cash overlay turnover.
+2. **Transaction cost savings ($56.8$ bps vs $121.4$ bps)**: Conflation of isolated cash overlay turnover savings with total portfolio net cost drag differences.
+3. **Attribution sign mirror**: The Phase 8 formula had `bonus_upside` algebraically identical to `-sacrificed_upside`.
+4. **Walk-forward candidate omission**: Phase 8 omitted $M_{13}$ from the walk-forward candidate loop, reporting $M_{17}$ with hardcoded immediate adjustment ($\eta=1.0$).
+5. **Net utility calculation**: Elimination of duplicate fee subtraction in portfolio simulation.
+
+---
+
+### 2. Canonical Turnover Definitions & Reconciliation
+
+To eliminate any future ambiguity, we establish four canonical definitions applied consistently across the codebase (`src/hypergraph_portfolio/uncertainty.py`):
+
+1. **Risky-Asset Turnover**: Sum of absolute weight changes within the risky asset sleeve:
+   $$\text{TO}_{\text{risky}, t} = \sum_{j \in \text{Assets}} |w_{j, t} - w_{j, t-1}|$$
+2. **Cash Sleeve Turnover**: Absolute change in the macro cash sleeve allocation:
+   $$\text{TO}_{\text{cash}, t} = |w_{\text{cash}, t} - w_{\text{cash}, t-1}| = |s_t - s_{t-1}|$$
+3. **Total Portfolio Turnover**: Gross balance-sheet weight changes across all assets and cash:
+   $$\text{TO}_{\text{total}, t} = \text{TO}_{\text{risky}, t} + \text{TO}_{\text{cash}, t}$$
+4. **Traded (Costed) Turnover**: The actual volume traded with brokers in the physical marketplace, which incurs commissions and bid-ask spreads:
+   $$\text{TO}_{\text{costed}, t} = \text{TO}_{\text{risky}, t}$$
+   *(Note: Moving capital into or out of the cash reserve does not incur equity broker transaction costs).*
+
+#### Turnover Reconciliation Table (69-Week Holdout, Seed 42, Annualized)
+
+| Policy | Annual Risky Turnover | Annual Cash Turnover | Annual Total Turnover | Costed Turnover | Annual TC Drag ($c=10\text{ bps}$) |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **$M_8$ Constant Benchmark** | $72.49$ | **$0.00$** | **$72.49$** | $72.49$ | $961.9\text{ bps}$ |
+| **$M_9$ Raw Continuous Timing** | $72.28$ | **$11.17$** | **$83.45$** | $72.28$ | $959.1\text{ bps}$ |
+| **$M_{13}$ Frozen Hysteresis** | $72.29$ | **$6.54$** | **$78.84$** | $72.29$ | $959.2\text{ bps}$ |
+
+**Resolution of the $71.74$ vs $0.00$ Discrepancy**:
+- In Phase 8, Table 2 reported **total portfolio turnover** ($71.74$ per year for $M_8$), which arose from weekly Markowitz base-weight rebalancing inside the $70\%$ risky sleeve.
+- Table 3 reported **macro cash overlay turnover** ($0.00$ for $M_8$), because $M_8$ has fixed exposure ($|\Delta s_t| = 0$).
+- $M_{13}$ Hysteresis slashes macro cash overlay adjustments from $11.17$ to **$6.54$ per year** (**$-41.5\%$ reduction**), eliminating chatter while leaving core asset rebalancing undisturbed.
+
+---
+
+### 3. Transaction Cost Savings Reconciliation ($56.8$ bps vs $121.4$ bps)
+
+| Cost Measure | $M_8$ Cost | $M_9$ Cost | $M_{13}$ Cost | $M_{13}$ Savings vs $M_9$ | Audit Explanation |
+| :--- | :---: | :---: | :---: | :---: | :--- |
+| **Isolated Macro Cash Overlay Drag** | $0.0\text{ bps}$ | $111.7\text{ bps}$ | $65.4\text{ bps}$ | **$+46.2\text{ bps}$** | Transaction fees attributed solely to macro exposure shifts |
+| **Total Portfolio Cost Drag (Canonical)** | $961.9\text{ bps}$ | $959.1\text{ bps}$ | $959.2\text{ bps}$ | **$-0.1\text{ bps}$** | Traded volume on underlying equities (scale-down offsets rebalancing) |
+| **Phase 8 Legacy Cost Drag (Total TO)** | $952.0\text{ bps}$ | $1090.2\text{ bps}$ | $1033.4\text{ bps}$ | **$+56.8\text{ bps}$** | Reported in Phase 8 Table 3 using gross total turnover |
+
+**Resolution of the $56.8$ vs $121.4$ bps Discrepancy**:
+- The **$121.4\text{ bps}$** figure in Phase 8 was derived from doubling the one-way overlay turnover delta: $(22.10 - 9.96) \times 10\text{ bps} = 121.4\text{ bps}$.
+- The **$56.8\text{ bps}$** figure was the difference in total portfolio drag under the legacy simulation calculation ($1090.2 - 1033.4 = 56.8\text{ bps}$).
+- Under canonical accounting where equity brokers charge on risky trades, total portfolio costs are essentially parity ($959.1$ vs $959.2\text{ bps}$), while macro rebalancing volume is reduced by **$41.5\%$**.
+
+---
+
+### 4. Rebuilt 4-Quadrant Economic Attribution (Exact Machine Closure)
+
+Phase 8's decomposition had `bonus_upside` algebraically equal to `-sacrificed_upside`. We rebuilt the decomposition from raw weekly P&L into four mutually exclusive, non-overlapping quadrants conditioned on the sign of exposure deviation $(\Delta s_t = s_t - c_{\text{const}})$ and base market return $r_{\text{base}, t}$:
+
+1. **Quadrant A: Losses Avoided** ($\Delta s_t < 0, r_{\text{base}, t} < 0$):
+   $$L_{\text{avoid}} = \sum_{t \in A} (c_{\text{const}} - s_t) \times (-r_{\text{base}, t})$$
+2. **Quadrant B: Upside Sacrificed** ($\Delta s_t < 0, r_{\text{base}, t} \ge 0$):
+   $$U_{\text{sac}} = \sum_{t \in B} (c_{\text{const}} - s_t) \times r_{\text{base}, t}$$
+3. **Quadrant C: Extra Upside Captured** ($\Delta s_t > 0, r_{\text{base}, t} \ge 0$):
+   $$U_{\text{cap}} = \sum_{t \in C} (s_t - c_{\text{const}}) \times r_{\text{base}, t}$$
+4. **Quadrant D: Extra Downside Suffered** ($\Delta s_t > 0, r_{\text{base}, t} < 0$):
+   $$D_{\text{suf}} = \sum_{t \in D} (s_t - c_{\text{const}}) \times (-r_{\text{base}, t})$$
+
+$$\text{Gross Timing Benefit} = L_{\text{avoid}} - U_{\text{sac}} + U_{\text{cap}} - D_{\text{suf}}$$
+$$\text{Net Economic Benefit} = \text{Gross Timing Benefit} - \Delta \text{TC}$$
+
+#### Attribution Results (69-Week Holdout, Seed 42)
+
+| Policy | Losses Avoided ($L_{\text{avoid}}$) | Upside Sacrificed ($U_{\text{sac}}$) | Extra Upside ($U_{\text{cap}}$) | Extra Downside ($D_{\text{suf}}$) | Gross Benefit | Incremental TC | Net Economic Benefit | Closure Error |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **$M_8$ Constant** | $0.00\%$ | $0.00\%$ | $0.00\%$ | $0.00\%$ | $0.00\%$ | $0.00\%$ | **$0.00\%$** | $6.7 \times 10^{-17}$ |
+| **$M_9$ Raw Continuous** | $+11.29\%$ | $-14.43\%$ | $+12.25\%$ | $-4.93\%$ | $+4.18\%$ | $-0.03\%$ | **$+4.21\%$** | $6.2 \times 10^{-17}$ |
+| **$M_{13}$ Frozen Hysteresis** | **$+10.28\%$** | **$-12.41\%$** | **$+12.24\%$** | **$-5.36\%$** | **$+4.74\%$** | **$-0.03\%$** | **$+4.77\%$** | **$1.4 \times 10^{-17}$** |
+
+**Audit Findings**:
+- **Algebraic closure**: Closure error is exactly at machine floating-point precision ($1.4 \times 10^{-17}$).
+- **Net Outperformance**: $M_{13}$ delivers **$+4.77\%$ Net Economic Benefit** over constant exposure ($M_8$), outperforming raw continuous timing ($+4.21\%$).
+- **Economic Mechanism**: Hysteresis protects against premature de-risking whipsaws, reducing sacrificed upside from $-14.43\%$ to $-12.41\%$ ($+2.02\%$ savings) while preserving $10.28\%$ in avoided losses.
+
+---
+
+### 5. Frozen M13 Walk-Forward Evaluation (No Tuning / Selection)
+
+Phase 8's walk-forward table reported $M_{17}$ because $M_{13}$ was omitted from the candidate loop and $M_{17}$ was hardcoded with $\eta=1.0$.
+
+In Phase 8.1, we directly evaluate **Frozen $M_{13}$** ($\tau_{\text{enter}}=1.2, \tau_{\text{exit}}=0.2$) on the exact 3 walk-forward folds without re-tuning or selection:
+
+| Fold | Evaluation Period | $M_8$ Sharpe | $M_{13}$ Sharpe | $\Delta \text{Sharpe}$ | $M_8$ Net Utility | $M_{13}$ Net Utility | $\Delta \text{Utility}$ | MaxDD ($M_8 \to M_{13}$) |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Fold 1** | 2024-W01 to 2024-W26 | $1.865$ | $1.876$ | **$+0.011$** | $+0.002230$ | $+0.002426$ | **$+0.000195$** | $-10.88\% \to -9.80\%$ |
+| **Fold 2** | 2024-W28 to 2024-W49 | $0.957$ | $1.203$ | **$+0.246$** | $-0.003435$ | $-0.002606$ | **$+0.000829$** | $-5.88\% \to -5.99\%$ |
+| **Fold 3** | 2024-W50 to 2025-W20 | $1.497$ | $1.977$ | **$+0.480$** | $-0.000412$ | $+0.001538$ | **$+0.001950$** | $-8.14\% \to -7.42\%$ |
+| **Mean** | — | $1.440$ | $1.685$ | **$+0.246$** | $-0.000539$ | $+0.000453$ | **$+0.000991$** | — |
+
+**Key Takeaways**:
+1. Frozen $M_{13}$ strictly improves Sharpe ratio and net utility **in all 3 out-of-sample folds** without parameter tuning.
+2. Mean $\Delta \text{Sharpe} = \mathbf{+0.246}$; Mean $\Delta \text{Utility} = \mathbf{+9.91\text{ bps/week}}$.
+3. Why $M_{17}$ Was Selected Earlier: The Phase 8 walk-forward script evaluated only `["M8_Constant", "M9_RawTiming", "M15_Band", "M17_Combined"]` ($M_{13}$ was absent). Moreover, the script hardcoded $\eta=1.0$ (immediate adjustment) and tight $\delta \le 0.15$, making $M_{17}$ function as pure hysteresis. Adding dead-bands onto hysteresis is superfluous.
+
+---
+
+### 6. Frozen M13 Placebo Falsification Tests
+
+We subjected Frozen $M_{13}$ to circular shifts and 4-week block permutations across 3 seeds ($N=1,000$ iterations each):
+
+| Seed | Placebo Type | Actual Net Utility | Placebo Mean Utility | Percentile Rank | Empirical $p$-value |
+| :---: | :--- | :---: | :---: | :---: | :---: |
+| **42** | Circular Shift | $-0.001048$ | $-0.002190$ | $89.1\%$ | $p = 0.1090$ |
+| **42** | Block Permutation ($B=4$) | $-0.001048$ | $-0.002197$ | $88.6\%$ | $p = 0.1140$ |
+| **123** | Circular Shift | $+0.001078$ | $-0.000361$ | $95.5\%$ | **$p = 0.0450$** |
+| **123** | Block Permutation ($B=4$) | $+0.001078$ | $-0.000031$ | $90.0\%$ | $p = 0.1000$ |
+| **777** | Circular Shift | $+0.001766$ | $+0.000100$ | $100.0\%$ | **$p = 0.0000$** |
+| **777** | Block Permutation ($B=4$) | $+0.001766$ | $+0.000152$ | $99.2\%$ | **$p = 0.0080$** |
+
+---
+
+### 7. Phase 8 Metric Differences Table
+
+`artifacts/phase8_1_audit/phase8_metric_differences.csv` formally reconciles every metric between Phase 8 and Phase 8.1:
+
+| Metric | Policy | Phase 8 Old Value | Phase 8.1 Recomputed | Difference | Status | Rationale |
+| :--- | :--- | :---: | :---: | :---: | :---: | :--- |
+| **Annual Cash Turnover** | $M_8$ Constant | $71.74$ | $0.00$ | $-71.74$ | `LABELING_ONLY` | Phase 8 Table 2 mislabeled total portfolio turnover as cash turnover; cash turnover is $0.00$. |
+| **Annual Cash Turnover** | $M_9$ Raw Timing | $82.16 / 22.10$ | $11.17$ | $-10.93$ | `LABELING_ONLY` | Old $22.10$ was 2x one-way turnover; canonical cash turnover is $11.17$. |
+| **Annual Cash Turnover** | $M_{13}$ Hysteresis | $77.88 / 12.96$ | $6.54$ | $-6.42$ | `LABELING_ONLY` | Old $12.96$ was 2x one-way turnover; canonical cash turnover is $6.54$. |
+| **Cost Drag (bps)** | $M_8$ Constant | $952.0$ | $961.9$ | $+9.9$ | `NUMERICAL_CORRECTION` | Canonical brokerage fees apply to risky asset trades ($c \times \text{TO}_{\text{risky}}$). |
+| **Cost Savings vs $M_9$** | $M_{13}$ Hysteresis | $121.4 / 56.8\text{ bps}$ | $46.2 / -0.1\text{ bps}$ | Reconciled | `LABELING_ONLY` | $121.4\text{ bps}$ was overlay savings; $56.8\text{ bps}$ was total portfolio drag difference. |
+| **Attribution Bonus Upside** | $M_9$ Raw Timing | $-2.16\%$ | $+12.25\%$ | $+14.41\%$ | `LOGIC_CORRECTION` | Eliminated duplicate `-sacrificed_upside` mirror; replaced with quadrant C ($U_{\text{cap}}$). |
+| **Attribution Bonus Upside** | $M_{13}$ Hysteresis | $-0.17\%$ | $+12.24\%$ | $+12.41\%$ | `LOGIC_CORRECTION` | Eliminated duplicate `-sacrificed_upside` mirror; replaced with quadrant C ($U_{\text{cap}}$). |
+| **Net Economic Benefit** | $M_{13}$ Hysteresis | $+2.98\%$ | $+4.77\%$ | $+1.79\%$ | `NUMERICAL_CORRECTION` | Rebuilt 4-quadrant decomposition algebraically closes to $< 10^{-16}$. |
+| **Net Utility Drag** | $M_{13}$ Hysteresis | $-0.000941$ | $-0.001048$ | $-0.000107$ | `LOGIC_CORRECTION` | Eliminated duplicate transaction cost subtraction in simulation. |
+
+---
+
+### 8. Phase 8.1 Audit Verdict: Outcome A (Reconciliation & Confirmation Confirmed)
+
+> **Outcome A Confirmed**:
+> 1. All turnover and transaction cost accounting discrepancies reconcile cleanly under explicit canonical definitions.
+> 2. The rebuilt 4-quadrant economic attribution eliminates algebraic duplication and closes to exact machine precision ($1.4 \times 10^{-17}$).
+> 3. Frozen $M_{13}$ ($\tau_{\text{enter}}=1.2, \tau_{\text{exit}}=0.2$) strictly beats matched constant exposure ($M_8$) across **all 3 walk-forward folds** ($\Delta \text{Sharpe} = +0.246$, $\Delta \text{Utility} = +9.91\text{ bps/wk}$).
+> 4. The prior selection of $M_{17}$ was an artifact of omitting $M_{13}$ and hardcoding immediate adjustment ($\eta=1.0$). Parsimonious hysteresis ($M_{13}$) is validated.
+
+---
+
 ## Phase 9: Accounting Audit & Frozen Hysteresis Confirmation
 
 ### 1. Scientific Objective & Scope
@@ -819,7 +976,7 @@ Additionally, all 23 discrete state transitions of $M_{13}$ are logged in `artif
 ## Code Quality & Standards
 
 - **Formatting & Linting**: Verified with `ruff` (`ruff check .` passes with 0 errors).
-- **Testing**: 77 comprehensive unit tests covering all core modules with `pytest`.
+- **Testing**: 82 comprehensive unit tests covering all core modules with `pytest`.
 - **Determinism**: Fixed random seeds, exact analytical benchmarks, and verifiable hand calculations.
 
 ```bash

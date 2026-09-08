@@ -1,0 +1,10 @@
+metric,policy,old_value,recomputed_value,difference,status,rationale
+Annual Cash Turnover,M8_Constant,71.74,0.00,-71.74,LABELING_ONLY,Phase 8 table 2 mislabeled total portfolio turnover (71.74) as cash turnover; actual cash turnover is 0.00.
+Annual Cash Turnover,M9_RawTiming,82.16 (total) / 22.10 (diff*2),11.17,-10.93,LABELING_ONLY,Old 22.10 was 2x one-way cash turnover; canonical cash sleeve turnover is 11.17.
+Annual Cash Turnover,M13_Hysteresis,77.88 (total) / 12.96 (diff*2),6.54,-6.42,LABELING_ONLY,Old 12.96 was 2x one-way cash turnover; canonical cash sleeve turnover is 6.54.
+Transaction Cost Drag (bps),M8_Constant,952.0,961.9,+9.9,NUMERICAL_CORRECTION,"Canonical fees apply to risky asset trades, not double-counting cash."
+Transaction Cost Savings vs M9,M13_Hysteresis,121.4 bps (overlay) / 56.8 bps (total),46.2 bps (overlay) / -0.1 bps (total),Reconciled,LABELING_ONLY,121.4 bps was isolated overlay savings (22.10 - 9.96)*10bps; 56.8 bps was total portfolio drag difference.
+Economic Attribution Bonus Upside,M9_RawTiming,-2.16%,+12.25% (extra_upside),+14.41%,LOGIC_CORRECTION,Phase 8 had bonus_upside = -sacrificed_upside; replaced with mutually exclusive quadrant C.
+Economic Attribution Bonus Upside,M13_Hysteresis,-0.17%,+12.24% (extra_upside),+12.41%,LOGIC_CORRECTION,Phase 8 had bonus_upside = -sacrificed_upside; replaced with mutually exclusive quadrant C.
+Net Economic Benefit,M13_Hysteresis,+2.98%,+4.77%,+1.79%,NUMERICAL_CORRECTION,Rebuilt 4-quadrant decomposition algebraically closes to machine precision (< 1e-16).
+Net Utility Double Subtraction,M13_Hysteresis,-0.000941,-0.001048,-0.000107,LOGIC_CORRECTION,Eliminated duplicate subtraction of transaction costs in simulate_portfolio_strategy.

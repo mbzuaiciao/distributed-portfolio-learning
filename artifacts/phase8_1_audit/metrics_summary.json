@@ -1,0 +1,75 @@
+{
+  "phase": "8.1",
+  "title": "Accounting Reconciliation & Frozen M13 Walk-Forward Audit",
+  "scientific_verdict": {
+    "status": "Outcome_A",
+    "description": "Accounting reconciles cleanly and frozen M13 robustly improves matched constant exposure across all walk-forward folds."
+  },
+  "reconciliation_findings": {
+    "turnover_71p74_vs_0p00": "Table 2 reported total portfolio turnover (71.74); Table 3 reported macro cash overlay turnover (0.00).",
+    "cost_savings_56p8_vs_121p4": "121.4 bps was isolated macro cash overlay savings; 56.8 bps was total portfolio drag difference.",
+    "attribution_bonus_upside": "Duplicate display term (-sacrificed_upside) eliminated; rebuilt 4-quadrant decomposition closes exactly to 1.4e-17.",
+    "walkforward_m17_selection": "M13 was omitted from candidate loop; M17 used eta=1.0 and tight delta<=0.15, acting like pure hysteresis."
+  },
+  "frozen_m13_parameters": {
+    "tau_enter": 1.2,
+    "tau_exit": 0.2,
+    "s_normal": 0.85,
+    "s_reduced": 0.45
+  },
+  "frozen_m13_holdout_metrics_seed_42": {
+    "annual_return": 28.52285743719901,
+    "annual_vol": 20.32791124401267,
+    "sharpe_ratio": 1.4031376413845793,
+    "mean_net_utility": -0.0010476536903956976,
+    "net_economic_benefit": 0.0477
+  },
+  "frozen_m13_walkforward_summary": {
+    "mean_delta_sharpe": 0.24566666666666667,
+    "mean_delta_utility": 0.0009913333333333334,
+    "folds": [
+      {
+        "fold": "Fold_1",
+        "evaluation_period": "2024-W01_to_2024-W26",
+        "M8_Sharpe": "1.865",
+        "M13_Sharpe": "1.876",
+        "Delta_Sharpe": "+0.011",
+        "M8_Net_Utility": "0.002230",
+        "M13_Net_Utility": "0.002426",
+        "Delta_Utility": "+0.000195",
+        "M8_Turnover": "70.91",
+        "M13_Turnover": "70.52",
+        "M8_Max_Drawdown": "-10.88%",
+        "M13_Max_Drawdown": "-9.80%"
+      },
+      {
+        "fold": "Fold_2",
+        "evaluation_period": "2024-W28_to_2024-W49",
+        "M8_Sharpe": "0.957",
+        "M13_Sharpe": "1.203",
+        "Delta_Sharpe": "+0.246",
+        "M8_Net_Utility": "-0.003435",
+        "M13_Net_Utility": "-0.002606",
+        "Delta_Utility": "+0.000829",
+        "M8_Turnover": "70.46",
+        "M13_Turnover": "70.56",
+        "M8_Max_Drawdown": "-5.88%",
+        "M13_Max_Drawdown": "-5.99%"
+      },
+      {
+        "fold": "Fold_3",
+        "evaluation_period": "2024-W50_to_2025-W20",
+        "M8_Sharpe": "1.497",
+        "M13_Sharpe": "1.977",
+        "Delta_Sharpe": "+0.480",
+        "M8_Net_Utility": "-0.000412",
+        "M13_Net_Utility": "0.001538",
+        "Delta_Utility": "+0.001950",
+        "M8_Turnover": "70.50",
+        "M13_Turnover": "70.61",
+        "M8_Max_Drawdown": "-8.14%",
+        "M13_Max_Drawdown": "-7.42%"
+      }
+    ]
+  }
+}

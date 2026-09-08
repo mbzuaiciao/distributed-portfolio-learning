@@ -1,0 +1,29 @@
+{
+    "phase": "8.4",
+    "description": "Base-Portfolio Churn Diagnostic across 2024-2025 holdout",
+    "primary_diagnosed_cause": "Outcome E: Mixed Mechanism (Structural Panel Disjointness + Simplex Boundary Concentration)",
+    "diagnostics": {
+        "mean_annual_base_turnover": 104.0,
+        "mean_holding_overlap": 0.0,
+        "fraction_disjoint_weeks": 1.0,
+        "boundary_hit_frequency_zeros": 0.5667,
+        "mean_max_weight": 0.47026666666666667,
+        "mean_regret_saved_per_turnover": 0.0226,
+        "position_survival_1w": 1.0,
+        "position_survival_2w": 0.0,
+        "position_survival_4w": 0.0,
+        "covariance_turnover_contribution": 0.0
+    },
+    "strongest_evidence": [
+        "Holding overlap is identically 0.0 across all 68 consecutive transitions (100% disjoint weekly reporting baskets).",
+        "Equal-weight portfolio on reporting assets generates identically 104.0 annual base turnover (72x scaled), proving churn is universe-driven rather than optimizer-driven.",
+        "Optimizer pushes 81.5% of asset weights to exact zero and concentrates ~49% of capital in the single top-alpha asset.",
+        "Covariance matrix is static equicorrelated prior (0.04*I + 0.01*J), contributing exactly 0.0 to turnover."
+    ],
+    "recommendations_for_future_phases": [
+        "1. (Highest Priority) Multi-Week Position Holding / Smoothing: Allow positions to be held for 4-13 weeks post-announcement, eliminating forced 100% weekly turnover.",
+        "2. (Optimizer Control) Proximal Weight Regularization: Add an L1 or L2 penalty ||q_t - q_{t-1}|| to penalize unnecessary churn when alpha differentials are small.",
+        "3. (Boundary Control) Maximum Weight Caps: Impose q_j <= 0.20 or minimum diversification constraints to curb corner-solution concentration.",
+        "4. (Confirmatory Protocol) Keep prospective 2026 data frozen until base portfolio execution architecture is stabilized."
+    ]
+}

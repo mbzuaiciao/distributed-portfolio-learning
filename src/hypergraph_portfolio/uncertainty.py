@@ -1994,3 +1994,184 @@ def build_portfolio_ledger(
         prev_assets = cur_assets
 
     return ledger
+
+
+# =============================================================================
+# Phase 8.4: Base-Portfolio Churn & Stability Diagnostic Helpers
+# =============================================================================
+
+
+def compute_base_portfolio_churn(
+    q_prev: Sequence[float],
+    q_cur: Sequence[float],
+    assets_prev: Sequence[str],
+    assets_cur: Sequence[str],
+) -> Dict[str, float]:
+    """
+    Compute base portfolio L1 turnover, half-turnover, and holding overlap.
+
+    Mathematical identity for simplex portfolios:
+        TO_base = 2 * (1 - overlap)
+    """
+    all_assets = sorted(set(assets_prev) | set(assets_cur))
+    p_map = {assets_prev[i]: float(q_prev[i]) for i in range(len(assets_prev))}
+    c_map = {assets_cur[i]: float(q_cur[i]) for i in range(len(assets_cur))}
+
+    to_base = float(sum(abs(c_map.get(a, 0.0) - p_map.get(a, 0.0)) for a in all_assets))
+    to_base_half = 0.5 * to_base
+    overlap = float(sum(min(c_map.get(a, 0.0), p_map.get(a, 0.0)) for a in all_assets))
+    expected_to = 2.0 * (1.0 - overlap)
+    identity_error = float(abs(to_base - expected_to))
+
+    return {
+        "to_base": to_base,
+        "to_base_half": to_base_half,
+        "overlap": overlap,
+        "identity_error": identity_error,
+    }
+
+
+def classify_asset_transitions(
+    q_prev: Sequence[float],
+    q_cur: Sequence[float],
+    assets_prev: Sequence[str],
+    assets_cur: Sequence[str],
+    tol: float = 1e-4,
+) -> Dict[str, Any]:
+    """
+    Classify asset positions into retained, entered, exited, increased, and decreased.
+    """
+    all_assets = sorted(set(assets_prev) | set(assets_cur))
+    p_map = {assets_prev[i]: float(q_prev[i]) for i in range(len(assets_prev))}
+    c_map = {assets_cur[i]: float(q_cur[i]) for i in range(len(assets_cur))}
+
+    retained = []
+    entered_from_zero = []
+    exited_to_zero = []
+    increased = []
+    decreased = []
+
+    for a in all_assets:
+        w_prev = p_map.get(a, 0.0)
+        w_cur = c_map.get(a, 0.0)
+
+        if w_prev > tol and w_cur > tol:
+            retained.append(a)
+        elif w_prev <= tol and w_cur > tol:
+            entered_from_zero.append(a)
+        elif w_prev > tol and w_cur <= tol:
+            exited_to_zero.append(a)
+
+        if w_cur > w_prev + tol:
+            increased.append(a)
+        elif w_cur < w_prev - tol:
+            decreased.append(a)
+
+    return {
+        "retained": retained,
+        "entered_from_zero": entered_from_zero,
+        "exited_to_zero": exited_to_zero,
+        "increased": increased,
+        "decreased": decreased,
+        "n_retained": len(retained),
+        "n_entered": len(entered_from_zero),
+        "n_exited": len(exited_to_zero),
+        "n_increased": len(increased),
+        "n_decreased": len(decreased),
+    }
+
+
+def compute_weight_boundary_metrics(
+    weights: Sequence[float],
+    tol: float = 1e-4,
+) -> Dict[str, float]:
+    """
+    Evaluate boundary-hit frequency and concentration on the simplex.
+    """
+    w = np.asarray(weights, dtype=float)
+    n = len(w)
+    if n == 0:
+        return {
+            "fraction_zero": 0.0,
+            "has_zero": 0.0,
+            "max_weight": 0.0,
+            "gt_25": 0.0,
+            "gt_50": 0.0,
+            "gt_75": 0.0,
+            "hhi": 0.0,
+        }
+
+    zeros = np.sum(w <= tol)
+    max_w = float(np.max(w))
+    hhi = float(np.sum(w**2))
+
+    return {
+        "fraction_zero": float(zeros / n),
+        "has_zero": 1.0 if zeros > 0 else 0.0,
+        "max_weight": max_w,
+        "gt_25": 1.0 if max_w > 0.25 else 0.0,
+        "gt_50": 1.0 if max_w > 0.50 else 0.0,
+        "gt_75": 1.0 if max_w > 0.75 else 0.0,
+        "hhi": hhi,
+    }
+
+
+def compute_portfolio_objective_regret(
+    ep_prev: Dict[str, Any],
+    ep_cur: Dict[str, Any],
+) -> Dict[str, float]:
+    """
+    Compute objective switch cost and regret of holding legacy portfolio into current period.
+
+    Returns:
+        f_prev: Objective value of legacy portfolio under current conditions.
+        f_cur: Objective value of current base portfolio under current conditions.
+        f_opt_joint: Optimal objective value over the joint universe.
+        switch_cost: f_prev - f_cur (objective difference vs current base).
+        regret_joint: f_prev - f_opt_joint (guaranteed >= 0).
+        to_base: Base turnover between legacy and current base.
+        regret_per_turnover: regret_joint / (to_base + epsilon).
+    """
+    assets_union = sorted(set(ep_prev["assets"]) | set(ep_cur["assets"]))
+    m = len(assets_union)
+    u_map = {a: i for i, a in enumerate(assets_union)}
+
+    q_prev = np.zeros(m)
+    for a, w in zip(ep_prev["assets"], ep_prev["w_base"]):
+        q_prev[u_map[a]] = float(w)
+
+    q_cur = np.zeros(m)
+    for a, w in zip(ep_cur["assets"], ep_cur["w_base"]):
+        q_cur[u_map[a]] = float(w)
+
+    mu_cur = np.zeros(m)
+    for a, mu in zip(ep_cur["assets"], ep_cur["mu_hat"]):
+        mu_cur[u_map[a]] = float(mu)
+
+    # Standard equicorrelated covariance matrix on union
+    Q_cur = 0.04 * np.eye(m) + 0.01 * np.ones((m, m))
+
+    f_prev = float(q_prev @ Q_cur @ q_prev - mu_cur @ q_prev)
+    f_cur = float(q_cur @ Q_cur @ q_cur - mu_cur @ q_cur)
+
+    # Solve optimal on joint universe
+    from hypergraph_portfolio.mean_variance import MeanVariancePortfolio
+
+    mv = MeanVariancePortfolio(Q=Q_cur, mu=mu_cur, budget=1.0)
+    w_opt, f_opt = mv.solve()
+
+    switch_cost = float(f_prev - f_cur)
+    regret_joint = float(max(0.0, f_prev - f_opt))
+    to_base = float(np.sum(np.abs(q_cur - q_prev)))
+    regret_per_to = float(regret_joint / (to_base + 1e-6))
+
+    return {
+        "f_prev": f_prev,
+        "f_cur": f_cur,
+        "f_opt_joint": f_opt,
+        "switch_cost": switch_cost,
+        "regret_joint": regret_joint,
+        "to_base": to_base,
+        "regret_per_turnover": regret_per_to,
+    }
+

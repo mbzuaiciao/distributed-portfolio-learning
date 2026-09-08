@@ -1,0 +1,4 @@
+strategy,mean_weekly_to,annual_to,mean_overlap,rationale
+Equal_Weight_Reporting_Basket,2.0,104.0,0.0,Equal allocation across all reporting assets in each weekly bucket.
+Markowitz_Base_Portfolio_M8,2.0,104.0,0.0,Centralized Markowitz mean-variance optimization on weekly reporting basket.
+Legacy_Hold_Benchmark,0.0,0.0,1.0,Holding previous portfolio without any rebalancing across weeks.

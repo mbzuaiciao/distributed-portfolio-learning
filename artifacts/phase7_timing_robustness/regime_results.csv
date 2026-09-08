@@ -1,0 +1,5 @@
+regime,week_count,mean_base_return,mean_M9_exposure,timing_outperformance
+High_Uncertainty_High_Vol,17,0.0025,0.5048,Neutral
+High_Uncertainty_Low_Vol,17,0.0120,0.6162,Neutral
+Low_Uncertainty_High_Vol,17,0.0104,0.8500,Neutral
+Low_Uncertainty_Low_Vol,18,0.0100,0.8497,Neutral

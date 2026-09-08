@@ -1,0 +1,4 @@
+base_portfolio,sharpe_M8,sharpe_M9,delta_sharpe,delta_utility
+markowitz,1.1915,1.2860,0.0946,-0.000089
+equal_weight,-0.0010,0.3890,0.3900,0.000766
+capped_markowitz,1.1476,1.2561,0.1084,-0.000026

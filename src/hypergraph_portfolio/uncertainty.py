@@ -14,6 +14,7 @@ Candidate Mechanisms:
 5. Posterior Downside Penalty:  Direct tail risk adjustment based on P(mu_i < target)
 """
 
+import math
 from dataclasses import dataclass
 from typing import Dict, List, Optional, Sequence, Tuple
 
@@ -1081,5 +1082,100 @@ def generate_placebo_exposure_paths(
         raise ValueError(f"Unknown placebo generation method: {method}")
 
     return placebos
+
+
+def generate_block_placebo_paths(
+    actual_exposure_path: Sequence[float],
+    n_placebos: int = 1000,
+    block_size: int = 4,
+    seed: int = 42,
+) -> np.ndarray:
+    """
+    Generate block-permuted placebo exposure paths that preserve local temporal
+    autocorrelation while breaking causal alignment with future market events.
+
+    Args:
+        actual_exposure_path: 1D array of realized exposure values s_t.
+        n_placebos: Number of placebo paths to generate.
+        block_size: Size of contiguous weekly exposure blocks (default 4).
+        seed: Random seed for reproducibility.
+
+    Returns:
+        np.ndarray: Matrix of shape (n_placebos, T) of block-permuted exposures.
+    """
+    arr = np.asarray(actual_exposure_path, dtype=float)
+    T = len(arr)
+    rng = np.random.default_rng(seed)
+
+    n_blocks = int(math.ceil(T / block_size))
+    blocks = [arr[i * block_size : min((i + 1) * block_size, T)] for i in range(n_blocks)]
+
+    placebos = np.zeros((n_placebos, T), dtype=float)
+    for i in range(n_placebos):
+        perm_idx = rng.permutation(n_blocks)
+        perm_arr = np.concatenate([blocks[idx] for idx in perm_idx])[:T]
+        placebos[i] = perm_arr
+
+    return placebos
+
+
+def decompose_timing_economic_benefit(
+    base_returns: Sequence[float],
+    timing_exposures: Sequence[float],
+    constant_exposure: float,
+    gamma: float = 1.0,
+    cost_bps: float = 0.0010,
+) -> Dict[str, float]:
+    """
+    Decompose the economic benefit of dynamic timing relative to constant matched exposure:
+        Timing Benefit = Losses Avoided - Upside Sacrificed - Excess Transaction Costs - Extra Risk Penalty
+
+    Args:
+        base_returns: Sequence of base risky portfolio returns r_{base, t}.
+        timing_exposures: Sequence of dynamic exposures s_t.
+        constant_exposure: Scalar constant exposure c matching mean(s_t).
+        gamma: Risk aversion coefficient (default 1.0).
+        cost_bps: Proportional transaction cost in decimals (default 0.0010).
+
+    Returns:
+        Dict[str, float]: Component breakdown of timing value.
+    """
+    r_arr = np.asarray(base_returns, dtype=float)
+    s_arr = np.asarray(timing_exposures, dtype=float)
+    c = float(constant_exposure)
+
+    # Losses avoided: periods where r < 0 and s_t < c
+    down_mask = r_arr < 0.0
+    avoided_losses = float(np.sum((c - s_arr[down_mask]) * (-r_arr[down_mask])))
+
+    # Upside sacrificed: periods where r > 0 and s_t < c
+    up_mask = r_arr > 0.0
+    sacrificed_upside = float(np.sum((c - s_arr[up_mask]) * r_arr[up_mask]))
+
+    # Captured bonus: periods where r > 0 and s_t > c
+    bonus_upside = float(np.sum((s_arr[up_mask] - c) * r_arr[up_mask]))
+
+    # Return delta
+    delta_return = float(np.sum((s_arr - c) * r_arr))
+
+    # Turnover delta
+    to_timing = np.sum(np.abs(np.diff(s_arr))) if len(s_arr) > 1 else 0.0
+    # Constant exposure has zero cash rebalancing turnover
+    to_excess = float(to_timing * 2.0)  # risky + cash sleeves
+    excess_tc = float(cost_bps * to_excess)
+
+    # Net benefit
+    net_economic_benefit = delta_return - excess_tc
+
+    return {
+        "avoided_losses": avoided_losses,
+        "sacrificed_upside": sacrificed_upside,
+        "bonus_upside": bonus_upside,
+        "net_return_difference": delta_return,
+        "excess_turnover": to_excess,
+        "excess_transaction_costs": excess_tc,
+        "net_economic_benefit": net_economic_benefit,
+    }
+
 
 

@@ -1,0 +1,7 @@
+seed,budget,placebo_type,m9_sharpe,placebo_mean,percentile_rank,empirical_pval
+42,0.70,circular_shift,1.2860,1.0629,84.70,0.1530
+42,0.70,block_permutation_b4,1.2860,1.0926,75.50,0.2450
+123,0.70,circular_shift,1.8207,1.5741,86.60,0.1340
+123,0.70,block_permutation_b4,1.8207,1.6532,79.20,0.2080
+777,0.70,circular_shift,1.9544,1.4267,95.90,0.0410
+777,0.70,block_permutation_b4,1.9544,1.4410,95.10,0.0490

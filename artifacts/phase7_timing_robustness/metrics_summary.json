@@ -1,0 +1,253 @@
+{
+  "walkforward_folds": [
+    {
+      "fold": "Fold_1",
+      "seed": 42,
+      "delta_sharpe": -0.4790662961612342,
+      "delta_utility": -0.0024190488825014565
+    },
+    {
+      "fold": "Fold_1",
+      "seed": 123,
+      "delta_sharpe": 0.038692242231158636,
+      "delta_utility": 0.0005676673111192744
+    },
+    {
+      "fold": "Fold_1",
+      "seed": 777,
+      "delta_sharpe": 0.1626144189817671,
+      "delta_utility": 0.0011813200718401359
+    },
+    {
+      "fold": "Fold_2",
+      "seed": 42,
+      "delta_sharpe": 0.23101745576560218,
+      "delta_utility": 0.0007034390782290397
+    },
+    {
+      "fold": "Fold_2",
+      "seed": 123,
+      "delta_sharpe": 0.3252589976002802,
+      "delta_utility": 0.0011678551069243797
+    },
+    {
+      "fold": "Fold_2",
+      "seed": 777,
+      "delta_sharpe": -0.23250412234812357,
+      "delta_utility": -0.0006324423427808944
+    },
+    {
+      "fold": "Fold_3",
+      "seed": 42,
+      "delta_sharpe": 0.7139876905079892,
+      "delta_utility": 0.001740850308911135
+    },
+    {
+      "fold": "Fold_3",
+      "seed": 123,
+      "delta_sharpe": -0.04767766802744644,
+      "delta_utility": 0.0005954013767313321
+    },
+    {
+      "fold": "Fold_3",
+      "seed": 777,
+      "delta_sharpe": 0.19974282047791458,
+      "delta_utility": 0.0005378929284794614
+    }
+  ],
+  "normalization_grid": [
+    {
+      "method": "zscore",
+      "window": 8,
+      "mean_delta_sharpe": 0.17734192762034687
+    },
+    {
+      "method": "zscore",
+      "window": 13,
+      "mean_delta_sharpe": 0.12773067248161843
+    },
+    {
+      "method": "zscore",
+      "window": 26,
+      "mean_delta_sharpe": 0.07551755728711125
+    },
+    {
+      "method": "zscore",
+      "window": 52,
+      "mean_delta_sharpe": 0.06772664153625718
+    },
+    {
+      "method": "robust_zscore",
+      "window": 8,
+      "mean_delta_sharpe": 0.17954464531192568
+    },
+    {
+      "method": "robust_zscore",
+      "window": 13,
+      "mean_delta_sharpe": 0.16029159274288332
+    },
+    {
+      "method": "robust_zscore",
+      "window": 26,
+      "mean_delta_sharpe": 0.102616633184952
+    },
+    {
+      "method": "robust_zscore",
+      "window": 52,
+      "mean_delta_sharpe": 0.0791177909724657
+    },
+    {
+      "method": "ratio",
+      "window": 8,
+      "mean_delta_sharpe": 0.021404368741236485
+    },
+    {
+      "method": "ratio",
+      "window": 13,
+      "mean_delta_sharpe": 0.018957958837983863
+    },
+    {
+      "method": "ratio",
+      "window": 26,
+      "mean_delta_sharpe": 0.011208872200650033
+    },
+    {
+      "method": "ratio",
+      "window": 52,
+      "mean_delta_sharpe": 0.007989364064303691
+    },
+    {
+      "method": "percentile_rank",
+      "window": 8,
+      "mean_delta_sharpe": 0.06767074165499827
+    },
+    {
+      "method": "percentile_rank",
+      "window": 13,
+      "mean_delta_sharpe": 0.06443824461005658
+    },
+    {
+      "method": "percentile_rank",
+      "window": 26,
+      "mean_delta_sharpe": 0.03618007343100597
+    },
+    {
+      "method": "percentile_rank",
+      "window": 52,
+      "mean_delta_sharpe": 0.036825194976967124
+    }
+  ],
+  "budget_sensitivity": [
+    {
+      "budget": 0.3,
+      "delta_sharpe": 0.33949771374007076,
+      "delta_utility": 0.0004696163652504022
+    },
+    {
+      "budget": 0.4,
+      "delta_sharpe": 0.2940571550571556,
+      "delta_utility": 0.0004775586098364172
+    },
+    {
+      "budget": 0.5,
+      "delta_sharpe": 0.25847723165692876,
+      "delta_utility": 0.000470614075938516
+    },
+    {
+      "budget": 0.6,
+      "delta_sharpe": 0.23380460614864976,
+      "delta_utility": 0.0004724353622073468
+    },
+    {
+      "budget": 0.7,
+      "delta_sharpe": 0.21042228885421274,
+      "delta_utility": 0.00045770560842445436
+    },
+    {
+      "budget": 0.8,
+      "delta_sharpe": 0.19390899765635292,
+      "delta_utility": 0.0004534776641458753
+    },
+    {
+      "budget": 0.9,
+      "delta_sharpe": 0.15308089569068484,
+      "delta_utility": 0.00038074971593347363
+    }
+  ],
+  "placebo_falsification": [
+    {
+      "seed": 42,
+      "rank_circ": 84.7,
+      "rank_block": 75.5
+    },
+    {
+      "seed": 123,
+      "rank_circ": 86.6,
+      "rank_block": 79.2
+    },
+    {
+      "seed": 777,
+      "rank_circ": 95.89999999999999,
+      "rank_block": 95.1
+    }
+  ],
+  "lag_analysis": [
+    {
+      "lag": 0,
+      "desc": "Contemporaneous (t -> t)",
+      "auroc": 0.6245644599303136,
+      "rho": 0.418361196593449
+    },
+    {
+      "lag": 1,
+      "desc": "Causal Predictive Lag t+1",
+      "auroc": 0.535230352303523,
+      "rho": 0.11218003830510458
+    },
+    {
+      "lag": 2,
+      "desc": "Causal Predictive Lag t+2",
+      "auroc": 0.5975609756097561,
+      "rho": 0.09379178271030326
+    },
+    {
+      "lag": 4,
+      "desc": "Causal Predictive Lag t+4",
+      "auroc": 0.4181459566074951,
+      "rho": -0.054158015840796755
+    },
+    {
+      "lag": -1,
+      "desc": "Negative Control (Future z -> Past return)",
+      "auroc": 0.5339285714285714,
+      "rho": 0.19537333958348863
+    }
+  ],
+  "leave_one_out": [
+    {
+      "excluded": "NVDA",
+      "delta_sharpe": 0.17954464531192568
+    },
+    {
+      "excluded": "MSFT",
+      "delta_sharpe": 0.17954464531192568
+    },
+    {
+      "excluded": "AAPL",
+      "delta_sharpe": 0.1741120143935254
+    },
+    {
+      "excluded": "AMZN",
+      "delta_sharpe": 0.1826520435191512
+    }
+  ],
+  "economic_attribution": {
+    "avoided_losses": 0.0635876119433258,
+    "sacrificed_upside": 0.021790425555131367,
+    "bonus_upside": -0.021790425555131367,
+    "net_return_difference": 0.041797186388194414,
+    "excess_turnover": 29.633672747589124,
+    "excess_transaction_costs": 0.029633672747589126,
+    "net_economic_benefit": 0.012163513640605288
+  }
+}

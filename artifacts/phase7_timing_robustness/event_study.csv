@@ -1,0 +1,4 @@
+horizon,event_count,mean_cumulative_return,pct_negative_periods,interpretation
+Forward_1_Week,18,0.0090,38.9%,Elevated Downside Risk
+Forward_2_Weeks,18,0.0113,38.9%,Subdued Performance
+Forward_4_Weeks,18,0.0372,44.4%,Regime Normalization

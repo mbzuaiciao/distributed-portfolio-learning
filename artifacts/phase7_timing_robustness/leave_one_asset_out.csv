@@ -1,0 +1,5 @@
+excluded_asset,sharpe_M8,sharpe_M9,delta_sharpe,delta_utility,max_dd_M9,max_dd_M8
+Exclude_NVDA,1.508,1.688,0.1795,0.000443,-0.095,-0.108
+Exclude_MSFT,1.508,1.688,0.1795,0.000443,-0.095,-0.108
+Exclude_AAPL,1.508,1.682,0.1741,0.000410,-0.095,-0.108
+Exclude_AMZN,1.508,1.691,0.1827,0.000455,-0.095,-0.108

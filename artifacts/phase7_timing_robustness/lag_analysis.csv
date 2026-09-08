@@ -1,0 +1,6 @@
+lag_weeks,description,auroc_neg_return,spearman_forecast_error,causal_validity
+0,Contemporaneous (t -> t),0.6246,0.4184,Diagnostic Only
+1,Causal Predictive Lag t+1,0.5352,0.1122,Causal / Valid
+2,Causal Predictive Lag t+2,0.5976,0.0938,Causal / Valid
+4,Causal Predictive Lag t+4,0.4181,-0.0542,Causal / Valid
+-1,Negative Control (Future z -> Past return),0.5339,0.1954,Impossible Negative Control

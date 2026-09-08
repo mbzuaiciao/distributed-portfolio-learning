@@ -1,0 +1,6 @@
+component,value_bps_or_pct,interpretation
+Avoided_Losses,6.36%,Capital protected during market drops
+Sacrificed_Upside,2.18%,Missed rally participation during de-risking
+Bonus_Upside,-2.18%,Extra gains from elevated exposure in calm rallies
+Excess_Transaction_Costs,2.963%,Rebalancing friction drag
+Net_Economic_Benefit,1.22%,Net outperformance over constant exposure

@@ -51,6 +51,8 @@ from hypergraph_portfolio.uncertainty import (
     compute_relative_epistemic_exposure_scale,
     compute_relative_epistemic_uncertainty,
     compute_volatility_targeting_scale,
+    decompose_timing_economic_benefit,
+    generate_block_placebo_paths,
     generate_placebo_exposure_paths,
     run_sequential_portfolio_simulation,
 )
@@ -86,12 +88,15 @@ __all__ = [
     "compute_relative_epistemic_uncertainty",
     "compute_relative_epistemic_exposure_scale",
     "generate_placebo_exposure_paths",
+    "generate_block_placebo_paths",
+    "decompose_timing_economic_benefit",
     "SyntheticMarketEnvironment",
     "run_sequential_portfolio_simulation",
     "BayesianPredictionRecord",
     "BayesianDatasetAdapter",
     "validate_prediction_records",
 ]
+
 
 
 

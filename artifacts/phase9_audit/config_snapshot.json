@@ -1,0 +1,38 @@
+{
+  "git_commit": "46adadf0875a1ac9c015944a13c9dfccf84cc3e3",
+  "date_executed": "2026-09-08",
+  "dataset_paths": {
+    "returns_metadata": "data/bayesian_lora/reconstructed_returns.csv",
+    "holdout_seed_42": "data/bayesian_lora/holdout/beta_0p003_seed_42_mc32_predictions.csv",
+    "holdout_seed_123": "data/bayesian_lora/holdout/beta_0p003_seed_123_mc32_predictions.csv",
+    "holdout_seed_777": "data/bayesian_lora/holdout/beta_0p003_seed_777_mc32_predictions.csv"
+  },
+  "dataset_hashes_sha256": {
+    "returns_metadata": "de8d95284ae139a15cd7f04666c1a83eee8b7d300056791a8eb493c692b87604",
+    "holdout_seed_42": "12925c1d0f7ba697180fe68815a0ab22a1e4d5dcc1b5934da73e26ca4009a920"
+  },
+  "frozen_policy_parameters": {
+    "policy": "M13_Hysteresis",
+    "tau_enter": 1.2,
+    "tau_exit": 0.2,
+    "s_normal": 0.85,
+    "s_reduced": 0.45,
+    "normalization_method": "robust_zscore",
+    "normalization_window": 8,
+    "aggregation_method": "q75"
+  },
+  "accounting_parameters": {
+    "canonical_turnover": "risky_asset_turnover",
+    "cost_bps": 0.001,
+    "risk_aversion_gamma": 1.0,
+    "cash_return_annual": 0.0,
+    "single_tc_subtraction_in_utility": true
+  },
+  "evaluation_period": {
+    "start_week": "2024-W01",
+    "end_week": "2025-W20",
+    "total_weeks": 69,
+    "confirmation_period_available": false,
+    "scientific_status": "Outcome_B (Accounting Validated, Retrospective Confirmation Only)"
+  }
+}

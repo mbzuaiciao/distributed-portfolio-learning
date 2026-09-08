@@ -16,7 +16,7 @@ Candidate Mechanisms:
 
 import math
 from dataclasses import dataclass
-from typing import Dict, List, Optional, Sequence, Tuple
+from typing import Any, Dict, List, Optional, Sequence, Tuple
 
 import numpy as np
 from scipy.stats import norm
@@ -1540,3 +1540,229 @@ def analyze_uncertainty_alarms(
         "mean_return_during_alarm": mean_ret,
         "false_positive_rate": fp_rate,
     }
+
+
+def compute_canonical_turnover(
+    w_risky_cur: Sequence[float],
+    w_risky_prev: Optional[Sequence[float]] = None,
+    w_cash_cur: float = 0.0,
+    w_cash_prev: Optional[float] = None,
+) -> Dict[str, float]:
+    """
+    Compute explicit, non-overlapping portfolio turnover components:
+        1. Risky turnover: sum_j |w_risky,j,t - w_risky,j,t-1|
+        2. Cash turnover: |w_cash,t - w_cash,t-1|
+        3. Total two-way turnover: risky + cash
+        4. Half (one-way) turnover: 0.5 * (risky + cash)
+
+    Args:
+        w_risky_cur: Current risky asset weights.
+        w_risky_prev: Previous risky asset weights (None for first period).
+        w_cash_cur: Current cash weight.
+        w_cash_prev: Previous cash weight (None for first period).
+
+    Returns:
+        Dict[str, float]: Detailed turnover metrics.
+    """
+    w_r_cur = np.asarray(w_risky_cur, dtype=float)
+    if w_risky_prev is None:
+        to_risky = 0.0
+    else:
+        w_r_prev = np.asarray(w_risky_prev, dtype=float)
+        to_risky = float(np.sum(np.abs(w_r_cur - w_r_prev)))
+
+    if w_cash_prev is None:
+        to_cash = 0.0
+    else:
+        to_cash = float(abs(w_cash_cur - w_cash_prev))
+
+    to_total = to_risky + to_cash
+    to_half = 0.5 * to_total
+
+    return {
+        "risky": to_risky,
+        "cash": to_cash,
+        "total": to_total,
+        "half": to_half,
+    }
+
+
+def decompose_timing_economic_attribution_rebuilt(
+    base_returns: Sequence[float],
+    timing_exposures: Sequence[float],
+    constant_exposure: float,
+    cost_bps: float = 0.0010,
+    timing_turnovers: Optional[Sequence[float]] = None,
+    constant_turnovers: Optional[Sequence[float]] = None,
+) -> Dict[str, float]:
+    """
+    Rebuild timing economic attribution using a mutually exclusive, non-overlapping 4-quadrant decomposition:
+        Gross Return Difference = Losses Avoided - Upside Sacrificed + Extra Upside Captured - Extra Downside Suffered
+        Net Economic Benefit = Gross Return Difference - Incremental Transaction Costs
+
+    Algebraic closure guarantee:
+        sum(component contributions) == realized cumulative net P&L difference (to machine precision).
+
+    Args:
+        base_returns: Base risky portfolio returns r_{base, t}.
+        timing_exposures: Dynamic exposure path s_t.
+        constant_exposure: Matched constant exposure c.
+        cost_bps: Proportional transaction cost per unit of risky turnover.
+        timing_turnovers: Optional period risky turnover for timing policy.
+        constant_turnovers: Optional period risky turnover for constant benchmark.
+
+    Returns:
+        Dict[str, float]: Component breakdown and closure diagnostic.
+    """
+    r_arr = np.asarray(base_returns, dtype=float)
+    s_arr = np.asarray(timing_exposures, dtype=float)
+    c = float(constant_exposure)
+    T = len(r_arr)
+
+    diff_s = s_arr - c
+
+    # 1. Losses avoided: policy exposure < constant exposure AND base return < 0
+    mask_avoid = (diff_s < -1e-12) & (r_arr < 0.0)
+    l_avoid = float(np.sum((c - s_arr[mask_avoid]) * (-r_arr[mask_avoid])))
+
+    # 2. Upside sacrificed: policy exposure < constant exposure AND base return >= 0
+    mask_sac = (diff_s < -1e-12) & (r_arr >= 0.0)
+    u_sac = float(np.sum((c - s_arr[mask_sac]) * r_arr[mask_sac]))
+
+    # 3. Extra upside captured: policy exposure > constant exposure AND base return >= 0
+    mask_cap = (diff_s > 1e-12) & (r_arr >= 0.0)
+    u_cap = float(np.sum((s_arr[mask_cap] - c) * r_arr[mask_cap]))
+
+    # 4. Extra downside suffered: policy exposure > constant exposure AND base return < 0
+    mask_suf = (diff_s > 1e-12) & (r_arr < 0.0)
+    d_suf = float(np.sum((s_arr[mask_suf] - c) * (-r_arr[mask_suf])))
+
+    # Cumulative gross difference
+    gross_diff = float(np.sum(diff_s * r_arr))
+    quadrant_sum = l_avoid - u_sac + u_cap - d_suf
+    closure_err = abs(gross_diff - quadrant_sum)
+
+    # Incremental transaction costs
+    if timing_turnovers is not None and constant_turnovers is not None:
+        to_timing = np.asarray(timing_turnovers, dtype=float)
+        to_const = np.asarray(constant_turnovers, dtype=float)
+        inc_tc = float(cost_bps * np.sum(to_timing - to_const))
+    else:
+        # Fallback to macro exposure turnover differences if asset-level turnovers not passed
+        to_timing_macro = np.abs(np.diff(s_arr)) if T > 1 else np.array([0.0])
+        inc_tc = float(cost_bps * np.sum(to_timing_macro))
+
+    net_benefit = gross_diff - inc_tc
+
+    return {
+        "losses_avoided": l_avoid,
+        "upside_sacrificed": u_sac,
+        "extra_upside_captured": u_cap,
+        "extra_downside_suffered": d_suf,
+        "gross_return_difference": gross_diff,
+        "incremental_transaction_costs": inc_tc,
+        "net_economic_benefit": net_benefit,
+        "closure_error": closure_err,
+    }
+
+
+def build_portfolio_ledger(
+    epochs: List[Dict[str, Any]],
+    exposure_path: Sequence[float],
+    policy_name: str = "Strategy",
+    gamma: float = 1.0,
+    cost_bps: float = 0.0010,
+    r_cash_annual: float = 0.0,
+    ann_factor: float = 52.0,
+) -> List[Dict[str, Any]]:
+    """
+    Generate an auditable, period-level source-of-truth portfolio ledger.
+    Applies the canonical brokerage convention:
+        - Transaction cost TC_t = cost_bps * turnover_risky_t
+        - Net return r_net,t = r_gross,t - TC_t
+        - Net utility u_t = r_net,t - 0.5 * gamma * variance_t (single subtraction of TC)
+
+    Args:
+        epochs: List of epoch dictionaries with base weights, returns, and covariance.
+        exposure_path: Sequence of portfolio exposure scales s_t.
+        policy_name: Label of the policy.
+        gamma: Risk aversion parameter.
+        cost_bps: Cost rate per unit of traded risky volume.
+        r_cash_annual: Risk-free rate.
+        ann_factor: Annualization factor.
+
+    Returns:
+        List[Dict[str, Any]]: Complete period-by-period ledger.
+    """
+    T = len(epochs)
+    r_cash_weekly = r_cash_annual / ann_factor
+    ledger = []
+
+    prev_w_r = None
+    prev_w_c = None
+    prev_assets = []
+    wealth = 1.0
+
+    for t in range(T):
+        ep = epochs[t]
+        s = float(exposure_path[t])
+        w_risky, w_cash = apply_portfolio_exposure_scale(ep["w_base"], scale=s)
+
+        # Asset alignment
+        cur_assets = ep["assets"]
+        if prev_w_r is None:
+            to_r = 0.0
+            to_c = 0.0
+        else:
+            all_a = sorted(set(cur_assets) | set(prev_assets))
+            c_map = {cur_assets[i]: w_risky[i] for i in range(len(cur_assets))}
+            p_map = {prev_assets[i]: prev_w_r[i] for i in range(len(prev_assets))}
+            to_r = sum(abs(c_map.get(a, 0.0) - p_map.get(a, 0.0)) for a in all_a)
+            to_c = abs(w_cash - prev_w_c)
+
+        to_tot = to_r + to_c
+        to_half = 0.5 * to_tot
+
+        # Returns and PnL
+        risky_pnl = float(w_risky @ ep["real_r"])
+        cash_pnl = float(w_cash * r_cash_weekly)
+        gross_r = risky_pnl + cash_pnl
+
+        # Canonical transaction cost applied to risky asset trades
+        tc = float(cost_bps * to_r)
+        net_r = gross_r - tc
+
+        # Risk penalty & Net utility (zero double-subtraction)
+        port_var = float(w_risky @ ep["Q_market"] @ w_risky)
+        risk_penalty = float(0.5 * gamma * port_var)
+        u_net = net_r - risk_penalty
+
+        wealth *= (1.0 + net_r)
+
+        record = {
+            "period_idx": t,
+            "date": ep.get("week") or ep.get("date") or f"P_{t:03d}",
+            "policy": policy_name,
+            "exposure": s,
+            "risky_weights": [round(float(x), 6) for x in w_risky],
+            "cash_weight": round(float(w_cash), 6),
+            "gross_return": gross_r,
+            "risky_pnl": risky_pnl,
+            "cash_pnl": cash_pnl,
+            "turnover_risky": to_r,
+            "turnover_cash": to_c,
+            "turnover_total": to_tot,
+            "turnover_half": to_half,
+            "transaction_cost": tc,
+            "net_return": net_r,
+            "risk_penalty": risk_penalty,
+            "net_utility": u_net,
+            "cumulative_wealth": wealth,
+        }
+        ledger.append(record)
+
+        prev_w_r = w_risky
+        prev_w_c = w_cash
+        prev_assets = cur_assets
+
+    return ledger

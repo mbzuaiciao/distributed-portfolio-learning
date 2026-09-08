@@ -1,0 +1,8 @@
+field,value,scientific_label,decision_tree_outcome
+independent_2026_data_available,False,RETROSPECTIVE_ONLY,Outcome_B
+confirmation_sample_size,0_periods,N/A,Outcome_B
+historical_holdout_range,2024-W01_to_2025-W20,RETROSPECTIVE,Outcome_B
+frozen_m13_holdout_sharpe,1.403,RETROSPECTIVE,Outcome_B
+constant_m8_holdout_sharpe,1.191,RETROSPECTIVE,Outcome_B
+delta_sharpe_m13_vs_m8,+0.212,RETROSPECTIVE,Outcome_B
+delta_net_utility_m13_vs_m8,+0.000652,RETROSPECTIVE,Outcome_B

@@ -1,0 +1,112 @@
+{
+  "summary_records_seed_42": {
+    "M8_Constant": {
+      "annual_return": 0.24928230789919906,
+      "annual_vol": 0.20921935709777956,
+      "sharpe_ratio": 1.1914877827614005,
+      "sortino_ratio": 2.166832487690635,
+      "max_drawdown": -0.10503820303853088,
+      "mean_utility": -0.0016994325986956851,
+      "cumulative_utility": -0.11726084931000227,
+      "annual_turnover_risky": 72.48948493854955,
+      "annual_turnover_cash": 0.0,
+      "annual_turnover_total": 72.48948493854955,
+      "total_cost_drag_bps": 961.8797039922925,
+      "mean_exposure": 0.7072644882296266
+    },
+    "M9_RawTiming": {
+      "annual_return": 0.28099001289068815,
+      "annual_vol": 0.2097408853857768,
+      "sharpe_ratio": 1.3397007091576958,
+      "sortino_ratio": 2.452714479203855,
+      "max_drawdown": -0.10825169986086582,
+      "mean_utility": -0.0013628144510399599,
+      "cumulative_utility": -0.09403419712175723,
+      "annual_turnover_risky": 72.28110881932292,
+      "annual_turnover_cash": 11.166311470106047,
+      "annual_turnover_total": 83.44742028942896,
+      "total_cost_drag_bps": 959.1147131794772,
+      "mean_exposure": 0.7072644882296267
+    },
+    "M10_VolTiming": {
+      "annual_return": 0.2077055863865862,
+      "annual_vol": 0.1849058151670823,
+      "sharpe_ratio": 1.1233047819448072,
+      "sortino_ratio": 1.9090139483051658,
+      "max_drawdown": -0.09874595817036731,
+      "mean_utility": -0.0020114894538639573,
+      "cumulative_utility": -0.13879277231661305,
+      "annual_turnover_risky": 72.64343807443787,
+      "annual_turnover_cash": 4.830358070560368,
+      "annual_turnover_total": 77.47379614499825,
+      "total_cost_drag_bps": 963.9225436800411,
+      "mean_exposure": 0.7072644882296268
+    },
+    "M13_Hysteresis": {
+      "annual_return": 0.2852285743719901,
+      "annual_vol": 0.20327911244012672,
+      "sharpe_ratio": 1.4031376413845793,
+      "sortino_ratio": 2.418420312062904,
+      "max_drawdown": -0.117917255119851,
+      "mean_utility": -0.0010476536903956976,
+      "cumulative_utility": -0.07228810463730313,
+      "annual_turnover_risky": 72.29115529439485,
+      "annual_turnover_cash": 6.544878257105706,
+      "annual_turnover_total": 78.83603355150055,
+      "total_cost_drag_bps": 959.2480221756236,
+      "mean_exposure": 0.7072644882296268
+    }
+  },
+  "attribution_records_seed_42": {
+    "M8_Constant": {
+      "losses_avoided": 0.0,
+      "upside_sacrificed": 0.0,
+      "extra_upside_captured": 0.0,
+      "extra_downside_suffered": 0.0,
+      "gross_return_difference": 6.702272703486037e-17,
+      "incremental_transaction_costs": 0.0,
+      "net_economic_benefit": 6.702272703486037e-17,
+      "closure_error": 6.702272703486037e-17
+    },
+    "M9_RawTiming": {
+      "losses_avoided": 0.11285426862415078,
+      "upside_sacrificed": 0.14429922418720198,
+      "extra_upside_captured": 0.12250879863207072,
+      "extra_downside_suffered": 0.049266656680825076,
+      "gross_return_difference": 0.041797186388194504,
+      "incremental_transaction_costs": -0.00027649908128151915,
+      "net_economic_benefit": 0.04207368546947602,
+      "closure_error": 6.245004513516506e-17
+    },
+    "M10_VolTiming": {
+      "losses_avoided": 0.048958952673689604,
+      "upside_sacrificed": 0.11310066481815449,
+      "extra_upside_captured": 0.035364027039457346,
+      "extra_downside_suffered": 0.026187142164107557,
+      "gross_return_difference": -0.0549648272691151,
+      "incremental_transaction_costs": 0.000204283968774867,
+      "net_economic_benefit": -0.055169111237889965,
+      "closure_error": 0.0
+    },
+    "M13_Hysteresis": {
+      "losses_avoided": 0.10275575892279623,
+      "upside_sacrificed": 0.12408965906467852,
+      "extra_upside_captured": 0.12237011215057844,
+      "extra_downside_suffered": 0.0536014496783902,
+      "gross_return_difference": 0.04743476233030597,
+      "incremental_transaction_costs": -0.0002631681816668443,
+      "net_economic_benefit": 0.04769793051197281,
+      "closure_error": 1.3877787807814457e-17
+    }
+  },
+  "retrospective_block_bootstrap": {
+    "actual_delta_utility": 0.0006517789082999881,
+    "ci_95_low": -0.0012060960232363521,
+    "ci_95_high": 0.002853793994811152,
+    "p_value_one_sided": 0.237
+  },
+  "scientific_decision_tree_verdict": {
+    "status": "Outcome_B",
+    "description": "Accounting valid and reconciled; no independent 2026 data exists; retrospective holdout result confirmed."
+  }
+}

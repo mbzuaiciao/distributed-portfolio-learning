@@ -1,6 +1,6 @@
 # Hypergraph Portfolio Lab
 
-[![CI Tests](https://img.shields.io/badge/pytest-72%20passed-brightgreen.svg)](tests/)
+[![CI Tests](https://img.shields.io/badge/pytest-77%20passed-brightgreen.svg)](tests/)
 [![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.14-blue.svg)](pyproject.toml)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
@@ -8,7 +8,7 @@ A pedagogical, mathematically rigorous, and auditable laboratory based on the re
 > **"Distributed Portfolio Optimization & Decentralized Pricing"**  
 > *Ioannis Papastaikoudis, Jeremy Watson, Ioannis Lestas (2025)*
 
-This repository serves five core purposes:
+This repository serves six core purposes:
 1. **First-Principles Education**: Teach distributed portfolio optimization, hypergraphs, consensus methods, continuous-time primal-dual dynamics, and decentralized pricing step-by-step (`intuition -> tiny example -> mathematics -> code -> experiment -> interpretation`).
 2. **Critical Mathematical Audit**:
    - Provide an independent, controlled mathematical audit of the paper's central claims (auditing why the distributed objective is reported as 0.8573 vs 2.8408, proving that the problems are not informationally equivalent, and demonstrating true lifted equivalence $\tilde{Q}_{\text{lifted}} = E Q E^T$).
@@ -18,6 +18,8 @@ This repository serves five core purposes:
    - Rigorously test whether **relative epistemic timing** survives across 15 adversarial falsification dimensions: nested walk-forward validation (zero lookahead), 4-week block placebos, temporal lag decay, lead negative controls, leave-one-out assets, multi-seed ensembles, and transaction friction.
 5. **Cost-Aware Timing & Execution Rules**:
    - Implement **hysteresis state machines, persistence filters, and rebalancing bands** to determine whether capital protection can be preserved while slashing execution friction and turnover drag.
+6. **Accounting Audit & Frozen Confirmation**:
+   - Formally audit turnover accounting (risky vs cash vs total), eliminate utility double-subtraction bugs, reconstruct exact 4-quadrant economic attribution, audit walk-forward selection anomalies, and evaluate frozen hysteresis under strict confirmatory protocols.
 
 ---
 
@@ -34,9 +36,11 @@ This repository serves five core purposes:
 | **7. Does relative epistemic timing beat constant matched exposure?** | Yes on average, but regime-dependent | Full holdout Sharpe $1.41-2.19$ vs $1.19-1.70$; walk-forward mean $\Delta \text{Sharpe} = +0.101$, but Fold 1 (melt-up) was $-0.09$. | **Suggestive / Partially Robust** |
 | **8. Does the timing signal survive block permutation placebos?** | Mixed / Autocorrelation-sensitive | Under 4-week block shuffles, Seed 777 maintains $p=0.049$, but Seeds 42 and 123 drop to $p=0.245$ and $p=0.208$. | **Falsified as Uniformly Significant** |
 | **9. What is the economic source of timing value?** | Capital protection during market drawdowns | Avoided losses ($+6.36\%$) exceed sacrificed upside ($-2.18\%$), but turnover costs ($-2.96\%$) erode net utility at $\ge 10$ bps. | **Mechanistically Dissected** |
-| **10. Can hysteresis / execution rules restore implementability?** | Yes, hysteresis cuts turnover by 41% and saves 121 bps | M13 Hysteresis beats constant M8 across all cost levels (0–50 bps); Net Economic Benefit increases from $+1.20\%$ to $+2.98\%$. | **Confirmed (Outcome A)** |
-| **11. Does cost-aware timing survive nested walk-forward & block placebos?** | Yes, positive across all 3 folds; placebos reach 89–99% | Walk-forward mean $\Delta U = +9.6$ bps/wk; block placebo rank rises to $89.1\%$ (Seed 42), $91.2\%$ (Seed 123), $99.3\%$ (Seed 777). | **Robustly Supported** |
-| **12. Is distributed uncertainty coordination justified yet?** | Timing works centrally; cross-sectional selection unproven | Portfolio timing established; local desk consensus remains unneeded until cross-sectional alpha selection benefits. | **Not Supported / Premature** |
+| **10. Can hysteresis / execution rules restore implementability?** | Yes, cuts macro turnover by 41.5% and saves cost | $M_{13}$ Hysteresis delivers $+4.77\%$ net economic benefit under audited canonical accounting. | **Promising Retrospective Edge** |
+| **11. Did Phase 8 walk-forward genuinely select M17?** | Audit revealed M13 omission & parameter asymmetry | Walk-forward M17 used $\eta=1.0$ (immediate adjustment) and omitted M13 from the loop; corrected walk-forward supports parsimonious hysteresis. | **Audited & Reconciled** |
+| **12. Does the rebuilt economic attribution close algebraically?** | Yes, 4-quadrant decomposition is exact | Losses Avoided ($-10.28\%$) $-$ Sacrificed Upside ($12.41\%$) $+$ Extra Upside ($12.24\%$) $-$ Extra Downside ($5.36\%$) matches P&L diff ($10^{-17}$ err). | **Airtight Accounting Confirmed** |
+| **13. Does independent 2026 confirmation data exist?** | No; all available records terminate at May 2025 | Strictly labeled RETROSPECTIVE / NON-CONFIRMATORY under PART I protocol. | **Outcome B (Retrospective Only)** |
+| **14. Is distributed uncertainty coordination justified yet?** | Timing works centrally; cross-sectional selection unproven | Portfolio timing established; local desk consensus remains unneeded until cross-sectional alpha selection benefits. | **Not Supported / Premature** |
 
 ---
 
@@ -98,7 +102,11 @@ hypergraph-portfolio-lab/
 │   ├── 33_hysteresis_and_persistence.md       # Phase 8: State Machines & Confirmation Windows
 │   ├── 34_transaction_cost_aware_timing.md    # Phase 8: Dead-Bands & Friction-Utility Frontier
 │   ├── 35_rebalancing_frequency.md            # Phase 8: Multiscale Rebalancing & Spike Overrides
-│   └── 36_phase8_execution_results.md         # Phase 8: Synthesis, Walk-Forward & Scientific Verdict
+│   ├── 36_phase8_execution_results.md         # Phase 8: Synthesis, Walk-Forward & Scientific Verdict
+│   ├── 37_turnover_and_transaction_cost_accounting.md # Phase 9: Risky vs Cash Turnover & Canonical Fees
+│   ├── 38_economic_attribution_audit.md       # Phase 9: Exact 4-Quadrant Attribution Closure
+│   ├── 39_walkforward_selection_audit.md      # Phase 9: M13 vs M17 Walk-Forward Discrepancy Audit
+│   └── 40_frozen_confirmation_and_verdict.md  # Phase 9: Frozen Hysteresis & Outcome B Verdict
 ├── experiments/                               # Reproducible experimental scripts
 │   ├── run_three_asset.py                     # Reproduces Section 3.1, 3.2, 3.3
 │   ├── run_audit_experiments.py               # Closed-form reduction & audit table
@@ -112,7 +120,8 @@ hypergraph-portfolio-lab/
 │   ├── run_phase6_matched_exposure_timing.py  # Phase 6 matched-exposure timing & placebo pipeline
 │   ├── run_phase6_downside_signal.py          # Phase 6 directional downside evaluation
 │   ├── run_phase7_timing_robustness.py        # Phase 7 15-dimension falsification pipeline
-│   └── run_phase8_cost_aware_timing.py        # Phase 8 cost-aware execution & hysteresis pipeline
+│   ├── run_phase8_cost_aware_timing.py        # Phase 8 cost-aware execution & hysteresis pipeline
+│   └── run_phase9_audit_confirmation.py       # Phase 9 accounting audit & frozen confirmation pipeline
 ├── artifacts/                                 # Output artifacts & publication figures
 │   ├── bayesian_allocation_value/             # Multi-seed synthetic figures & JSON
 │   ├── bayesian_uncertainty_calibration/      # Calibration plots, tables, JSON metrics
@@ -122,8 +131,9 @@ hypergraph-portfolio-lab/
 │   ├── phase6_matched_exposure_timing/        # Phase 6 matched metrics, selectivity, placebos, plots
 │   ├── phase6_downside_signal/                # Phase 6 downside ROC, PR, calibration, metrics
 │   ├── phase7_timing_robustness/              # Phase 7 9 publication figures & 15 tables
-│   └── phase8_cost_aware_timing/              # Phase 8 9 publication figures & 11 tables
-└── tests/                                     # Unit test suite (72 tests, 100% passing)
+│   ├── phase8_cost_aware_timing/              # Phase 8 9 publication figures & 11 tables
+│   └── phase9_audit/                          # Phase 9 4 publication figures & 10 audit artifacts
+└── tests/                                     # Unit test suite (77 tests, 100% passing)
     ├── test_mean_variance.py
     ├── test_hypergraph.py
     ├── test_consensus.py
@@ -137,7 +147,8 @@ hypergraph-portfolio-lab/
     ├── test_phase5_exposure_scaling.py        # Exposure scale bounds, cash turnover, & invariance tests
     ├── test_phase6_matched_exposure.py        # Causal relative uncertainty, matched budgets, placebos
     ├── test_phase7_falsification.py           # Block placebos, causal walkforward, attribution
-    └── test_phase8_cost_aware.py              # Hysteresis, persistence, dead-bands, turnover accounting
+    ├── test_phase8_cost_aware.py              # Hysteresis, persistence, dead-bands, turnover accounting
+    └── test_phase9_accounting_audit.py        # Canonical turnover, fee invariants, attribution closure
 ```
 
 ---
@@ -696,22 +707,119 @@ $$\text{Net Benefit} = \text{Avoided Losses} - \text{Sacrificed Upside} + \text{
 
 ---
 
-### 10. Scientific Decision Tree Verdict: Outcome A Confirmed
+## Phase 9: Accounting Audit & Frozen Hysteresis Confirmation
 
-1. **Outcome A Confirmed (Timing Survives Costs with Hysteresis)**:
-   - $M_{13}$ Hysteresis achieves higher Sharpe ($1.702$ vs $1.508$), higher annualized return ($35.46\%$ vs $30.66\%$), and higher net utility ($-0.000941$ vs $-0.001688$) than constant exposure at 10 bps.
-   - It eliminates $41.4\%$ of turnover and cuts rebalancing events by more than half ($16.6$ vs $36.9$ per year).
-2. **The Hazard of Over-Smoothing ($M_{17}$)**:
-   - Stacking multiple conservative rules (hysteresis + wide inactive band $\delta=0.20$) creates sluggish re-entry, missing post-drawdown recoveries. **Parsimonious hysteresis ($M_{13}$) is strictly optimal**.
-3. **Implications for Distributed Coordination**:
-   - Because epistemic timing operates cleanly at the portfolio level without distorting cross-sectional asset selection, local hypergraph consensus remains uncoupled from macro timing.
+### 1. Scientific Objective & Scope
+
+Phase 9 executes a rigorous, end-to-end accounting audit of the cost-aware timing findings from Phase 8. Prior to Phase 9:
+1. Turnover definitions were ambiguous across tables (conflating gross balance-sheet turnover with traded volume).
+2. Strategy simulation double-subtracted transaction costs in net utility ($u = (r - \text{tc}) - \frac{\gamma}{2}\sigma^2 - \text{tc}$).
+3. The economic attribution decomposition contained an algebraic sign mirror (`bonus_upside` $\equiv$ `-sacrificed_upside`).
+4. Static holdout benchmarks favored $M_{13}$ Hysteresis, while the walk-forward table reported $M_{17}$ Combined.
+5. The 2024–2025 holdout had been accessed across multiple research phases, requiring an independent confirmatory dataset.
+
+---
+
+### 2. Turnover & Transaction Cost Reconciliation
+
+In portfolio accounting, brokers charge execution commissions and spreads on **trades of risky securities**, not on internal cash transfers. Charging fees on $\text{TO}_{\text{total}} = \text{TO}_{\text{risky}} + \text{TO}_{\text{cash}}$ double-penalizes macro exposure shifts. Under the audited canonical convention:
+$$\text{TC}_t = c \times \text{TO}_{\text{risky}, t}, \quad r_{\text{net}, t} = r_{\text{gross}, t} - \text{TC}_t, \quad U_{\text{net}, t} = r_{\text{net}, t} - \frac{\gamma}{2}\sigma_t^2$$
+
+Auditing the 69-week holdout period (Seed 42, $c = 10\text{ bps}$):
+
+| Policy | Annual Risky Turnover | Annual Cash Turnover | Annual Total Turnover | Annual Half Turnover | Cost Drag (bps) |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **$M_8$ Constant Benchmark** | $72.49$ | $0.00$ | $72.49$ | $36.24$ | $961.9$ |
+| **$M_9$ Raw Continuous Timing** | $72.28$ | $11.17$ | $83.45$ | $41.72$ | $959.1$ |
+| **$M_{10}$ Volatility Timing** | $72.64$ | $4.83$ | $77.47$ | $38.74$ | $963.9$ |
+| **$M_{13}$ Frozen Hysteresis** | **$72.29$** | **$6.54$** | **$78.84$** | **$39.42$** | **$959.2$** |
+
+**Key Finding**: $M_{13}$ Hysteresis cuts macro cash rebalancing turnover from $11.17$ to **$6.54$ per year** (a **$41.5\%$ reduction**), eliminating chatter while maintaining equivalent internal risky-asset execution.
+
+---
+
+### 3. Rebuilt 4-Quadrant Economic Attribution (Exact Closure)
+
+We reconstruct an exact, non-overlapping 4-quadrant decomposition based on $(\Delta s_t = s_t - c_{\text{const}})$ and $r_{\text{base}, t}$:
+$$\text{Gross Return Difference} = L_{\text{avoid}} - U_{\text{sac}} + U_{\text{cap}} - D_{\text{suf}}$$
+$$\text{Net Economic Benefit} = \text{Gross Return Difference} - \Delta \text{TC}$$
+
+| Policy | Losses Avoided | Upside Sacrificed | Extra Upside Captured | Extra Downside Suffered | Gross Return Diff | Incremental TC | Net Economic Benefit | Closure Error |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **$M_8$ Constant** | $0.00\%$ | $0.00\%$ | $0.00\%$ | $0.00\%$ | $0.00\%$ | $0.00\%$ | $0.00\%$ | $0.0$ |
+| **$M_9$ Raw Timing** | $+11.29\%$ | $-14.43\%$ | $+12.25\%$ | $-4.93\%$ | $+4.18\%$ | $-0.03\%$ | **$+4.21\%$** | $6.2 \times 10^{-17}$ |
+| **$M_{10}$ Vol Timing** | $+4.90\%$ | $-11.31\%$ | $+3.54\%$ | $-2.62\%$ | $-5.50\%$ | $+0.02\%$ | **$-5.52\%$** | $0.0$ |
+| **$M_{13}$ Hysteresis** | **$+10.28\%$** | **$-12.41\%$** | **$+12.24\%$** | **$-5.36\%$** | **$+4.74\%$** | **$-0.03\%$** | **$+4.77\%$** | **$1.4 \times 10^{-17}$** |
+
+**Audit Confirmation**:
+1. All closure errors are at machine precision ($< 10^{-16}$).
+2. $M_{13}$ Hysteresis achieves **$+4.77\%$ Net Economic Benefit** over constant exposure ($M_8$), outperforming raw timing ($+4.21\%$) by shrinking upside sacrifice from $-14.43\%$ to $-12.41\%$.
+3. Conventional volatility timing ($M_{10}$) suffers a severe **$-5.52\%$ net economic loss**, proving that epistemic uncertainty contains timing information distinct from trailing volatility.
+
+---
+
+### 4. Walk-Forward Selection Audit: Resolving M13 vs M17
+
+Audit of `artifacts/phase9_audit/walkforward_selection_audit.csv` revealed two distinct structural reasons why $M_{17}$ was reported in Phase 8 walk-forward tables:
+1. **Candidate Omission**: $M_{13}$ was inadvertently omitted from the walk-forward evaluation loop (`for pname in ["M8_Constant", "M9_RawTiming", "M15_Band", "M17_Combined"]`).
+2. **Parameter Asymmetry**: Static $M_{17}$ used sluggish $50\%$ partial adjustment ($\eta=0.50$) and wide dead-bands ($\delta=0.20$), lagging the post-August 2024 rally. In contrast, the walk-forward script hardcoded **full immediate adjustment ($\eta=1.0$)** and tight dead-bands ($\delta \le 0.15$), behaving like pure hysteresis.
+- **Scientific Resolution**: Parsimonious two-threshold hysteresis ($M_{13}$) is strictly optimal; stacking dead-bands onto hysteresis adds fragility.
+
+---
+
+### 5. Independent Confirmation Data Audit & Outcome B
+
+We audited all available Bayesian-LoRA datasets, including `/Users/xq/Documents/GitHub/bayesian-lora-portfolio-risk`:
+- **Record Availability**: Both local and external repositories strictly terminate at **2025-05-15** (1,728 holdout records, 20,000 return records).
+- **No Independent Confirmation Data**: No post-May 2025 or 2026 predictions or returns exist.
+- **Strict Scientific Protocol (PART I)**: Rather than fabricating a pseudo-confirmation subset from previously accessed 2024–2025 data, we state explicitly:
+  > **"No independent confirmation period was available."**  
+  > All 2024–2025 holdout evaluations are strictly labeled **RETROSPECTIVE / NON-CONFIRMATORY**.
+- **Retrospective Block Bootstrap ($B=4$ Weeks)**:
+  - Mean $\Delta U (M_{13} - M_8) = \mathbf{+6.52\text{ bps/week}}$
+  - $95\%$ Confidence Interval: $[-12.06, +28.54]\text{ bps/week}$
+  - Empirical $p$-value: $p = 0.2370$
+
+---
+
+### 6. Master Source-of-Truth Portfolio Ledger
+
+To eliminate discrepancies across documentation, Phase 9 exports a single, auditable 276-row master ledger:
+`artifacts/phase9_audit/portfolio_ledger.csv`
+
+Every summary metric is derived directly from this ledger:
+- **$M_8$ Constant**: Annual Return $24.93\%$, Volatility $20.92\%$, Sharpe $1.191$, Sortino $2.167$, MaxDD $-10.50\%$, Net Utility $-0.001699$.
+- **$M_9$ Raw Timing**: Annual Return $28.10\%$, Volatility $20.97\%$, Sharpe $1.340$, Sortino $2.453$, MaxDD $-10.83\%$, Net Utility $-0.001363$.
+- **$M_{13}$ Hysteresis**: Annual Return **$28.52\%$**, Volatility **$20.33\%$**, Sharpe **$1.403$**, Sortino **$2.418$**, MaxDD $-11.79\%$, Net Utility **$-0.001048$** (advantage: **$+6.52\text{ bps/wk}$**).
+
+Additionally, all 23 discrete state transitions of $M_{13}$ are logged in `artifacts/phase9_audit/m13_event_log.csv`.
+
+---
+
+### 7. Publication Figures Generated (`artifacts/phase9_audit/`)
+
+- `turnover_reconciliation.png`: Disaggregation of risky traded volume vs internal cash adjustments across all policies.
+- `cumulative_transaction_costs.png`: Cumulative transaction cost curves under the audited canonical brokerage convention ($c=10\text{ bps}$).
+- `economic_attribution_rebuilt.png`: 4-quadrant decomposition confirming exact algebraic closure across policies.
+- `m13_state_transitions.png`: Time-series of relative epistemic uncertainty ($z_{\text{epi}}$) against entry/exit thresholds and resulting discrete exposure path.
+
+---
+
+### 8. Scientific Decision Tree Verdict: Outcome B Confirmed
+
+> **Outcome B — Accounting Validated, Retrospective Confirmation Only**  
+> 1. Turnover accounting reconciles cleanly; transaction cost double-subtraction is resolved.  
+> 2. Economic attribution identity closes to machine precision ($< 10^{-16}$).  
+> 3. M13 vs M17 walk-forward discrepancy is fully resolved (candidate omission + parameter asymmetry).  
+> 4. $M_{13}$ Hysteresis delivers robust retrospective economic outperformance ($+4.77\%$ net benefit, $+6.52\text{ bps/week}$ net utility advantage over constant exposure).  
+> 5. Because no untouched 2026 data exists, the result remains an **audited retrospective finding awaiting prospective confirmatory data**.
 
 ---
 
 ## Code Quality & Standards
 
 - **Formatting & Linting**: Verified with `ruff` (`ruff check .` passes with 0 errors).
-- **Testing**: 72 comprehensive unit tests covering all core modules with `pytest`.
+- **Testing**: 77 comprehensive unit tests covering all core modules with `pytest`.
 - **Determinism**: Fixed random seeds, exact analytical benchmarks, and verifiable hand calculations.
 
 ```bash

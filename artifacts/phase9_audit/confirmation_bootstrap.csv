@@ -1,0 +1,2 @@
+metric,actual_mean_delta,bootstrap_mean,ci_95_low,ci_95_high,p_value_one_sided,label
+delta_net_utility,0.000652,0.000771,-0.001206,0.002854,0.2370,RETROSPECTIVE_BOOTSTRAP

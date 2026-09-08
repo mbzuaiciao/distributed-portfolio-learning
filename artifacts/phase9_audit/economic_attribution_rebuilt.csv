@@ -1,0 +1,5 @@
+policy,losses_avoided_pct,upside_sacrificed_pct,extra_upside_captured_pct,extra_downside_suffered_pct,gross_return_difference_pct,incremental_transaction_costs_pct,net_economic_benefit_pct,closure_error
+M8_Constant,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,0.00%,6.70e-17
+M9_RawTiming,11.29%,14.43%,12.25%,4.93%,4.18%,-0.03%,4.21%,6.25e-17
+M10_VolTiming,4.90%,11.31%,3.54%,2.62%,-5.50%,0.02%,-5.52%,0.00e+00
+M13_Hysteresis,10.28%,12.41%,12.24%,5.36%,4.74%,-0.03%,4.77%,1.39e-17

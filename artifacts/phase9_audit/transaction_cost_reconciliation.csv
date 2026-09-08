@@ -1,0 +1,5 @@
+policy,canonical_turnover_type,total_period_cost,reported_cost_drag_bps,invariant_check_passed,annual_turnover_reduction_pct,cost_saved_vs_M9_bps
+M8_Constant,risky_asset_turnover,0.096188,961.9,True,-0.3%,-2.8
+M9_RawTiming,risky_asset_turnover,0.095911,959.1,True,0.0%,0.0
+M10_VolTiming,risky_asset_turnover,0.096392,963.9,True,-0.5%,-4.8
+M13_Hysteresis,risky_asset_turnover,0.095925,959.2,True,-0.0%,-0.1

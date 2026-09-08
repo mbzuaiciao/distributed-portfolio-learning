@@ -734,3 +734,179 @@ def run_sequential_portfolio_simulation(
             results[name].regret_vs_oracle = float(oracle_cum_u - results[name].cumulative_utility)
 
     return results
+
+
+# =============================================================================
+# Phase 5: Portfolio-Level Exposure Timing & Uncertainty Aggregation
+# =============================================================================
+
+
+def compute_aggregate_epistemic_uncertainty(
+    epistemic_stds: np.ndarray,
+    weights: Optional[np.ndarray] = None,
+    method: str = "mean",
+) -> float:
+    """
+    Compute a single scalar aggregate epistemic uncertainty metric across assets.
+
+    Methods:
+        - 'mean': Unweighted mean uncertainty across all assets.
+        - 'median': Median uncertainty across all assets.
+        - 'weighted': Inner product of base risky weights and asset uncertainties: sum_j w_j * sigma_j.
+        - 'max': Maximum uncertainty across all assets.
+        - 'q75': 75th percentile uncertainty across assets.
+
+    Args:
+        epistemic_stds: 1D array of asset-level epistemic standard deviations (sigma_epi >= 0).
+        weights: Optional 1D array of asset weights (required if method='weighted').
+        method: Aggregation method ('mean', 'median', 'weighted', 'max', 'q75').
+
+    Returns:
+        float: Scalar aggregate uncertainty u_t >= 0.
+    """
+    stds = np.asarray(epistemic_stds, dtype=float).ravel()
+    if len(stds) == 0:
+        return 0.0
+
+    if method == "mean":
+        return float(np.mean(stds))
+    elif method == "median":
+        return float(np.median(stds))
+    elif method == "weighted":
+        if weights is None:
+            raise ValueError("weights must be provided when method='weighted'")
+        w = np.asarray(weights, dtype=float).ravel()
+        if len(w) != len(stds):
+            raise ValueError(f"weights length ({len(w)}) must match epistemic_stds ({len(stds)})")
+        w_sum = np.sum(np.abs(w))
+        if w_sum > 0:
+            w_norm = w / w_sum
+            return float(np.sum(w_norm * stds))
+        return float(np.mean(stds))
+    elif method == "max":
+        return float(np.max(stds))
+    elif method == "q75":
+        return float(np.percentile(stds, 75))
+    else:
+        raise ValueError(f"Unknown uncertainty aggregation method: {method}")
+
+
+def compute_epistemic_exposure_scale(
+    aggregate_uncertainty: float,
+    lambda_u: float = 1.0,
+    mapping: str = "rational",
+    floor: float = 0.0,
+) -> float:
+    """
+    Compute aggregate portfolio risky exposure scale s_epi in [floor, 1.0].
+
+    Mappings:
+        - 'rational':    s = 1.0 / (1.0 + lambda_u * u_t)
+        - 'exponential': s = exp(-lambda_u * u_t)
+        - 'bucket':      stepped scale based on lambda_u thresholds
+
+    Guarantees:
+        - lambda_u == 0 => s = 1.0 (full exposure / deterministic reproduction)
+        - Monotonically decreasing in aggregate_uncertainty for lambda_u > 0.
+        - Clamped strictly in [floor, 1.0].
+
+    Args:
+        aggregate_uncertainty: Scalar uncertainty metric u_t >= 0.
+        lambda_u: Exposure shrinkage parameter (lambda_u >= 0).
+        mapping: 'rational', 'exponential', or 'bucket'.
+        floor: Minimum exposure floor in [0.0, 1.0] (default 0.0).
+
+    Returns:
+        float: Exposure scale s_epi in [floor, 1.0].
+    """
+    if lambda_u <= 0.0 or aggregate_uncertainty <= 0.0:
+        return 1.0
+
+    u = float(aggregate_uncertainty)
+    lam = float(lambda_u)
+
+    if mapping == "rational":
+        s = 1.0 / (1.0 + lam * u)
+    elif mapping == "exponential":
+        s = float(np.exp(-lam * u))
+    elif mapping == "bucket":
+        # Stepped scale: > 2x / > 1.5x / > 1x baseline threshold
+        if lam * u > 2.0:
+            s = 0.25
+        elif lam * u > 1.0:
+            s = 0.50
+        elif lam * u > 0.5:
+            s = 0.75
+        else:
+            s = 1.0
+    else:
+        raise ValueError(f"Unknown exposure mapping: {mapping}")
+
+    return float(np.clip(s, floor, 1.0))
+
+
+def compute_volatility_targeting_scale(
+    rolling_vol: float,
+    target_vol: float = 0.20,
+    max_leverage: float = 1.0,
+    min_exposure: float = 0.0,
+) -> float:
+    """
+    Compute standard realized volatility targeting exposure scale:
+        s_vol = min(max_leverage, target_vol / rolling_vol)
+
+    Args:
+        rolling_vol: Annualized rolling historical return volatility (rolling_vol >= 0).
+        target_vol: Target annualized volatility (target_vol > 0).
+        max_leverage: Maximum portfolio exposure (default 1.0, long-only / unleveraged).
+        min_exposure: Minimum portfolio exposure (default 0.0).
+
+    Returns:
+        float: Exposure scale s_vol in [min_exposure, max_leverage].
+    """
+    if target_vol <= 0.0:
+        raise ValueError(f"target_vol must be positive, got {target_vol}")
+
+    if rolling_vol <= 1e-8:
+        # Near-zero historical volatility -> cap at max_leverage
+        return float(max_leverage)
+
+    s_vol = target_vol / rolling_vol
+    return float(np.clip(s_vol, min_exposure, max_leverage))
+
+
+def apply_portfolio_exposure_scale(
+    risky_weights: np.ndarray,
+    scale: float,
+) -> Tuple[np.ndarray, float]:
+    """
+    Scale risky portfolio weights and allocate remainder to cash (zero-return asset).
+
+    Maintains identical relative cross-sectional proportions:
+        w_risky_j = scale * w_base_j
+        w_cash    = 1.0 - scale
+
+    Args:
+        risky_weights: 1D array of risky asset weights summing to 1.0 (or normalized).
+        scale: Portfolio exposure scale s in [0.0, 1.0].
+
+    Returns:
+        Tuple[np.ndarray, float]:
+            - w_risky: Scaled risky asset weight vector summing to scale.
+            - w_cash: Cash allocation weight equal to (1.0 - scale).
+    """
+    w_base = np.asarray(risky_weights, dtype=float).ravel()
+    s = float(np.clip(scale, 0.0, 1.0))
+
+    # Normalize base weights if they don't sum exactly to 1
+    w_sum = np.sum(w_base)
+    if w_sum > 0:
+        w_normalized = w_base / w_sum
+    else:
+        w_normalized = np.zeros_like(w_base)
+
+    w_risky = s * w_normalized
+    w_cash = 1.0 - s
+
+    return w_risky, w_cash
+

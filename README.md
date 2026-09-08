@@ -1,6 +1,6 @@
 # Hypergraph Portfolio Lab
 
-[![CI Tests](https://img.shields.io/badge/pytest-43%20passed-brightgreen.svg)](tests/)
+[![CI Tests](https://img.shields.io/badge/pytest-51%20passed-brightgreen.svg)](tests/)
 [![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.14-blue.svg)](pyproject.toml)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
@@ -8,12 +8,14 @@ A pedagogical, mathematically rigorous, and auditable laboratory based on the re
 > **"Distributed Portfolio Optimization & Decentralized Pricing"**  
 > *Ioannis Papastaikoudis, Jeremy Watson, Ioannis Lestas (2025)*
 
-This repository serves three core purposes:
+This repository serves four core purposes:
 1. **First-Principles Education**: Teach distributed portfolio optimization, hypergraphs, consensus methods, continuous-time primal-dual dynamics, and decentralized pricing step-by-step (`intuition -> tiny example -> mathematics -> code -> experiment -> interpretation`).
 2. **Critical Mathematical Audit**:
    - Provide an independent, controlled mathematical audit of the paper's central claims (auditing why the distributed objective is reported as 0.8573 vs 2.8408, proving that the problems are not informationally equivalent, and demonstrating true lifted equivalence $\tilde{Q}_{\text{lifted}} = E Q E^T$).
-3. **Bayesian Uncertainty Decision Benchmark**:
-   - Ingest real **Bayesian-LoRA epistemic uncertainty** and rigorously evaluate whether uncertainty can be converted into economic portfolio decisions across multiple mappings (symmetric shrinkage, covariance inflation, downside probability).
+3. **Cross-Sectional Bayesian Uncertainty Audit**:
+   - Ingest real **Bayesian-LoRA epistemic uncertainty** and evaluate whether uncertainty can be converted into cross-sectional asset selection across multiple mappings (symmetric shrinkage, covariance inflation, downside probability).
+4. **Portfolio-Level Exposure Timing Benchmark**:
+   - Test whether epistemic uncertainty can regulate aggregate portfolio risk ($s_t \in [0, 1]$ into cash) vs classical realized-volatility targeting, benchmarked against buy-and-hold base Markowitz.
 
 ---
 
@@ -21,12 +23,13 @@ This repository serves three core purposes:
 
 | Research Question | Result / Finding | Holdout Evidence (3 Seeds) | Status |
 | :--- | :--- | :--- | :---: |
-| **Does epistemic uncertainty predict forecast error?** | Strong monotonic information | Spearman $\rho_s = \mathbf{+0.5502}$, Pearson $r = \mathbf{+0.5707}$, AUROC $= \mathbf{0.8182}$ for top 20% errors. | **Confirmed / Supported** |
-| **Does epistemic uncertainty predict downside?** | Weak / Near random chance | AUROC $= \mathbf{0.5613}$ for negative return ($r < 0$); AUROC $= \mathbf{0.5914}$ for large downside event. | **Not Supported / Weak** |
-| **Does symmetric shrinkage improve allocation?** | Dampens volatility, drops returns | Volatility reduced by $1.4\%$, return dropped from $43.8\%$ to $35.7\%$; paired $\Delta U$ 95% CIs span zero. | **Not Supported / Neutral** |
-| **Does covariance inflation improve allocation?** | Mild drawdown gain, no utility gain | Max drawdown improved ($-14.88\%$ vs $-15.12\%$), but paired $\Delta U$ 95% CI $[-0.00037, +0.00037]$ spans zero. | **Not Supported / Neutral** |
-| **Does downside-aware allocation improve allocation?** | Softens negative forecast penalties | M3 dropped return to $27.5\%$, Sharpe to $0.974$, MaxDD to $-22.75\%$; M4 identical to deterministic. | **Not Supported / Negative** |
-| **Is distributed uncertainty coordination justified yet?** | Centralized value not established | Centralized uncertainty mappings do not beat deterministic baseline; consensus coordination premature. | **Not Supported / Premature** |
+| **1. Does epistemic uncertainty predict forecast error?** | Strong monotonic information | Spearman $\rho_s = \mathbf{+0.5502}$, Pearson $r = \mathbf{+0.5707}$, AUROC $= \mathbf{0.8182}$ for top 20% errors. | **Confirmed / Supported** |
+| **2. Does epistemic uncertainty predict directional downside?** | Weak / Near random chance | AUROC $= \mathbf{0.5613}$ for negative return ($r < 0$); AUROC $= \mathbf{0.5914}$ for large downside event. | **Not Supported / Weak** |
+| **3. Does symmetric shrinkage improve cross-sectional allocation?** | Dampens volatility, drops returns | Volatility reduced by $1.4\%$, return dropped from $43.8\%$ to $35.7\%$; paired $\Delta U$ 95% CIs span zero. | **Not Supported / Neutral** |
+| **4. Does covariance inflation improve cross-sectional allocation?** | Mild drawdown gain, no utility gain | Max drawdown improved ($-14.88\%$ vs $-15.12\%$), but paired $\Delta U$ 95% CI $[-0.00037, +0.00037]$ spans zero. | **Not Supported / Neutral** |
+| **5. Does posterior downside allocation improve selection?** | Softens negative forecast penalties | M3 dropped return to $27.5\%$, Sharpe to $0.974$, MaxDD to $-22.75\%$; M4 identical to deterministic. | **Not Supported / Negative** |
+| **6. Does epistemic exposure scaling improve portfolio timing?** | Slashes drawdown & vol, gains utility; no Sharpe expansion | Volatility $8.7\%$ vs $29.1\%$, MaxDD $-4.5\%$ vs $-15.1\%$, $\Delta U > 0$ ($p < 0.05$ in 2/3 seeds), but $\Delta \text{Sharpe}$ CI spans zero. | **Outcome D (Structural De-risking)** |
+| **7. Is distributed uncertainty coordination justified yet?** | Centralized value not established | Centralized cross-sectional selection not beaten; consensus coordination premature. | **Not Supported / Premature** |
 
 ---
 
@@ -40,6 +43,8 @@ hypergraph-portfolio-lab/
 │   ├── development/                           # 2022-2023 development split (Seeds 42, 123, 777)
 │   ├── holdout/                               # 2024-2025 frozen holdout split (Seeds 42, 123, 777)
 │   └── reconstructed_returns.csv              # Reconstructed asset daily returns
+├── docs/                                      # Technical design documents
+│   └── asymmetric_uncertainty_training_design.md # Proposal for quantile loss & asymmetric Bayesian training
 ├── src/hypergraph_portfolio/                  # Core Python library
 │   ├── __init__.py                            # Public API
 │   ├── mean_variance.py                       # Centralized Markowitz solver & KKT
@@ -47,9 +52,9 @@ hypergraph-portfolio-lab/
 │   ├── consensus.py                           # Nullspace projectors, audit, lifted system
 │   ├── primal_dual.py                         # Continuous-time ODE dynamics & Lyapunov
 │   ├── pricing.py                             # Endogenous shadow price mechanism
-│   ├── uncertainty.py                         # True confidence shrinkage, cov inflation, downside prob
+│   ├── uncertainty.py                         # True confidence shrinkage, cov inflation, exposure scaling
 │   └── bayesian_lora_adapter.py               # Pydantic schema validation & dataset adapter
-├── tutorials/                                 # 22 first-principles tutorials (00 to 21)
+├── tutorials/                                 # 25 first-principles tutorials (00 to 24)
 │   ├── 00_mean_variance.md                    # Centralized Markowitz Mean-Variance
 │   ├── 01_why_distributed.md                  # Why Distributed Portfolio Optimization?
 │   ├── 02_hypergraphs.md                      # Overlapping Portfolios as Hypergraphs
@@ -71,7 +76,10 @@ hypergraph-portfolio-lab/
 │   ├── 18_distributed_bayesian_allocation.md  # Distributed Extension & Local Shrinkage
 │   ├── 19_epistemic_risk_vs_alpha.md          # Method 2: Bayesian Covariance Inflation
 │   ├── 20_downside_probability.md             # Methods 3 & 4: Posterior Downside Risk
-│   └── 21_decision_mapping_comparison.md      # Phase 4 Benchmark & Decision Tree
+│   ├── 21_decision_mapping_comparison.md      # Phase 4 Benchmark & Decision Tree
+│   ├── 22_portfolio_level_uncertainty.md      # Phase 5: Uncertainty Aggregation & Exposure Dynamics
+│   ├── 23_epistemic_vs_volatility.md          # Phase 5: Epistemic vs Realized Volatility Targeting
+│   └── 24_exposure_timing_results.md          # Phase 5: Empirical Results & Scientific Verdict
 ├── experiments/                               # Reproducible experimental scripts
 │   ├── run_three_asset.py                     # Reproduces Section 3.1, 3.2, 3.3
 │   ├── run_audit_experiments.py               # Closed-form reduction & audit table
@@ -80,13 +88,15 @@ hypergraph-portfolio-lab/
 │   ├── run_bayesian_allocation_value.py       # Controlled 30-seed synthetic simulation
 │   ├── run_bayesian_uncertainty_calibration.py# H1 statistical calibration pipeline
 │   ├── run_bayesian_decision_value.py         # H2 holdout decision value & attribution
-│   └── run_phase4_decision_mapping.py         # Phase 4 decision mapping & bootstrap pipeline
+│   ├── run_phase4_decision_mapping.py         # Phase 4 decision mapping & bootstrap pipeline
+│   └── run_phase5_exposure_scaling.py         # Phase 5 portfolio exposure scaling pipeline
 ├── artifacts/                                 # Output artifacts & publication figures
 │   ├── bayesian_allocation_value/             # Multi-seed synthetic figures & JSON
 │   ├── bayesian_uncertainty_calibration/      # Calibration plots, tables, JSON metrics
 │   ├── bayesian_decision_value/               # Holdout curves, drawdown, HHI attribution
-│   └── phase4_decision_mapping/               # Phase 4 metrics, selectivity, bootstrap, plots
-└── tests/                                     # Unit test suite (43 tests)
+│   ├── phase4_decision_mapping/               # Phase 4 metrics, selectivity, bootstrap, plots
+│   └── phase5_exposure_scaling/               # Phase 5 exposure scaling metrics, figures, bootstrap
+└── tests/                                     # Unit test suite (51 tests)
     ├── test_mean_variance.py
     ├── test_hypergraph.py
     ├── test_consensus.py
@@ -96,8 +106,10 @@ hypergraph-portfolio-lab/
     ├── test_equivalence_reduction.py          # Closed-form reduction & lifted tests
     ├── test_bayesian_simulation.py            # DGP causality, shrinkage, & leakage tests
     ├── test_bayesian_lora_decision_value.py   # Schema validation, adapter, & leakage tests
-    └── test_phase4_decision_mapping.py        # Covariance inflation, downside, & bootstrap tests
+    ├── test_phase4_decision_mapping.py        # Covariance inflation, downside, & bootstrap tests
+    └── test_phase5_exposure_scaling.py        # Exposure scale bounds, cash turnover, & invariance tests
 ```
+
 
 ---
 
@@ -339,10 +351,48 @@ Using circular block bootstrap ($B = 4$ weeks, 1,000 resamples) evaluating paire
 
 ---
 
+## Phase 5: Portfolio-Level Exposure Timing
+
+Phase 5 tests the hypothesis:
+> *Epistemic uncertainty may fail at choosing WHICH assets to own (cross-sectional selection), but may be valuable for deciding HOW MUCH aggregate portfolio risk to take ($s_t \in [0, 1]$ into cash).*
+
+We evaluate four strategies across three random seeds (`42`, `123`, `777`) on the **2024–2025 frozen holdout** (69 weekly rebalancing decision epochs) with identical cross-sectional base risky weights ($w_{\text{risky}, t} = s_t w_{\text{base}, t}, w_{\text{cash}, t} = 1 - s_t$, $r_{\text{cash}} = 0.0$):
+- **$M_0$ (Deterministic)**: Full risky exposure ($s_t = 1.0$).
+- **$M_5$ (Epistemic Exposure Scaling)**: $s_{\text{epi}, t} = 1 / (1 + \lambda_{\text{epi}}^* u_t)$ with $u_t = q_{75}(\sigma_{\text{epi}})$ and $\lambda_{\text{epi}}^* = 300.0$ frozen from 2022–2023 dev tuning.
+- **$M_6$ (Volatility Targeting)**: $s_{\text{vol}, t} = \min(1.0, \sigma_{\text{target}}^* / \hat{\sigma}_{\text{hist}, t})$ with $\sigma_{\text{target}}^* = 0.15$ frozen from 2022–2023 dev tuning.
+- **$M_7$ (Combined Scaling)**: $s_{\text{combined}, t} = \min(s_{\text{epi}, t}, s_{\text{vol}, t})$.
+
+---
+
+### Comparative Holdout Results (3 Seeds Aggregated)
+
+| Policy | Annualized Return | Annualized Volatility | Sharpe Ratio | Sortino Ratio | Calmar Ratio | Max Drawdown | Mean Exposure | Mean Net Utility |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **M0: Deterministic** | $\mathbf{43.80\% \pm 6.59\%}$ | $29.08\% \pm 1.13\%$ | $1.508 \pm 0.225$ | $2.843 \pm 0.479$ | $2.896 \pm 0.357$ | $-15.12\%$ | $100.0\%$ | $-0.00621 \pm 0.00140$ |
+| **M5: Epistemic Scaling** | $14.10\% \pm 3.24\%$ | $\mathbf{8.66\% \pm 0.77\%}$ | $\mathbf{1.606 \pm 0.248}$ | $\mathbf{3.076 \pm 0.579}$ | $\mathbf{3.122 \pm 0.618}$ | $\mathbf{-4.49\%}$ | $30.08\%$ | $\mathbf{+0.00090 \pm 0.00039}$ |
+| **M6: Vol Targeting** | $26.03\% \pm 5.70\%$ | $17.99\% \pm 0.27\%$ | $1.444 \pm 0.306$ | $2.587 \pm 0.658$ | $2.473 \pm 0.510$ | $-10.49\%$ | $57.89\%$ | $-0.00068 \pm 0.00100$ |
+| **M7: Combined Scaling** | $14.07\% \pm 3.22\%$ | $\mathbf{8.66\% \pm 0.77\%}$ | $1.603 \pm 0.246$ | $3.070 \pm 0.574$ | $3.116 \pm 0.613$ | $\mathbf{-4.49\%}$ | $30.05\%$ | $\mathbf{+0.00090 \pm 0.00039}$ |
+
+---
+
+### Paired Circular Block Bootstrap Statistics (B = 4 weeks, 1,000 resamples)
+
+- **Utility Improvement**: $\Delta U = U_{M5} - U_{M0} > 0$ across all seeds:
+  - Seed 42: $+0.008554$ (95% CI: $[+0.000832, +0.015472]$, $p = 0.036$).
+  - Seed 123: $+0.006793$ (95% CI: $[+0.001089, +0.012594]$, $p = 0.014$).
+  - Seed 777: $+0.005987$ (95% CI: $[-0.000422, +0.012103]$, $p = 0.066$).
+- **Sharpe Expansion CI**: While point $\Delta \text{Sharpe}$ is positive ($+0.064$ to $+0.152$), the 95% bootstrap confidence intervals span zero in every seed (e.g., $[-0.15, +0.29]$ in Seed 42).
+- **Exposure Attribution**: Mean exposure during the worst 10% weeks was $28.8\%$ vs $31.7\%$ during the best 10% weeks (full period average: $30.1\%$). De-risking is primarily structural rather than acute dynamic timing.
+
+### Scientific Verdict: **Outcome D (Structural De-risking without True Market Timing)**
+Epistemic uncertainty functions as a robust conservative volatility dampener (slashing maximum drawdown by $70\%$), but does not achieve statistically significant Sharpe expansion over base buy-and-hold Markowitz. See [Tutorial 24](tutorials/24_exposure_timing_results.md) and [Asymmetric Training Design](docs/asymmetric_uncertainty_training_design.md).
+
+---
+
 ## Code Quality & Standards
 
 - **Formatting & Linting**: Verified with `ruff` (`ruff check .` passes with 0 errors).
-- **Testing**: 43 comprehensive unit tests covering all core modules with `pytest`.
+- **Testing**: 51 comprehensive unit tests covering all core modules with `pytest`.
 - **Determinism**: Fixed random seeds, exact analytical benchmarks, and verifiable hand calculations.
 
 ```bash

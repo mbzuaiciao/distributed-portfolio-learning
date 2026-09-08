@@ -43,8 +43,12 @@ from hypergraph_portfolio.uncertainty import (
     apply_downside_adjusted_alpha,
     apply_downside_covariance_inflation,
     apply_epistemic_covariance_inflation,
+    apply_portfolio_exposure_scale,
     apply_uncertainty_shrinkage,
+    compute_aggregate_epistemic_uncertainty,
+    compute_epistemic_exposure_scale,
     compute_posterior_downside_probability,
+    compute_volatility_targeting_scale,
     run_sequential_portfolio_simulation,
 )
 
@@ -72,10 +76,15 @@ __all__ = [
     "compute_posterior_downside_probability",
     "apply_downside_adjusted_alpha",
     "apply_downside_covariance_inflation",
+    "compute_aggregate_epistemic_uncertainty",
+    "compute_epistemic_exposure_scale",
+    "compute_volatility_targeting_scale",
+    "apply_portfolio_exposure_scale",
     "SyntheticMarketEnvironment",
     "run_sequential_portfolio_simulation",
     "BayesianPredictionRecord",
     "BayesianDatasetAdapter",
     "validate_prediction_records",
 ]
+
 

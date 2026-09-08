@@ -1,0 +1,232 @@
+{
+  "seeds": [
+    42,
+    123,
+    777
+  ],
+  "n_holdout": 1728,
+  "spearman_mean": 0.550167204664265,
+  "spearman_std": 0.05186606941436003,
+  "pearson_mean": 0.5707057433334768,
+  "pearson_std": 0.03189245051734209,
+  "auroc_mean": 0.8182495001798515,
+  "top_vs_bottom_ratio_mean": 2.121623836348981,
+  "seed_results": [
+    {
+      "seed": "seed_42",
+      "n_samples": 1728,
+      "large_error_threshold": 0.2542719668271531,
+      "pearson_abs_err": {
+        "point": 0.6110502337188622,
+        "ci_95": [
+          0.5829704976505112,
+          0.640724556252263
+        ],
+        "p_value": 2.042209934260137e-177
+      },
+      "spearman_abs_err": {
+        "point": 0.5960605008585941,
+        "ci_95": [
+          0.5633304524882422,
+          0.6278010989232203
+        ],
+        "p_value": 9.776578879977466e-167
+      },
+      "spearman_sq_err": {
+        "point": 0.5960605008585941,
+        "ci_95": [
+          0.5633304524882422,
+          0.6278010989232203
+        ]
+      },
+      "auroc_large_error": 0.839534728089474,
+      "ap_large_error": 0.569574641886493,
+      "top_vs_bottom_ratio": 2.207650521572746,
+      "top_vs_bottom_gap": 0.15055027379150582,
+      "quantiles": [
+        {
+          "quantile": "Q1",
+          "count": 432,
+          "mean_sigma_epi": 0.004616852107823379,
+          "mean_abs_error": 0.12466377573640568,
+          "mean_sq_error": 0.01860863019567355,
+          "large_error_rate": 0.018518518518518517
+        },
+        {
+          "quantile": "Q2",
+          "count": 432,
+          "mean_sigma_epi": 0.00643678413092801,
+          "mean_abs_error": 0.15804335857313734,
+          "mean_sq_error": 0.029398061535368388,
+          "large_error_rate": 0.0787037037037037
+        },
+        {
+          "quantile": "Q3",
+          "count": 432,
+          "mean_sigma_epi": 0.008166598350191701,
+          "mean_abs_error": 0.18949268503365865,
+          "mean_sq_error": 0.04128480851194726,
+          "large_error_rate": 0.19212962962962962
+        },
+        {
+          "quantile": "Q4",
+          "count": 432,
+          "mean_sigma_epi": 0.011654726155475885,
+          "mean_abs_error": 0.2752140495279115,
+          "mean_sq_error": 0.08809248233768399,
+          "large_error_rate": 0.5115740740740741
+        }
+      ],
+      "regime_breakdown": {
+        "2024_spearman": 0.6155286255483188,
+        "2025_spearman": 0.5484002553869738,
+        "n_2024": 1184,
+        "n_2025": 544
+      }
+    },
+    {
+      "seed": "seed_123",
+      "n_samples": 1728,
+      "large_error_threshold": 0.26759178289728214,
+      "pearson_abs_err": {
+        "point": 0.5679958625757432,
+        "ci_95": [
+          0.5409615821212657,
+          0.598255585061033
+        ],
+        "p_value": 3.4451483152924874e-148
+      },
+      "spearman_abs_err": {
+        "point": 0.5767734349704537,
+        "ci_95": [
+          0.5464849687088851,
+          0.6073805292043297
+        ],
+        "p_value": 8.495316341663273e-154
+      },
+      "spearman_sq_err": {
+        "point": 0.5767734349704537,
+        "ci_95": [
+          0.5464849687088851,
+          0.6073805292043297
+        ]
+      },
+      "auroc_large_error": 0.8169110696569435,
+      "ap_large_error": 0.5352430194463776,
+      "top_vs_bottom_ratio": 2.076197982047071,
+      "top_vs_bottom_gap": 0.14162557515561316,
+      "quantiles": [
+        {
+          "quantile": "Q1",
+          "count": 432,
+          "mean_sigma_epi": 0.004047756098295506,
+          "mean_abs_error": 0.13159806793555437,
+          "mean_sq_error": 0.020435142424313484,
+          "large_error_rate": 0.018518518518518517
+        },
+        {
+          "quantile": "Q2",
+          "count": 432,
+          "mean_sigma_epi": 0.00578628560269111,
+          "mean_abs_error": 0.16937331028820798,
+          "mean_sq_error": 0.0331923148497021,
+          "large_error_rate": 0.08564814814814815
+        },
+        {
+          "quantile": "Q3",
+          "count": 432,
+          "mean_sigma_epi": 0.007409333546839764,
+          "mean_abs_error": 0.20829315483928856,
+          "mean_sq_error": 0.05064437842738888,
+          "large_error_rate": 0.22685185185185186
+        },
+        {
+          "quantile": "Q4",
+          "count": 432,
+          "mean_sigma_epi": 0.010298812249004578,
+          "mean_abs_error": 0.27322364309116753,
+          "mean_sq_error": 0.0867768912004813,
+          "large_error_rate": 0.4699074074074074
+        }
+      ],
+      "regime_breakdown": {
+        "2024_spearman": 0.576492306711724,
+        "2025_spearman": 0.5746494625204414,
+        "n_2024": 1184,
+        "n_2025": 544
+      }
+    },
+    {
+      "seed": "seed_777",
+      "n_samples": 1728,
+      "large_error_threshold": 0.19869772039022152,
+      "pearson_abs_err": {
+        "point": 0.5330711337058249,
+        "ci_95": [
+          0.49589254915127107,
+          0.5695176179467827
+        ],
+        "p_value": 1.817965241912305e-127
+      },
+      "spearman_abs_err": {
+        "point": 0.47766767816374733,
+        "ci_95": [
+          0.4412866880152558,
+          0.5170567997477472
+        ],
+        "p_value": 3.4380803309868726e-99
+      },
+      "spearman_sq_err": {
+        "point": 0.47766767816374733,
+        "ci_95": [
+          0.4412866880152558,
+          0.5170567997477472
+        ]
+      },
+      "auroc_large_error": 0.7983027027931372,
+      "ap_large_error": 0.5363977531676669,
+      "top_vs_bottom_ratio": 2.0810230054271273,
+      "top_vs_bottom_gap": 0.10719173276521099,
+      "quantiles": [
+        {
+          "quantile": "Q1",
+          "count": 432,
+          "mean_sigma_epi": 0.0026163049373948625,
+          "mean_abs_error": 0.09915767955444854,
+          "mean_sq_error": 0.012173129956987987,
+          "large_error_rate": 0.02546296296296296
+        },
+        {
+          "quantile": "Q2",
+          "count": 432,
+          "mean_sigma_epi": 0.003941509615224524,
+          "mean_abs_error": 0.128274503798474,
+          "mean_sq_error": 0.020156812037230565,
+          "large_error_rate": 0.12268518518518519
+        },
+        {
+          "quantile": "Q3",
+          "count": 432,
+          "mean_sigma_epi": 0.005394849206587289,
+          "mean_abs_error": 0.14191886941428264,
+          "mean_sq_error": 0.024679400771727825,
+          "large_error_rate": 0.1712962962962963
+        },
+        {
+          "quantile": "Q4",
+          "count": 432,
+          "mean_sigma_epi": 0.008172825584960382,
+          "mean_abs_error": 0.20634941231965953,
+          "mean_sq_error": 0.05254377406413191,
+          "large_error_rate": 0.48148148148148145
+        }
+      ],
+      "regime_breakdown": {
+        "2024_spearman": 0.48134176507396753,
+        "2025_spearman": 0.47348839546026605,
+        "n_2024": 1184,
+        "n_2025": 544
+      }
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "selected_parameters": {
+    "hysteresis": {
+      "tau_enter": 1.2,
+      "tau_exit": 0.2,
+      "s_normal": 0.85,
+      "s_reduced": 0.45
+    },
+    "persistence": {
+      "k": 2,
+      "n": 2,
+      "tau": 1.0
+    },
+    "band": {
+      "delta": 0.2,
+      "eta": 0.5
+    },
+    "frequency": {
+      "interval_weeks": 2,
+      "emergency_tau": 2.0
+    },
+    "combination_m17": {
+      "type": "hysteresis_plus_band",
+      "hys_tau_enter": 1.2,
+      "hys_tau_exit": 0.2,
+      "band_delta": 0.2
+    }
+  },
+  "walkforward_records": [
+    {
+      "fold": "Fold_1",
+      "policy": "M8_Constant",
+      "delta_sharpe": 1.4802973661668753e-16,
+      "delta_utility": -1.0842021724855044e-19
+    },
+    {
+      "fold": "Fold_1",
+      "policy": "M9_RawTiming",
+      "delta_sharpe": 0.05627005365911164,
+      "delta_utility": 0.0001231255495019049
+    },
+    {
+      "fold": "Fold_1",
+      "policy": "M15_Band",
+      "delta_sharpe": 0.03602264024338705,
+      "delta_utility": 0.00021757450850669267
+    },
+    {
+      "fold": "Fold_1",
+      "policy": "M17_Combined",
+      "delta_sharpe": 0.11771079729467397,
+      "delta_utility": 0.0006439163406313303
+    },
+    {
+      "fold": "Fold_2",
+      "policy": "M8_Constant",
+      "delta_sharpe": 1.1102230246251565e-16,
+      "delta_utility": 2.8912057932946786e-18
+    },
+    {
+      "fold": "Fold_2",
+      "policy": "M9_RawTiming",
+      "delta_sharpe": 0.25996760483126746,
+      "delta_utility": 0.0006141122234156587
+    },
+    {
+      "fold": "Fold_2",
+      "policy": "M15_Band",
+      "delta_sharpe": 0.23049683776605226,
+      "delta_utility": 0.0005497800643800206
+    },
+    {
+      "fold": "Fold_2",
+      "policy": "M17_Combined",
+      "delta_sharpe": 0.20668070028736327,
+      "delta_utility": 0.0005933249410595955
+    },
+    {
+      "fold": "Fold_3",
+      "policy": "M8_Constant",
+      "delta_sharpe": -1.8503717077085943e-16,
+      "delta_utility": -5.421010862427522e-19
+    },
+    {
+      "fold": "Fold_3",
+      "policy": "M9_RawTiming",
+      "delta_sharpe": 0.33532442357778186,
+      "delta_utility": 0.0008711832851753968
+    },
+    {
+      "fold": "Fold_3",
+      "policy": "M15_Band",
+      "delta_sharpe": 0.26474975980201426,
+      "delta_utility": 0.0007007485047383794
+    },
+    {
+      "fold": "Fold_3",
+      "policy": "M17_Combined",
+      "delta_sharpe": 0.4508890079396309,
+      "delta_utility": 0.0016449426925294094
+    }
+  ],
+  "placebo_records": [
+    {
+      "seed": 42,
+      "policy": "M13_Hysteresis",
+      "rank_circ": 89.1,
+      "rank_block": 89.1
+    },
+    {
+      "seed": 123,
+      "policy": "M13_Hysteresis",
+      "rank_circ": 95.19999999999999,
+      "rank_block": 91.2
+    },
+    {
+      "seed": 777,
+      "policy": "M13_Hysteresis",
+      "rank_circ": 100.0,
+      "rank_block": 99.3
+    },
+    {
+      "seed": 42,
+      "policy": "M17_Combined",
+      "rank_circ": 15.5,
+      "rank_block": 17.599999999999998
+    },
+    {
+      "seed": 123,
+      "policy": "M17_Combined",
+      "rank_circ": 38.6,
+      "rank_block": 46.0
+    },
+    {
+      "seed": 777,
+      "policy": "M17_Combined",
+      "rank_circ": 74.7,
+      "rank_block": 66.9
+    }
+  ]
+}

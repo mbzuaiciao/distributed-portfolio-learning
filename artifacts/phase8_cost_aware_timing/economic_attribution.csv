@@ -1,0 +1,8 @@
+policy,avoided_losses_pct,sacrificed_upside_pct,bonus_upside_pct,excess_tc_pct,net_economic_benefit_pct
+M8_Constant,0.00%,0.00%,0.00%,0.00%,0.00%
+M9_RawTiming,6.29%,2.16%,-2.16%,2.93%,1.20%
+M13_Hysteresis,4.86%,0.17%,-0.17%,1.72%,2.98%
+M14_Persistence,1.83%,0.24%,-0.24%,0.27%,1.31%
+M15_Band,3.09%,3.81%,-3.81%,0.89%,-1.61%
+M16_Biweekly,4.24%,7.61%,-7.61%,1.26%,-4.62%
+M17_Combined,-1.24%,1.95%,-1.95%,0.04%,-3.23%

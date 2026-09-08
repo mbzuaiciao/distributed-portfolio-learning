@@ -1,0 +1,8 @@
+policy,alarm_count,alarm_frequency_pct,pct_negative_followed,pct_tail_loss_followed,mean_return_alarm,false_positive_rate_pct
+M8_Constant,0,0.0%,0.0%,0.0%,0.00%,0.0%
+M9_RawTiming,34,49.3%,47.1%,26.5%,0.73%,52.9%
+M13_Hysteresis,23,33.3%,56.5%,30.4%,0.35%,43.5%
+M14_Persistence,5,7.2%,40.0%,40.0%,-0.06%,60.0%
+M15_Band,24,34.8%,45.8%,16.7%,1.37%,54.2%
+M16_Biweekly,33,47.8%,42.4%,24.2%,1.21%,57.6%
+M17_Combined,0,0.0%,0.0%,0.0%,0.00%,0.0%

@@ -1,0 +1,8 @@
+episode,start_week,end_week,policy,mean_exposure,local_return,local_max_dd,turnover_generated
+Summer_2024_Correction,2024-W26,2024-W35,M8_Constant,0.700,89.88%,-4.30%,0.000
+Summer_2024_Correction,2024-W26,2024-W35,M9_RawTiming,0.739,90.65%,-5.17%,1.135
+Summer_2024_Correction,2024-W26,2024-W35,M13_Hysteresis,0.700,85.57%,-5.10%,0.781
+Summer_2024_Correction,2024-W26,2024-W35,M14_Persistence,0.649,82.50%,-4.45%,0.682
+Summer_2024_Correction,2024-W26,2024-W35,M15_Band,0.744,93.76%,-4.91%,0.328
+Summer_2024_Correction,2024-W26,2024-W35,M16_Biweekly,0.742,84.90%,-5.33%,1.667
+Summer_2024_Correction,2024-W26,2024-W35,M17_Combined,0.667,85.68%,-4.10%,0.000

@@ -1178,4 +1178,365 @@ def decompose_timing_economic_benefit(
     }
 
 
+# =============================================================================
+# Phase 8: Cost-Aware Epistemic Timing & Execution Rules
+# =============================================================================
 
+
+def compute_hysteresis_exposure_path(
+    signal: Sequence[float],
+    tau_enter: float,
+    tau_exit: float,
+    s_normal: float = 0.85,
+    s_reduced: float = 0.45,
+    initial_state: str = "normal",
+) -> np.ndarray:
+    """
+    Compute causal exposure path using a two-threshold hysteresis state machine.
+
+    Prevents rapid flip-flopping around a single threshold:
+        - If NORMAL: transition to REDUCED only when signal > tau_enter.
+        - If REDUCED: return to NORMAL only when signal < tau_exit.
+        - Inside dead-band [tau_exit, tau_enter]: state remains unchanged.
+
+    Args:
+        signal: Sequence of relative uncertainty metrics z_t.
+        tau_enter: Entry threshold into de-risked state (tau_enter > tau_exit).
+        tau_exit: Exit threshold returning to normal state.
+        s_normal: Exposure when in normal state (default 0.85).
+        s_reduced: Exposure when in reduced state (default 0.45).
+        initial_state: Starting state, 'normal' or 'reduced' (default 'normal').
+
+    Returns:
+        np.ndarray: Causal exposure path of length len(signal).
+    """
+    if tau_exit >= tau_enter:
+        raise ValueError(f"tau_exit ({tau_exit}) must be strictly less than tau_enter ({tau_enter})")
+    if not (0.0 <= s_normal <= 1.0) or not (0.0 <= s_reduced <= 1.0):
+        raise ValueError("Exposures s_normal and s_reduced must be within [0.0, 1.0]")
+
+    state = initial_state
+    exposures = []
+
+    for z in signal:
+        z_val = float(z)
+        if state == "normal":
+            if z_val > tau_enter:
+                state = "reduced"
+        else:  # state == "reduced"
+            if z_val < tau_exit:
+                state = "normal"
+
+        exposures.append(s_reduced if state == "reduced" else s_normal)
+
+    return np.asarray(exposures, dtype=float)
+
+
+def compute_persistent_exposure_path(
+    signal: Sequence[float],
+    tau: float,
+    k: int = 2,
+    n: int = 2,
+    s_normal: float = 0.85,
+    s_reduced: float = 0.45,
+    re_risk_k: int = 1,
+    re_risk_n: int = 1,
+    initial_state: str = "normal",
+) -> np.ndarray:
+    """
+    Compute causal exposure path requiring uncertainty persistence before de-risking.
+
+    Eliminates transient single-period spikes:
+        - To de-risk: at least k of the last n observations must exceed tau.
+        - To re-risk: at least re_risk_k of the last re_risk_n observations must fall <= tau.
+
+    Args:
+        signal: Sequence of relative uncertainty metrics z_t.
+        tau: Uncertainty threshold.
+        k: Minimum required exceedance count to de-risk (k <= n).
+        n: Trailing evaluation window length to de-risk.
+        s_normal: Normal risk exposure (default 0.85).
+        s_reduced: Reduced risk exposure (default 0.45).
+        re_risk_k: Required count to re-risk.
+        re_risk_n: Window to re-risk.
+        initial_state: Initial state ('normal' or 'reduced').
+
+    Returns:
+        np.ndarray: Causal exposure path.
+    """
+    if k < 1 or k > n:
+        raise ValueError(f"k ({k}) must satisfy 1 <= k <= n ({n})")
+    if re_risk_k < 1 or re_risk_k > re_risk_n:
+        raise ValueError(f"re_risk_k ({re_risk_k}) must satisfy 1 <= re_risk_k <= re_risk_n ({re_risk_n})")
+
+    sig_arr = list(signal)
+    state = initial_state
+    exposures = []
+
+    for t in range(len(sig_arr)):
+        if state == "normal":
+            win = sig_arr[max(0, t - n + 1) : t + 1]
+            exceed_count = sum(1 for x in win if float(x) > tau)
+            if len(win) == n and exceed_count >= k:
+                state = "reduced"
+        else:  # state == "reduced"
+            win_re = sig_arr[max(0, t - re_risk_n + 1) : t + 1]
+            calm_count = sum(1 for x in win_re if float(x) <= tau)
+            if len(win_re) == re_risk_n and calm_count >= re_risk_k:
+                state = "normal"
+
+        exposures.append(s_reduced if state == "reduced" else s_normal)
+
+    return np.asarray(exposures, dtype=float)
+
+
+def compute_band_exposure_path(
+    desired_exposure_path: Sequence[float],
+    delta: float = 0.10,
+    eta: float = 1.0,
+    initial_exposure: Optional[float] = None,
+) -> np.ndarray:
+    """
+    Apply a no-rebalancing inertia band around current exposure.
+
+    If |s*_t - s_{t-1}| < delta:
+        keep s_t = s_{t-1}
+    Else:
+        s_t = s_{t-1} + eta * (s*_t - s_{t-1})
+
+    Args:
+        desired_exposure_path: Sequence of unconstrained desired exposures s*_t.
+        delta: Inactivity band half-width (default 0.10).
+        eta: Partial adjustment speed in (0, 1.0] (default 1.0).
+        initial_exposure: Exposure prior to t=0 (defaults to desired_exposure_path[0]).
+
+    Returns:
+        np.ndarray: Band-filtered exposure path.
+    """
+    if delta < 0:
+        raise ValueError("delta must be non-negative")
+    if not (0.0 < eta <= 1.0):
+        raise ValueError("eta must be in (0, 1.0]")
+
+    des_arr = list(desired_exposure_path)
+    if not des_arr:
+        return np.array([], dtype=float)
+
+    prev_s = float(initial_exposure) if initial_exposure is not None else float(des_arr[0])
+    exposures = []
+
+    for s_target in des_arr:
+        target = float(s_target)
+        if abs(target - prev_s) < delta:
+            curr_s = prev_s
+        else:
+            curr_s = prev_s + eta * (target - prev_s)
+
+        curr_s = float(np.clip(curr_s, 0.0, 1.0))
+        exposures.append(curr_s)
+        prev_s = curr_s
+
+    return np.asarray(exposures, dtype=float)
+
+
+def compute_lower_frequency_exposure_path(
+    desired_exposure_path: Sequence[float],
+    frequency: int = 2,
+    severe_signal: Optional[Sequence[float]] = None,
+    tau_severe: Optional[float] = None,
+    s_emergency: float = 0.30,
+) -> np.ndarray:
+    """
+    Rebalance exposure only on allowed periodic dates (e.g. biweekly=2, monthly=4),
+    with an optional emergency override for severe uncertainty spikes.
+
+    Args:
+        desired_exposure_path: Sequence of desired exposures.
+        frequency: Rebalance interval in weeks (default 2).
+        severe_signal: Optional relative uncertainty signal sequence.
+        tau_severe: Optional severe spike threshold that overrides periodicity.
+        s_emergency: Target exposure during emergency override.
+
+    Returns:
+        np.ndarray: Lower-frequency exposure path.
+    """
+    if frequency < 1:
+        raise ValueError("frequency must be at least 1")
+
+    des_arr = list(desired_exposure_path)
+    if not des_arr:
+        return np.array([], dtype=float)
+
+    curr_s = float(des_arr[0])
+    exposures = []
+
+    for t, des in enumerate(des_arr):
+        if severe_signal is not None and tau_severe is not None and float(severe_signal[t]) > tau_severe:
+            curr_s = float(s_emergency)
+        elif t % frequency == 0:
+            curr_s = float(des)
+
+        curr_s = float(np.clip(curr_s, 0.0, 1.0))
+        exposures.append(curr_s)
+
+    return np.asarray(exposures, dtype=float)
+
+
+def compute_min_hold_exposure_path(
+    desired_exposure_path: Sequence[float],
+    min_hold_periods: int = 2,
+    threshold: float = 0.60,
+    s_reduced: float = 0.45,
+    s_normal: float = 0.85,
+) -> np.ndarray:
+    """
+    Enforce a minimum holding duration upon entering the reduced-risk state.
+
+    Args:
+        desired_exposure_path: Sequence of unconstrained exposures.
+        min_hold_periods: Minimum duration (in weeks) to remain defensive.
+        threshold: Threshold below which state is deemed 'reduced'.
+        s_reduced: Fixed reduced exposure value.
+        s_normal: Fixed normal exposure value.
+
+    Returns:
+        np.ndarray: Lock-in exposure path.
+    """
+    des_arr = list(desired_exposure_path)
+    hold_counter = 0
+    state = "normal"
+    exposures = []
+
+    for s_target in des_arr:
+        is_defensive = float(s_target) < threshold
+
+        if state == "normal":
+            if is_defensive:
+                state = "reduced"
+                hold_counter = min_hold_periods - 1
+        else:  # state == "reduced"
+            if hold_counter > 0:
+                hold_counter -= 1
+            else:
+                if not is_defensive:
+                    state = "normal"
+
+        exposures.append(s_reduced if state == "reduced" else s_normal)
+
+    return np.asarray(exposures, dtype=float)
+
+
+def compute_turnover_attribution(
+    exposure_path: Sequence[float],
+    base_returns: Sequence[float],
+    cost_bps: float = 0.0010,
+    m9_exposure_path: Optional[Sequence[float]] = None,
+    gamma: float = 1.0,
+) -> Dict[str, float]:
+    """
+    Compute fine-grained turnover attribution, trading frequency, and cost savings vs raw timing.
+
+    Args:
+        exposure_path: Exposure path of policy under evaluation.
+        base_returns: Returns of the base portfolio.
+        cost_bps: Transaction cost per unit of turnover (default 0.0010).
+        m9_exposure_path: Optional raw timing path (M9) for relative savings.
+        gamma: Risk aversion coefficient.
+
+    Returns:
+        Dict[str, float]: Detailed turnover and friction statistics.
+    """
+    s_arr = np.asarray(exposure_path, dtype=float)
+    r_arr = np.asarray(base_returns, dtype=float)
+    T = len(s_arr)
+
+    diffs = np.abs(np.diff(s_arr)) if T > 1 else np.array([0.0])
+    annual_factor = 52.0 / T if T > 0 else 1.0
+
+    total_turnover = float(np.sum(diffs) * 2.0)
+    annual_turnover = total_turnover * annual_factor
+    n_changes = int(np.sum(diffs > 1e-4))
+    mean_change = float(np.mean(diffs[diffs > 1e-4])) if n_changes > 0 else 0.0
+    tc_drag = float(cost_bps * total_turnover)
+
+    defensive = s_arr < 0.60
+    n_transitions = int(np.sum(defensive[1:] != defensive[:-1])) if T > 1 else 0
+
+    metrics = {
+        "total_turnover": total_turnover,
+        "annual_turnover": annual_turnover,
+        "n_exposure_changes": float(n_changes),
+        "mean_change_size": mean_change,
+        "n_state_transitions": float(n_transitions),
+        "total_tc_drag": tc_drag,
+    }
+
+    if m9_exposure_path is not None:
+        m9_arr = np.asarray(m9_exposure_path, dtype=float)
+        m9_diffs = np.abs(np.diff(m9_arr)) if len(m9_arr) > 1 else np.array([0.0])
+        m9_tc = float(cost_bps * np.sum(m9_diffs) * 2.0)
+        cost_saved = m9_tc - tc_drag
+        metrics["cost_saved_vs_m9"] = cost_saved
+
+        mean_exp = float(np.mean(s_arr))
+        gross_policy = float(np.sum((s_arr - mean_exp) * r_arr))
+        m9_mean = float(np.mean(m9_arr))
+        gross_m9 = float(np.sum((m9_arr - m9_mean) * r_arr))
+        benefit_retained = (gross_policy / gross_m9) if abs(gross_m9) > 1e-8 else 1.0
+        metrics["gross_benefit_retained"] = float(benefit_retained)
+
+    return metrics
+
+
+def analyze_uncertainty_alarms(
+    signal: Sequence[float],
+    realized_returns: Sequence[float],
+    exposure_path: Sequence[float],
+    tail_threshold: float = -0.02,
+) -> Dict[str, float]:
+    """
+    Evaluate the quality of uncertainty de-risking alarms:
+        - Measures how frequently an alarm is followed by negative returns vs tail crashes.
+        - Computes false positive rate.
+
+    Args:
+        signal: Relative uncertainty signal series.
+        realized_returns: Base portfolio realized returns.
+        exposure_path: Policy exposure path.
+        tail_threshold: Return threshold defining tail market loss (default -0.02).
+
+    Returns:
+        Dict[str, float]: Alarm quality metrics.
+    """
+    s_arr = np.asarray(exposure_path, dtype=float)
+    r_arr = np.asarray(realized_returns, dtype=float)
+    med_s = float(np.median(s_arr))
+
+    alarms = s_arr < med_s
+    n_alarms = int(np.sum(alarms))
+    total_periods = len(s_arr)
+
+    if n_alarms == 0:
+        return {
+            "n_alarms": 0.0,
+            "alarm_frequency": 0.0,
+            "pct_negative_followed": 0.0,
+            "pct_tail_loss_followed": 0.0,
+            "mean_return_during_alarm": 0.0,
+            "false_positive_rate": 0.0,
+        }
+
+    alarm_rets = r_arr[alarms]
+    pct_neg = float(np.mean(alarm_rets < 0.0)) * 100.0
+    pct_tail = float(np.mean(alarm_rets < tail_threshold)) * 100.0
+    mean_ret = float(np.mean(alarm_rets))
+    fp_rate = float(np.mean(alarm_rets >= 0.0)) * 100.0
+
+    return {
+        "n_alarms": float(n_alarms),
+        "alarm_frequency": float(n_alarms / total_periods) * 100.0,
+        "pct_negative_followed": pct_neg,
+        "pct_tail_loss_followed": pct_tail,
+        "mean_return_during_alarm": mean_ret,
+        "false_positive_rate": fp_rate,
+    }

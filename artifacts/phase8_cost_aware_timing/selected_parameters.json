@@ -1,0 +1,27 @@
+{
+  "hysteresis": {
+    "tau_enter": 1.2,
+    "tau_exit": 0.2,
+    "s_normal": 0.85,
+    "s_reduced": 0.45
+  },
+  "persistence": {
+    "k": 2,
+    "n": 2,
+    "tau": 1.0
+  },
+  "band": {
+    "delta": 0.2,
+    "eta": 0.5
+  },
+  "frequency": {
+    "interval_weeks": 2,
+    "emergency_tau": 2.0
+  },
+  "combination_m17": {
+    "type": "hysteresis_plus_band",
+    "hys_tau_enter": 1.2,
+    "hys_tau_exit": 0.2,
+    "band_delta": 0.2
+  }
+}

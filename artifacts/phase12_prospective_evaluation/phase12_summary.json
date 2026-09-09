@@ -12,8 +12,12 @@
     "last_usable_event_date": "2026-08-01",
     "last_fully_observed_portfolio_week": "2026-08-31"
   },
-  "verdict": "Outcome B \u2014 Model property replicates, timing does not",
-  "verdict_reason": "Epistemic uncertainty reliably tracks model unreliability, but exposure timing overlay fails to deliver positive net utility.",
+  "verdict": "Outcome F \u2014 Valid prospective evaluation, currently insufficient/uninformative sample for hypothesis adjudication.",
+  "verdict_reason": "Sample consists of only 5 unique prospective events (4 complete H=4, 1 right-censored) across 5 portfolio weeks. Because relative epistemic uncertainty never exceeded tau_enter=1.2, M13 never entered the defensive regime, producing an exact no-contrast result (Delta U = 0.0). This provides zero empirical contrast to test timing underperformance or outperformance.",
   "primary_endpoint_mean": 0.0,
-  "model_level_mean_spearman": 0.2333
+  "model_level_mean_spearman": 0.2333,
+  "bootstrap_classification": "DEGENERATE / NON-INFORMATIVE BOOTSTRAP (Zero paired differences across all observed weeks)",
+  "informative_timing_weeks": 0,
+  "unique_prospective_events": 5,
+  "model_level_sample_size_note": "N=5 unique prospective events. Seeds 42, 123, 777 are repeated model fits sharing identical market outcomes, not 15 independent observations. Early prospective uncertainty-error behavior is mixed and inconclusive."
 }

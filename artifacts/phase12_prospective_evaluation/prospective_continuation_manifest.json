@@ -1,0 +1,45 @@
+{
+  "manifest_title": "Phase 12.1 Sequential Prospective Continuation Protocol",
+  "freeze_timestamp_utc": "2026-09-09T20:26:41.258015+00:00",
+  "as_of_date": "2026-09-09",
+  "unblinded_tranche_1": {
+    "tranche_id": "prospective_tranche_1",
+    "status": "UNBLINDED_OBSERVED_2026_09_09",
+    "unique_events_count": 5,
+    "complete_h4_events_count": 4,
+    "right_censored_events_count": 1,
+    "usable_calendar_weeks": 5,
+    "event_ids": [
+      "GOOGL_2026_Q2",
+      "MSFT_2026_Q4",
+      "AAPL_2026_Q3",
+      "AMZN_2026_Q2",
+      "NVDA_2026_Q2"
+    ],
+    "informative_timing_weeks_count": 0,
+    "tranche_verdict": "Outcome F \u2014 Valid prospective evaluation, currently insufficient/uninformative sample for hypothesis adjudication."
+  },
+  "continuation_rules": {
+    "milestone_criteria": "Earlier of: (A) 20 UNIQUE events with complete H=4 return paths, or (B) December 31, 2026 market-data cutoff.",
+    "stopping_rule_independence": "Milestone is fixed purely on calendar/constituent completeness. No early stopping based on performance or whether M13 activates.",
+    "dual_reporting_protocol": {
+      "report_new_tranche_alone": true,
+      "report_cumulative_sample": true,
+      "preserve_tranche_1_identity": true
+    },
+    "informative_timing_criterion": "For M13 dynamic timing evaluation, count number of weeks where M13 exposure != M8 exposure. If informative weeks count == 0, timing overlay remains formally unevaluated.",
+    "model_uncertainty_sample_size_rule": "N for uncertainty-error analysis must strictly count UNIQUE events, not (unique events * seeds). Seeds are repeated model fits on identical market outcomes."
+  },
+  "frozen_strategy_parameters": {
+    "holding_horizon_H": 4,
+    "tau_enter": 1.2,
+    "tau_exit": 0.2,
+    "s_normal": 0.85,
+    "s_reduced": 0.45,
+    "transaction_cost_bps": 10.0,
+    "risk_aversion_gamma": 1.0,
+    "cash_return": 0.0,
+    "mc_draws": 32,
+    "status": "LOCKED_UNCHANGED"
+  }
+}

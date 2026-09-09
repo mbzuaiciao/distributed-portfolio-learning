@@ -1,0 +1,53 @@
+event_id,ticker,filing_date,prediction_available,market_data_available,complete_H4,eligible_for_phase12,exclusion_reason,tranche
+GOOGL_2026_Q2,GOOGL,2026-07-23,True,True,True,True,NONE_EVALUATED,prospective_tranche_1
+MSFT_2026_Q4,MSFT,2026-07-28,True,True,True,True,NONE_EVALUATED,prospective_tranche_1
+AAPL_2026_Q3,AAPL,2026-07-31,True,True,True,True,NONE_EVALUATED,prospective_tranche_1
+AMZN_2026_Q2,AMZN,2026-08-01,True,True,True,True,NONE_EVALUATED,prospective_tranche_1
+NVDA_2026_Q2,NVDA,2026-08-26,True,True,False,False,RIGHT_CENSORED_INCOMPLETE_H4 (Only 8 trading days observed as of 2026-09-09),prospective_tranche_1
+CALENDAR_2026_W01,UNIVERSE_BENCHMARK,2026-W01,False,False,False,False,PRE_FREEZE_CALENDAR_EPISODE (Pre-dates Tranche 1 freeze window),pre_tranche_1_historical
+CALENDAR_2026_W02,UNIVERSE_BENCHMARK,2026-W02,False,False,False,False,PRE_FREEZE_CALENDAR_EPISODE (Pre-dates Tranche 1 freeze window),pre_tranche_1_historical
+CALENDAR_2026_W03,UNIVERSE_BENCHMARK,2026-W03,False,False,False,False,PRE_FREEZE_CALENDAR_EPISODE (Pre-dates Tranche 1 freeze window),pre_tranche_1_historical
+CALENDAR_2026_W04,UNIVERSE_BENCHMARK,2026-W04,False,False,False,False,PRE_FREEZE_CALENDAR_EPISODE (Pre-dates Tranche 1 freeze window),pre_tranche_1_historical
+CALENDAR_2026_W05,UNIVERSE_BENCHMARK,2026-W05,False,False,False,False,PRE_FREEZE_CALENDAR_EPISODE (Pre-dates Tranche 1 freeze window),pre_tranche_1_historical
+CALENDAR_2026_W06,UNIVERSE_BENCHMARK,2026-W06,False,False,False,False,PRE_FREEZE_CALENDAR_EPISODE (Pre-dates Tranche 1 freeze window),pre_tranche_1_historical
+CALENDAR_2026_W07,UNIVERSE_BENCHMARK,2026-W07,False,False,False,False,PRE_FREEZE_CALENDAR_EPISODE (Pre-dates Tranche 1 freeze window),pre_tranche_1_historical
+CALENDAR_2026_W08,UNIVERSE_BENCHMARK,2026-W08,False,False,False,False,PRE_FREEZE_CALENDAR_EPISODE (Pre-dates Tranche 1 freeze window),pre_tranche_1_historical
+CALENDAR_2026_W09,UNIVERSE_BENCHMARK,2026-W09,False,False,False,False,PRE_FREEZE_CALENDAR_EPISODE (Pre-dates Tranche 1 freeze window),pre_tranche_1_historical
+CALENDAR_2026_W10,UNIVERSE_BENCHMARK,2026-W10,False,False,False,False,PRE_FREEZE_CALENDAR_EPISODE (Pre-dates Tranche 1 freeze window),pre_tranche_1_historical
+CALENDAR_2026_W11,UNIVERSE_BENCHMARK,2026-W11,False,False,False,False,PRE_FREEZE_CALENDAR_EPISODE (Pre-dates Tranche 1 freeze window),pre_tranche_1_historical
+CALENDAR_2026_W12,UNIVERSE_BENCHMARK,2026-W12,False,False,False,False,PRE_FREEZE_CALENDAR_EPISODE (Pre-dates Tranche 1 freeze window),pre_tranche_1_historical
+CALENDAR_2026_W13,UNIVERSE_BENCHMARK,2026-W13,False,False,False,False,PRE_FREEZE_CALENDAR_EPISODE (Pre-dates Tranche 1 freeze window),pre_tranche_1_historical
+CALENDAR_2026_W14,UNIVERSE_BENCHMARK,2026-W14,False,False,False,False,PRE_FREEZE_CALENDAR_EPISODE (Pre-dates Tranche 1 freeze window),pre_tranche_1_historical
+CALENDAR_2026_W15,UNIVERSE_BENCHMARK,2026-W15,False,False,False,False,PRE_FREEZE_CALENDAR_EPISODE (Pre-dates Tranche 1 freeze window),pre_tranche_1_historical
+CALENDAR_2026_W16,UNIVERSE_BENCHMARK,2026-W16,False,False,False,False,PRE_FREEZE_CALENDAR_EPISODE (Pre-dates Tranche 1 freeze window),pre_tranche_1_historical
+CALENDAR_2026_W17,UNIVERSE_BENCHMARK,2026-W17,False,False,False,False,PRE_FREEZE_CALENDAR_EPISODE (Pre-dates Tranche 1 freeze window),pre_tranche_1_historical
+CALENDAR_2026_W18,UNIVERSE_BENCHMARK,2026-W18,False,False,False,False,PRE_FREEZE_CALENDAR_EPISODE (Pre-dates Tranche 1 freeze window),pre_tranche_1_historical
+CALENDAR_2026_W19,UNIVERSE_BENCHMARK,2026-W19,False,False,False,False,PRE_FREEZE_CALENDAR_EPISODE (Pre-dates Tranche 1 freeze window),pre_tranche_1_historical
+CALENDAR_2026_W20,UNIVERSE_BENCHMARK,2026-W20,False,False,False,False,PRE_FREEZE_CALENDAR_EPISODE (Pre-dates Tranche 1 freeze window),pre_tranche_1_historical
+CALENDAR_2026_W21,UNIVERSE_BENCHMARK,2026-W21,False,False,False,False,PRE_FREEZE_CALENDAR_EPISODE (Pre-dates Tranche 1 freeze window),pre_tranche_1_historical
+CALENDAR_2026_W22,UNIVERSE_BENCHMARK,2026-W22,False,False,False,False,PRE_FREEZE_CALENDAR_EPISODE (Pre-dates Tranche 1 freeze window),pre_tranche_1_historical
+CALENDAR_2026_W23,UNIVERSE_BENCHMARK,2026-W23,False,False,False,False,PRE_FREEZE_CALENDAR_EPISODE (Pre-dates Tranche 1 freeze window),pre_tranche_1_historical
+CALENDAR_2026_W24,UNIVERSE_BENCHMARK,2026-W24,False,False,False,False,PRE_FREEZE_CALENDAR_EPISODE (Pre-dates Tranche 1 freeze window),pre_tranche_1_historical
+CALENDAR_2026_W25,UNIVERSE_BENCHMARK,2026-W25,False,False,False,False,PRE_FREEZE_CALENDAR_EPISODE (Pre-dates Tranche 1 freeze window),pre_tranche_1_historical
+CALENDAR_2026_W26,UNIVERSE_BENCHMARK,2026-W26,False,False,False,False,PRE_FREEZE_CALENDAR_EPISODE (Pre-dates Tranche 1 freeze window),pre_tranche_1_historical
+CALENDAR_2026_W27,UNIVERSE_BENCHMARK,2026-W27,False,False,False,False,PRE_FREEZE_CALENDAR_EPISODE (Pre-dates Tranche 1 freeze window),pre_tranche_1_historical
+CALENDAR_2026_W28,UNIVERSE_BENCHMARK,2026-W28,False,False,False,False,PRE_FREEZE_CALENDAR_EPISODE (Pre-dates Tranche 1 freeze window),pre_tranche_1_historical
+CALENDAR_2026_W29,UNIVERSE_BENCHMARK,2026-W29,False,False,False,False,PRE_FREEZE_CALENDAR_EPISODE (Pre-dates Tranche 1 freeze window),pre_tranche_1_historical
+CALENDAR_2026_W35,UNIVERSE_BENCHMARK,2026-W35,False,False,False,False,FUTURE_DATED_CALENDAR_EPISODE (Occurs after 2026-09-09 as-of cutoff),prospective_tranche_2_future
+CALENDAR_2026_W36,UNIVERSE_BENCHMARK,2026-W36,False,False,False,False,FUTURE_DATED_CALENDAR_EPISODE (Occurs after 2026-09-09 as-of cutoff),prospective_tranche_2_future
+CALENDAR_2026_W37,UNIVERSE_BENCHMARK,2026-W37,False,False,False,False,FUTURE_DATED_CALENDAR_EPISODE (Occurs after 2026-09-09 as-of cutoff),prospective_tranche_2_future
+CALENDAR_2026_W38,UNIVERSE_BENCHMARK,2026-W38,False,False,False,False,FUTURE_DATED_CALENDAR_EPISODE (Occurs after 2026-09-09 as-of cutoff),prospective_tranche_2_future
+CALENDAR_2026_W39,UNIVERSE_BENCHMARK,2026-W39,False,False,False,False,FUTURE_DATED_CALENDAR_EPISODE (Occurs after 2026-09-09 as-of cutoff),prospective_tranche_2_future
+CALENDAR_2026_W40,UNIVERSE_BENCHMARK,2026-W40,False,False,False,False,FUTURE_DATED_CALENDAR_EPISODE (Occurs after 2026-09-09 as-of cutoff),prospective_tranche_2_future
+CALENDAR_2026_W41,UNIVERSE_BENCHMARK,2026-W41,False,False,False,False,FUTURE_DATED_CALENDAR_EPISODE (Occurs after 2026-09-09 as-of cutoff),prospective_tranche_2_future
+CALENDAR_2026_W42,UNIVERSE_BENCHMARK,2026-W42,False,False,False,False,FUTURE_DATED_CALENDAR_EPISODE (Occurs after 2026-09-09 as-of cutoff),prospective_tranche_2_future
+CALENDAR_2026_W43,UNIVERSE_BENCHMARK,2026-W43,False,False,False,False,FUTURE_DATED_CALENDAR_EPISODE (Occurs after 2026-09-09 as-of cutoff),prospective_tranche_2_future
+CALENDAR_2026_W44,UNIVERSE_BENCHMARK,2026-W44,False,False,False,False,FUTURE_DATED_CALENDAR_EPISODE (Occurs after 2026-09-09 as-of cutoff),prospective_tranche_2_future
+CALENDAR_2026_W45,UNIVERSE_BENCHMARK,2026-W45,False,False,False,False,FUTURE_DATED_CALENDAR_EPISODE (Occurs after 2026-09-09 as-of cutoff),prospective_tranche_2_future
+CALENDAR_2026_W46,UNIVERSE_BENCHMARK,2026-W46,False,False,False,False,FUTURE_DATED_CALENDAR_EPISODE (Occurs after 2026-09-09 as-of cutoff),prospective_tranche_2_future
+CALENDAR_2026_W47,UNIVERSE_BENCHMARK,2026-W47,False,False,False,False,FUTURE_DATED_CALENDAR_EPISODE (Occurs after 2026-09-09 as-of cutoff),prospective_tranche_2_future
+CALENDAR_2026_W48,UNIVERSE_BENCHMARK,2026-W48,False,False,False,False,FUTURE_DATED_CALENDAR_EPISODE (Occurs after 2026-09-09 as-of cutoff),prospective_tranche_2_future
+CALENDAR_2026_W49,UNIVERSE_BENCHMARK,2026-W49,False,False,False,False,FUTURE_DATED_CALENDAR_EPISODE (Occurs after 2026-09-09 as-of cutoff),prospective_tranche_2_future
+CALENDAR_2026_W50,UNIVERSE_BENCHMARK,2026-W50,False,False,False,False,FUTURE_DATED_CALENDAR_EPISODE (Occurs after 2026-09-09 as-of cutoff),prospective_tranche_2_future
+CALENDAR_2026_W51,UNIVERSE_BENCHMARK,2026-W51,False,False,False,False,FUTURE_DATED_CALENDAR_EPISODE (Occurs after 2026-09-09 as-of cutoff),prospective_tranche_2_future
+CALENDAR_2026_W52,UNIVERSE_BENCHMARK,2026-W52,False,False,False,False,FUTURE_DATED_CALENDAR_EPISODE (Occurs after 2026-09-09 as-of cutoff),prospective_tranche_2_future

@@ -1,0 +1,6 @@
+event_id,ticker,filing_date,prediction_rows,price_rows_available,join_status,notes
+AAPL_2026_Q3,AAPL,2026-07-31,3,252,EXACT_STABLE_MATCH,First tradable date: 2026-08-03. Zero silent mismatch.
+MSFT_2026_Q4,MSFT,2026-07-28,3,252,EXACT_STABLE_MATCH,First tradable date: 2026-07-29. Zero silent mismatch.
+NVDA_2026_Q2,NVDA,2026-08-26,3,252,EXACT_STABLE_MATCH,First tradable date: 2026-08-27. Zero silent mismatch.
+AMZN_2026_Q2,AMZN,2026-08-01,3,252,EXACT_STABLE_MATCH,First tradable date: 2026-08-03. Zero silent mismatch.
+GOOGL_2026_Q2,GOOGL,2026-07-23,3,252,EXACT_STABLE_MATCH,First tradable date: 2026-07-24. Zero silent mismatch.

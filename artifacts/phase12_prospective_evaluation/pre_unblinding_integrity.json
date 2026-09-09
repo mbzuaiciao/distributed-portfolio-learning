@@ -1,0 +1,24 @@
+{
+  "verification_timestamp_utc": "2026-09-09T19:49:38.248133+00:00",
+  "git_commit_prior": "0b6c6cf236e7fe04a73678569db3db74b47f39fc",
+  "frozen_2026_predictions_sha256": "6542b33fa5810985beff8c835e71b598ffaf47bf943e88d43f7c50d7dcb30aeb",
+  "canonical_expected_sha256": "6542b33fa5810985beff8c835e71b598ffaf47bf943e88d43f7c50d7dcb30aeb",
+  "sha_exact_match": true,
+  "checkpoint_hashes": {
+    "bayesian_lora_seed_42_state.pt": "d382640351dbef4fd40b47c8b033b1a4823c57d8fd6740b6fd9d1709043dc309",
+    "bayesian_lora_seed_123_state.pt": "e094b775c7061b7c60341704525719b2c3fd4055e1aa325581eacabc23059301",
+    "bayesian_lora_seed_777_state.pt": "0f084381c8b387f5a4946e337470c8c25707228c40cf676604d1db22f3a13e2a"
+  },
+  "frozen_parameters": {
+    "H": 4,
+    "tau_enter": 1.2,
+    "tau_exit": 0.2,
+    "s_normal": 0.85,
+    "s_reduced": 0.45,
+    "transaction_cost_rate_bps": 10.0,
+    "risk_aversion_gamma": 1.0,
+    "cash_return": 0.0,
+    "mc_draws": 32
+  },
+  "status": "PRE_UNBLINDING_VERIFICATION_PASSED"
+}

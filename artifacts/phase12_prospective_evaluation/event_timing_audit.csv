@@ -1,0 +1,6 @@
+event_id,ticker,event_timestamp_if_known,timing_class,first_tradable_date,rule_used
+AAPL_2026_Q3,AAPL,2026-07-31 16:30:00,AFTER_MARKET_OR_WEEKEND,2026-08-03,Next available trading session open/close post-release
+MSFT_2026_Q4,MSFT,2026-07-28 16:05:00,AFTER_MARKET_OR_WEEKEND,2026-07-29,Next available trading session open/close post-release
+NVDA_2026_Q2,NVDA,2026-08-26 16:20:00,AFTER_MARKET_OR_WEEKEND,2026-08-27,Next available trading session open/close post-release
+AMZN_2026_Q2,AMZN,2026-08-01 16:00:00,AFTER_MARKET_OR_WEEKEND,2026-08-03,Next available trading session open/close post-release
+GOOGL_2026_Q2,GOOGL,2026-07-23 16:00:00,AFTER_MARKET_OR_WEEKEND,2026-07-24,Next available trading session open/close post-release

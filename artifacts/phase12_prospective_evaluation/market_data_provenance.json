@@ -1,0 +1,52 @@
+[
+  {
+    "ticker": "AAPL",
+    "data_source": "Yahoo_Finance_Chart_v8",
+    "retrieval_timestamp_utc": "2026-09-09T19:49:38.443146+00:00",
+    "raw_file_name": "AAPL_raw_yahoo.json",
+    "raw_file_sha256": "0c91c1b444300358f6eb5f53d95e0741d7620210d70ea9325d4275a4a2cc0ce5",
+    "first_available_date": "2025-09-09",
+    "last_available_date": "2026-09-09",
+    "total_bars": 252
+  },
+  {
+    "ticker": "AMZN",
+    "data_source": "Yahoo_Finance_Chart_v8",
+    "retrieval_timestamp_utc": "2026-09-09T19:49:38.536979+00:00",
+    "raw_file_name": "AMZN_raw_yahoo.json",
+    "raw_file_sha256": "19a3d1532a3bd43019307ff0e0b8d31fe1e3927afe52289c1bb28ddbdfef70fa",
+    "first_available_date": "2025-09-09",
+    "last_available_date": "2026-09-09",
+    "total_bars": 252
+  },
+  {
+    "ticker": "GOOGL",
+    "data_source": "Yahoo_Finance_Chart_v8",
+    "retrieval_timestamp_utc": "2026-09-09T19:49:38.671797+00:00",
+    "raw_file_name": "GOOGL_raw_yahoo.json",
+    "raw_file_sha256": "edeaad3d6f244f37c849a6324b3a055c1e5e0831b0d68be73254aca92dbdd4e8",
+    "first_available_date": "2025-09-09",
+    "last_available_date": "2026-09-09",
+    "total_bars": 252
+  },
+  {
+    "ticker": "MSFT",
+    "data_source": "Yahoo_Finance_Chart_v8",
+    "retrieval_timestamp_utc": "2026-09-09T19:49:38.808414+00:00",
+    "raw_file_name": "MSFT_raw_yahoo.json",
+    "raw_file_sha256": "c2fa3d21c90baa36ac9344d78d67d179e059b148cd2e89f1702bd9056d094df8",
+    "first_available_date": "2025-09-09",
+    "last_available_date": "2026-09-09",
+    "total_bars": 252
+  },
+  {
+    "ticker": "NVDA",
+    "data_source": "Yahoo_Finance_Chart_v8",
+    "retrieval_timestamp_utc": "2026-09-09T19:49:38.908348+00:00",
+    "raw_file_name": "NVDA_raw_yahoo.json",
+    "raw_file_sha256": "13fddfb42140c1319b21c14f44e7c52545bee5e2d0e73d9cf6d2f7cf7e4a9fad",
+    "first_available_date": "2025-09-09",
+    "last_available_date": "2026-09-09",
+    "total_bars": 252
+  }
+]

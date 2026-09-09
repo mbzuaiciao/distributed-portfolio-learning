@@ -1,0 +1,6 @@
+event_id,ticker,event_date,first_tradable_date,required_h4_end_date,latest_price_date,complete_h4,included,censoring_reason
+AAPL_2026_Q3,AAPL,2026-07-31,2026-08-03,2026-08-31,2026-09-09,True,True,Complete 4-week holding path observed
+MSFT_2026_Q4,MSFT,2026-07-28,2026-07-29,2026-08-26,2026-09-09,True,True,Complete 4-week holding path observed
+NVDA_2026_Q2,NVDA,2026-08-26,2026-08-27,BEYOND_AVAILABLE,2026-09-09,False,False,Right-censored as of 2026-09-09: only 8 trading days observed
+AMZN_2026_Q2,AMZN,2026-08-01,2026-08-03,2026-08-31,2026-09-09,True,True,Complete 4-week holding path observed
+GOOGL_2026_Q2,GOOGL,2026-07-23,2026-07-24,2026-08-21,2026-09-09,True,True,Complete 4-week holding path observed

@@ -34,6 +34,7 @@ venv.bak/
 .ruff_cache/
 .coverage
 htmlcov/
+uv.lock
 
 # Matplotlib cache
 .matplotlib_cache/

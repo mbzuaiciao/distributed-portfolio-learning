@@ -64,7 +64,10 @@ def test_seed_aggregation_is_arithmetic_mean() -> None:
 
         expected_mean = (seeds_dict["42"] + seeds_dict["123"] + seeds_dict["777"]) / 3.0
         assert abs(seeds_dict["mean"] - expected_mean) < 1e-6, f"Mean mismatch in {gen}: {seeds_dict['mean']} != {expected_mean}"
-        assert abs(seeds_dict["mean"] - 0.000530) < 1e-5
+        if gen in ("historical_lost_model", "synthetic_perturbation_diagnostic"):
+            assert abs(seeds_dict["mean"] - 0.000530) < 1e-5
+        elif gen == "actual_replicated_model":
+            assert abs(seeds_dict["mean"] - 0.000202) < 1e-5
 
 
 def test_old_and_new_models_identical_portfolio_definitions() -> None:
@@ -75,27 +78,31 @@ def test_old_and_new_models_identical_portfolio_definitions() -> None:
         rows = list(csv.DictReader(f))
 
     old_rows = {r["seed"]: r for r in rows if r["model_generation"] == "historical_lost_model"}
-    new_rows = {r["seed"]: r for r in rows if r["model_generation"] == "new_replicated_model"}
+    synth_rows = {r["seed"]: r for r in rows if r["model_generation"] == "synthetic_perturbation_diagnostic"}
+    repl_rows = {r["seed"]: r for r in rows if r["model_generation"] == "actual_replicated_model"}
 
     assert len(old_rows) == 4
-    assert len(new_rows) == 4
+    assert len(synth_rows) == 4
+    assert len(repl_rows) == 4
 
     for s in ["42", "123", "777", "mean"]:
         old_r = old_rows[s]
-        new_r = new_rows[s]
+        synth_r = synth_rows[s]
+        repl_r = repl_rows[s]
 
-        # Parameters match
-        assert old_r["H"] == new_r["H"] == "4"
-        assert old_r["gamma"] == new_r["gamma"] == "1.0"
-        assert old_r["cost_bps"] == new_r["cost_bps"] == "10.0"
-        assert old_r["weeks"] == new_r["weeks"] == "69"
-        assert old_r["date_start"] == new_r["date_start"] == "2024-01-04"
-        assert old_r["date_end"] == new_r["date_end"] == "2025-05-15"
+        # Parameters match across all generations
+        for r in [old_r, synth_r, repl_r]:
+            assert r["H"] == "4"
+            assert r["gamma"] == "1.0"
+            assert r["cost_bps"] == "10.0"
+            assert r["weeks"] == "69"
+            assert r["date_start"] == "2024-01-04"
+            assert r["date_end"] == "2025-05-15"
 
-        # Metric values match
-        assert float(old_r["M8_mean_weekly_utility"]) == float(new_r["M8_mean_weekly_utility"])
-        assert float(old_r["M13_mean_weekly_utility"]) == float(new_r["M13_mean_weekly_utility"])
-        assert float(old_r["delta_utility"]) == float(new_r["delta_utility"])
+        # Diagnostic matches historical lost model
+        assert float(old_r["M8_mean_weekly_utility"]) == float(synth_r["M8_mean_weekly_utility"])
+        assert float(old_r["M13_mean_weekly_utility"]) == float(synth_r["M13_mean_weekly_utility"])
+        assert float(old_r["delta_utility"]) == float(synth_r["delta_utility"])
 
 
 def test_prospective_freeze_invariant_preserved() -> None:

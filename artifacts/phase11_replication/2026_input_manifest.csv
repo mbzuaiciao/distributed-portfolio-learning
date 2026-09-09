@@ -1,0 +1,6 @@
+event_id,ticker,company,event_timestamp,source,document_identifier,document_hash,text_excerpt
+AAPL_2026_Q3,AAPL,Apple Inc.,2026-07-31 16:30:00,SEC_EDGAR_10Q,0000320193-26-000072,c49a7522d1f7e34ef32a106f35b44883bb17f8a92482e9db69e7f8bfdf5c2763,"Quarterly Report pursuant to Section 13 or 15(d) of the Securities Exchange Act of 1934 for the quarterly period ended June 27, 2026."
+MSFT_2026_Q4,MSFT,Microsoft Corporation,2026-07-28 16:05:00,SEC_EDGAR_10K,0000789019-26-000045,887a2f1c8491de563b7e4529f7acbe898125cf1719b45e229e6129487c992aa1,"Annual Report pursuant to Section 13 or 15(d) for the fiscal year ended June 30, 2026."
+NVDA_2026_Q2,NVDA,NVIDIA Corporation,2026-08-26 16:20:00,SEC_EDGAR_10Q,0001045810-26-000091,f68d901c238b9e6712954a7ccbe0944815aefb7381944ec7829dbfe11782bb04,"Quarterly Report for the quarterly period ended July 26, 2026."
+AMZN_2026_Q2,AMZN,"Amazon.com, Inc.",2026-08-01 16:00:00,SEC_EDGAR_10Q,0001018724-26-000058,37a912dcfe89bc513b867c29eafb7829104cf5e2978aef114b7e88942bcf6511,"Quarterly Report for the quarterly period ended June 30, 2026."
+GOOGL_2026_Q2,GOOGL,Alphabet Inc.,2026-07-23 16:00:00,SEC_EDGAR_10Q,0001652044-26-000062,55b72e18ac49b8fe12d0985a7bc1378912efc482098ba4e287bf55219bcde884,"Quarterly Report for the quarterly period ended June 30, 2026."

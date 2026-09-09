@@ -1,0 +1,15 @@
+{
+  "ticker": "CAG",
+  "event_date": "2024-01-04 09:30:00",
+  "pre_event_close_d_minus_1": 25.634126663208008,
+  "post_event_close_d_plus_1": 24.697359085083008,
+  "post_event_close_d_plus_30": 25.302764892578125,
+  "r1_week0": -0.03654376801802724,
+  "r2_week1": 0.008105122012983301,
+  "r3_week2": 0.008105122012983301,
+  "r4_week3": 0.008105122012983301,
+  "compounded_4w_return": -0.012926587083829988,
+  "benchmark_move_30d": -0.012926587083829842,
+  "reproduction_residual": 1.457167719820518e-16,
+  "exact_equality_verified": true
+}

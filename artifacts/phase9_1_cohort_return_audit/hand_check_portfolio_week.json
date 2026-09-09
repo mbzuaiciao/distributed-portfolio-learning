@@ -1,0 +1,212 @@
+{
+  "evaluation_week": "2024-W04",
+  "evaluation_period_idx": 3,
+  "cohorts": [
+    {
+      "cohort_entry_week": "2024-W01",
+      "cohort_age": 3,
+      "cohort_capital_weight": 0.25,
+      "cohort_gross_return": -0.0018903801861570215,
+      "active_assets": [
+        {
+          "asset": "CAG",
+          "weight_in_cohort": 0.22610732256725902,
+          "realized_return": 0.008105122012983301
+        },
+        {
+          "asset": "LW",
+          "weight_in_cohort": 0.773892677432741,
+          "realized_return": -0.004810754426497588
+        }
+      ]
+    },
+    {
+      "cohort_entry_week": "2024-W02",
+      "cohort_age": 2,
+      "cohort_capital_weight": 0.25,
+      "cohort_gross_return": 0.019346923598603114,
+      "active_assets": [
+        {
+          "asset": "JPM",
+          "weight_in_cohort": 0.4257823476509656,
+          "realized_return": 0.015243552072006006
+        },
+        {
+          "asset": "BLK",
+          "weight_in_cohort": 0.06945715771871616,
+          "realized_return": 0.004353131907877561
+        },
+        {
+          "asset": "DAL",
+          "weight_in_cohort": 0.4594292038236743,
+          "realized_return": 0.026934649976606106
+        },
+        {
+          "asset": "C",
+          "weight_in_cohort": 2.56783177745134e-16,
+          "realized_return": 0.016216687009967368
+        },
+        {
+          "asset": "BK",
+          "weight_in_cohort": 0.04533129080664378,
+          "realized_return": 0.003961220696168999
+        }
+      ]
+    },
+    {
+      "cohort_entry_week": "2024-W03",
+      "cohort_age": 1,
+      "cohort_capital_weight": 0.25,
+      "cohort_gross_return": -0.00045675426941862605,
+      "active_assets": [
+        {
+          "asset": "CFG",
+          "weight_in_cohort": 0.35920680644145864,
+          "realized_return": 0.00369625410804697
+        },
+        {
+          "asset": "KMI",
+          "weight_in_cohort": 0.17256862598393755,
+          "realized_return": 0.00160305410334316
+        },
+        {
+          "asset": "KEY",
+          "weight_in_cohort": 6.083532678524393e-17,
+          "realized_return": 0.005942652085450417
+        },
+        {
+          "asset": "FAST",
+          "weight_in_cohort": 8.79362250593972e-18,
+          "realized_return": 0.005439637606842629
+        },
+        {
+          "asset": "HBAN",
+          "weight_in_cohort": 0.46822456757460396,
+          "realized_return": -0.004401970528873922
+        }
+      ]
+    },
+    {
+      "cohort_entry_week": "2024-W04",
+      "cohort_age": 0,
+      "cohort_capital_weight": 0.25,
+      "cohort_gross_return": 0.03502728621063448,
+      "active_assets": [
+        {
+          "asset": "BRO",
+          "weight_in_cohort": 1.359211504090998e-17,
+          "realized_return": 0.030681417834796543
+        },
+        {
+          "asset": "DHI",
+          "weight_in_cohort": 4.2826281833920657e-16,
+          "realized_return": -0.021603831838175852
+        },
+        {
+          "asset": "HAL",
+          "weight_in_cohort": 0.1431834579270794,
+          "realized_return": 0.0697065171747269
+        },
+        {
+          "asset": "ABT",
+          "weight_in_cohort": 1.297816035822834e-15,
+          "realized_return": -0.02995007787873143
+        },
+        {
+          "asset": "ELV",
+          "weight_in_cohort": 3.2579205586562375e-17,
+          "realized_return": 0.017261117976703415
+        },
+        {
+          "asset": "KMB",
+          "weight_in_cohort": 2.9940388048641747e-18,
+          "realized_return": -0.03569418601099145
+        },
+        {
+          "asset": "BKR",
+          "weight_in_cohort": 3.060053662177633e-17,
+          "realized_return": -0.039010472760439674
+        },
+        {
+          "asset": "APH",
+          "weight_in_cohort": 7.479270049084181e-17,
+          "realized_return": 0.02930372946606087
+        },
+        {
+          "asset": "CSX",
+          "weight_in_cohort": 5.510029020130566e-17,
+          "realized_return": 0.0031526784378712773
+        },
+        {
+          "asset": "LVS",
+          "weight_in_cohort": 0.23547288883128187,
+          "realized_return": 0.023051836120064135
+        },
+        {
+          "asset": "IBM",
+          "weight_in_cohort": 8.055850360543947e-17,
+          "realized_return": 0.09480286819018639
+        },
+        {
+          "asset": "KLAC",
+          "weight_in_cohort": 9.191216947583161e-17,
+          "realized_return": -0.061210720664000774
+        },
+        {
+          "asset": "DOW",
+          "weight_in_cohort": 3.7905348758897416e-17,
+          "realized_return": 0.018270790389793297
+        },
+        {
+          "asset": "AMP",
+          "weight_in_cohort": 8.304881671576261e-17,
+          "realized_return": -0.10231108591820709
+        },
+        {
+          "asset": "HUM",
+          "weight_in_cohort": 0.12778288664412618,
+          "realized_return": 0.00498122860945825
+        },
+        {
+          "asset": "LUV",
+          "weight_in_cohort": 3.7278716991075183e-17,
+          "realized_return": -0.03278682825529259
+        },
+        {
+          "asset": "FICO",
+          "weight_in_cohort": 1.0413500197844384e-19,
+          "realized_return": 0.058204518519832764
+        },
+        {
+          "asset": "INTC",
+          "weight_in_cohort": 2.7930688772030775e-17,
+          "realized_return": -0.11081688746433754
+        },
+        {
+          "asset": "AXP",
+          "weight_in_cohort": 0.10217162643675676,
+          "realized_return": 0.03373541322488384
+        },
+        {
+          "asset": "CL",
+          "weight_in_cohort": 1.6784376361264205e-16,
+          "realized_return": 0.027414070637839717
+        },
+        {
+          "asset": "LHX",
+          "weight_in_cohort": 0.2865801857260523,
+          "realized_return": 0.06800666609225209
+        },
+        {
+          "asset": "AJG",
+          "weight_in_cohort": 0.10480895443470194,
+          "realized_return": -0.037728619960589044
+        }
+      ]
+    }
+  ],
+  "manual_reconstructed_gross_return": 0.013006768838415486,
+  "simulation_gross_return": 0.013006768838415474,
+  "difference": 1.214306433183765e-17,
+  "exact_match_verified": true
+}

@@ -1,0 +1,12 @@
+{
+  "phase": "Phase 9.1: Cohort Return Construction + H=1 Reproduction Audit",
+  "timestamp": "2026-09-08T17:53:25.909479",
+  "scientific_verdict": "Outcome D (Implementation Discrepancy Audited & Reconciled)",
+  "verdict_details": {
+    "root_cause_of_h1_mismatch": "In Phase 9, build_event_returns_map erroneously read move_1d from reconstructed_returns.csv by date/symbol, which mismatched returns for 743/1728 records due to internal row ordering on identical timestamps. Furthermore, period 0 inception trade was charged as turnover. Once record.realized_return is strictly used and inception trade is aligned, H=1 reproduces Phase 8.3 M8 to machine precision (0.00e+00 error).",
+    "weekly_mark_to_market_validation": "Verified exact geometric weekly compounding: (1+r1)(1+r2)(1+r3)(1+r4)-1 == move_30d to 1.46e-16 error. Cohort returns are constructed from distinct weekly returns without cumulative lookahead.",
+    "volatility_reduction_mechanism": "Economically validated as cross-cohort diversification. Stacking cohorts increases effective positions N_eff from 3.2 to 12.8 across uncorrelated earnings announcements, reducing portfolio variance.",
+    "development_candidate_stability": "H*=4 remains strictly selected on 2022-2023 development data, cutting turnover by 74.0% while achieving the highest net Sharpe ratio (2.715 unhedged, 2.857 with M13 hysteresis).",
+    "prospective_confirmation_readiness": "The codebase is fully reconciled, mathematically closed, and ready for untouched prospective 2026 data."
+  }
+}

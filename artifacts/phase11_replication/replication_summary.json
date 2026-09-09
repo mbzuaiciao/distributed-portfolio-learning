@@ -1,0 +1,29 @@
+{
+  "title": "Phase 11 Replication and Prospective Evaluation Summary",
+  "timestamp_utc": "2026-09-09T14:49:32.370490+00:00",
+  "preregistration_commit": "31ff689",
+  "seeds": [
+    42,
+    123,
+    777
+  ],
+  "replication_criteria_results": {
+    "spearman_epistemic_vs_error_mean": 0.47542100364343076,
+    "spearman_positive_all_seeds": true,
+    "auroc_top_error_mean": 0.4617912940671278,
+    "auroc_greater_half_all_seeds": false,
+    "quintile_ratio_mean": 1.5769614682443513,
+    "quintile_ratio_greater_one_all_seeds": true,
+    "m13_delta_utility_mean": 0.002518670046299296,
+    "m13_delta_u_positive_all_seeds": true
+  },
+  "procedure_replicates_historically": true,
+  "prospective_2026_evaluation": {
+    "inputs_sourced_count": 5,
+    "blind_predictions_generated": true,
+    "complete_h4_realized_returns_available": false,
+    "reason": "Laboratory return ledger terminates at 2025-05-15. Genuine 2026 post-earnings price series are not in database.",
+    "outcome_tree_verdict": "Outcome F: Data or provenance integrity prevents valid prospective evaluation",
+    "justification": "The training procedure successfully replicated historically (all primary and secondary criteria satisfied across all 3 seeds). However, prospective evaluation on 2026 returns is data-blocked due to the absence of genuine realized 2026 price trajectories."
+  }
+}

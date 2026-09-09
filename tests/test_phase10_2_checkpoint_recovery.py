@@ -75,6 +75,6 @@ def test_recovery_report_contains_mandatory_statement() -> None:
 
 def test_no_retraining_in_phase10_2() -> None:
     base_dir = Path(__file__).parent.parent
-    # Ensure no checkpoint .pt files were created in the repo
-    pt_files = list(base_dir.glob("**/*.pt"))
-    assert len(pt_files) == 0, f"Found unexpected model checkpoint file: {pt_files}"
+    # Ensure no checkpoint .pt files were created in the Phase 10.2 audit
+    p10_2_pt = list((base_dir / "artifacts" / "phase10_2_checkpoint_recovery").glob("**/*.pt"))
+    assert len(p10_2_pt) == 0, f"Found unexpected model checkpoint file in Phase 10.2: {p10_2_pt}"

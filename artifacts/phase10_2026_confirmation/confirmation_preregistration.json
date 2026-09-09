@@ -1,0 +1,88 @@
+{
+  "phase": "Phase 10 Frozen 2026 Confirmation",
+  "preregistration_timestamp": "2026-09-08T17:59:00-07:00",
+  "pre_evaluation_git_commit": "ba50c4978abd8c8103088f8e902a837696d1130c",
+  "holding_horizon": 4,
+  "cohort_weighting": "equal capital allocation across active cohorts (1/H)",
+  "within_cohort_weighting": "frozen-entry Markowitz",
+  "exposure_target": 0.707315,
+  "timing_policy": "M13",
+  "tau_enter": 1.2,
+  "tau_exit": 0.2,
+  "transaction_cost_bps": 10.0,
+  "cash_return": 0.0,
+  "return_frequency": "weekly",
+  "annualization_factor": 52,
+  "utility_function": "U(r) = r - (gamma / 2) * r^2",
+  "risk_aversion_gamma": 2.5,
+  "primary_endpoint": "mean_weekly_net_utility_M13_minus_M8",
+  "primary_direction": "greater_than_zero",
+  "secondary_endpoints": [
+    "delta_sharpe",
+    "delta_annualized_return",
+    "delta_annualized_volatility",
+    "delta_max_drawdown",
+    "delta_sortino",
+    "delta_transaction_cost",
+    "delta_turnover"
+  ],
+  "architecture_comparison": "M8_H4_vs_M8_H1",
+  "seeds": [
+    42,
+    123,
+    777
+  ],
+  "seed_aggregation": "arithmetic mean of per-seed metrics",
+  "normalization_parameters": {
+    "window": 8,
+    "min_periods": 4,
+    "metric": "robust_mad_zscore"
+  },
+  "exposure_states": {
+    "s_normal": 0.707315,
+    "s_defensive": 0.353658
+  },
+  "data_start_rule": "first valid 2026 evaluation week for which all required causal input data exist",
+  "data_end_rule": "latest week for which the necessary realized weekly returns are fully observed under the H=4 architecture",
+  "right_censoring_rule": "include only event cohorts whose required H-week realized return path is fully available as of the dataset snapshot date; exclude incomplete future return paths without extrapolation",
+  "missing_data_rule": "fail loudly on missing or mismatched returns; do not extrapolate or silently treat missing observations as zero",
+  "no_retuning": true,
+  "no_2026_outcome_use_before_freeze": true,
+  "source_implementation_functions": [
+    "hypergraph_portfolio.uncertainty.simulate_cohort_stacked_portfolio",
+    "hypergraph_portfolio.uncertainty.compute_canonical_portfolio_metrics",
+    "hypergraph_portfolio.uncertainty.build_portfolio_ledger",
+    "experiments.run_phase9_1_cohort_return_audit.build_audited_event_returns",
+    "experiments.run_phase9_1_cohort_return_audit.group_weekly_cohorts"
+  ],
+  "dataset_paths_and_hashes": {
+    "dev_seed_42": {
+      "path": "data/bayesian_lora/development/beta_0p003_seed_42_mc32_predictions.csv",
+      "sha256": "36b5f8e61035a55a524c4ece1a52526daf21081708a2e8c627bdaeeea5676dc8"
+    },
+    "dev_seed_123": {
+      "path": "data/bayesian_lora/development/beta_0p003_seed_123_mc32_predictions.csv",
+      "sha256": "a1a5526ced8c4d19f0d9da028d418b967594b73fa4190801043828ac45e08491"
+    },
+    "dev_seed_777": {
+      "path": "data/bayesian_lora/development/beta_0p003_seed_777_mc32_predictions.csv",
+      "sha256": "831661604eeadb56c5cdb0ef919bbc6f04e673d169c54445e7238a6549b4d747"
+    },
+    "holdout_seed_42": {
+      "path": "data/bayesian_lora/holdout/beta_0p003_seed_42_mc32_predictions.csv",
+      "sha256": "12925c1d0f7ba697180fe68815a0ab22a1e4d5dcc1b5934da73e26ca4009a920"
+    },
+    "holdout_seed_123": {
+      "path": "data/bayesian_lora/holdout/beta_0p003_seed_123_mc32_predictions.csv",
+      "sha256": "ed5ccf3e55c591fab7ef8a7b706e426014e2438b53ae4bd93e72c422bfa421e2"
+    },
+    "holdout_seed_777": {
+      "path": "data/bayesian_lora/holdout/beta_0p003_seed_777_mc32_predictions.csv",
+      "sha256": "a7ffed1f8235e8fed3fd1653c65d32691a6d5eccf1281fda702585affab4b958"
+    },
+    "reconstructed_returns": {
+      "path": "data/bayesian_lora/reconstructed_returns.csv",
+      "sha256": "de8d95284ae139a15cd7f04666c1a83eee8b7d300056791a8eb493c692b87604"
+    }
+  }
+}

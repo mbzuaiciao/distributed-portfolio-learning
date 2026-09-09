@@ -1,0 +1,113 @@
+{
+  "manifest_title": "Phase 11.1 Final Pre-Outcome Prospective Freeze Manifest",
+  "created_at_utc": "2026-09-09T17:15:00Z",
+  "git_commit_prior": "bfc65ae",
+  "canonical_prospective_predictions": {
+    "filename": "frozen_2026_predictions.csv",
+    "relative_path": "artifacts/phase11_replication/frozen_2026_predictions.csv",
+    "sha256": "6542b33fa5810985beff8c835e71b598ffaf47bf943e88d43f7c50d7dcb30aeb",
+    "mc_draws": 32,
+    "mc_draw_audit": {
+      "preregistered_mc_draws": 32,
+      "actual_file_mc_draws": 32,
+      "code_mc_draws": 32,
+      "prior_report_t30_status": "REPORTING_TYPO_IN_CHAT_SUMMARY",
+      "action_taken": "Documentation corrected; existing canonical predictions and SHA256 preserved."
+    }
+  },
+  "input_manifest": {
+    "filename": "2026_input_manifest.csv",
+    "relative_path": "artifacts/phase11_replication/2026_input_manifest.csv",
+    "sha256": "cca8e8f6af30fa8225476a77a5802403979541d0701c2faf376814033a1c9314",
+    "number_of_2026_events": 5,
+    "event_ids": [
+      "AAPL_2026_Q3",
+      "MSFT_2026_Q4",
+      "NVDA_2026_Q2",
+      "AMZN_2026_Q2",
+      "GOOGL_2026_Q2"
+    ],
+    "outcome_leakage_status": "ZERO_OUTCOMES_CONTAINED_INPUT_ONLY"
+  },
+  "base_model_provenance": {
+    "identifier": "ProsusAI/finbert",
+    "revision_commit_sha": "4556d13015211d73dccd3fdd39d39232506f3e43",
+    "config_sha256": "dc41f453cd64ac234c321bfbc43acb6b3c7e8fb31b48356a0496ebdadb0d36e8",
+    "vocab_sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+    "torch_version": "2.14.0",
+    "transformers_version": "5.16.1",
+    "adapter_state_contents": {
+      "total_tensors": 98,
+      "variational_adapter_tensors": 96,
+      "classifier_head_tensors": 2,
+      "base_finbert_weights_included": false,
+      "tokenizer_assets_included": false
+    },
+    "reconstruction_recipe": "AutoModelForSequenceClassification.from_pretrained('ProsusAI/finbert', revision='4556d13015211d73dccd3fdd39d39232506f3e43', num_labels=2, ignore_mismatched_sizes=True) -> inject_bert_attention_bayesian_lora(model, rank=16, alpha=32, dropout=0.05, init_std=0.01, prior_std=1.0) -> model.load_state_dict(torch.load(ckpt_path, weights_only=True), strict=False)"
+  },
+  "frozen_model_checkpoints": {
+    "seed_42": {
+      "filename": "bayesian_lora_seed_42_state.pt",
+      "size_bytes": 4759645,
+      "sha256": "d382640351dbef4fd40b47c8b033b1a4823c57d8fd6740b6fd9d1709043dc309"
+    },
+    "seed_123": {
+      "filename": "bayesian_lora_seed_123_state.pt",
+      "size_bytes": 4759749,
+      "sha256": "e094b775c7061b7c60341704525719b2c3fd4055e1aa325581eacabc23059301"
+    },
+    "seed_777": {
+      "filename": "bayesian_lora_seed_777_state.pt",
+      "size_bytes": 4759749,
+      "sha256": "0f084381c8b387f5a4946e337470c8c25707228c40cf676604d1db22f3a13e2a"
+    }
+  },
+  "round_trip_reproducibility": {
+    "test_method": "Fresh process model reconstruction vs immediate post-training scoring on identical inputs",
+    "seeds_tested": [42, 123, 777],
+    "max_abs_diff_posterior_mean": 0.0,
+    "max_abs_diff_epistemic_uncertainty": 0.0,
+    "max_abs_diff_aleatoric_uncertainty": 0.0,
+    "tolerance": 1e-6,
+    "status": "EXACT_REPRODUCIBILITY_VERIFIED"
+  },
+  "frozen_portfolio_architecture": {
+    "holding_horizon_H": 4,
+    "cohort_weighting": "equal_capital_1_over_H",
+    "intra_cohort_allocation": "markowitz_mean_variance",
+    "exposure_policy": "M13_Hysteresis",
+    "s_normal": 0.85,
+    "s_reduced": 0.45,
+    "tau_enter": 1.2,
+    "tau_exit": 0.2,
+    "normalization_method": "robust_zscore",
+    "normalization_window": 8,
+    "aggregation_method": "q75",
+    "transaction_cost_rate_bps": 10.0,
+    "risk_aversion_gamma": 1.0,
+    "matched_exposure_baseline": "M8_Constant"
+  },
+  "historical_benchmark_sample_audit": {
+    "training_data": {
+      "source": "reconstructed_returns.csv (pre-2022 slice)",
+      "date_range": "2005-10-13 14:45:00 to 2021-12-22 10:00:00",
+      "sample_count_N": 15752
+    },
+    "replication_benchmark_data": {
+      "source": "data/bayesian_lora/holdout/beta_0p003_seed_<seed>_mc32_predictions.csv",
+      "date_range": "2024-01-04 09:30:00 to 2025-05-15 16:30:00",
+      "sample_count_N": 1728,
+      "overlap_with_training": 0
+    },
+    "evaluation_nature": "Strictly out-of-sample holdout test (prior report phrase 'training distribution' was a misnomer for the out-of-sample holdout evaluation)"
+  },
+  "delta_utility_reconciliation": {
+    "phase11_report_value": 0.002519,
+    "phase11_report_nature": "Event-level unpooled utility difference across N=1,728 individual event moves with gamma=2.5 and static volatility proxy",
+    "canonical_portfolio_simulation_value": 0.000530,
+    "canonical_portfolio_simulation_nature": "Weekly portfolio-level net mark-to-market utility across T=68 calendar weeks with H=4 multi-cohort stacking, Markowitz intra-cohort weighting, gamma=1.0, and dynamic trade netting",
+    "reconciled": true,
+    "both_metrics_positive": true
+  },
+  "prospective_status": "PRE_OUTCOME_FREEZE_FINALIZED_CLEAN"
+}

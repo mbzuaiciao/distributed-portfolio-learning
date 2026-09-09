@@ -15,6 +15,7 @@ Candidate Mechanisms:
 """
 
 import math
+from collections import defaultdict
 from dataclasses import dataclass
 from typing import Any, Dict, List, Optional, Sequence, Tuple
 
@@ -2174,4 +2175,254 @@ def compute_portfolio_objective_regret(
         "to_base": to_base,
         "regret_per_turnover": regret_per_to,
     }
+
+
+# =============================================================================
+# Phase 9: Multi-Week Cohort Stacking Architecture Helpers
+# =============================================================================
+
+
+def build_cohort_stacked_weights(
+    weekly_cohorts: List[Dict[str, Any]],
+    horizon: int = 1,
+    mode: str = "markowitz",
+) -> List[Dict[str, float]]:
+    """
+    Construct multi-week rolling cohort-stacked portfolio weights.
+
+    Args:
+        weekly_cohorts: List of weekly cohort dictionaries, each containing:
+            - 'assets': List of ticker identifiers.
+            - 'w_base': Markowitz optimal weights for cohort (if mode='markowitz').
+        horizon: Holding horizon H in weeks (H in [1, 2, 4, 8, 13]).
+        mode: 'markowitz' for frozen Markowitz entry weights, 'equal_weight' for 1/m.
+
+    Returns:
+        List[Dict[str, float]]: Aggregated portfolio weight dictionaries for each week.
+    """
+    if horizon < 1:
+        raise ValueError(f"Holding horizon must be >= 1, got {horizon}")
+
+    T = len(weekly_cohorts)
+    stacked_weights: List[Dict[str, float]] = []
+    active_cohorts: List[Dict[str, Any]] = []
+
+    for t in range(T):
+        ep = weekly_cohorts[t]
+        if "assets" in ep:
+            assets = list(ep["assets"])
+            m = len(assets)
+            if m == 0:
+                w_internal: Dict[str, float] = {}
+            elif mode == "equal_weight":
+                w_internal = {assets[i]: 1.0 / float(m) for i in range(m)}
+            else:
+                w_b = ep.get("w_base")
+                if w_b is None:
+                    w_internal = {assets[i]: 1.0 / float(m) for i in range(m)}
+                else:
+                    w_arr = np.asarray(w_b, dtype=float)
+                    s_w = float(np.sum(w_arr))
+                    if s_w > 0:
+                        w_arr = w_arr / s_w
+                    else:
+                        w_arr = np.ones(m) / float(m)
+                    w_internal = {assets[i]: float(w_arr[i]) for i in range(m)}
+        else:
+            assets = list(ep.keys())
+            m = len(assets)
+            if m == 0:
+                w_internal = {}
+            elif mode == "equal_weight":
+                w_internal = {a: 1.0 / float(m) for a in assets}
+            else:
+                s_w = sum(ep.values())
+                if s_w > 0:
+                    w_internal = {a: float(ep[a]) / float(s_w) for a in assets}
+                else:
+                    w_internal = {a: 1.0 / float(m) for a in assets}
+
+        active_cohorts.append({"entry_t": t, "weights": w_internal})
+
+        # Keep at most horizon H active cohorts
+        if len(active_cohorts) > horizon:
+            active_cohorts.pop(0)
+
+        K = len(active_cohorts)
+        cohort_capital = 1.0 / float(K)
+
+        # Aggregate weights across active cohorts (safe duplicate ticker handling)
+        agg_w: Dict[str, float] = defaultdict(float)
+        for cohort in active_cohorts:
+            for asset, w_in in cohort["weights"].items():
+                agg_w[asset] += cohort_capital * w_in
+
+        stacked_weights.append(dict(agg_w))
+
+    return stacked_weights
+
+
+def simulate_cohort_stacked_portfolio(
+    weekly_cohorts: List[Dict[str, Any]],
+    event_return_map: Dict[Tuple[str, str], List[float]],
+    horizon: int = 1,
+    mode: str = "markowitz",
+    exposure_path: Optional[Sequence[float]] = None,
+    cost_bps: float = 0.0010,
+    target_exposure: float = 0.7073,
+) -> Dict[str, Any]:
+    """
+    Simulate a multi-week cohort-stacked portfolio strategy over time.
+
+    Args:
+        weekly_cohorts: List of weekly cohort dictionaries with assets, dates, w_base.
+        event_return_map: Mapping from (timestamp, asset) to list of returns by age [age_0, age_1, ...].
+        horizon: Holding horizon H in weeks.
+        mode: 'markowitz' or 'equal_weight'.
+        exposure_path: Optional sequence of portfolio exposures s_t. Defaults to target_exposure.
+        cost_bps: Transaction cost rate per unit of traded volume.
+        target_exposure: Default constant exposure if exposure_path is None.
+
+    Returns:
+        Dict[str, Any] containing weekly metrics, turnover, returns, and summary statistics.
+    """
+    T = len(weekly_cohorts)
+    if exposure_path is None:
+        s_arr = np.full(T, target_exposure, dtype=float)
+    else:
+        s_arr = np.asarray(exposure_path, dtype=float)
+
+    stacked_weights = build_cohort_stacked_weights(weekly_cohorts, horizon=horizon, mode=mode)
+
+    weekly_gross_returns = []
+    weekly_net_returns = []
+    weekly_base_turnovers = []
+    weekly_traded_turnovers = []
+    weekly_overlaps = []
+    active_names_counts = []
+    cohort_age_returns: Dict[int, List[float]] = defaultdict(list)
+
+    prev_w: Dict[str, float] = {}
+    prev_s: float = 0.0
+
+    active_cohorts: List[Dict[str, Any]] = []
+
+    for t in range(T):
+        ep = weekly_cohorts[t]
+        s_t = float(s_arr[t])
+        cur_w = stacked_weights[t]
+        active_names_counts.append(len(cur_w))
+
+        # Add new cohort to active list
+        if "assets" in ep:
+            assets = list(ep["assets"])
+            m = len(assets)
+            if mode == "equal_weight":
+                w_internal = {assets[i]: 1.0 / float(m) for i in range(m)} if m > 0 else {}
+            else:
+                w_b = ep.get("w_base")
+                if w_b is None or m == 0:
+                    w_internal = {assets[i]: 1.0 / float(m) for i in range(m)} if m > 0 else {}
+                else:
+                    w_arr = np.asarray(w_b, dtype=float)
+                    s_w = float(np.sum(w_arr))
+                    w_arr = w_arr / s_w if s_w > 0 else np.ones(m) / float(m)
+                    w_internal = {assets[i]: float(w_arr[i]) for i in range(m)}
+            timestamps = ep.get("timestamps", [ep.get("date", "")] * m)
+        else:
+            assets = list(ep.keys())
+            m = len(assets)
+            if mode == "equal_weight":
+                w_internal = {a: 1.0 / float(m) for a in assets} if m > 0 else {}
+            else:
+                s_w = sum(ep.values())
+                w_internal = {a: float(ep[a]) / float(s_w) for a in assets} if s_w > 0 else {a: 1.0 / float(m) for a in assets}
+            timestamps = [""] * m
+
+        active_cohorts.append({
+            "entry_t": t,
+            "assets": assets,
+            "timestamps": timestamps,
+            "weights": w_internal,
+        })
+        if len(active_cohorts) > horizon:
+            active_cohorts.pop(0)
+
+        K = len(active_cohorts)
+        cohort_cap = 1.0 / float(K)
+
+        # Compute return contribution by cohort age
+        period_gross_r = 0.0
+        for cohort in active_cohorts:
+            age = t - cohort["entry_t"]
+            c_ret = 0.0
+            for i, asset in enumerate(cohort["assets"]):
+                w_a = cohort["weights"].get(asset, 0.0)
+                if w_a > 0:
+                    ts = cohort["timestamps"][i] if i < len(cohort["timestamps"]) else ""
+                    if isinstance(event_return_map, list):
+                        r_a = event_return_map[t].get(asset, 0.0) if t < len(event_return_map) else 0.0
+                    else:
+                        rets_by_age = event_return_map.get((ts, asset), [0.0] * 14)
+                        r_a = rets_by_age[age] if age < len(rets_by_age) else rets_by_age[-1]
+                    c_ret += w_a * r_a
+            cohort_age_returns[age].append(c_ret)
+            period_gross_r += cohort_cap * c_ret
+
+        # Turnovers and Overlap
+        all_assets = set(cur_w.keys()) | set(prev_w.keys())
+        if t == 0:
+            to_base = float(sum(cur_w.values()))
+            to_traded = float(s_t * to_base)
+            overlap = 0.0
+        else:
+            to_base = float(sum(abs(cur_w.get(a, 0.0) - prev_w.get(a, 0.0)) for a in all_assets))
+            to_traded = float(sum(abs(s_t * cur_w.get(a, 0.0) - prev_s * prev_w.get(a, 0.0)) for a in all_assets))
+            overlap = float(sum(min(cur_w.get(a, 0.0), prev_w.get(a, 0.0)) for a in all_assets))
+
+        tc = float(cost_bps * to_traded)
+        period_net_r = float(s_t * period_gross_r - tc)
+
+        weekly_gross_returns.append(period_gross_r)
+        weekly_net_returns.append(period_net_r)
+        weekly_base_turnovers.append(to_base)
+        weekly_traded_turnovers.append(to_traded)
+        weekly_overlaps.append(overlap)
+
+        prev_w = cur_w
+        prev_s = s_t
+
+    # Canonical performance metrics
+    metrics = compute_canonical_portfolio_metrics(
+        net_returns=np.array(weekly_net_returns),
+        turnovers=np.array(weekly_traded_turnovers),
+        cost_bps=cost_bps,
+    )
+
+    ann_base_to = float(np.sum(weekly_base_turnovers[1:]) * (52.0 / max(1, T - 1)))
+    mean_overlap = float(np.mean(weekly_overlaps[1:])) if T > 1 else 0.0
+    mean_active_names = float(np.mean(active_names_counts))
+
+    return {
+        "horizon": horizon,
+        "mode": mode,
+        "annualized_return": metrics["annualized_return"],
+        "annualized_volatility": metrics["annualized_volatility"],
+        "sharpe_ratio": metrics["sharpe_ratio"],
+        "sortino_ratio": metrics["sortino_ratio"],
+        "max_drawdown": metrics["max_drawdown"],
+        "mean_net_utility": metrics["mean_net_utility"],
+        "annual_traded_turnover": metrics["annual_costed_turnover"],
+        "annual_base_turnover": ann_base_to,
+        "mean_overlap": mean_overlap,
+        "annual_tc_drag_bps": metrics["annual_tc_drag_bps"],
+        "mean_active_names": mean_active_names,
+        "weekly_net_returns": weekly_net_returns,
+        "weekly_gross_returns": weekly_gross_returns,
+        "weekly_traded_turnovers": weekly_traded_turnovers,
+        "weekly_base_turnovers": weekly_base_turnovers,
+        "weekly_overlaps": weekly_overlaps,
+        "cohort_age_returns": dict(cohort_age_returns),
+    }
+
 

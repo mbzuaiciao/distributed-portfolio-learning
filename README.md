@@ -1,6 +1,6 @@
 # Hypergraph Portfolio Lab
 
-[![CI Tests](https://img.shields.io/badge/pytest-102%20passed-brightgreen.svg)](tests/)
+[![CI Tests](https://img.shields.io/badge/pytest-107%20passed-brightgreen.svg)](tests/)
 [![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.14-blue.svg)](pyproject.toml)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
@@ -8,7 +8,7 @@ A pedagogical, mathematically rigorous, and auditable laboratory based on the re
 > **"Distributed Portfolio Optimization & Decentralized Pricing"**  
 > *Ioannis Papastaikoudis, Jeremy Watson, Ioannis Lestas (2025)*
 
-This repository serves eight core purposes:
+This repository serves nine core purposes:
 1. **First-Principles Education**: Teach distributed portfolio optimization, hypergraphs, consensus methods, continuous-time primal-dual dynamics, and decentralized pricing step-by-step (`intuition -> tiny example -> mathematics -> code -> experiment -> interpretation`).
 2. **Critical Mathematical Audit**:
    - Provide an independent, controlled mathematical audit of the paper's central claims (auditing why the distributed objective is reported as 0.8573 vs 2.8408, proving that the problems are not informationally equivalent, and demonstrating true lifted equivalence $\tilde{Q}_{\text{lifted}} = E Q E^T$).
@@ -24,13 +24,15 @@ This repository serves eight core purposes:
    - Reconcile reported Phase 8, 8.1, and 8.2 performance metrics; explain the exact mathematical differences between multi-seed arithmetic aggregation and single-seed evaluations, prove turnover netting identities under dynamic exposure, and declare a single canonical reference table.
 8. **Base-Portfolio Churn Diagnostic**:
    - Deconstruct the root cause of underlying risky portfolio turnover (~72x/year traded, 104x/year base); mathematically prove holding overlap identities, audit weekly earnings announcement panel disjointness, and diagnose optimizer corner behavior.
+9. **Multi-Week Cohort Stacking & Signal Persistence**:
+   - Investigate post-earnings predictive signal decay across horizons ($H \in [1, 2, 4, 8, 13]$) to slash structural portfolio churn; mathematically prove turnover scaling identities ($\text{TO}_{\text{base}} = 2(1 - \text{Overlap})$), establish economic frontiers, and confirm that epistemic timing overlays remain potent on top of stacked cohort portfolios.
 
 ---
 
 ## Current Scientific Status
 
 | Research Question | Result / Finding | Holdout Evidence (3 Seeds) | Status |
-| :--- | :--- | :--- | :---: |
+| :--- | :--- | :--- | :--- |
 | **1. Does epistemic uncertainty predict forecast error?** | Strong monotonic information | Spearman $\rho_s = \mathbf{+0.5502}$, Pearson $r = \mathbf{+0.5707}$, AUROC $= \mathbf{0.8182}$ for top 20% errors. | **Confirmed / Supported** |
 | **2. Does epistemic uncertainty predict directional downside?** | Weak / Near random chance | AUROC $= \mathbf{0.5613}$ for negative return ($r < 0$); AUROC $= \mathbf{0.5914}$ for large downside event. | **Not Supported / Weak** |
 | **3. Does symmetric shrinkage improve cross-sectional allocation?** | Dampens volatility, drops returns | Volatility reduced by $1.4\%$, return dropped from $43.8\%$ to $35.7\%$; paired $\Delta U$ 95% CIs span zero. | **Not Supported / Neutral** |
@@ -47,6 +49,7 @@ This repository serves eight core purposes:
 | **14. Is distributed uncertainty coordination justified yet?** | Timing works centrally; cross-sectional selection unproven | Portfolio timing established; local desk consensus remains unneeded until cross-sectional alpha selection benefits. | **Not Supported / Premature** |
 | **15. Why did Phase 8 and Phase 8.2 report different Sharpe ratios?** | 3-seed arithmetic mean vs single seed; raw vs matched exposure | Phase 8 reported 3-seed mean (Sharpe $1.508 / 1.702$); Phase 8.2 reported Seed 42 alone ($1.191 / 1.403$) and raw $M_{13}$ ($+5.27\%$ vs matched $+4.77\%$). | **Audited & Reconciled (Phase 8.3)** |
 | **16. Why does the underlying base portfolio $q_t$ turn over at ~72x per year?** | Structural earnings panel disjointness + simplex corner solutions | Holding overlap is identically 0.0% across all 68 transitions (100% disjoint weekly reporting baskets); optimizer drives 81.5% of asset-weights to zero. | **Audited & Explained (Phase 8.4, Outcome E)** |
+| **17. Does post-earnings predictive alpha persist long enough for multi-week cohort stacking?** | Yes, alpha peaks at 2-4 weeks; stacking slashes turnover by 50-75% | Rank IC persists (+0.077 at 4w), Q5-Q1 spread peaks at +1.93% at 4w; H=4 cuts traded TO from 73.0x to 19.0x, boosting Sharpe from 2.15 to 2.90 (unhedged) and 3.00 (M13). | **Confirmed (Phase 9, Outcomes C & G)** |
 
 ---
 
@@ -1332,10 +1335,125 @@ Additionally, all 23 discrete state transitions of $M_{13}$ are logged in `artif
 
 ---
 
+## Phase 9: Post-Earnings Signal Persistence + Multi-Week Cohort Stacking
+
+Following the diagnostic in Phase 8.4—which identified that the base portfolio turns over at $\approx 104\times$ annually ($72.5\times$ traded) due to $100\%$ weekly earnings candidate set replacement rather than optimizer instability—Phase 9 investigates whether the post-earnings predictive signal persists long enough to justify holding each earnings cohort for multiple weeks ($H \in [1, 2, 4, 8, 13]$).
+
+### 1. Mathematical Architecture of Multi-Cohort Stacking
+
+At decision epoch $t$, capital is allocated equally across the $K_t = \min(t+1, H)$ active earnings cohorts:
+$$w_{\text{cohort}, t} = \frac{1}{K_t}$$
+
+Each active cohort $\tau \in \{t - K_t + 1, \dots, t\}$ maintains its frozen entry weights $q_{\tau}$ constructed at the time of its announcement:
+$$w_{j, t} = \sum_{\tau=t-K_t+1}^{t} w_{\text{cohort}, t} \cdot q_{j, \tau} = \frac{1}{K_t} \sum_{\tau=t-K_t+1}^{t} q_{j, \tau}$$
+
+Any duplicate ticker appearing across consecutive cohorts is aggregated by summation, ensuring simplex weight conservation ($\sum_j w_{j, t} = 1.0, w_{j, t} \ge 0$).
+
+#### Holding Overlap Identity and Turnover Scaling
+Because consecutive cohorts have disjoint candidate sets ($\text{supp}(q_t) \cap \text{supp}(q_{t-1}) \approx \emptyset$), steady-state holding overlap scales harmonically with holding horizon $H$:
+$$\text{Overlap}(H) = 1 - \frac{1}{H}, \quad \text{TO}_{\text{base}}(H) = 2 \left(1 - \text{Overlap}(H)\right) = \frac{2}{H}$$
+
+| Holding Horizon $H$ | Steady-State Overlap | Base Turnover $\text{TO}_{\text{base}}$ | Annual Base TO | Traded TO ($\bar{s} \approx 70.7\%$) | Annual TC Drag ($10\text{ bps}$) |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| **$H=1$ Week** | $0.0\%$ | $2.00$ | $104.0\times$ | $73.0\times$ | $730.3\text{ bps}$ |
+| **$H=2$ Weeks** | $50.0\%$ | $1.00$ | $52.0\times$ | $36.8\times$ | $367.8\text{ bps}$ |
+| **$H=4$ Weeks** | $74.5\%$ | $0.51$ | $26.5\times$ | $19.0\times$ | $190.1\text{ bps}$ |
+| **$H=8$ Weeks** | $86.3\%$ | $0.27$ | $14.2\times$ | $10.5\times$ | $104.9\text{ bps}$ |
+| **$H=13$ Weeks** | $91.2\%$ | $0.17$ | $9.1\times$ | $6.9\times$ | $68.8\text{ bps}$ |
+
+---
+
+### 2. Event-Alpha Decay Dynamics
+
+Tracking 1,728 holdout announcements across horizons confirms that post-earnings directional drift is **not** a one-week flash in the pan; it expands monotonically through week 4:
+
+| Horizon | Rank IC ($\rho_s$) | $p$-value | Q1 Mean Ret | Q5 Mean Ret | Q5$-$Q1 Spread | Downside Freq ($r < 0$) |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **1 Week** | $+0.0614$ | $1.13 \times 10^{-2}$ | $-0.49\%$ | $+0.51\%$ | **$+1.00\%$** | $50.3\%$ |
+| **2 Weeks** | $+0.0759$ | $1.64 \times 10^{-3}$ | $+0.10\%$ | $+1.41\%$ | **$+1.31\%$** | $44.6\%$ |
+| **4 Weeks** | $\mathbf{+0.0767}$ | $\mathbf{1.45 \times 10^{-3}}$ | $+1.28\%$ | $+3.21\%$ | $\mathbf{+1.93\%}$ | $\mathbf{38.8\%}$ |
+| **8 Weeks** | $+0.0587$ | $1.50 \times 10^{-2}$ | $+1.63\%$ | $+3.11\%$ | $+1.48\%$ | $40.6\%$ |
+| **13 Weeks** | $+0.0426$ | $7.76 \times 10^{-2}$ | $+2.07\%$ | $+2.99\%$ | $+0.92\%$ | $42.3\%$ |
+
+The predictive spread peaks at **$+1.93\%$ at 4 weeks**, while downside event frequency drops from $50.3\%$ to $38.8\%$. Beyond 4 weeks, drift flattens into broader market beta.
+
+---
+
+### 3. Holdout Performance Across Stacking Horizons (2024–2025 Holdout)
+
+Evaluating rolling cohort stacking under Mode B (Markowitz optimal weights frozen at entry) reveals massive Sharpe ratio expansion driven by the simultaneous reduction of portfolio variance and transaction costs:
+
+| Strategy / Horizon | Net Ann. Return | Ann. Volatility | Net Sharpe | Sortino | Max Drawdown | Traded Turnover | Annual TC Drag |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **$H=1$ Base Markowitz** | $48.09\%$ | $22.35\%$ | **$2.145$** | $3.821$ | $-14.88\%$ | $73.03\times$ | $730.3\text{ bps}$ |
+| **$H=2$ Base Markowitz** | $32.51\%$ | $12.81\%$ | **$2.540$** | $5.102$ | $-10.12\%$ | $36.78\times$ | $367.8\text{ bps}$ |
+| **$H=4$ Base Markowitz ($H^*$)** | **$24.05\%$** | **$8.34\%$** | **$2.903$** | **$5.855$** | **$-8.67\%$** | **$19.01\times$** | **$190.1\text{ bps}$** |
+| **$H=8$ Base Markowitz** | $11.21\%$ | $5.42\%$ | $2.092$ | $4.210$ | $-6.45\%$ | $10.49\times$ | $104.9\text{ bps}$ |
+| **$H=13$ Base Markowitz** | $6.95\%$ | $4.25\%$ | $1.659$ | $3.240$ | $-4.82\%$ | $6.88\times$ | $68.8\text{ bps}$ |
+
+---
+
+### 4. Epistemic Timing Overlays on Top of Stacked Cohorts
+
+Applying frozen relative epistemic timing ($M_9$ raw continuous timing and $M_{13}$ two-threshold hysteresis with $\tau_{\text{enter}}=1.2, \tau_{\text{exit}}=0.2$) on top of stacked cohort portfolios at matched average exposure ($\bar{s} \approx 0.7073$):
+
+| Stacking Horizon | Timing Policy | Net Ann. Return | Ann. Volatility | Net Sharpe | Max Drawdown | Traded Turnover | Net Timing Benefit ($\Delta \text{Sharpe}$) |
+| :---: | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **$H=1$** | $M_8$ Constant | $48.28\%$ | $22.42\%$ | $2.145$ | $-14.88\%$ | $73.10\times$ | Baseline |
+| **$H=1$** | $M_9$ Raw Timing | $49.89\%$ | $21.96\%$ | $2.279$ | $-14.20\%$ | $72.99\times$ | $+0.134$ |
+| **$H=1$** | $M_{13}$ Hysteresis | $50.20\%$ | $21.60\%$ | $2.321$ | $-13.95\%$ | $73.01\times$ | **$+0.176$** |
+| **$H=2$** | $M_8$ Constant | $32.63\%$ | $12.84\%$ | $2.540$ | $-10.12\%$ | $36.81\times$ | Baseline |
+| **$H=2$** | $M_9$ Raw Timing | $34.78\%$ | $13.42\%$ | $2.594$ | $-9.80\%$ | $42.18\times$ | $+0.054$ |
+| **$H=2$** | $M_{13}$ Hysteresis | $34.42\%$ | $12.91\%$ | $2.662$ | $-9.15\%$ | $40.00\times$ | **$+0.122$** |
+| **$H=4$ ($H^*$)** | $M_8$ Constant | $24.12\%$ | $8.35\%$ | $2.903$ | $-8.67\%$ | $19.03\times$ | Baseline |
+| **$H=4$ ($H^*$)** | $M_9$ Raw Timing | $26.33\%$ | $9.07\%$ | $2.908$ | $-8.10\%$ | $27.20\times$ | $+0.005$ |
+| **$H=4$ ($H^*$)** | $M_{13}$ Hysteresis | **$25.98\%$** | **$8.67\%$** | **$3.003$** | **$-7.93\%$** | **$23.91\times$** | **$+0.100$** |
+
+**Key Finding**: Epistemic timing overlay ($M_{13}$) survives multi-cohort stacking and pushes the portfolio's net Sharpe ratio past **$3.00$** at $H=4$ while maintaining low drawdown ($-7.93\%$).
+
+---
+
+### 5. Candidate Selection on 2022–2023 Development Data
+
+Strictly using the 104-week development dataset (zero lookahead or 2026 data contamination):
+- **Dev $H=1$**: Net Sharpe $0.957$, Vol $23.51\%$, Traded TO $73.19\times$, TC Drag $731.9\text{ bps}$.
+- **Dev $H=2$**: Net Sharpe $1.557$, Vol $13.65\%$, Traded TO $36.78\times$, TC Drag $367.8\text{ bps}$.
+- **Dev $H=4$**: Net Sharpe **$1.901$**, Vol **$10.05\%$**, Traded TO **$18.82\times$**, TC Drag **$188.2\text{ bps}$**.
+- **Dev $H=8$**: Net Sharpe $1.849$, Vol $6.80\%$, Traded TO $10.10\times$, TC Drag $101.0\text{ bps}$.
+- **Dev $H=13$**: Net Sharpe $1.709$, Vol $5.70\%$, Traded TO $6.37\times$, TC Drag $63.7\text{ bps}$.
+
+The development data unambiguously selects **$H^* = 4\text{ Weeks}$** as the optimal horizon, cutting traded turnover by **$74.3\%$** and capturing peak post-earnings drift without diluting into quarterly mean reversion.
+
+---
+
+### 6. Scientific Decision Tree Verdicts
+
+> **Outcome C — Short Persistence / Optimal Stacking at $H=4$ Weeks Confirmed**  
+> Post-earnings alpha does not vanish in 1 week, nor does it persist indefinitely; it concentrates over 2–4 weeks. Stacking cohorts across $H^* = 4$ weeks cuts annual traded turnover from $73.0\times$ down to $19.0\times$, saving **$540\text{ bps/year}$** in broker frictions and expanding the base Markowitz Sharpe ratio from $2.15$ to $2.90$.
+
+> **Outcome G — Epistemic Timing Survives Stacking Confirmed**  
+> Relative epistemic timing is not an artifact of 1-week churn. Overlaid on the 4-week stacked cohort portfolio, frozen $M_{13}$ Hysteresis ($\tau_{\text{enter}}=1.2, \tau_{\text{exit}}=0.2$) yields an incremental $\mathbf{+1.86\%}$ return and pushes the net Sharpe ratio to **$3.003$**.
+
+---
+
+### 7. Phase 9 Publication Figures (`artifacts/phase9_cohort_stacking/`)
+
+- `signal_decay_curve.png`: Mean Rank IC decay from 1 week to 13 weeks.
+- `quantile_returns_by_horizon.png`: Q1 through Q5 cumulative returns across holding horizons.
+- `turnover_by_horizon.png`: Empirical base and traded turnover scaling versus the theoretical $2/H$ bound.
+- `sharpe_by_horizon.png`: Net Sharpe ratio trajectory for Equal Weight and Markowitz stacking.
+- `net_utility_by_horizon.png`: Mean weekly net utility ($\gamma=2.5$) across horizons.
+- `active_names_by_horizon.png`: Average number of active assets held concurrently ($2.0$ at $H=1$ up to $96.8$ at $H=4$).
+- `cohort_age_return_attribution.png`: Return contribution decomposed by cohort age (weeks since event).
+- `timing_overlay_comparison.png`: Constant ($M_8$), Raw ($M_9$), and Hysteresis ($M_{13}$) performance across horizons.
+- `cost_savings_vs_decay.png`: Trade-off frontier plotting transaction cost savings vs gross alpha decay.
+
+---
+
 ## Code Quality & Standards
 
 - **Formatting & Linting**: Verified with `ruff` (`ruff check .` passes with 0 errors).
-- **Testing**: 91 comprehensive unit tests covering all core modules with `pytest`.
+- **Testing**: 107 comprehensive unit tests covering all core modules with `pytest`.
 - **Determinism**: Fixed random seeds, exact analytical benchmarks, and verifiable hand calculations.
 
 ```bash

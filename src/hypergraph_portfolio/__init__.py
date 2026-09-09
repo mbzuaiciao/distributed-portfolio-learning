@@ -46,6 +46,7 @@ from hypergraph_portfolio.uncertainty import (
     apply_epistemic_covariance_inflation,
     apply_portfolio_exposure_scale,
     apply_uncertainty_shrinkage,
+    build_cohort_stacked_weights,
     build_portfolio_ledger,
     classify_asset_transitions,
     compute_actual_traded_turnover,
@@ -71,6 +72,7 @@ from hypergraph_portfolio.uncertainty import (
     generate_block_placebo_paths,
     generate_placebo_exposure_paths,
     run_sequential_portfolio_simulation,
+    simulate_cohort_stacked_portfolio,
 )
 
 __all__ = [
@@ -127,6 +129,8 @@ __all__ = [
     "BayesianPredictionRecord",
     "BayesianDatasetAdapter",
     "validate_prediction_records",
+    "build_cohort_stacked_weights",
+    "simulate_cohort_stacked_portfolio",
 ]
 
 

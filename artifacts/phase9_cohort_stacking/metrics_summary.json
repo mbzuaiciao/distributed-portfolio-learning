@@ -1,0 +1,479 @@
+{
+  "phase": "Phase 9: Post-Earnings Signal Persistence + Multi-Week Cohort Stacking",
+  "timestamp": "2026-09-08T17:13:20.415139",
+  "candidate_horizon_H_star": 4,
+  "dev_summary": [
+    {
+      "horizon": 1,
+      "annualized_return": 0.22491656636910248,
+      "annualized_volatility": 0.23509691309281533,
+      "sharpe_ratio": 0.9571192135922945,
+      "mean_net_utility": 0.0037935105051748554,
+      "annual_traded_turnover": 73.18768888888891,
+      "annual_tc_drag_bps": 731.8768888888893,
+      "mean_overlap": 0.0
+    },
+    {
+      "horizon": 2,
+      "annualized_return": 0.21235840894899774,
+      "annualized_volatility": 0.13645418135329676,
+      "sharpe_ratio": 1.556722271218236,
+      "mean_net_utility": 0.003904694234105928,
+      "annual_traded_turnover": 36.77960000000001,
+      "annual_tc_drag_bps": 367.7960000000001,
+      "mean_overlap": 0.5
+    },
+    {
+      "horizon": 4,
+      "annualized_return": 0.19089780163969416,
+      "annualized_volatility": 0.10048388411944521,
+      "sharpe_ratio": 1.9007286383899569,
+      "mean_net_utility": 0.00357397566446249,
+      "annual_traded_turnover": 18.823229629629637,
+      "annual_tc_drag_bps": 188.23229629629637,
+      "mean_overlap": 0.7465986394557822
+    },
+    {
+      "horizon": 8,
+      "annualized_return": 0.1257247001872918,
+      "annualized_volatility": 0.0679789397895615,
+      "sharpe_ratio": 1.848814632889206,
+      "mean_net_utility": 0.0023733057445666263,
+      "annual_traded_turnover": 10.099794920634922,
+      "annual_tc_drag_bps": 100.99794920634923,
+      "mean_overlap": 0.866399416909621
+    },
+    {
+      "horizon": 13,
+      "annualized_return": 0.09754239047724918,
+      "annualized_volatility": 0.05701219409954472,
+      "sharpe_ratio": 1.7094171194694399,
+      "mean_net_utility": 0.0018445055803858466,
+      "annual_traded_turnover": 6.374039646463622,
+      "annual_tc_drag_bps": 63.74039646463623,
+      "mean_overlap": 0.9175660036198113
+    }
+  ],
+  "holdout_cohort_summary": [
+    {
+      "mode": "equal_weight",
+      "horizon": 1,
+      "annualized_return": 0.0009633992320925785,
+      "annualized_volatility": 0.17720338519594203,
+      "sharpe_ratio": 0.005436686387380822,
+      "sortino_ratio": 0.008416880430252209,
+      "max_drawdown": -0.20561386524345404,
+      "mean_net_utility": -0.00028340616596842546,
+      "annual_traded_turnover": 73.0261623188406,
+      "annual_base_turnover": 104.0,
+      "mean_overlap": 0.0,
+      "annual_tc_drag_bps": 730.2616231884061,
+      "mean_active_names": 25.043478260869566
+    },
+    {
+      "mode": "equal_weight",
+      "horizon": 2,
+      "annualized_return": 0.08405328468919508,
+      "annualized_volatility": 0.09956354127114801,
+      "sharpe_ratio": 0.8442175078956581,
+      "sortino_ratio": 1.3232433270095327,
+      "max_drawdown": -0.09393387606844843,
+      "mean_net_utility": 0.0015210929868071015,
+      "annual_traded_turnover": 36.7618320772947,
+      "annual_base_turnover": 51.97450980392156,
+      "mean_overlap": 0.5002450980392157,
+      "annual_tc_drag_bps": 367.618320772947,
+      "mean_active_names": 50.01449275362319
+    },
+    {
+      "mode": "equal_weight",
+      "horizon": 4,
+      "annualized_return": 0.11973805075639815,
+      "annualized_volatility": 0.0612396945589694,
+      "sharpe_ratio": 1.9552359236720074,
+      "sortino_ratio": 4.029888953327574,
+      "max_drawdown": -0.05889013251366005,
+      "mean_net_utility": 0.0022665942434915427,
+      "annual_traded_turnover": 19.011677294686,
+      "annual_base_turnover": 26.509803921568622,
+      "mean_overlap": 0.7450980392156863,
+      "annual_tc_drag_bps": 190.11677294685998,
+      "mean_active_names": 96.76811594202898
+    },
+    {
+      "mode": "equal_weight",
+      "horizon": 8,
+      "annualized_return": 0.05112839440579651,
+      "annualized_volatility": 0.04072539549400718,
+      "sharpe_ratio": 1.2554425509095462,
+      "sortino_ratio": 2.0406450129932296,
+      "max_drawdown": -0.06750485449421519,
+      "mean_net_utility": 0.0009672906824370165,
+      "annual_traded_turnover": 10.481055005320028,
+      "annual_base_turnover": 14.271612747878878,
+      "mean_overlap": 0.8627729543473185,
+      "annual_tc_drag_bps": 104.81055005320029,
+      "mean_active_names": 182.63768115942028
+    },
+    {
+      "mode": "equal_weight",
+      "horizon": 13,
+      "annualized_return": 0.03150813281785473,
+      "annualized_volatility": 0.03262415267534294,
+      "sharpe_ratio": 0.9657916063416511,
+      "sortino_ratio": 1.4346680988545506,
+      "max_drawdown": -0.06752392183247688,
+      "mean_net_utility": 0.0005956916374800516,
+      "annual_traded_turnover": 6.35572272178248,
+      "annual_base_turnover": 8.353333467847719,
+      "mean_overlap": 0.9196794858860797,
+      "annual_tc_drag_bps": 63.557227217824796,
+      "mean_active_names": 269.5217391304348
+    },
+    {
+      "mode": "markowitz",
+      "horizon": 1,
+      "annualized_return": 0.48085090949833376,
+      "annualized_volatility": 0.2235437060862985,
+      "sharpe_ratio": 2.1449460231758413,
+      "sortino_ratio": 4.317369841987304,
+      "max_drawdown": -0.1085526501400198,
+      "mean_net_utility": 0.008763193359492475,
+      "annual_traded_turnover": 73.02616231884059,
+      "annual_base_turnover": 104.0,
+      "mean_overlap": 0.0,
+      "annual_tc_drag_bps": 730.2616231884061,
+      "mean_active_names": 25.043478260869566
+    },
+    {
+      "mode": "markowitz",
+      "horizon": 2,
+      "annualized_return": 0.3251380636441095,
+      "annualized_volatility": 0.12808338376706116,
+      "sharpe_ratio": 2.539850418310254,
+      "sortino_ratio": 5.160138853329326,
+      "max_drawdown": -0.07291807281510036,
+      "mean_net_utility": 0.006094318130610479,
+      "annual_traded_turnover": 36.779600000000016,
+      "annual_base_turnover": 52.0,
+      "mean_overlap": 0.5,
+      "annual_tc_drag_bps": 367.7960000000001,
+      "mean_active_names": 50.01449275362319
+    },
+    {
+      "mode": "markowitz",
+      "horizon": 4,
+      "annualized_return": 0.2405213102419794,
+      "annualized_volatility": 0.08339432057139735,
+      "sharpe_ratio": 2.90279270863741,
+      "sortino_ratio": 5.854511170525161,
+      "max_drawdown": -0.08674031447925434,
+      "mean_net_utility": 0.004558270349331339,
+      "annual_traded_turnover": 19.011677294685995,
+      "annual_base_turnover": 26.509803921568622,
+      "mean_overlap": 0.7450980392156863,
+      "annual_tc_drag_bps": 190.11677294685998,
+      "mean_active_names": 96.76811594202898
+    },
+    {
+      "mode": "markowitz",
+      "horizon": 8,
+      "annualized_return": 0.11206340576116741,
+      "annualized_volatility": 0.05415040595607185,
+      "sharpe_ratio": 2.0921348314071975,
+      "sortino_ratio": 3.3410012507411793,
+      "max_drawdown": -0.09176363175820823,
+      "mean_net_utility": 0.002126733860419153,
+      "annual_traded_turnover": 10.49322749482402,
+      "annual_base_turnover": 14.289075630252098,
+      "mean_overlap": 0.8626050420168068,
+      "annual_tc_drag_bps": 104.93227494824019,
+      "mean_active_names": 182.63768115942028
+    },
+    {
+      "mode": "markowitz",
+      "horizon": 13,
+      "annualized_return": 0.06953463406194732,
+      "annualized_volatility": 0.042507529393552033,
+      "sharpe_ratio": 1.6591757435492835,
+      "sortino_ratio": 2.179630111543252,
+      "max_drawdown": -0.08676937296256786,
+      "mean_net_utility": 0.001319720641345416,
+      "annual_traded_turnover": 6.87909668451526,
+      "annual_base_turnover": 9.104175597998037,
+      "mean_overlap": 0.9124598500192497,
+      "annual_tc_drag_bps": 68.7909668451526,
+      "mean_active_names": 269.5217391304348
+    }
+  ],
+  "timing_overlay_summary": [
+    {
+      "horizon": 1,
+      "strategy": "M8_Constant",
+      "annualized_return": 0.48283533586242494,
+      "annualized_volatility": 0.22418261379477467,
+      "sharpe_ratio": 2.1449460231758413,
+      "sortino_ratio": 4.317369841987305,
+      "max_drawdown": -0.10884724283497384,
+      "mean_net_utility": 0.008796559305218792,
+      "annual_traded_turnover": 73.0960486175192,
+      "annual_tc_drag_bps": 730.9604861751919
+    },
+    {
+      "horizon": 1,
+      "strategy": "M9_RawTiming",
+      "annualized_return": 0.49889237030563893,
+      "annualized_volatility": 0.21962371313092355,
+      "sharpe_ratio": 2.278572307991915,
+      "sortino_ratio": 4.596073205063267,
+      "max_drawdown": -0.09890303493317269,
+      "mean_net_utility": 0.009126465339625411,
+      "annual_traded_turnover": 72.991270528746,
+      "annual_tc_drag_bps": 729.91270528746
+    },
+    {
+      "horizon": 1,
+      "strategy": "M13_Hysteresis",
+      "annualized_return": 0.5019575792633794,
+      "annualized_volatility": 0.21602501225100723,
+      "sharpe_ratio": 2.3205881918592097,
+      "sortino_ratio": 4.767721207611441,
+      "max_drawdown": -0.1023731147556024,
+      "mean_net_utility": 0.009199600550393185,
+      "annual_traded_turnover": 73.01471212022115,
+      "annual_tc_drag_bps": 730.1471212022116
+    },
+    {
+      "horizon": 2,
+      "strategy": "M8_Constant",
+      "annualized_return": 0.3262616074545979,
+      "annualized_volatility": 0.12836234949465528,
+      "sharpe_ratio": 2.5398504183102535,
+      "sortino_ratio": 5.160138853329326,
+      "max_drawdown": -0.07305970664589033,
+      "mean_net_utility": 0.006114784724714541,
+      "annual_traded_turnover": 36.81479820882354,
+      "annual_tc_drag_bps": 368.1479820882353
+    },
+    {
+      "horizon": 2,
+      "strategy": "M9_RawTiming",
+      "annualized_return": 0.3478345397469032,
+      "annualized_volatility": 0.13423372999884392,
+      "sharpe_ratio": 2.593900503187698,
+      "sortino_ratio": 5.176460199467794,
+      "max_drawdown": -0.07311148215422225,
+      "mean_net_utility": 0.006515150323673923,
+      "annual_traded_turnover": 42.180906570110125,
+      "annual_tc_drag_bps": 421.8090657011012
+    },
+    {
+      "horizon": 2,
+      "strategy": "M13_Hysteresis",
+      "annualized_return": 0.3442493323992876,
+      "annualized_volatility": 0.12911655136226574,
+      "sharpe_ratio": 2.6619793585894445,
+      "sortino_ratio": 5.723702915802068,
+      "max_drawdown": -0.06421677913360005,
+      "mean_net_utility": 0.006458954558005072,
+      "annual_traded_turnover": 40.00384619864269,
+      "annual_tc_drag_bps": 400.0384619864269
+    },
+    {
+      "horizon": 4,
+      "strategy": "M8_Constant",
+      "annualized_return": 0.24120356245161725,
+      "annualized_volatility": 0.08354535742532714,
+      "sharpe_ratio": 2.9027927086374095,
+      "sortino_ratio": 5.854511170525162,
+      "max_drawdown": -0.08671666664306245,
+      "mean_net_utility": 0.004571008354626395,
+      "annual_traded_turnover": 19.029871537894287,
+      "annual_tc_drag_bps": 190.2987153789429
+    },
+    {
+      "horizon": 4,
+      "strategy": "M9_RawTiming",
+      "annualized_return": 0.2633357576491644,
+      "annualized_volatility": 0.09072448892035218,
+      "sharpe_ratio": 2.9077250947163917,
+      "sortino_ratio": 5.260224062521164,
+      "max_drawdown": -0.08205751614137036,
+      "mean_net_utility": 0.004984781926592211,
+      "annual_traded_turnover": 27.2027777308888,
+      "annual_tc_drag_bps": 272.027777308888
+    },
+    {
+      "horizon": 4,
+      "strategy": "M13_Hysteresis",
+      "annualized_return": 0.25981454223125683,
+      "annualized_volatility": 0.08669079454712796,
+      "sharpe_ratio": 3.0025378852592617,
+      "sortino_ratio": 5.958662678255518,
+      "max_drawdown": -0.0792510689072929,
+      "mean_net_utility": 0.004923801477090691,
+      "annual_traded_turnover": 23.908336102804057,
+      "annual_tc_drag_bps": 239.0833610280406
+    },
+    {
+      "horizon": 8,
+      "strategy": "M8_Constant",
+      "annualized_return": 0.11236754935616128,
+      "annualized_volatility": 0.05423099889002215,
+      "sharpe_ratio": 2.0921348314071975,
+      "sortino_ratio": 3.3410012507411806,
+      "max_drawdown": -0.09182498750936985,
+      "mean_net_utility": 0.002132457845598881,
+      "annual_traded_turnover": 10.503269551088783,
+      "annual_tc_drag_bps": 105.03269551088783
+    },
+    {
+      "horizon": 8,
+      "strategy": "M9_RawTiming",
+      "annualized_return": 0.11592016971239666,
+      "annualized_volatility": 0.059555278256416516,
+      "sharpe_ratio": 1.957959568329736,
+      "sortino_ratio": 2.80576914404217,
+      "max_drawdown": -0.09253270904208251,
+      "mean_net_utility": 0.002194992844177852,
+      "annual_traded_turnover": 19.963093290497522,
+      "annual_tc_drag_bps": 199.6309329049752
+    },
+    {
+      "horizon": 8,
+      "strategy": "M13_Hysteresis",
+      "annualized_return": 0.1135055572342372,
+      "annualized_volatility": 0.05753670711379355,
+      "sharpe_ratio": 1.9908497744645637,
+      "sortino_ratio": 2.946993121375806,
+      "max_drawdown": -0.09227494090870673,
+      "mean_net_utility": 0.00215078689228639,
+      "annual_traded_turnover": 16.224257810215615,
+      "annual_tc_drag_bps": 162.24257810215616
+    },
+    {
+      "horizon": 13,
+      "strategy": "M8_Constant",
+      "annualized_return": 0.06968918900954091,
+      "annualized_volatility": 0.042577866108172845,
+      "sharpe_ratio": 1.6591757435492838,
+      "sortino_ratio": 2.179630111543252,
+      "max_drawdown": -0.0868819714313515,
+      "mean_net_utility": 0.0013226051717785921,
+      "annual_traded_turnover": 6.887292921515548,
+      "annual_tc_drag_bps": 68.87292921515548
+    },
+    {
+      "horizon": 13,
+      "strategy": "M9_RawTiming",
+      "annualized_return": 0.07554352496207072,
+      "annualized_volatility": 0.04552341346041645,
+      "sharpe_ratio": 1.6640703205894507,
+      "sortino_ratio": 2.054737767790266,
+      "max_drawdown": -0.0790364775209515,
+      "mean_net_utility": 0.001432739932055659,
+      "annual_traded_turnover": 16.794349174593815,
+      "annual_tc_drag_bps": 167.94349174593813
+    },
+    {
+      "horizon": 13,
+      "strategy": "M13_Hysteresis",
+      "annualized_return": 0.07214142158462675,
+      "annualized_volatility": 0.04422073985919933,
+      "sharpe_ratio": 1.6485001929427145,
+      "sortino_ratio": 2.127578716520255,
+      "max_drawdown": -0.08288949644981108,
+      "mean_net_utility": 0.0013683864437855412,
+      "annual_traded_turnover": 12.867595165865227,
+      "annual_tc_drag_bps": 128.67595165865228
+    }
+  ],
+  "economic_frontier": [
+    {
+      "horizon": 1,
+      "net_annualized_return": 0.48085090949833376,
+      "net_sharpe_ratio": 2.1449460231758413,
+      "mean_net_utility": 0.008763193359492475,
+      "tc_savings_bps": 0.0,
+      "gross_alpha_decay_bps": 0.0,
+      "net_gain_bps": 0.0
+    },
+    {
+      "horizon": 2,
+      "net_annualized_return": 0.3251380636441095,
+      "net_sharpe_ratio": 2.539850418310254,
+      "mean_net_utility": 0.006094318130610479,
+      "tc_savings_bps": 362.465623188406,
+      "gross_alpha_decay_bps": 1919.5940817306484,
+      "net_gain_bps": -1557.1284585422422
+    },
+    {
+      "horizon": 4,
+      "net_annualized_return": 0.2405213102419794,
+      "net_sharpe_ratio": 2.90279270863741,
+      "mean_net_utility": 0.004558270349331339,
+      "tc_savings_bps": 540.1448502415461,
+      "gross_alpha_decay_bps": 2943.44084280509,
+      "net_gain_bps": -2403.2959925635437
+    },
+    {
+      "horizon": 8,
+      "net_annualized_return": 0.11206340576116741,
+      "net_sharpe_ratio": 2.0921348314071975,
+      "mean_net_utility": 0.002126733860419153,
+      "tc_savings_bps": 625.3293482401659,
+      "gross_alpha_decay_bps": 4313.20438561183,
+      "net_gain_bps": -3687.875037371664
+    },
+    {
+      "horizon": 13,
+      "net_annualized_return": 0.06953463406194732,
+      "net_sharpe_ratio": 1.6591757435492835,
+      "mean_net_utility": 0.001319720641345416,
+      "tc_savings_bps": 661.4706563432535,
+      "gross_alpha_decay_bps": 4774.633410707118,
+      "net_gain_bps": -4113.162754363865
+    }
+  ],
+  "break_even_analysis": [
+    {
+      "horizon": 1,
+      "turnover_reduction": 0.0,
+      "gross_alpha_sacrifice_bps": 0.0,
+      "break_even_cost_bps": 0.0,
+      "sustainable_at_10bps": true
+    },
+    {
+      "horizon": 2,
+      "turnover_reduction": 36.246562318840574,
+      "gross_alpha_sacrifice_bps": 1919.5940817306484,
+      "break_even_cost_bps": 52.95934176722916,
+      "sustainable_at_10bps": false
+    },
+    {
+      "horizon": 4,
+      "turnover_reduction": 54.014485024154595,
+      "gross_alpha_sacrifice_bps": 2943.44084280509,
+      "break_even_cost_bps": 54.49354634203807,
+      "sustainable_at_10bps": false
+    },
+    {
+      "horizon": 8,
+      "turnover_reduction": 62.53293482401657,
+      "gross_alpha_sacrifice_bps": 4313.20438561183,
+      "break_even_cost_bps": 68.97492333840196,
+      "sustainable_at_10bps": false
+    },
+    {
+      "horizon": 13,
+      "turnover_reduction": 66.14706563432533,
+      "gross_alpha_sacrifice_bps": 4774.633410707118,
+      "break_even_cost_bps": 72.18208948379177,
+      "sustainable_at_10bps": false
+    }
+  ],
+  "decision_tree_verdicts": {
+    "persistence_verdict": "Outcome C: Short Persistence / Optimal Stacking at H=2 or H=4",
+    "epistemic_timing_verdict": "Outcome G: Epistemic Timing Survives Stacking"
+  }
+}

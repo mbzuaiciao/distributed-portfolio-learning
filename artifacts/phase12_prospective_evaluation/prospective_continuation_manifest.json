@@ -28,7 +28,9 @@
       "preserve_tranche_1_identity": true
     },
     "informative_timing_criterion": "For M13 dynamic timing evaluation, count number of weeks where M13 exposure != M8 exposure. If informative weeks count == 0, timing overlay remains formally unevaluated.",
-    "model_uncertainty_sample_size_rule": "N for uncertainty-error analysis must strictly count UNIQUE events, not (unique events * seeds). Seeds are repeated model fits on identical market outcomes."
+    "model_uncertainty_sample_size_rule": "N for uncertainty-error analysis must strictly count UNIQUE events, not (unique events * seeds). Seeds are repeated model fits on identical market outcomes.",
+    "prospective_eligibility_rule": "Only events classified as GENUINELY PROSPECTIVE count toward the prospective milestone (>= 20 unique completed H=4 events). Retrospective-but-frozen events and future placeholder rows are explicitly excluded.",
+    "completed_genuinely_prospective_count_as_of_tranche_1": 0
   },
   "frozen_strategy_parameters": {
     "holding_horizon_H": 4,
@@ -41,5 +43,16 @@
     "cash_return": 0.0,
     "mc_draws": 32,
     "status": "LOCKED_UNCHANGED"
+  },
+  "provenance_audit_summary": {
+    "audit_timestamp_utc": "2026-09-09T21:00:00Z",
+    "total_funnel_rows": 52,
+    "retrospective_but_frozen_rows": 34,
+    "genuinely_prospective_rows": 0,
+    "future_placeholder_rows": 18,
+    "causal_input_violations_count": 0,
+    "eligible_prospective_events_toward_milestone": 0,
+    "prediction_file_sha256": "6542b33fa5810985beff8c835e71b598ffaf47bf943e88d43f7c50d7dcb30aeb",
+    "prediction_file_sha_verified": true
   }
 }

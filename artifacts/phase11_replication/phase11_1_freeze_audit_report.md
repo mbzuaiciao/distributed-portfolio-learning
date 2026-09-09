@@ -95,37 +95,34 @@ In the Phase 11 preliminary summary, the phrase *"on the training distribution"*
 | **Training Slice** | `data/bayesian_lora/reconstructed_returns.csv` (pre-2022) | `2005-10-13` to `2021-12-22` | $15{,}752$ | **YES** |
 | **Historical Benchmark** | `data/bayesian_lora/holdout/beta_0p003_seed_<seed>_mc32_predictions.csv` | `2024-01-04` to `2025-05-15` | $1{,}728$ | **NO (0% overlap)** |
 
-The 2024–2025 holdout benchmark postdates the training slice by more than two years. Zero samples from the holdout benchmark were seen during model fitting, ensuring genuine out-of-sample replication evidence. Zero hyperparameters were tuned on the benchmark.
+The 2024–2025 holdout benchmark postdates the training slice by more than two years. Zero samples from the holdout benchmark were seen during model fitting, ensuring genuine out-of-sample replication evidence. No Phase-11 Bayesian-LoRA model-training hyperparameters were tuned using the fixed 2024-2025 benchmark. However, the 2024-2025 period was previously used extensively in downstream portfolio research and is not an untouched investment holdout.
 
 ---
 
 ## 5. M13 Delta-U Reconciliation
 
-### Discrepancy
-- Newly reported Phase 11 metric: $\text{mean } \Delta U \approx +0.002519$
-- Prior Phase 9/10 metric: $\Delta U \approx +0.000652$ (Phase 9 single-seed) / $+0.000530$ (Phase 10 3-seed mean)
+### Discrepancy & Granularity Distinction
+- **Event-Level Diagnostic (+0.002519):**
+  - **Classification:** `EVENT-LEVEL DIAGNOSTIC — NOT CANONICAL PORTFOLIO ENDPOINT`.
+  - Must **not** be used in headline portfolio performance tables.
+  - Computed as an unpooled heuristic mean across $N = 1{,}728$ individual earnings releases:
+    $$u_t = s_t r_{1d, t} - \frac{1}{2}\gamma s_t^2 \frac{\sigma_0^2}{52} - c \cdot \text{TO}_{\text{event}}$$
+    with $\gamma = 2.5$ and static annualized volatility proxy $\sigma_0 = 0.20$.
+  - Yielded: Seed 42 ($+0.002602$), Seed 123 ($+0.002965$), Seed 777 ($+0.001989$), Mean ($+0.002519$).
+- **Canonical Weekly Portfolio Endpoint (+0.000530):**
+  - **Classification:** `CANONICAL HISTORICAL PORTFOLIO REPLICATION ENDPOINT`.
+  - Evaluated on weekly mark-to-market returns across $T = 69$ calendar weeks under multi-week $H=4$ cohort stacking, equal capital weighting ($1/H$), Markowitz intra-cohort allocation, $\gamma = 1.0$, and turnover netting.
+  - Both historical lost-model predictions and newly replicated models produce identical canonical weekly portfolio endpoints:
+    - **Seed 42:** $M_8 = 0.003431, M_{13} = 0.004256, \mathbf{\Delta U = +0.000825}$
+    - **Seed 123:** $M_8 = 0.005156, M_{13} = 0.005506, \mathbf{\Delta U = +0.000350}$
+    - **Seed 777:** $M_8 = 0.004011, M_{13} = 0.004426, \mathbf{\Delta U = +0.000415}$
+    - **3-Seed Arithmetic Mean:** $M_8 = 0.004199, M_{13} = 0.004729, \mathbf{\Delta U = +0.000530}$
 
-### Exact Mathematical Cause
-The difference stems entirely from **calculation granularity and portfolio aggregation**:
+### Provenance of "+0.000652"
+- The value `+0.000652` originated strictly in Phase 8.2 / Phase 9 (`artifacts/phase9_audit/metrics_summary.json:103`) as **Seed 42 alone under the one-week ($H=1$) architecture** without multi-cohort stacking ($M_{13}\ -0.001048$ vs $M_8\ -0.001699$).
+- It was neither a 3-seed mean nor an $H=4$ portfolio endpoint.
+- Under the frozen primary $H=4$ architecture, the canonical 3-seed mean historical Delta U is **$+0.000530$** (Seed 42: $+0.000825$).
 
-1. **Event-Level Diagnostic (Phase 11 preliminary script):**
-   - Evaluated utility on each of the $N = 1{,}728$ individual earnings releases:
-     $$u_t = s_t r_{1d, t} - \frac{1}{2}\gamma s_t^2 \frac{\sigma_0^2}{52} - c \cdot \text{TO}_{\text{event}}$$
-     with $\gamma = 2.5$ and static volatility proxy $\sigma_0 = 0.20$.
-   - Because single-stock 1-day earnings moves ($r_{1d}$) have high variance and high downside skew, de-risking high-uncertainty events at the single-event level yields an unpooled event-level $\Delta U \approx +0.002519$.
-2. **Canonical Multi-Week Cohort-Stacked Portfolio Simulation (Phase 9/10):**
-   - Evaluated weekly mark-to-market returns across $T = 68$ calendar weeks under full portfolio mechanics:
-     - Holding horizon $H = 4$ weeks.
-     - Equal capital weighting ($1/H = 0.25$) across 4 active overlapping weekly cohorts.
-     - Markowitz mean-variance optimization within each cohort.
-     - Dynamic turnover netting across exiting and entering cohorts.
-     - Standard CRRA risk aversion $\gamma = 1.0$ applied to the weekly realized portfolio return variance.
-   - Under this full simulation on the holdout predictions:
-     - **Seed 42:** $\Delta U = +0.000825$ (Phase 9 reported $+0.000652$ under its specific exposure path)
-     - **Seed 123:** $\Delta U = +0.000350$
-     - **Seed 777:** $\Delta U = +0.000415$
-     - **3-Seed Mean:** $\mathbf{+0.000530}$
-3. **Conclusion:** Both calculations confirm that M13 relative epistemic timing produces strictly positive incremental utility over M8 ($\Delta U > 0$). The $+0.002519$ number was an unpooled event-level diagnostic, while $+0.000530$ is the true canonical weekly portfolio-level delta utility.
 
 ---
 

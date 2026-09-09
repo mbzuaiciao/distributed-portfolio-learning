@@ -99,13 +99,22 @@
       "sample_count_N": 1728,
       "overlap_with_training": 0
     },
-    "evaluation_nature": "Strictly out-of-sample holdout test (prior report phrase 'training distribution' was a misnomer for the out-of-sample holdout evaluation)"
+    "evaluation_nature": "Strictly out-of-sample holdout test (prior report phrase 'training distribution' was a misnomer for the out-of-sample holdout evaluation)",
+    "benchmark_integrity_clarification": "No Phase-11 Bayesian-LoRA model-training hyperparameters were tuned using the fixed 2024-2025 benchmark. However, the 2024-2025 period was previously used extensively in downstream portfolio research and is not an untouched investment holdout."
   },
   "delta_utility_reconciliation": {
-    "phase11_report_value": 0.002519,
-    "phase11_report_nature": "Event-level unpooled utility difference across N=1,728 individual event moves with gamma=2.5 and static volatility proxy",
-    "canonical_portfolio_simulation_value": 0.000530,
-    "canonical_portfolio_simulation_nature": "Weekly portfolio-level net mark-to-market utility across T=68 calendar weeks with H=4 multi-cohort stacking, Markowitz intra-cohort weighting, gamma=1.0, and dynamic trade netting",
+    "event_level_diagnostic_value": 0.002519,
+    "event_level_classification": "EVENT-LEVEL DIAGNOSTIC — NOT CANONICAL PORTFOLIO ENDPOINT",
+    "canonical_weekly_portfolio_delta_u_mean": 0.000530,
+    "canonical_weekly_portfolio_classification": "CANONICAL HISTORICAL PORTFOLIO REPLICATION ENDPOINT",
+    "reconciliation_csv": "artifacts/phase11_replication/historical_endpoint_reconciliation.csv",
+    "seed_breakdown_canonical": {
+      "seed_42": 0.000825,
+      "seed_123": 0.000350,
+      "seed_777": 0.000415,
+      "arithmetic_mean": 0.000530
+    },
+    "provenance_of_0p000652": "Originated strictly from Phase 8.2 / Phase 9 audit as Seed 42 alone under one-week (H=1) architecture; not a 3-seed mean and not H=4.",
     "reconciled": true,
     "both_metrics_positive": true
   },

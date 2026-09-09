@@ -1,0 +1,4 @@
+seed,checkpoint_status,exact_numerical_match,max_abs_diff_posterior_mean,max_abs_diff_epistemic_var,reason
+42,CHECKPOINT_MISSING,NOT_TESTED,NA,NA,"Checkpoint state dict not persisted to disk/git in sibling repo; training recipe and historical predictions are fully preserved, but weights cannot be loaded into memory without retraining."
+123,CHECKPOINT_MISSING,NOT_TESTED,NA,NA,"Checkpoint state dict not persisted to disk/git in sibling repo; training recipe and historical predictions are fully preserved, but weights cannot be loaded into memory without retraining."
+777,CHECKPOINT_MISSING,NOT_TESTED,NA,NA,"Checkpoint state dict not persisted to disk/git in sibling repo; training recipe and historical predictions are fully preserved, but weights cannot be loaded into memory without retraining."

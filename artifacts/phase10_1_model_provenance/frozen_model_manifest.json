@@ -1,0 +1,192 @@
+{
+  "model_family": "Bayesian-LoRA Sequence Classification (ProsusAI/finbert)",
+  "base_model": {
+    "identifier": "ProsusAI/finbert",
+    "source": "Hugging Face Hub",
+    "task_type": "SEQ_CLS (Sequence Classification, 2 classes: 1=downside move <= -3.65%, 0=otherwise)"
+  },
+  "lora_configuration": {
+    "rank": 16,
+    "alpha": 32,
+    "scaling": 2.0,
+    "target_modules": [
+      "attention.self.query",
+      "attention.self.value"
+    ],
+    "dropout": 0.05
+  },
+  "bayesian_variational_formulation": {
+    "parameterization": "Mean-field Gaussian q(theta) = N(mu, diag(sigma^2))",
+    "sigma_parameterization": "sigma = softplus(rho) + eps (eps=1e-6)",
+    "init_std": 0.01,
+    "prior_std": 1.0,
+    "kl_beta": 0.003,
+    "scaled_kl": "(kl_beta / dataset_size) * raw_kl",
+    "mc_sample_count": 32
+  },
+  "seeds": [
+    42,
+    123,
+    777
+  ],
+  "training_provenance": {
+    "dataset": "RudrakshNanavaty/earnings-call-data",
+    "split": "train",
+    "max_rows": 20000,
+    "training_data_start_date": "2006-01-01",
+    "training_data_end_date": "2021-12-31",
+    "validation_split": "15% random split of pre-2022 data",
+    "training_ends_strictly_before_2026": true,
+    "epochs": 4,
+    "batch_size": 32,
+    "learning_rate": 0.0002,
+    "weight_decay": 0.01,
+    "optimizer": "AdamW",
+    "warmup_fraction": 0.05,
+    "training_script": "scripts/run_earnings_bayesian_lora.py",
+    "sibling_commit_hash": "4a8474d6211ef335511f294a6ac425c14167a90b"
+  },
+  "input_and_forward_pass_specification": {
+    "tokenizer": "ProsusAI/finbert",
+    "chunk_tokens": 384,
+    "chunk_stride": 64,
+    "train_max_chunks": 2,
+    "eval_max_chunks": 4,
+    "forward_pass_procedure": "For an earnings announcement on date t for symbol S with transcript T: (1) Tokenize T into chunks of 384 tokens with stride 64, taking up to 4 chunks. (2) Perform 32 Monte Carlo forward passes with variational sampling enabled (a = mu_a + sigma_a * eps_a, b = mu_b + sigma_b * eps_b). (3) For each MC pass, compute softmax probabilities for class 1 across chunks and average across chunks to obtain document probability p_m. (4) Posterior mean = mean(p_m, m=1..32); epistemic variance = var(p_m, m=1..32)."
+  },
+  "provenance_recovery_status": {
+    "category": "Category C: PARTIALLY_REPRODUCIBLE",
+    "category_definitions": {
+      "Category A: FULLY_FROZEN_RECOVERED": "All seed checkpoints exist, load, and reproduce predictions bitwise.",
+      "Category B: REPRODUCIBLE_FROM_SCRATCH": "Checkpoints missing, but exact recipe, dataset, and code allow deterministic retraining.",
+      "Category C: PARTIALLY_REPRODUCIBLE": "Deterministic base adapter exists, training recipe fully specified, but Bayesian posterior checkpoints missing and GPU/floating-point non-determinism precludes exact bitwise match without stored states.",
+      "Category D: IRREPRODUCIBLE": "Weights and training recipe insufficiently specified."
+    },
+    "justification": "The sibling project preserves the deterministic baseline LoRA adapter (r=8, safetensors), the exact training scripts, hyperparameters (KL beta=0.003, r=16, epochs=4, seeds 42/123/777), and historical prediction outputs. However, the Bayesian posterior state dicts (*_state.pt, ~440MB each) were not committed or persisted on disk. While the training recipe is 100% reproducible from scratch, bitwise identical reproduction cannot be guaranteed across different hardware/CUDA environments without the original serialized PyTorch state dicts. Hence Category C (or Category B in recipe terms) is assigned.",
+    "checkpoints_recovered": false,
+    "existing_artifacts_audited": [
+      {
+        "path": "/Users/xq/Documents/GitHub/bayesian-lora-portfolio-risk/artifacts/earnings_lora_adapter/adapter_model.safetensors",
+        "filename": "adapter_model.safetensors",
+        "artifact_type": "deterministic_lora_adapter",
+        "exists": true,
+        "size_bytes": 1192672,
+        "mtime": "2026-09-01T22:37:04.607173+00:00",
+        "sha256": "635fbb67c2745a55c03a15502dbccdd4a99048c4d96b686ba5e3a17a4473c788"
+      },
+      {
+        "path": "/Users/xq/Documents/GitHub/bayesian-lora-portfolio-risk/artifacts/earnings_lora_adapter/adapter_config.json",
+        "filename": "adapter_config.json",
+        "artifact_type": "adapter_or_tokenizer_config",
+        "exists": true,
+        "size_bytes": 1098,
+        "mtime": "2026-09-01T22:37:04.616687+00:00",
+        "sha256": "141403f1f193a6292c4219fb647d203559773544e2a9f04cbaaeb3d5633cd548"
+      },
+      {
+        "path": "/Users/xq/Documents/GitHub/bayesian-lora-portfolio-risk/artifacts/earnings_lora_adapter/tokenizer.json",
+        "filename": "tokenizer.json",
+        "artifact_type": "other_metadata",
+        "exists": true,
+        "size_bytes": 711396,
+        "mtime": "2026-09-01T22:37:04.642550+00:00",
+        "sha256": "d241a60d5e8f04cc1b2b3e9ef7a4921b27bf526d9f6050ab90f9267a1f9e5c66"
+      },
+      {
+        "path": "/Users/xq/Documents/GitHub/bayesian-lora-portfolio-risk/artifacts/earnings_lora_adapter/tokenizer_config.json",
+        "filename": "tokenizer_config.json",
+        "artifact_type": "adapter_or_tokenizer_config",
+        "exists": true,
+        "size_bytes": 351,
+        "mtime": "2026-09-01T22:37:04.624559+00:00",
+        "sha256": "e1c2a61a99bda00f6c55303a210b30e2f92dcf8b555e215812e2eb583e177ffd"
+      },
+      {
+        "path": "/Users/xq/Documents/GitHub/bayesian-lora-portfolio-risk/artifacts/earnings_bayesian_lora_final_holdout/beta_0p003_seed_42_mc32_predictions.csv",
+        "filename": "beta_0p003_seed_42_mc32_predictions.csv",
+        "artifact_type": "model_prediction_output_csv",
+        "exists": true,
+        "size_bytes": 189868,
+        "mtime": "2026-09-04T13:01:34.316586+00:00",
+        "sha256": "12925c1d0f7ba697180fe68815a0ab22a1e4d5dcc1b5934da73e26ca4009a920"
+      },
+      {
+        "path": "/Users/xq/Documents/GitHub/bayesian-lora-portfolio-risk/artifacts/earnings_bayesian_lora_final_holdout/beta_0p003_seed_123_mc32_predictions.csv",
+        "filename": "beta_0p003_seed_123_mc32_predictions.csv",
+        "artifact_type": "model_prediction_output_csv",
+        "exists": true,
+        "size_bytes": 189815,
+        "mtime": "2026-09-04T13:01:34.133254+00:00",
+        "sha256": "ed5ccf3e55c591fab7ef8a7b706e426014e2438b53ae4bd93e72c422bfa421e2"
+      },
+      {
+        "path": "/Users/xq/Documents/GitHub/bayesian-lora-portfolio-risk/artifacts/earnings_bayesian_lora_final_holdout/beta_0p003_seed_777_mc32_predictions.csv",
+        "filename": "beta_0p003_seed_777_mc32_predictions.csv",
+        "artifact_type": "model_prediction_output_csv",
+        "exists": true,
+        "size_bytes": 190123,
+        "mtime": "2026-09-04T13:01:34.501102+00:00",
+        "sha256": "a7ffed1f8235e8fed3fd1653c65d32691a6d5eccf1281fda702585affab4b958"
+      },
+      {
+        "path": "/Users/xq/Documents/GitHub/bayesian-lora-portfolio-risk/results/earnings_bayesian_lora_final_holdout/summary.json",
+        "filename": "summary.json",
+        "artifact_type": "experiment_summary_json",
+        "exists": true,
+        "size_bytes": 5617,
+        "mtime": "2026-09-04T13:04:06.158952+00:00",
+        "sha256": "d2a7ba52f4f5706328ccb2b3d914c0c91b3704384785d510b109d11b4021a256"
+      },
+      {
+        "path": "/Users/xq/Documents/GitHub/bayesian-lora-portfolio-risk/artifacts/earnings_bayesian_lora_uncertainty_control/beta_0p003_seed_42_mc32_predictions.csv",
+        "filename": "beta_0p003_seed_42_mc32_predictions.csv",
+        "artifact_type": "model_prediction_output_csv",
+        "exists": true,
+        "size_bytes": 260351,
+        "mtime": "2026-09-04T13:10:16.621061+00:00",
+        "sha256": "36b5f8e61035a55a524c4ece1a52526daf21081708a2e8c627bdaeeea5676dc8"
+      },
+      {
+        "path": "/Users/xq/Documents/GitHub/bayesian-lora-portfolio-risk/artifacts/earnings_bayesian_lora_uncertainty_control/beta_0p003_seed_123_mc32_predictions.csv",
+        "filename": "beta_0p003_seed_123_mc32_predictions.csv",
+        "artifact_type": "model_prediction_output_csv",
+        "exists": true,
+        "size_bytes": 260349,
+        "mtime": "2026-09-04T13:10:16.420577+00:00",
+        "sha256": "a1a5526ced8c4d19f0d9da028d418b967594b73fa4190801043828ac45e08491"
+      },
+      {
+        "path": "/Users/xq/Documents/GitHub/bayesian-lora-portfolio-risk/artifacts/earnings_bayesian_lora_uncertainty_control/beta_0p003_seed_777_mc32_predictions.csv",
+        "filename": "beta_0p003_seed_777_mc32_predictions.csv",
+        "artifact_type": "model_prediction_output_csv",
+        "exists": true,
+        "size_bytes": 260889,
+        "mtime": "2026-09-04T13:10:16.821612+00:00",
+        "sha256": "831661604eeadb56c5cdb0ef919bbc6f04e673d169c54445e7238a6549b4d747"
+      }
+    ]
+  },
+  "data_availability_2026": {
+    "transcripts_available": false,
+    "count_2026_records": 0,
+    "source_end_date": "2025-05-15",
+    "status": "DATA_BLOCKED",
+    "explanation": "The underlying earnings transcript repository (RudrakshNanavaty/earnings-call-data) contains records through May 15, 2025. Neither the sibling repository nor this repository contains 2026 earnings transcripts or filings. Prospective prediction generation on 2026 is currently data-blocked pending acquisition of 2026 earnings call transcripts."
+  },
+  "confirmation_pipeline_integrity": {
+    "inputs_required": [
+      "date",
+      "symbol",
+      "company_name",
+      "earnings_transcript"
+    ],
+    "outputs_produced": [
+      "posterior_mean",
+      "epistemic_variance"
+    ],
+    "future_realized_returns_required": false,
+    "causal_information_set": true,
+    "optimizer_decoupling": "The forecasting model produces solely (posterior_mean, epistemic_variance) at time t. The portfolio optimizer and M13 hysteresis overlay consume these outputs downstream with zero feedback to the model. The forecasting system is strictly decoupled.",
+    "no_retraining_rule_respected": true
+  }
+}

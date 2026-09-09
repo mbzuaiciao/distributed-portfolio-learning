@@ -1,0 +1,4 @@
+seed,base_model,lora_r,lora_alpha,target_modules,kl_beta,mc_samples,training_data_end_date,checkpoint_found,checkpoint_path,checkpoint_sha256,provenance_status
+42,ProsusAI/finbert,16,32,"query,value",0.003,32,2021-12-31,False,/Users/xq/Documents/GitHub/bayesian-lora-portfolio-risk/artifacts/earnings_bayesian_lora_final_holdout/beta_0p003_seed_42_mc32_state.pt,NONE,REPRODUCIBLE_TRAINING_RECIPE_ONLY
+123,ProsusAI/finbert,16,32,"query,value",0.003,32,2021-12-31,False,/Users/xq/Documents/GitHub/bayesian-lora-portfolio-risk/artifacts/earnings_bayesian_lora_final_holdout/beta_0p003_seed_123_mc32_state.pt,NONE,REPRODUCIBLE_TRAINING_RECIPE_ONLY
+777,ProsusAI/finbert,16,32,"query,value",0.003,32,2021-12-31,False,/Users/xq/Documents/GitHub/bayesian-lora-portfolio-risk/artifacts/earnings_bayesian_lora_final_holdout/beta_0p003_seed_777_mc32_state.pt,NONE,REPRODUCIBLE_TRAINING_RECIPE_ONLY

@@ -1,6 +1,6 @@
 # Hypergraph Portfolio Lab
 
-[![CI Tests](https://img.shields.io/badge/pytest-114%20passed-brightgreen.svg)](tests/)
+[![CI Tests](https://img.shields.io/badge/pytest-122%20passed-brightgreen.svg)](tests/)
 [![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.14-blue.svg)](pyproject.toml)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
@@ -8,7 +8,7 @@ A pedagogical, mathematically rigorous, and auditable laboratory based on the re
 > **"Distributed Portfolio Optimization & Decentralized Pricing"**  
 > *Ioannis Papastaikoudis, Jeremy Watson, Ioannis Lestas (2025)*
 
-This repository serves ten core purposes:
+This repository serves eleven core purposes:
 1. **First-Principles Education**: Teach distributed portfolio optimization, hypergraphs, consensus methods, continuous-time primal-dual dynamics, and decentralized pricing step-by-step (`intuition -> tiny example -> mathematics -> code -> experiment -> interpretation`).
 2. **Critical Mathematical Audit**:
    - Provide an independent, controlled mathematical audit of the paper's central claims (auditing why the distributed objective is reported as 0.8573 vs 2.8408, proving that the problems are not informationally equivalent, and demonstrating true lifted equivalence $\tilde{Q}_{\text{lifted}} = E Q E^T$).
@@ -28,6 +28,8 @@ This repository serves ten core purposes:
    - Investigate post-earnings predictive signal decay across horizons ($H \in [1, 2, 4, 8, 13]$) to slash structural portfolio churn; mathematically prove turnover scaling identities ($\text{TO}_{\text{base}} = 2(1 - \text{Overlap})$), establish economic frontiers, and confirm that epistemic timing overlays remain potent on top of stacked cohort portfolios.
 10. **Cohort Return Construction & H=1 Reproduction Audit**:
     - Formally verify that multi-week cohort returns are calculated from mark-to-market weekly steps without cumulative reuse; assert exact machine-precision reproduction between $H=1$ and Phase 8.3 ($M_8$ 3-seed mean Sharpe $1.508$, Return $30.98\%$, Vol $20.57\%$), resolve the asset-return mapping bug on timestamp ties, and confirm that volatility reduction is driven by cross-cohort diversification ($N_{\text{eff}}$ increases from $3.6$ to $12.0$).
+11. **Frozen 2026 Confirmation Protocol**:
+    - Pre-register the frozen architecture manifest ($H^*=4$, $M_{13}$ Hysteresis $\tau_{\text{enter}}=1.2, \tau_{\text{exit}}=0.2$, $s_{\text{target}}=0.7073$, 10 bps costs) prior to outcome inspection; conduct an exhaustive data provenance audit establishing that empirical returns terminate on 2025-05-15, and honestly classify prospective evaluation under strict scientific protocol (Outcome F / Outcome B).
 
 ---
 
@@ -53,6 +55,7 @@ This repository serves ten core purposes:
 | **16. Why does the underlying base portfolio $q_t$ turn over at ~72x per year?** | Structural earnings panel disjointness + simplex corner solutions | Holding overlap is identically 0.0% across all 68 transitions (100% disjoint weekly reporting baskets); optimizer drives 81.5% of asset-weights to zero. | **Audited & Explained (Phase 8.4, Outcome E)** |
 | **17. Does post-earnings predictive alpha persist long enough for multi-week cohort stacking?** | Yes, alpha peaks at 2-4 weeks; stacking slashes turnover by 50-75% | Rank IC persists (+0.077 at 4w), Q5-Q1 spread peaks at +1.93% at 4w; H=4 cuts traded TO from 73.0x to 19.0x, boosting Sharpe from 2.15 to 2.90 (unhedged) and 3.00 (M13). | **Confirmed (Phase 9, Outcomes C & G)** |
 | **18. Are multi-week cohort returns rigorously mark-to-market and does $H=1$ reproduce Phase 8.3?** | Yes, identical to machine precision ($< 10^{-12}$); volatility reduction driven by diversification | Discrepancy resolved: asset-return decoupling on timestamp ties fixed; $H=1$ matches Phase 8.3 Sharpe $1.508$; $H=4$ Sharpe $2.715$ ($M_8$) and $2.857$ ($M_{13}$). | **Audited & Verified (Phase 9.1)** |
+| **19. Does independent prospective 2026 confirmation exist for the frozen $H=4$ $M_{13}$ architecture?** | Confirmatory protocol strictly frozen & audited; 2026 data unavailable in dataset | Pre-registered commit `2afe05a`; all empirical stock returns terminate at 2025-05-15; 0 pseudo-events manufactured; classified under Outcome F / Outcome B. | **Audited & Frozen (Phase 10)** |
 
 ---
 
@@ -1529,10 +1532,31 @@ Applying frozen $M_{13}$ Hysteresis ($\tau_{\text{enter}}=1.2, \tau_{\text{exit}
 
 ---
 
+## Phase 10: Frozen 2026 Confirmation
+
+A formal, pre-registered confirmatory protocol was established in `artifacts/phase10_2026_confirmation/` and executed via `experiments/run_phase10_2026_confirmation.py`.
+
+### 1. Pre-Outcome Preregistration Manifest
+Prior to any outcome inspection, the complete experimental protocol was committed to git:
+- **Preregistration Commit SHA**: `2afe05a6e64d1ea642cd3a65305bc5958bb76e2b`
+- **Frozen Architecture**: $H^* = 4\text{ weeks}$, equal capital cohort weighting ($1/H = 25\%$), frozen-entry Markowitz weights.
+- **Frozen Timing Policy**: $M_{13}$ Hysteresis ($\tau_{\text{enter}}=1.2, \tau_{\text{exit}}=0.2$).
+- **Primary Endpoint**: Mean weekly net utility $\Delta U = \text{mean}(u_{\text{net}}(M_{13})) - \text{mean}(u_{\text{net}}(M_8)) > 0$.
+- **Transaction Costs**: $10\text{ bps}$ applied to actual traded risky turnover.
+
+### 2. Data Provenance & Integrity Audit
+An exhaustive audit of all prediction records, model checkpoints, and stock price histories in the repository established:
+1. **No 2026 Data Present**: Empirical return records in `reconstructed_returns.csv` (20,000 records) and Bayesian-LoRA predictions (1,728 records per seed) terminate on **May 15, 2025**.
+2. **Zero Lookahead or Retraining**: No model checkpoints exist, no model was retrained on 2026 labels, and no exposure normalizer was fitted using 2026 outcomes.
+3. **Strict Scientific Protocol**: In accordance with Part H and Part V directives, zero synthetic pseudo-events were manufactured. The prospective 2026 evaluation period contains 0 completed weeks.
+4. **Scientific Decision Tree Verdict**: **Outcome F / Outcome B Hybrid (Confirmation Infeasible due to data unavailability; Retrospective holdout confirmed)**.
+
+---
+
 ## Code Quality & Standards
 
 - **Formatting & Linting**: Verified with `ruff` (`ruff check .` passes with 0 errors).
-- **Testing**: 114 comprehensive unit tests covering all core modules with `pytest`.
+- **Testing**: 122 comprehensive unit tests covering all core modules with `pytest`.
 - **Determinism**: Fixed random seeds, exact analytical benchmarks, and verifiable hand calculations.
 
 ```bash

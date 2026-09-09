@@ -1,0 +1,3 @@
+period,comparison,seed,delta_sharpe,delta_utility,delta_turnover,delta_tc_bps,delta_max_drawdown,delta_volatility,delta_return,status
+2026_prospective,M8_H4_vs_M8_H1,3-Seed Mean,N/A,N/A,N/A,N/A,N/A,N/A,N/A,NO_2026_DATA
+2024_2025_holdout,M8_H4_vs_M8_H1,3-Seed Mean,+1.210,-0.001352,-54.07x,-540.7,+1.59%,-12.41%,-8.83%,RETROSPECTIVE_AUDITED

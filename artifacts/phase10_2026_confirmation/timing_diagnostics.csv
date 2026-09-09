@@ -1,0 +1,8 @@
+metric,value_2026,value_retrospective_holdout,description
+mean_relative_uncertainty_zscore,N/A,-0.042,8-week trailing robust MAD z-score
+m13_transitions_count,N/A,4,"Total exposure regime switches under (1.2, 0.2)"
+fraction_weeks_defensive,N/A,10.3%,Weeks spent in reduced 0.35x exposure
+mean_realized_exposure,N/A,0.6708,Average risky portfolio exposure
+exposure_before_worst_weeks,N/A,0.5240,Average exposure prior to bottom decile return weeks
+exposure_before_best_weeks,N/A,0.7073,Average exposure prior to top decile return weeks
+selectivity_ratio,N/A,0.7408,Exposure before worst / Exposure before best (< 1 indicates timing edge)

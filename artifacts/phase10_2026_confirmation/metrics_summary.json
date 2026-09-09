@@ -1,0 +1,15 @@
+{
+  "phase": "Phase 10 Frozen 2026 Confirmation",
+  "timestamp": "2026-09-08T18:00:00-07:00",
+  "preregistration_commit": "ba50c4978abd8c8103088f8e902a837696d1130c",
+  "dataset_snapshot_date": "2025-05-15",
+  "first_evaluation_week": null,
+  "last_complete_evaluation_week": null,
+  "number_of_complete_weeks": 0,
+  "number_of_events": 0,
+  "number_of_right_censored_events": 0,
+  "frozen_2026_predictions_sha256": "8aa0abbbb0fd92d43f7ae86ad563172f79ff34aeccdfd8ba68861398b993cfdd",
+  "return_alignment_mismatches": 0,
+  "scientific_decision_tree_outcome": "Outcome_F_Outcome_B_Hybrid",
+  "primary_conclusion": "No prospective 2026 data currently exists in the repository. All available empirical returns and Bayesian-LoRA predictions terminate on 2025-05-15. In accordance with Part H and Part V of the confirmatory protocol, no synthetic 2026 data was manufactured. The evaluation is strictly classified as Outcome F / Outcome B (Confirmation Infeasible due to absent 2026 data; retrospective holdout results confirmed)."
+}

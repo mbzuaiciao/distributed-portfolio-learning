@@ -1,0 +1,18 @@
+{
+  "audit_timestamp": "2026-09-08T18:00:00-07:00",
+  "dataset_snapshot_as_of_date": "2025-05-15",
+  "total_historical_return_records": 20000,
+  "returns_date_range": "2005-10-13 14:45:00 to 2025-05-15 16:30:00",
+  "holdout_predictions_max_date": "2025-05-15 16:30:00",
+  "2026_prediction_files_found": 0,
+  "model_checkpoints_found": 0,
+  "2026_realized_returns_count": 0,
+  "2026_prediction_records_count": 0,
+  "checkpoint_pre_dates_2026": true,
+  "retrained_using_2026_labels": false,
+  "normalization_fitted_on_2026": false,
+  "architecture_decisions_using_2026": false,
+  "independent_2026_data_available": false,
+  "conformance_directive": "No prospective 2026 data files or checkpoints exist in the repository; the empirical dataset terminates strictly at 2025-05-15. Under Part H and Part V of the confirmatory protocol, the experiment must be classified honestly as OUTCOME F / OUTCOME B (Confirmation Infeasible due to absence of 2026 data; retrospective holdout results confirmed).",
+  "scientific_classification": "Outcome_F_Outcome_B_Hybrid"
+}

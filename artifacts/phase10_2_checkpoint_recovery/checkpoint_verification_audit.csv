@@ -1,0 +1,4 @@
+seed,target_checkpoint_filename,expected_size_approx,search_status,reproduction_status,explicit_determination
+42,beta_0p003_seed_42_mc32_state.pt,~440 MB,NOT_FOUND_IN_ANY_LOCATION,UNAVAILABLE,Exact prospective continuation of the historical fitted Bayesian-LoRA models is unavailable.
+123,beta_0p003_seed_123_mc32_state.pt,~440 MB,NOT_FOUND_IN_ANY_LOCATION,UNAVAILABLE,Exact prospective continuation of the historical fitted Bayesian-LoRA models is unavailable.
+777,beta_0p003_seed_777_mc32_state.pt,~440 MB,NOT_FOUND_IN_ANY_LOCATION,UNAVAILABLE,Exact prospective continuation of the historical fitted Bayesian-LoRA models is unavailable.

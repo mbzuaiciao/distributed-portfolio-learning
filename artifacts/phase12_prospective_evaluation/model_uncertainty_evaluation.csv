@@ -1,0 +1,5 @@
+seed,n_prospective_events,spearman_uncertainty_abs_error,spearman_pval,spearman_positive,Q1_MAE,Q5_MAE,Q5_over_Q1
+42,5,-0.6,0.28475697986529386,False,0.6466,0.2796,0.4323
+123,5,0.7,0.1881204043741873,True,0.153,0.3931,2.5696
+777,5,0.6,0.28475697986529386,True,0.2593,0.4972,1.9177
+mean,5,0.2333,0.2525,True,0.353,0.39,1.6399

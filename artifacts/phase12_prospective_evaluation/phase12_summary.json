@@ -1,0 +1,19 @@
+{
+  "evaluation_title": "Phase 12: Prospective 2026 Outcome Evaluation",
+  "timestamp_utc": "2026-09-09T19:50:35.916801+00:00",
+  "market_data_as_of": "2026-09-09",
+  "evaluation_window": "2026 prospective evaluation through 2026-09-09",
+  "sample_size": {
+    "frozen_inputs": 5,
+    "complete_h4_events": 4,
+    "right_censored_events": 1,
+    "usable_calendar_weeks": 5,
+    "first_usable_event_date": "2026-07-23",
+    "last_usable_event_date": "2026-08-01",
+    "last_fully_observed_portfolio_week": "2026-08-31"
+  },
+  "verdict": "Outcome B \u2014 Model property replicates, timing does not",
+  "verdict_reason": "Epistemic uncertainty reliably tracks model unreliability, but exposure timing overlay fails to deliver positive net utility.",
+  "primary_endpoint_mean": 0.0,
+  "model_level_mean_spearman": 0.2333
+}

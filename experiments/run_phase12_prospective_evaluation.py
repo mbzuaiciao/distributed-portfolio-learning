@@ -31,10 +31,9 @@ if str(repo_root / "src") not in sys.path:
     sys.path.insert(0, str(repo_root / "src"))
 
 from hypergraph_portfolio.uncertainty import (  # noqa: E402
-    compute_aggregate_epistemic_uncertainty,
-    compute_canonical_portfolio_metrics,
     compute_hysteresis_exposure_path,
     compute_relative_epistemic_exposure_scale,
+    compute_relative_epistemic_uncertainty,
 )
 
 
@@ -167,7 +166,7 @@ def run_stage1_freeze_data(output_dir: Path) -> dict[str, Any]:
         )
 
         rows = []
-        for ts, o, h, l, c, ac, v in zip(
+        for ts, o, h, low_val, c, ac, v in zip(
             timestamps,
             quotes["open"],
             quotes["high"],
@@ -184,7 +183,7 @@ def run_stage1_freeze_data(output_dir: Path) -> dict[str, Any]:
                     "date": dt_str,
                     "open": float(o) if o is not None else float(c),
                     "high": float(h) if h is not None else float(c),
-                    "low": float(l) if l is not None else float(c),
+                    "low": float(low_val) if low_val is not None else float(c),
                     "close": float(c),
                     "adj_close": float(ac),
                     "volume": int(v) if v is not None else 0,
@@ -580,15 +579,7 @@ def run_stage2_evaluate_portfolio(output_dir: Path) -> dict[str, Any]:
     })
 
     # 2. Reconstruct weekly mark-to-market cohort-stacked portfolio
-    # Sort complete events chronologically by first_tradable_date
-    complete_events_sorted = sorted(
-        complete_events, key=lambda x: x["first_tradable_date"]
-    )
-    # The complete events are:
-    # GOOGL (entry 2026-07-24)
-    # MSFT  (entry 2026-07-29)
-    # AAPL  (entry 2026-08-03)
-    # AMZN  (entry 2026-08-03)
+    # Complete events: GOOGL (07-24), MSFT (07-29), AAPL (08-03), AMZN (08-03)
 
     # Weekly mark-to-market returns across the active holding periods
     # Weekly holding cohorts: each event has [r1, r2, r3, r4]
@@ -673,22 +664,31 @@ def run_stage2_evaluate_portfolio(output_dir: Path) -> dict[str, Any]:
             ]
             weekly_epi_values.append(float(np.quantile(epis, 0.75)))
 
-        # Historical baseline exposure
-        # M13 exposure scaling
-        raw_scale, rel_z = compute_relative_epistemic_exposure_scale(
-            uncertainty_series=weekly_epi_values,
-            window=8,
-            min_periods=1,
-            tau_enter=1.2,
-            tau_exit=0.2,
-            s_normal=0.85,
-            s_reduced=0.45,
-            normalization="robust_zscore",
+        # Relative epistemic uncertainty across weeks
+        z = [
+            compute_relative_epistemic_uncertainty(
+                weekly_epi_values[:t],
+                weekly_epi_values[t],
+                window=8,
+                method="robust_zscore",
+                min_history=1,
+            )
+            for t in range(len(weekly_epi_values))
+        ]
+        s_m13_raw = compute_hysteresis_exposure_path(
+            z, tau_enter=1.2, tau_exit=0.2, s_normal=0.85, s_reduced=0.45
         )
-        s_m13_arr = compute_hysteresis_exposure_path(
-            raw_scale, tau_enter=1.2, tau_exit=0.2
+        s_m9 = np.array([
+            compute_relative_epistemic_exposure_scale(
+                z_t, s_base=0.85, lambda_rel=0.20, tau=0.0
+            )
+            for z_t in z
+        ])
+        s_mean = float(np.mean(s_m9))
+        matched_exposure = s_mean
+        s_m13_arr = np.clip(
+            s_m13_raw * (s_mean / max(float(np.mean(s_m13_raw)), 1e-6)), 0.0, 1.0
         )
-        matched_exposure = float(np.mean(s_m13_arr))
 
         # Portfolio simulation
         wealth_m8 = 1.0
@@ -894,8 +894,6 @@ def run_stage2_evaluate_portfolio(output_dir: Path) -> dict[str, Any]:
 
         boot_means = []
         for _ in range(B):
-            # Block length = min(4, n_w)
-            block_len = min(4, n_w)
             idx = np.random.choice(n_w, size=n_w, replace=True)
             boot_means.append(float(np.mean(diffs[idx])))
 
@@ -994,8 +992,8 @@ def run_stage2_evaluate_portfolio(output_dir: Path) -> dict[str, Any]:
     # Generate Markdown Report
     report_content = f"""# Phase 12: Prospective 2026 Outcome Evaluation Report
 
-**Evaluation Window**: 2026 prospective evaluation through September 9, 2026  
-**Final Scientific Verdict**: **{verdict}**  
+**Evaluation Window**: 2026 prospective evaluation through September 9, 2026
+**Final Scientific Verdict**: **{verdict}**
 
 ---
 

@@ -1,0 +1,5 @@
+seed,n_prospective_events,positive_rate,brier_score,directional_auroc,average_precision
+42,5,0.2,0.2253,0.0,0.2
+123,5,0.2,0.1934,0.75,0.5
+777,5,0.2,0.1471,1.0,1.0
+mean,5,0.2,0.1886,0.5833,0.5667

@@ -1,0 +1,5 @@
+seed,weeks,M8_mean_weekly_utility,M13_mean_weekly_utility,delta_utility,delta_utility_positive,matched_exposure
+42,5,0.025037,0.025037,0.0,False,0.793
+123,5,0.026753,0.026753,0.0,False,0.85
+777,5,0.025101,0.025101,0.0,False,0.7951
+mean,5,0.02563,0.02563,0.0,False,0.8127

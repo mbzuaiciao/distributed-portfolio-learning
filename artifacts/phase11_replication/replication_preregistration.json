@@ -1,0 +1,115 @@
+{
+  "preregistration_metadata": {
+    "experiment_id": "phase11_bayesian_lora_replication",
+    "title": "Phase 11: Preregistered Bayesian-LoRA Replication + Prospective Prediction Freeze",
+    "status": "PREREGISTERED_FROZEN",
+    "created_at_utc": "2026-09-09T01:38:00Z",
+    "purpose": "Evaluate whether the preserved Bayesian-LoRA training procedure reproduces the historically useful uncertainty behavior, and freeze newly trained models for prospective evaluation.",
+    "scientific_distinction": "This is a NEW replication experiment. It is NOT a continuation of the original fitted models."
+  },
+  "frozen_model_specification": {
+    "base_model": {
+      "identifier": "ProsusAI/finbert",
+      "architecture": "BertForSequenceClassification",
+      "task_type": "SEQ_CLS",
+      "num_labels": 2,
+      "label_definition": "1 if 1-day move <= -3.65% (downside extreme), 0 otherwise"
+    },
+    "lora_parameters": {
+      "rank": 16,
+      "alpha": 32,
+      "scaling": 2.0,
+      "dropout": 0.05,
+      "target_modules": [
+        "attention.self.query",
+        "attention.self.value"
+      ]
+    },
+    "bayesian_variational_posterior": {
+      "form": "Mean-field Gaussian q(theta) = N(mu, diag(sigma^2))",
+      "sigma_parameterization": "sigma = softplus(rho) + eps (eps=1e-6)",
+      "prior_std": 1.0,
+      "sigma_init": 0.01,
+      "kl_beta": 0.003,
+      "kl_scaling": "(kl_beta / dataset_size) * raw_kl",
+      "mc_samples": 32
+    },
+    "seeds": [
+      42,
+      123,
+      777
+    ]
+  },
+  "frozen_training_recipe": {
+    "dataset": "RudrakshNanavaty/earnings-call-data",
+    "split": "train",
+    "streaming": true,
+    "max_rows": 20000,
+    "training_data_end_date": "2021-12-31",
+    "validation_fraction": 0.15,
+    "validation_split": "15% random split of pre-2022 data",
+    "optimizer": "AdamW",
+    "learning_rate": 0.0002,
+    "weight_decay": 0.01,
+    "warmup_fraction": 0.05,
+    "scheduler": "linear schedule with warmup",
+    "epochs": 4,
+    "batch_size": 32,
+    "model_selection_metric": "validation_auroc",
+    "early_stopping": "best state dict by validation AUROC across 4 epochs",
+    "tokenization": {
+      "chunk_tokens": 384,
+      "chunk_stride": 64,
+      "train_max_chunks": 2,
+      "eval_max_chunks": 4,
+      "max_length": 512
+    }
+  },
+  "predeclared_replication_success_criteria": {
+    "primary_criterion": "Spearman(epistemic_uncertainty, future_forecast_error) > 0",
+    "secondary_criteria": {
+      "auroc_top_error": "AUROC(incorrect, epistemic_uncertainty) > 0.50",
+      "quintile_error_ratio": "error_rate(Q5_highest_uncertainty) > error_rate(Q1_lowest_uncertainty)",
+      "historical_m13_timing_delta_utility": "Delta U = mean(u_net(M13_H4)) - mean(u_net(M8_H4)) > 0 on historical benchmark"
+    },
+    "reporting_rule": "Report Seed 42, Seed 123, Seed 777 separately, plus 3-seed arithmetic mean. No best-seed selection permitted."
+  },
+  "frozen_portfolio_architecture": {
+    "holding_horizon_H": 4,
+    "cohort_capital_weighting": "Equal capital per active cohort (1/H = 25%)",
+    "within_cohort_weighting": "Frozen-entry Markowitz",
+    "target_exposure": 0.7073,
+    "timing_overlay": {
+      "policy": "M13 Hysteresis",
+      "tau_enter": 1.2,
+      "tau_exit": 0.2,
+      "s_min": 0.20,
+      "s_max": 1.00
+    },
+    "transaction_costs": "10 bps on actual traded risky turnover",
+    "cash_return": 0.0
+  },
+  "prospective_evaluation_and_outcome_tree": {
+    "primary_endpoint": "Delta U = mean(u_net(M13_H4)) - mean(u_net(M8_H4)) > 0",
+    "architecture_endpoint": "M8_H4 vs M8_H1 (testing cohort stacking generalization)",
+    "right_censoring_rule": "Include only events with a complete H=4 realized path based purely on calendar completeness.",
+    "outcome_tree": {
+      "Outcome A": "Training procedure replicates historically AND prospective M13 is positive (Strongest result).",
+      "Outcome B": "Historical procedure replicates, prospective timing weak/negative (Historical phenomenon reproducible but does not generalize prospectively).",
+      "Outcome C": "Historical replication itself fails (Original result depended strongly on lost fitted checkpoints).",
+      "Outcome D": "Cohort H4 confirms, timing does not.",
+      "Outcome E": "Timing confirms, H4 weakens.",
+      "Outcome F": "Data or provenance integrity prevents valid prospective evaluation."
+    },
+    "mandatory_language": {
+      "approved_phrasing": [
+        "replication of the training procedure",
+        "prospective evaluation of newly trained preregistered models"
+      ],
+      "prohibited_phrasing": [
+        "reproduction of the original model",
+        "continuation of the historical checkpoints"
+      ]
+    }
+  }
+}

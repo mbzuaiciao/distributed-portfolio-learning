@@ -1,0 +1,53 @@
+{
+  "manifest_title": "Phase 11 Replicated Bayesian-LoRA Frozen Models",
+  "created_at_utc": "2026-09-09T14:49:29.159629+00:00",
+  "preregistration_git_sha": "31ff689",
+  "base_model": "ProsusAI/finbert",
+  "environment": {
+    "python_version": "3.14.2 (main, Jan 14 2026, 23:37:46) [Clang 21.1.4 ]",
+    "pytorch_version": "2.14.0",
+    "transformers_version": "5.16.1",
+    "device": "mps"
+  },
+  "seeds_trained": [
+    {
+      "seed": 42,
+      "checkpoint_path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/phase11_replication/frozen_models/bayesian_lora_seed_42_state.pt",
+      "checkpoint_filename": "bayesian_lora_seed_42_state.pt",
+      "size_bytes": 4759645,
+      "sha256": "d382640351dbef4fd40b47c8b033b1a4823c57d8fd6740b6fd9d1709043dc309",
+      "best_validation_auroc": 0.9998426134380752,
+      "training_start_utc": "2026-09-09T13:56:50.980410+00:00",
+      "training_end_utc": "2026-09-09T14:22:52.691451+00:00",
+      "device": "mps",
+      "variational_params_count": 1179648,
+      "trainable_params_count": 1181186
+    },
+    {
+      "seed": 123,
+      "checkpoint_path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/phase11_replication/frozen_models/bayesian_lora_seed_123_state.pt",
+      "checkpoint_filename": "bayesian_lora_seed_123_state.pt",
+      "size_bytes": 4759749,
+      "sha256": "e094b775c7061b7c60341704525719b2c3fd4055e1aa325581eacabc23059301",
+      "best_validation_auroc": 0.9999338520246983,
+      "training_start_utc": "2026-09-09T14:22:52.820922+00:00",
+      "training_end_utc": "2026-09-09T14:37:09.284350+00:00",
+      "device": "mps",
+      "variational_params_count": 1179648,
+      "trainable_params_count": 1181186
+    },
+    {
+      "seed": 777,
+      "checkpoint_path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/phase11_replication/frozen_models/bayesian_lora_seed_777_state.pt",
+      "checkpoint_filename": "bayesian_lora_seed_777_state.pt",
+      "size_bytes": 4759749,
+      "sha256": "0f084381c8b387f5a4946e337470c8c25707228c40cf676604d1db22f3a13e2a",
+      "best_validation_auroc": 0.9998118204150899,
+      "training_start_utc": "2026-09-09T14:37:09.363575+00:00",
+      "training_end_utc": "2026-09-09T14:49:29.148901+00:00",
+      "device": "mps",
+      "variational_params_count": 1179648,
+      "trainable_params_count": 1181186
+    }
+  ]
+}

@@ -1,0 +1,105 @@
+{
+  "audit": "Phase 11.4: Uncertainty Metric Semantic Audit",
+  "mathematical_definition_of_top20_error_indicator": "z_i = 1 if |p_i - y_i| >= Quantile_0.80(|p - y|) else 0, where y_i in {0,1} and p_i in [0,1].",
+  "explanation_of_discrepancy": "Because only 20.02% of benchmark events have true label y=1, and model predictions are generally conservative (p in [0.001, 0.25]), the top 20% absolute errors are virtually 100% composed of false negatives (y=1 events, where error = 1 - p >= 0.60). Consequently, AUROC(epistemic uncertainty, top20_error) is mathematically isomorphic to AUROC(epistemic uncertainty, y=1), reflecting the directional event predictability (~0.52). In contrast, continuous Spearman rank correlation (+0.56) is driven by the 80% majority class (y=0), where error |p - 0| = p scales monotonically with epistemic uncertainty.",
+  "table": [
+    {
+      "seed": "42",
+      "spearman_uncertainty_abs_error": 0.595,
+      "top20_error_auroc": 0.5194,
+      "top20_error_ap": 0.2181,
+      "top20_base_rate": 0.2002,
+      "Q1_MAE": 0.2161,
+      "Q5_MAE": 0.3346
+    },
+    {
+      "seed": "123",
+      "spearman_uncertainty_abs_error": 0.5928,
+      "top20_error_auroc": 0.5191,
+      "top20_error_ap": 0.2143,
+      "top20_base_rate": 0.2002,
+      "Q1_MAE": 0.1891,
+      "Q5_MAE": 0.247
+    },
+    {
+      "seed": "777",
+      "spearman_uncertainty_abs_error": 0.4833,
+      "top20_error_auroc": 0.5204,
+      "top20_error_ap": 0.2282,
+      "top20_base_rate": 0.2002,
+      "Q1_MAE": 0.217,
+      "Q5_MAE": 0.2286
+    },
+    {
+      "seed": "mean",
+      "spearman_uncertainty_abs_error": 0.557,
+      "top20_error_auroc": 0.5196,
+      "top20_error_ap": 0.2202,
+      "top20_base_rate": 0.2002,
+      "Q1_MAE": 0.2074,
+      "Q5_MAE": 0.2701
+    }
+  ],
+  "details_by_seed": {
+    "seed_42": {
+      "spearman_corr": 0.5949945452543509,
+      "spearman_pval": 5.349470235588405e-166,
+      "top20_threshold": 0.6033096989616765,
+      "top20_base_rate": 0.20023148148148148,
+      "top20_auroc": 0.5193570514375581,
+      "top20_ap": 0.2181488884642524,
+      "q1_mae": 0.21611723815618525,
+      "q5_mae": 0.3346234883257118,
+      "y_pos_count": 346,
+      "top20_count": 346,
+      "intersection_top20_and_y1": 340,
+      "top20_overlap_with_y1": 0.9826589595375722,
+      "spearman_within_y0": 0.9706246376562503,
+      "spearman_within_y1": -0.9761476860143997,
+      "spearman_p_vs_epi": 0.9719961590352136,
+      "directional_auc_p": 0.5181754682415532,
+      "auc_epi_predicting_y": 0.5198171369298077
+    },
+    "seed_123": {
+      "spearman_corr": 0.5928401318947749,
+      "spearman_pval": 1.62824885282396e-164,
+      "top20_threshold": 0.6265472224740022,
+      "top20_base_rate": 0.20023148148148148,
+      "top20_auroc": 0.5191290999891253,
+      "top20_ap": 0.21432110801323126,
+      "q1_mae": 0.18911081362215018,
+      "q5_mae": 0.24698634065349176,
+      "y_pos_count": 346,
+      "top20_count": 346,
+      "intersection_top20_and_y1": 346,
+      "top20_overlap_with_y1": 1.0,
+      "spearman_within_y0": 0.9619740665354544,
+      "spearman_within_y1": -0.9632282740873735,
+      "spearman_p_vs_epi": 0.9620377713321058,
+      "directional_auc_p": 0.5247024083384222,
+      "auc_epi_predicting_y": 0.5191290999891253
+    },
+    "seed_777": {
+      "spearman_corr": 0.4832504441958012,
+      "spearman_pval": 8.26423153456037e-102,
+      "top20_threshold": 0.5998656343215314,
+      "top20_base_rate": 0.20023148148148148,
+      "top20_auroc": 0.5204131567720401,
+      "top20_ap": 0.22819812253382682,
+      "q1_mae": 0.21701634507576142,
+      "q5_mae": 0.22862284103386543,
+      "y_pos_count": 346,
+      "top20_count": 346,
+      "intersection_top20_and_y1": 346,
+      "top20_overlap_with_y1": 1.0,
+      "spearman_within_y0": 0.776351297780363,
+      "spearman_within_y1": -0.7332146506913457,
+      "spearman_p_vs_epi": 0.7678219762321339,
+      "directional_auc_p": 0.4991739374116427,
+      "auc_epi_predicting_y": 0.5204131567720401
+    }
+  },
+  "prospective_freeze_sha256": "6542b33fa5810985beff8c835e71b598ffaf47bf943e88d43f7c50d7dcb30aeb",
+  "prospective_sha_verified": true,
+  "zero_2026_outcomes_accessed": true
+}

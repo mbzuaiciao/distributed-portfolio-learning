@@ -1553,10 +1553,42 @@ An exhaustive audit of all prediction records, model checkpoints, and stock pric
 
 ---
 
+## Phase 12: First 2026 Tranche Under Prospective Protocol (Blind Retrospective)
+
+### 1. Tranche 1 Classification & Canonical Terminology
+- **Tranche Type**: **Blind retrospective / retrospective-but-frozen 2026 tranche** ("first 2026 tranche under the prospective protocol").
+- **Genuinely Prospective Completed Events as of 2026-09-09**: **0**.
+- **Sample Horizon**: Evaluated on 5 corporate events (`GOOGL`, `MSFT`, `AAPL`, `AMZN`, `NVDA`) across 5 calendar trading weeks (2026-W30 through 2026-W34).
+- **Outcome Classification**: **Outcome F — Valid prospective evaluation, currently insufficient/uninformative sample for hypothesis adjudication**.
+  - During these 5 calm weeks, relative epistemic uncertainty never reached $\tau_{\text{enter}} = 1.2$.
+  - Consequently, $M_{13}$ never entered the defensive regime ($s_{\text{reduced}} = 0.45$), yielding **0 informative timing weeks** and an exact no-contrast result ($\Delta U = 0.000000$).
+  - The bootstrap distribution $[0.0, 0.0]$ is classified as **DEGENERATE / NON-INFORMATIVE BOOTSTRAP**, not evidence against $M_{13}$.
+
+### 2. Phase 12.3 Genuine Prospective Event Ingestion Pipeline
+To evaluate future 2026 earnings announcements genuinely prospectively as they become publicly available, Phase 12.3 establishes an automated text-only event ingestion pipeline:
+- **CLI Command**:
+  ```bash
+  uv run python experiments/freeze_new_prospective_event.py \
+      --ticker TICKER \
+      --filing-path PATH \
+      --event-timestamp TIMESTAMP \
+      [--fiscal-period PERIOD]
+  ```
+- **Mandatory Causality Invariant**:
+  $$\text{document\_available} < \text{prediction\_frozen} < \text{first\_evaluated\_market\_observation}$$
+- **Conservative First-Tradable Cutoff Rule**:
+  - After-market, pre-market, and weekend filings: Prediction must freeze before the next regular session opens (09:30 US/Eastern).
+  - Intraday filings: Holding period strictly begins with the NEXT regular session; prediction must freeze before that next session opens (zero intraday execution assumptions).
+- **Milestone Stopping Criterion**:
+  - Remains strictly the earlier of: $\ge 20$ **GENUINELY PROSPECTIVE** completed $H=4$ events, or **December 31, 2026**.
+  - Current eligible completed count: **0**.
+
+---
+
 ## Code Quality & Standards
 
 - **Formatting & Linting**: Verified with `ruff` (`ruff check .` passes with 0 errors).
-- **Testing**: 122 comprehensive unit tests covering all core modules with `pytest`.
+- **Testing**: 178 comprehensive unit tests covering all core modules with `pytest`.
 - **Determinism**: Fixed random seeds, exact analytical benchmarks, and verifiable hand calculations.
 
 ```bash

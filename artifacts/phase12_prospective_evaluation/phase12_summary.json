@@ -1,23 +1,27 @@
 {
-  "evaluation_title": "Phase 12: Prospective 2026 Outcome Evaluation",
+  "evaluation_title": "Phase 12: First 2026 Tranche Under Prospective Protocol (Blind Retrospective)",
   "timestamp_utc": "2026-09-09T19:50:35.916801+00:00",
   "market_data_as_of": "2026-09-09",
-  "evaluation_window": "2026 prospective evaluation through 2026-09-09",
+  "tranche_classification": "blind retrospective / retrospective-but-frozen 2026 tranche",
+  "tranche_description": "First 2026 tranche under the prospective protocol",
+  "evaluation_window": "Blind retrospective 2026 tranche through 2026-09-09",
   "sample_size": {
     "frozen_inputs": 5,
     "complete_h4_events": 4,
     "right_censored_events": 1,
+    "genuinely_prospective_completed_events": 0,
     "usable_calendar_weeks": 5,
     "first_usable_event_date": "2026-07-23",
     "last_usable_event_date": "2026-08-01",
     "last_fully_observed_portfolio_week": "2026-08-31"
   },
-  "verdict": "Outcome F \u2014 Valid prospective evaluation, currently insufficient/uninformative sample for hypothesis adjudication.",
-  "verdict_reason": "Sample consists of only 5 unique prospective events (4 complete H=4, 1 right-censored) across 5 portfolio weeks. Because relative epistemic uncertainty never exceeded tau_enter=1.2, M13 never entered the defensive regime, producing an exact no-contrast result (Delta U = 0.0). This provides zero empirical contrast to test timing underperformance or outperformance.",
+  "verdict": "Outcome F — Valid prospective evaluation, currently insufficient/uninformative sample for hypothesis adjudication.",
+  "verdict_reason": "Sample consists of only 5 unique events from the blind retrospective 2026 tranche (4 complete H=4, 1 right-censored) across 5 portfolio weeks. Because relative epistemic uncertainty never exceeded tau_enter=1.2, M13 never entered the defensive regime, producing an exact no-contrast result (Delta U = 0.0). Exactly 0 genuinely prospective completed events existed as of 2026-09-09.",
   "primary_endpoint_mean": 0.0,
   "model_level_mean_spearman": 0.2333,
   "bootstrap_classification": "DEGENERATE / NON-INFORMATIVE BOOTSTRAP (Zero paired differences across all observed weeks)",
   "informative_timing_weeks": 0,
-  "unique_prospective_events": 5,
-  "model_level_sample_size_note": "N=5 unique prospective events. Seeds 42, 123, 777 are repeated model fits sharing identical market outcomes, not 15 independent observations. Early prospective uncertainty-error behavior is mixed and inconclusive."
+  "unique_events_count": 5,
+  "genuinely_prospective_completed_count": 0,
+  "model_level_sample_size_note": "N=5 unique events in blind retrospective tranche. Seeds 42, 123, 777 are repeated model fits sharing identical market outcomes, not 15 independent observations. Early uncertainty-error behavior is mixed and inconclusive."
 }

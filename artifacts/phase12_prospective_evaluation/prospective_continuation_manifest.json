@@ -1,13 +1,16 @@
 {
-  "manifest_title": "Phase 12.1 Sequential Prospective Continuation Protocol",
+  "manifest_title": "Phase 12.3 Prospective Continuation Protocol & Genuine Event Ingestion",
   "freeze_timestamp_utc": "2026-09-09T20:26:41.258015+00:00",
   "as_of_date": "2026-09-09",
   "unblinded_tranche_1": {
     "tranche_id": "prospective_tranche_1",
+    "tranche_classification": "blind retrospective / retrospective-but-frozen 2026 tranche",
+    "tranche_description": "First 2026 tranche under the prospective protocol",
     "status": "UNBLINDED_OBSERVED_2026_09_09",
     "unique_events_count": 5,
     "complete_h4_events_count": 4,
     "right_censored_events_count": 1,
+    "genuinely_prospective_completed_events_count": 0,
     "usable_calendar_weeks": 5,
     "event_ids": [
       "GOOGL_2026_Q2",
@@ -17,11 +20,29 @@
       "NVDA_2026_Q2"
     ],
     "informative_timing_weeks_count": 0,
-    "tranche_verdict": "Outcome F \u2014 Valid prospective evaluation, currently insufficient/uninformative sample for hypothesis adjudication."
+    "tranche_verdict": "Outcome F — Valid prospective evaluation, currently insufficient/uninformative sample for hypothesis adjudication."
+  },
+  "genuine_prospective_eligibility_protocol": {
+    "mandatory_conditions": [
+      "A. The filing/transcript must become publicly available after the 2026-09-09 17:15 UTC freeze.",
+      "B. The frozen Bayesian-LoRA prediction must be generated strictly after document availability.",
+      "C. The prediction artifact must be hashed and committed BEFORE the first market-return observation used by the evaluation.",
+      "D. No realized price/return data after the information release may be read before prediction freeze."
+    ],
+    "first_tradable_cutoff_rule": {
+      "pre_market": "Prediction must be frozen before today's regular session opens (09:30 US/Eastern).",
+      "after_market": "Prediction must be frozen before next regular trading session opens (09:30 US/Eastern).",
+      "weekend_holiday": "Prediction must be frozen before next regular trading session opens (09:30 US/Eastern Monday).",
+      "intraday_conservative": "Holding period begins with NEXT regular session. Prediction must be frozen before next session opens."
+    },
+    "causality_assertion": "document_available < prediction_frozen < first_evaluated_market_observation",
+    "event_freeze_command": "uv run python experiments/freeze_new_prospective_event.py --ticker TICKER --filing-path PATH --event-timestamp TIMESTAMP",
+    "per_event_artifact_dir": "artifacts/prospective_events/<event_id>/",
+    "canonical_event_registry": "artifacts/phase12_prospective_evaluation/prospective_event_registry.csv"
   },
   "continuation_rules": {
     "milestone_criteria": "Earlier of: (A) 20 UNIQUE events with complete H=4 return paths, or (B) December 31, 2026 market-data cutoff.",
-    "stopping_rule_independence": "Milestone is fixed purely on calendar/constituent completeness. No early stopping based on performance or whether M13 activates.",
+    "stopping_rule_independence": "Milestone is fixed purely on calendar/constituent completeness. No early stopping based on performance or whether M13 activates, price volatility, or interesting results.",
     "dual_reporting_protocol": {
       "report_new_tranche_alone": true,
       "report_cumulative_sample": true,

@@ -1,0 +1,24 @@
+variable,variable_label,variable_type,spearman_rho_pooled,p_value_pooled,rho_seed_42,rho_seed_123,rho_seed_777,n_observations
+post_hoc_corr_uncertainty_error,"Correlation(Uncertainty, Realized Error)",POST_HOC,0.3654,0.0,0.0919,0.3174,0.5829,504
+post_hoc_spearman_uncertainty_error,"Spearman(Uncertainty, Realized Error)",POST_HOC,0.3301,0.0,0.1227,0.4401,0.4212,504
+post_hoc_error_reduction_share,Capital Reduction in High-Error Names,POST_HOC,0.245,0.0,0.2086,0.3057,0.3293,504
+post_hoc_realized_return_tail,Realized Return Tail Spread,POST_HOC,-0.1252,0.00487,-0.0465,-0.1241,-0.1704,504
+cv_uncertainty,Coefficient of Variation of Uncertainty,EX_ANTE,-0.0736,0.09886,-0.0369,-0.0647,0.0756,504
+hhi_m0,M0 Concentration (HHI),EX_ANTE,0.0675,0.13016,-0.0308,0.0375,0.1102,504
+effective_rank,Covariance Effective Rank,EX_ANTE,-0.0636,0.15423,0.0225,-0.0492,-0.1098,504
+condition_number,Covariance Condition Number,EX_ANTE,-0.0636,0.15423,0.0225,-0.0492,-0.1098,504
+post_hoc_realized_return_std,Realized Return Std,POST_HOC,-0.0493,0.26934,-0.0365,-0.0585,-0.043,504
+corr_m0_weight_uncertainty,"Corr(M0 Weight, Uncertainty)",EX_ANTE,-0.0282,0.52694,-0.0573,-0.0219,-0.0234,504
+cap_removed_highest_uncertainty,Capital Removed from Highest Uncertainty Bin,EX_ANTE,0.0261,0.55958,-0.0049,0.0636,-0.0633,504
+cap_removed_top2_uncertainty,Capital Removed from Top 2 Uncertainty Bins,EX_ANTE,0.0227,0.61075,-0.0479,0.0643,-0.0402,504
+post_hoc_mean_forecast_error,Mean Forecast Error,POST_HOC,-0.0175,0.69438,0.1456,-0.2031,0.0326,504
+total_capital_reallocated,Total Capital Shifted by M16,EX_ANTE,0.0162,0.7161,0.0198,0.0463,-0.0454,504
+mean_uncertainty,Uncertainty Level (Mean Sigma),EX_ANTE,0.0144,0.7463,0.1746,0.1824,0.0546,504
+median_uncertainty,Uncertainty Level (Median Sigma),EX_ANTE,0.0141,0.75147,0.1599,0.1626,0.0676,504
+delta_hhi,Delta HHI (M16 - M0),EX_ANTE,0.0106,0.81282,0.0163,0.0549,0.0581,504
+q90_uncertainty,Uncertainty Level (Q90 Sigma),EX_ANTE,0.0066,0.88305,0.1647,0.1347,0.0566,504
+mean_pairwise_correlation,Mean Pairwise Correlation,EX_ANTE,0.0049,0.91219,-0.0504,-0.0099,0.0026,504
+iqr_uncertainty,Uncertainty Dispersion (IQR Sigma),EX_ANTE,-0.002,0.96434,0.1355,0.056,0.0462,504
+std_uncertainty,Uncertainty Dispersion (Std Sigma),EX_ANTE,0.0013,0.97731,0.1112,0.0686,0.0912,504
+alpha_dispersion,Alpha Signal Dispersion,EX_ANTE,0.001,0.98294,0.0176,0.0364,0.235,504
+std_p_mean,Forecast Prob Dispersion,EX_ANTE,0.001,0.98294,0.0176,0.0364,0.235,504

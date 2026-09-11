@@ -1,0 +1,46 @@
+variable,variable_label,variable_type,bucket,n_weeks,mean_delta_u_m16,median_delta_u_m16,positive_weeks_pct,mean_delta_return,mean_delta_variance
+mean_uncertainty,Uncertainty Level (Mean Sigma),EX_ANTE,Low,168,0.00031,0.000315,54.76,0.00034,6e-05
+mean_uncertainty,Uncertainty Level (Mean Sigma),EX_ANTE,Medium,168,-0.000193,-0.00017,42.86,-0.00017,4.5e-05
+mean_uncertainty,Uncertainty Level (Mean Sigma),EX_ANTE,High,168,-8e-06,0.0,35.71,-8e-06,1e-06
+std_uncertainty,Uncertainty Dispersion (Std Sigma),EX_ANTE,Low,172,0.000363,0.000182,53.49,0.000388,4.9e-05
+std_uncertainty,Uncertainty Dispersion (Std Sigma),EX_ANTE,Medium,164,-0.000368,-0.000244,42.07,-0.00034,5.6e-05
+std_uncertainty,Uncertainty Dispersion (Std Sigma),EX_ANTE,High,168,9.6e-05,0.0,37.5,9.7e-05,2e-06
+cv_uncertainty,Coefficient of Variation of Uncertainty,EX_ANTE,Low,168,0.000405,0.00019,54.17,0.000433,5.6e-05
+cv_uncertainty,Coefficient of Variation of Uncertainty,EX_ANTE,Medium,168,-0.000101,0.0,44.05,-7.9e-05,4.5e-05
+cv_uncertainty,Coefficient of Variation of Uncertainty,EX_ANTE,High,168,-0.000195,-1e-06,35.12,-0.000193,5e-06
+std_p_mean,Forecast Downside Prob Dispersion,EX_ANTE,Low,181,0.000291,0.000193,54.14,0.000318,5.4e-05
+std_p_mean,Forecast Downside Prob Dispersion,EX_ANTE,Medium,155,-0.00025,-0.000244,41.94,-0.000225,5e-05
+std_p_mean,Forecast Downside Prob Dispersion,EX_ANTE,High,168,2.6e-05,0.0,36.31,2.7e-05,2e-06
+alpha_dispersion,Alpha Signal Dispersion,EX_ANTE,Low,181,0.000291,0.000193,54.14,0.000318,5.4e-05
+alpha_dispersion,Alpha Signal Dispersion,EX_ANTE,Medium,155,-0.00025,-0.000244,41.94,-0.000225,5e-05
+alpha_dispersion,Alpha Signal Dispersion,EX_ANTE,High,168,2.6e-05,0.0,36.31,2.7e-05,2e-06
+effective_rank,Covariance Effective Rank,EX_ANTE,Low,198,0.000243,0.0,49.49,0.000285,8.3e-05
+effective_rank,Covariance Effective Rank,EX_ANTE,Medium,138,-0.000131,-1e-06,44.2,-0.000127,9e-06
+effective_rank,Covariance Effective Rank,EX_ANTE,High,168,-7e-05,-1e-06,38.69,-6.9e-05,1e-06
+condition_number,Covariance Condition Number,EX_ANTE,Low,198,0.000243,0.0,49.49,0.000285,8.3e-05
+condition_number,Covariance Condition Number,EX_ANTE,Medium,138,-0.000131,-1e-06,44.2,-0.000127,9e-06
+condition_number,Covariance Condition Number,EX_ANTE,High,168,-7e-05,-1e-06,38.69,-6.9e-05,1e-06
+hhi_m0,M0 Concentration (HHI),EX_ANTE,Low,168,-0.000159,-6e-05,43.45,-0.000155,8e-06
+hhi_m0,M0 Concentration (HHI),EX_ANTE,Medium,168,-1.7e-05,0.0,42.86,-1e-05,1.5e-05
+hhi_m0,M0 Concentration (HHI),EX_ANTE,High,168,0.000285,0.0,47.02,0.000327,8.4e-05
+corr_m0_weight_uncertainty,"Corr(M0 Weight, Uncertainty)",EX_ANTE,Low,168,6.5e-05,0.0,50.0,0.00011,9e-05
+corr_m0_weight_uncertainty,"Corr(M0 Weight, Uncertainty)",EX_ANTE,Medium,168,9.3e-05,0.0,48.81,9.9e-05,1.2e-05
+corr_m0_weight_uncertainty,"Corr(M0 Weight, Uncertainty)",EX_ANTE,High,168,-4.9e-05,-1e-06,34.52,-4.7e-05,5e-06
+total_capital_reallocated,Total Capital Shifted by M16,EX_ANTE,Low,168,-3.7e-05,0.0,32.74,-3.8e-05,-0.0
+total_capital_reallocated,Total Capital Shifted by M16,EX_ANTE,Medium,168,-0.000163,-5.8e-05,48.81,-0.00016,6e-06
+total_capital_reallocated,Total Capital Shifted by M16,EX_ANTE,High,168,0.000309,0.000182,51.79,0.00036,0.000101
+cap_removed_top2_uncertainty,Capital Removed from Top 2 Uncertainty Bins,EX_ANTE,Low,168,-1.2e-05,0.0,33.93,-1.2e-05,-1e-06
+cap_removed_top2_uncertainty,Capital Removed from Top 2 Uncertainty Bins,EX_ANTE,Medium,168,-0.000217,-9.2e-05,46.43,-0.000213,8e-06
+cap_removed_top2_uncertainty,Capital Removed from Top 2 Uncertainty Bins,EX_ANTE,High,168,0.000338,0.000253,52.98,0.000388,9.9e-05
+post_hoc_realized_return_std,Realized Cross-Sectional Return Std,POST_HOC,Low,168,-5.5e-05,0.0,45.83,-5.4e-05,2e-06
+post_hoc_realized_return_std,Realized Cross-Sectional Return Std,POST_HOC,Medium,168,0.000468,-1e-06,44.64,0.000511,8.6e-05
+post_hoc_realized_return_std,Realized Cross-Sectional Return Std,POST_HOC,High,168,-0.000304,0.0,42.86,-0.000295,1.9e-05
+post_hoc_mean_forecast_error,Realized Mean Forecast Error,POST_HOC,Low,168,0.000423,6e-06,50.6,0.00047,9.4e-05
+post_hoc_mean_forecast_error,Realized Mean Forecast Error,POST_HOC,Medium,168,-0.000136,-0.0,36.31,-0.000136,1e-06
+post_hoc_mean_forecast_error,Realized Mean Forecast Error,POST_HOC,High,168,-0.000178,0.0,46.43,-0.000172,1.1e-05
+post_hoc_corr_uncertainty_error,"Correlation(Uncertainty, Forecast Error)",POST_HOC,Low,168,-0.001351,-0.00061,36.31,-0.001344,1.3e-05
+post_hoc_corr_uncertainty_error,"Correlation(Uncertainty, Forecast Error)",POST_HOC,Medium,168,-6.8e-05,-1e-06,38.69,-6.4e-05,9e-06
+post_hoc_corr_uncertainty_error,"Correlation(Uncertainty, Forecast Error)",POST_HOC,High,168,0.001528,0.000193,58.33,0.00157,8.5e-05
+post_hoc_error_reduction_share,Share of Reduction in High-Error Names,POST_HOC,Low,169,-0.000633,-1e-06,31.36,-0.000628,1e-05
+post_hoc_error_reduction_share,Share of Reduction in High-Error Names,POST_HOC,Medium,167,-0.000571,-0.000244,34.13,-0.000569,5e-06
+post_hoc_error_reduction_share,Share of Reduction in High-Error Names,POST_HOC,High,168,0.001314,0.000828,67.86,0.001359,9.1e-05

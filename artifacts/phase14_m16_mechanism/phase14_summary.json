@@ -1,0 +1,212 @@
+{
+  "timestamp_utc": "2026-09-11T20:32:36.274784+00:00",
+  "phase": "Phase 14: Mechanism Decomposition of Uncertainty-Aware Risk Inflation",
+  "frozen_strategy": {
+    "strategy": "M16",
+    "lambda_u": 0.1,
+    "status": "FROZEN_UNTOUCHED",
+    "horizon_H": 4,
+    "transaction_cost_bps": 10.0,
+    "gamma": 1.0
+  },
+  "universe": {
+    "primary_clean_regimes": [
+      "2022",
+      "2023",
+      "2024-2025"
+    ],
+    "total_clean_weeks_observations": 504,
+    "secondary_diagnostic_regimes": [
+      "2020",
+      "2021"
+    ],
+    "total_diagnostic_weeks_observations": 297
+  },
+  "regime_performance_reconciliation": {
+    "2022_mean_delta_u": -0.000208,
+    "2023_mean_delta_u": 0.000592,
+    "2024_2025_mean_delta_u": -0.000181
+  },
+  "structural_2023_vs_other_decomposition": {
+    "2023_mean_delta_u": 0.000592204081632653,
+    "non_2023_mean_delta_u": -0.00019259663865546218,
+    "2023_pct_positive_weeks": 51.02040816326531,
+    "non_2023_pct_positive_weeks": 41.73669467787115,
+    "uncertainty_dispersion_2023": 0.014771925170068029,
+    "uncertainty_dispersion_other": 0.010508333333333333,
+    "forecast_dispersion_2023": 0.029555782312925175,
+    "forecast_dispersion_other": 0.022334453781512605,
+    "effective_rank_2023": 17.23646530612245,
+    "effective_rank_other": 17.55798823529412,
+    "m0_hhi_2023": 0.256724693877551,
+    "m0_hhi_other": 0.24852983193277312,
+    "post_hoc_return_dispersion_2023": 0.05339183673469387,
+    "post_hoc_return_dispersion_other": 0.06461512605042016,
+    "post_hoc_error_reduction_share_2023": 0.5092374149659864,
+    "post_hoc_error_reduction_share_other": 0.5252490196078432
+  },
+  "top_ex_ante_associations": [
+    {
+      "variable": "cv_uncertainty",
+      "variable_label": "Coefficient of Variation of Uncertainty",
+      "variable_type": "EX_ANTE",
+      "spearman_rho_pooled": -0.0736,
+      "p_value_pooled": 0.09886,
+      "rho_seed_42": -0.0369,
+      "rho_seed_123": -0.0647,
+      "rho_seed_777": 0.0756,
+      "n_observations": 504
+    },
+    {
+      "variable": "hhi_m0",
+      "variable_label": "M0 Concentration (HHI)",
+      "variable_type": "EX_ANTE",
+      "spearman_rho_pooled": 0.0675,
+      "p_value_pooled": 0.13016,
+      "rho_seed_42": -0.0308,
+      "rho_seed_123": 0.0375,
+      "rho_seed_777": 0.1102,
+      "n_observations": 504
+    },
+    {
+      "variable": "effective_rank",
+      "variable_label": "Covariance Effective Rank",
+      "variable_type": "EX_ANTE",
+      "spearman_rho_pooled": -0.0636,
+      "p_value_pooled": 0.15423,
+      "rho_seed_42": 0.0225,
+      "rho_seed_123": -0.0492,
+      "rho_seed_777": -0.1098,
+      "n_observations": 504
+    },
+    {
+      "variable": "condition_number",
+      "variable_label": "Covariance Condition Number",
+      "variable_type": "EX_ANTE",
+      "spearman_rho_pooled": -0.0636,
+      "p_value_pooled": 0.15423,
+      "rho_seed_42": 0.0225,
+      "rho_seed_123": -0.0492,
+      "rho_seed_777": -0.1098,
+      "n_observations": 504
+    },
+    {
+      "variable": "corr_m0_weight_uncertainty",
+      "variable_label": "Corr(M0 Weight, Uncertainty)",
+      "variable_type": "EX_ANTE",
+      "spearman_rho_pooled": -0.0282,
+      "p_value_pooled": 0.52694,
+      "rho_seed_42": -0.0573,
+      "rho_seed_123": -0.0219,
+      "rho_seed_777": -0.0234,
+      "n_observations": 504
+    }
+  ],
+  "top_post_hoc_associations": [
+    {
+      "variable": "post_hoc_corr_uncertainty_error",
+      "variable_label": "Correlation(Uncertainty, Realized Error)",
+      "variable_type": "POST_HOC",
+      "spearman_rho_pooled": 0.3654,
+      "p_value_pooled": 0.0,
+      "rho_seed_42": 0.0919,
+      "rho_seed_123": 0.3174,
+      "rho_seed_777": 0.5829,
+      "n_observations": 504
+    },
+    {
+      "variable": "post_hoc_spearman_uncertainty_error",
+      "variable_label": "Spearman(Uncertainty, Realized Error)",
+      "variable_type": "POST_HOC",
+      "spearman_rho_pooled": 0.3301,
+      "p_value_pooled": 0.0,
+      "rho_seed_42": 0.1227,
+      "rho_seed_123": 0.4401,
+      "rho_seed_777": 0.4212,
+      "n_observations": 504
+    },
+    {
+      "variable": "post_hoc_error_reduction_share",
+      "variable_label": "Capital Reduction in High-Error Names",
+      "variable_type": "POST_HOC",
+      "spearman_rho_pooled": 0.245,
+      "p_value_pooled": 0.0,
+      "rho_seed_42": 0.2086,
+      "rho_seed_123": 0.3057,
+      "rho_seed_777": 0.3293,
+      "n_observations": 504
+    },
+    {
+      "variable": "post_hoc_realized_return_tail",
+      "variable_label": "Realized Return Tail Spread",
+      "variable_type": "POST_HOC",
+      "spearman_rho_pooled": -0.1252,
+      "p_value_pooled": 0.00487,
+      "rho_seed_42": -0.0465,
+      "rho_seed_123": -0.1241,
+      "rho_seed_777": -0.1704,
+      "n_observations": 504
+    },
+    {
+      "variable": "post_hoc_realized_return_std",
+      "variable_label": "Realized Return Std",
+      "variable_type": "POST_HOC",
+      "spearman_rho_pooled": -0.0493,
+      "p_value_pooled": 0.26934,
+      "rho_seed_42": -0.0365,
+      "rho_seed_123": -0.0585,
+      "rho_seed_777": -0.043,
+      "n_observations": 504
+    }
+  ],
+  "explanatory_model_summary": [
+    {
+      "model": "Full Clean Regimes (2022-2025)",
+      "held_out_regime": "None",
+      "intercept": 3.6e-05,
+      "beta_std_uncertainty": 2.8e-05,
+      "beta_condition_number": -7.3e-05,
+      "beta_std_p_mean": -6.4e-05,
+      "beta_hhi_m0": 0.000116,
+      "train_r2": 0.0028,
+      "test_r2": 0.0028,
+      "test_rank_corr": 0.067
+    },
+    {
+      "model": "LORO (Train on others, test on 2022)",
+      "held_out_regime": "2022",
+      "intercept": 0.00014,
+      "beta_std_uncertainty": -0.0,
+      "beta_condition_number": -9.4e-05,
+      "beta_std_p_mean": -8.7e-05,
+      "beta_hhi_m0": 0.000111,
+      "train_r2": 0.0038,
+      "test_r2": -0.0101,
+      "test_rank_corr": 0.0286
+    },
+    {
+      "model": "LORO (Train on others, test on 2023)",
+      "held_out_regime": "2023",
+      "intercept": -0.000193,
+      "beta_std_uncertainty": 0.000155,
+      "beta_condition_number": 1.7e-05,
+      "beta_std_p_mean": -6.2e-05,
+      "beta_hhi_m0": 7.3e-05,
+      "train_r2": 0.0017,
+      "test_r2": -0.0948,
+      "test_rank_corr": 0.0092
+    },
+    {
+      "model": "LORO (Train on others, test on 2024-2025)",
+      "held_out_regime": "2024-2025",
+      "intercept": 0.000188,
+      "beta_std_uncertainty": -0.000139,
+      "beta_condition_number": -0.00015,
+      "beta_std_p_mean": -6e-06,
+      "beta_hhi_m0": 0.000188,
+      "train_r2": 0.0093,
+      "test_r2": -0.0242,
+      "test_rank_corr": -0.0064
+    }
+  ]
+}

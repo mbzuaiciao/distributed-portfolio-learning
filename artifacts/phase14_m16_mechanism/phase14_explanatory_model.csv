@@ -1,0 +1,5 @@
+model,held_out_regime,intercept,beta_std_uncertainty,beta_condition_number,beta_std_p_mean,beta_hhi_m0,train_r2,test_r2,test_rank_corr
+Full Clean Regimes (2022-2025),None,3.6e-05,2.8e-05,-7.3e-05,-6.4e-05,0.000116,0.0028,0.0028,0.067
+"LORO (Train on others, test on 2022)",2022,0.00014,-0.0,-9.4e-05,-8.7e-05,0.000111,0.0038,-0.0101,0.0286
+"LORO (Train on others, test on 2023)",2023,-0.000193,0.000155,1.7e-05,-6.2e-05,7.3e-05,0.0017,-0.0948,0.0092
+"LORO (Train on others, test on 2024-2025)",2024-2025,0.000188,-0.000139,-0.00015,-6e-06,0.000188,0.0093,-0.0242,-0.0064

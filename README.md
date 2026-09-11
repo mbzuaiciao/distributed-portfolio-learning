@@ -1661,10 +1661,24 @@ Before provisioning cloud accelerators, representative workloads were systematic
 
 ---
 
+## Phase 14: Mechanism Decomposition of Uncertainty-Aware Risk Inflation
+
+- **Purpose**: Deconstruct the cross-sectional and macroeconomic conditions that explain why frozen $M16$ ($\lambda_u = 0.10$) underperformed in 2022 ($\Delta U = -0.000208$), outperformed strongly in 2023 ($\Delta U = +0.000592$), and underperformed in 2024–2025 ($\Delta U = -0.000181$).
+- **Strict Methodological Protocol**: No new strategies (no $M17$, no regime switching, no threshold policies); $M16$ parameters strictly frozen at $\lambda_u = 0.10$. Primary clean regimes: 2022, 2023, 2024–2025 ($N=4,100$ events, 504 week-seed observations).
+- **Core Findings**:
+  1. **$M16$ Is an Asymmetric Error Hedge**: Decision value is overwhelmingly governed by whether epistemic uncertainty accurately identifies realized forecast errors in that week ($\rho = \mathbf{+0.3681}$, $p < 10^{-16}$). When uncertainty-error correlation is in the top tertile, $M16$ delivers $\Delta U = \mathbf{+0.001559}$; when in the bottom tertile, it loses $\Delta U = -0.001380$.
+  2. **Why 2023 Outperformed**: 2023 exhibited $+53.6\%$ higher uncertainty levels, $+40.6\%$ higher uncertainty dispersion, $+41.3\%$ stronger correlation with realized error, and lower cross-sectional return volatility ($0.0534$ vs $0.0646$). Capital shifted toward low-uncertainty names generated $+0.000687$ weekly PnL difference in Q1 alone.
+  3. **Capital Removal Threshold**: $M16$ only helps when baseline $M0$ would otherwise assign significant weight to high-uncertainty assets. In the highest tertile of capital removed from top-2 uncertainty bins, $M16$ achieved $\Delta U = \mathbf{+0.000373}$ ($52.4\%$ win rate).
+  4. **Ex-Ante Unpredictability**: Standardized regression on ex-ante variables yielded $R^2 = 0.29\%$, with negative out-of-sample $R^2$ in leave-one-regime-out validation.
+  5. **No Justification for Conditional Strategy**: Cross-sectional uncertainty variables alone do not possess sufficient ex-ante predictive power to support a tradable conditional switching strategy without severe backtest overfitting.
+- **Detailed Report**: [`phase14_report.md`](artifacts/phase14_m16_mechanism/phase14_report.md).
+
+---
+
 ## Code Quality & Standards
 
 - **Formatting & Linting**: Verified with `ruff` (`ruff check .` passes with 0 errors).
-- **Testing**: 200 comprehensive unit tests covering all core modules with `pytest` (200 passed, 3 skipped).
+- **Testing**: 207 comprehensive unit tests covering all core modules with `pytest` (207 passed, 3 skipped).
 - **Determinism**: Fixed random seeds, exact analytical benchmarks, and verifiable hand calculations.
 
 ```bash

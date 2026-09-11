@@ -1,0 +1,106 @@
+{
+  "timestamp_utc": "2026-09-11T14:48:07.983822+00:00",
+  "phase": "Phase 13B.1: Model-Training / Evaluation Overlap Audit",
+  "frozen_training_cutoff": "2021-12-31 23:59:59",
+  "total_phase13_events_audited": 8692,
+  "total_definite_overlap": 4592,
+  "total_definite_non_overlap": 4100,
+  "total_unknown": 0,
+  "regime_breakdown": [
+    {
+      "regime": "2018-2019",
+      "total_events": 2203,
+      "definite_overlap": 2203,
+      "definite_non_overlap": 0,
+      "unknown": 0,
+      "classification": "A. MODEL-TRAINING-OVERLAP",
+      "evaluation_eligibility": "SECONDARY_DIAGNOSTIC (In-distribution / Training Overlap)"
+    },
+    {
+      "regime": "2020",
+      "total_events": 1198,
+      "definite_overlap": 1198,
+      "definite_non_overlap": 0,
+      "unknown": 0,
+      "classification": "A. MODEL-TRAINING-OVERLAP",
+      "evaluation_eligibility": "SECONDARY_DIAGNOSTIC (In-distribution / Training Overlap)"
+    },
+    {
+      "regime": "2021",
+      "total_events": 1191,
+      "definite_overlap": 1191,
+      "definite_non_overlap": 0,
+      "unknown": 0,
+      "classification": "A. MODEL-TRAINING-OVERLAP",
+      "evaluation_eligibility": "SECONDARY_DIAGNOSTIC (In-distribution / Training Overlap)"
+    },
+    {
+      "regime": "2022",
+      "total_events": 1191,
+      "definite_overlap": 0,
+      "definite_non_overlap": 1191,
+      "unknown": 0,
+      "classification": "B. TEMPORALLY POST-TRAINING",
+      "evaluation_eligibility": "PRIMARY_CLEAN_EVALUATION (Strict Clean Out-of-Sample)"
+    },
+    {
+      "regime": "2023",
+      "total_events": 1181,
+      "definite_overlap": 0,
+      "definite_non_overlap": 1181,
+      "unknown": 0,
+      "classification": "B. TEMPORALLY POST-TRAINING",
+      "evaluation_eligibility": "PRIMARY_CLEAN_EVALUATION (Strict Clean Out-of-Sample)"
+    },
+    {
+      "regime": "2024-2025",
+      "total_events": 1728,
+      "definite_overlap": 0,
+      "definite_non_overlap": 1728,
+      "unknown": 0,
+      "classification": "B. TEMPORALLY POST-TRAINING",
+      "evaluation_eligibility": "PRIMARY_CLEAN_EVALUATION (Strict Clean Out-of-Sample)"
+    }
+  ],
+  "evaluation_protocol_views": {
+    "primary_clean_evaluation": {
+      "description": "Strictly temporally post-training regimes where model training overlap is mathematically 0%.",
+      "regimes": [
+        "2022",
+        "2023",
+        "2024-2025"
+      ],
+      "total_clean_events": 4100,
+      "oos_validity": "GENUINE_OUT_OF_SAMPLE"
+    },
+    "secondary_diagnostic_evaluation": {
+      "description": "Regimes overlapping with model fitting or validation selection; informative for in-distribution behavior but not clean OOS.",
+      "regimes": [
+        "2020",
+        "2021"
+      ],
+      "total_diagnostic_events": 2389,
+      "oos_validity": "IN_DISTRIBUTION_DIAGNOSTIC_ONLY"
+    },
+    "development_period": {
+      "regime": "2018-2019",
+      "total_events": 2203,
+      "role": "MAPPING_PARAMETER_SELECTION_ONLY",
+      "oos_validity": "IN_SAMPLE_DEVELOPMENT"
+    }
+  },
+  "frozen_portfolio_mapping_parameters_confirmed_unchanged": {
+    "lambda_M14": 0.25,
+    "fraction_M15": 0.3,
+    "lambda_M16": 0.1,
+    "m13_parameters": {
+      "tau_enter": 1.2,
+      "tau_exit": 0.2,
+      "s_normal": 0.85,
+      "s_reduced": 0.45
+    },
+    "horizon_H": 4,
+    "transaction_cost_bps": 10.0,
+    "risk_aversion_gamma": 1.0
+  }
+}

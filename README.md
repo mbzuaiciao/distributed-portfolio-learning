@@ -1632,17 +1632,27 @@ Before provisioning cloud accelerators, representative workloads were systematic
   3. Maximize worst-seed $\Delta U$ (robustness against single-seed outliers).
   4. Deterministic tie-breaker: lower average annual turnover.
 - **Frozen Selected Parameters** ([`mapping_preregistration.json`](artifacts/phase13_uncertainty_mapping/mapping_preregistration.json)):
-  - **M14 (Asset-Level Signal Shrinkage)**: $\lambda = 0.25$ ($\overline{\Delta U} = +2.1 \times 10^{-5}$, worst seed $\Delta U = -8 \times 10^{-6}$, 2/3 positive seeds).
-  - **M15 (Selective Abstention)**: $f = 0.30$ ($\overline{\Delta U} = -5 \times 10^{-6}$, worst seed $\Delta U = -3.3 \times 10^{-5}$, 2/3 positive seeds).
-  - **M16 (Asset-Level Risk Inflation)**: $\lambda_u = 0.10$ ($\overline{\Delta U} = +1.36 \times 10^{-4}$, worst seed $\Delta U = -4 \times 10^{-6}$, 2/3 positive seeds).
+  - **M14 (Asset-Level Signal Shrinkage)**: $\lambda = 0.25$ ($\overline{\Delta U} = +2.1 \times 10^{-5}$, worst seed $\Delta U = -8 \times 10^{-6}$, 2/3 positive seeds, **Passed**).
+  - **M15 (Selective Abstention Comparator)**: $f = 0.30$ ($\overline{\Delta U} = -5 \times 10^{-6}$, worst seed $\Delta U = -3.3 \times 10^{-5}$, 2/3 positive seeds, **Failed positive development criterion**, frozen as comparator).
+  - **M16 (Asset-Level Risk Inflation)**: $\lambda_u = 0.10$ ($\overline{\Delta U} = +1.36 \times 10^{-4}$, worst seed $\Delta U = -4 \times 10^{-6}$, 2/3 positive seeds, **Passed**).
 - **Detailed Audit Report**: [`phase13b_development_selection_report.md`](artifacts/phase13_uncertainty_mapping/phase13b_development_selection_report.md).
+
+### 6. Phase 13B.1 Model-Training / Evaluation Overlap Audit
+- **Audit Purpose**: Determine whether Phase-11 Bayesian-LoRA training/validation examples overlap with historical events assigned to Phase-13 regimes.
+- **Audit Findings** ([`model_training_overlap_summary.json`](artifacts/phase13_uncertainty_mapping/model_training_overlap_summary.json)):
+  - **Pre-2022 Overlap**: 100% of events in `2018-2019` ($N=2,203$), `2020` ($N=1,198$), and `2021` ($N=1,191$) were part of the pretest dataset used for gradient training ($N=13,389$) or validation early stopping ($N=2,363$). Total definite overlap: 4,592 events.
+  - **Post-2021 Clean OOS**: 100% of events in `2022` ($N=1,191$), `2023` ($N=1,181$), and `2024-2025` ($N=1,728$) postdate the training cutoff (`2021-12-31`). Zero training overlap (4,100 clean events).
+- **Predeclared Evaluation Protocol Views**:
+  - **Primary Clean Evaluation**: Strictly post-training regimes (`2022`, `2023`, `2024-2025`, $N=4,100$). Adjudicates clean out-of-sample decision value.
+  - **Secondary Diagnostic Evaluation**: Regimes `2020` and `2021` ($N=2,389$). Retained as in-distribution diagnostics; prohibited from being labeled clean OOS.
+- **Detailed Audit Report**: [`phase13b_1_training_overlap_report.md`](artifacts/phase13_uncertainty_mapping/phase13b_1_training_overlap_report.md).
 
 ---
 
 ## Code Quality & Standards
 
 - **Formatting & Linting**: Verified with `ruff` (`ruff check .` passes with 0 errors).
-- **Testing**: 190 comprehensive unit tests covering all core modules with `pytest`.
+- **Testing**: 195 comprehensive unit tests covering all core modules with `pytest`.
 - **Determinism**: Fixed random seeds, exact analytical benchmarks, and verifiable hand calculations.
 
 ```bash

@@ -1,0 +1,2 @@
+run_id,machine_type,gpu,spot,start,end,runtime_hours,estimated_cost,task,git_sha
+local_baseline_profile_01,apple_silicon_m2,Apple M2 GPU (MPS),False,2026-09-11T02:27:05.243488+00:00,2026-09-11T02:27:05.243488+00:00,0.0330,$0.0000,"Phase 13 local hardware profiling (Jobs A-D: 100-event, Fold 3, portfolio, pytest)",d5e98e4b0821e07e85e430bfe31bb0b88a37d0be

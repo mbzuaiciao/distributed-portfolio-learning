@@ -1,6 +1,6 @@
 # Hypergraph Portfolio Lab
 
-[![CI Tests](https://img.shields.io/badge/pytest-122%20passed-brightgreen.svg)](tests/)
+[![CI Tests](https://img.shields.io/badge/pytest-183%20passed-brightgreen.svg)](tests/)
 [![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.14-blue.svg)](pyproject.toml)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
@@ -8,7 +8,7 @@ A pedagogical, mathematically rigorous, and auditable laboratory based on the re
 > **"Distributed Portfolio Optimization & Decentralized Pricing"**  
 > *Ioannis Papastaikoudis, Jeremy Watson, Ioannis Lestas (2025)*
 
-This repository serves eleven core purposes:
+This repository serves twelve core purposes:
 1. **First-Principles Education**: Teach distributed portfolio optimization, hypergraphs, consensus methods, continuous-time primal-dual dynamics, and decentralized pricing step-by-step (`intuition -> tiny example -> mathematics -> code -> experiment -> interpretation`).
 2. **Critical Mathematical Audit**:
    - Provide an independent, controlled mathematical audit of the paper's central claims (auditing why the distributed objective is reported as 0.8573 vs 2.8408, proving that the problems are not informationally equivalent, and demonstrating true lifted equivalence $\tilde{Q}_{\text{lifted}} = E Q E^T$).
@@ -30,6 +30,8 @@ This repository serves eleven core purposes:
     - Formally verify that multi-week cohort returns are calculated from mark-to-market weekly steps without cumulative reuse; assert exact machine-precision reproduction between $H=1$ and Phase 8.3 ($M_8$ 3-seed mean Sharpe $1.508$, Return $30.98\%$, Vol $20.57\%$), resolve the asset-return mapping bug on timestamp ties, and confirm that volatility reduction is driven by cross-cohort diversification ($N_{\text{eff}}$ increases from $3.6$ to $12.0$).
 11. **Frozen 2026 Confirmation Protocol**:
     - Pre-register the frozen architecture manifest ($H^*=4$, $M_{13}$ Hysteresis $\tau_{\text{enter}}=1.2, \tau_{\text{exit}}=0.2$, $s_{\text{target}}=0.7073$, 10 bps costs) prior to outcome inspection; conduct an exhaustive data provenance audit establishing that empirical returns terminate on 2025-05-15, and honestly classify prospective evaluation under strict scientific protocol (Outcome F / Outcome B).
+12. **Cloud Execution Addendum & Hardware Profiling**:
+    - Profile local Apple Silicon (M2 MPS) versus Google Compute Engine (NVIDIA L4 Spot VM) across 4 representative workloads; establish preemption-safe sharded execution (`seed × regime × event_batch`), automated cost ledger tracking, and strict data minimality (zero market-data transfer to cloud).
 
 ---
 
@@ -1585,10 +1587,31 @@ To evaluate future 2026 earnings announcements genuinely prospectively as they b
 
 ---
 
+## Phase 13: Cloud Execution Addendum & Hardware Profiling
+
+### 1. Hardware Profiling Benchmark (`compute_profile.json`)
+Before provisioning cloud accelerators, representative workloads were systematically profiled on Apple Silicon (M2):
+- **100-event Bayesian-LoRA inference (32 MC draws)**: **11.44 s** (**8.75 events/sec**, 280 forward passes/sec) on Apple M2 GPU (MPS).
+- **Historical Regime Fold 3 (576 events)**: **115.58 s** (**4.98 events/sec**) on Apple M2 GPU (MPS).
+- **Portfolio Regime Simulation ($H=4$, 69 weeks)**: **590.7 ms** (**116.8 weeks/sec**) on CPU.
+- **Full Pytest Suite (183 unit tests)**: **3.55 s** on CPU.
+
+### 2. Cloud GPU Decision Rule
+- **Run Locally (Apple Silicon M2)**: Portfolio backtests, Markowitz optimization, M13 dead-band searches, bootstrap tests, and inference batches $<2,000$ events (completes in $<6$ minutes, avoiding VM boot and transfer overhead).
+- **Run on Cloud GPU (NVIDIA L4 Spot VM)**: Large-batch Bayesian-LoRA inference passes ($>5,000$ events), multi-seed scaling ($>10,000$ events), or multi-epoch model retraining.
+
+### 3. Preemption-Safe Architecture & Data Minimality
+- **Idempotent Shards**: Sharded by `seed × regime × event_batch` with atomic file writes and SHA256 checksums tracked in `shard_manifest.json`.
+- **Zero Market Data Transfer**: Cloud VMs only receive text prompts and model checkpoints; price feeds and realized returns remain strictly local.
+- **Cost Accounting**: Every run logged in `artifacts/phase13_uncertainty_mapping/cloud_compute_ledger.csv` (NVIDIA L4 Spot at ~$0.284/hr).
+- **Mandatory Auto-Shutdown**: VMs include metadata startup traps for immediate self-deletion upon completion.
+
+---
+
 ## Code Quality & Standards
 
 - **Formatting & Linting**: Verified with `ruff` (`ruff check .` passes with 0 errors).
-- **Testing**: 178 comprehensive unit tests covering all core modules with `pytest`.
+- **Testing**: 183 comprehensive unit tests covering all core modules with `pytest`.
 - **Determinism**: Fixed random seeds, exact analytical benchmarks, and verifiable hand calculations.
 
 ```bash

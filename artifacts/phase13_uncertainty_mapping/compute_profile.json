@@ -1,0 +1,51 @@
+{
+  "timestamp_utc": "2026-09-11T02:26:51.020186+00:00",
+  "hardware": {
+    "machine": "MacBook Air / Pro (Apple M2)",
+    "cpu_cores": 8,
+    "gpu": "Apple M2 GPU (Metal Performance Shaders)",
+    "os": "macOS (darwin)",
+    "python_version": "3.14.2",
+    "pytorch_version": "2.14.0",
+    "mps_available": true
+  },
+  "job_A_100_events_mc32": {
+    "n_events": 100,
+    "mc_draws": 32,
+    "wall_time_sec": 11.435,
+    "events_per_sec": 8.75,
+    "device": "mps",
+    "peak_ram_mb": 923.14
+  },
+  "job_B_regime_576_events_mc32": {
+    "n_events": 576,
+    "mc_draws": 32,
+    "wall_time_sec": 115.576,
+    "events_per_sec": 4.98,
+    "device": "mps",
+    "peak_ram_mb": 996.84
+  },
+  "job_C_portfolio_regime": {
+    "workload": "Portfolio Regime Evaluation (H=4, 69 weeks, cohort stacking)",
+    "n_weeks": 69,
+    "n_events": 1728,
+    "wall_time_sec": 0.5907,
+    "weeks_per_sec": 116.8,
+    "device": "cpu",
+    "peak_ram_mb": 996.84
+  },
+  "job_D_pytest_suite": {
+    "workload": "Full Unit Test Suite",
+    "n_tests": 178,
+    "exit_code": 0,
+    "wall_time_sec": 4.433,
+    "tests_per_sec": 40.15,
+    "peak_ram_mb": 996.84
+  },
+  "summary": {
+    "inference_events_per_sec_local_mps": 4.98,
+    "portfolio_backtest_runtime_ms": 590.7,
+    "full_suite_runtime_sec": 4.433,
+    "recommendation": "Local M2 MPS delivers 4.98 events/sec (159.4 forward passes/sec) on 32-draw MC inference, completing Fold 3 (576 events) in 115.576s and full benchmark (1,728 events) in ~5.8 minutes. Portfolio backtesting takes 590.7 ms. Full test suite executes in 4.433s (178 tests passing). Cloud GPU (NVIDIA L4 Spot) provides a projected ~15x inference speedup (120-150 events/sec) and should be used for large batch inference (>5,000 events) or multi-epoch model retraining, while local execution remains optimal for quick validation, portfolio backtests, and batches under 2,000 events."
+  }
+}

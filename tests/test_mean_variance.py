@@ -1,6 +1,5 @@
-"""Unit tests for centralized mean-variance portfolio solver."""
-
 import numpy as np
+import pytest
 
 from hypergraph_portfolio.mean_variance import (
     MeanVariancePortfolio,
@@ -46,6 +45,7 @@ def test_three_asset_centralized_reproduction():
 
 def test_cvxpy_solver_agreement():
     """Verify SciPy solver agrees with CVXPY benchmark."""
+    pytest.importorskip("cvxpy")
     Q = np.array([
         [2.0, 0.5],
         [0.5, 1.0],

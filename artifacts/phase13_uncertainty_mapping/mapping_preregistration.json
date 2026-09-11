@@ -1,0 +1,196 @@
+{
+  "timestamp_utc": "2026-09-11T14:34:18.193873+00:00",
+  "git_commit_before_evaluation": "361d8e1b0c4fd739d577b6bd0195cd79f8809297",
+  "phase": "Phase 13B: Development-Only Mapping Selection",
+  "development_period": {
+    "regime_id": "2018-2019",
+    "start_date": "2018-01-04 10:00:00",
+    "end_date": "2019-12-20 10:00:00",
+    "n_events": 2203,
+    "status": "frozen_development_selection_complete"
+  },
+  "evaluation_periods_untouched": [
+    {
+      "regime_id": "2020",
+      "n_events": 1198
+    },
+    {
+      "regime_id": "2021",
+      "n_events": 1191
+    },
+    {
+      "regime_id": "2022",
+      "n_events": 1191
+    },
+    {
+      "regime_id": "2023",
+      "n_events": 1181
+    },
+    {
+      "regime_id": "2024-2025",
+      "n_events": 1728
+    }
+  ],
+  "portfolio_backbone_specification": {
+    "holding_horizon_H": 4,
+    "cohort_capital_weighting": "equal_across_active_cohorts (1/H when full)",
+    "optimizer": "Markowitz quadratic program (mean-variance, long-only simplex)",
+    "risk_aversion_gamma": 1.0,
+    "transaction_cost_bps": 10.0,
+    "cash_return": 0.0
+  },
+  "frozen_checkpoints": {
+    "seed_42": "d382640351dbef4fd40b47c8b033b1a4823c57d8fd6740b6fd9d1709043dc309",
+    "seed_123": "e094b775c7061b7c60341704525719b2c3fd4055e1aa325581eacabc23059301",
+    "seed_777": "0f084381c8b387f5a4946e337470c8c25707228c40cf676604d1db22f3a13e2a"
+  },
+  "development_predictions_artifact": {
+    "path": "artifacts/phase13_uncertainty_mapping/development_predictions.csv",
+    "sha256": "6460761d8ba889e551ca4d0fa279f6ff2fe589fc6ce7813a8626c6b412e60b29",
+    "n_rows": 6609
+  },
+  "selection_rule_description": "1. Require positive mean Delta utility vs M0. 2. Maximize sign consistency across seeds (require 3/3 positive seeds where possible). 3. Maximize worst-seed Delta utility (reject single-seed outlier drivers). 4. Deterministic tie-breaker: lower average annual turnover.",
+  "candidate_grids": {
+    "M14_signal_shrinkage": [
+      0.25,
+      0.5,
+      1.0,
+      2.0
+    ],
+    "M15_selective_abstention": [
+      0.1,
+      0.2,
+      0.3
+    ],
+    "M16_risk_inflation": [
+      0.1,
+      0.25,
+      0.5,
+      1.0
+    ]
+  },
+  "selected_frozen_parameters": {
+    "lambda_M14": 0.25,
+    "fraction_M15": 0.3,
+    "lambda_M16": 0.1
+  },
+  "development_metrics_summary": [
+    {
+      "strategy": "M0",
+      "parameter": 0.0,
+      "mean_delta_u": 0.0,
+      "worst_seed_delta_u": 0.0,
+      "positive_seed_count": 0,
+      "turnover": 26.6,
+      "selected": false
+    },
+    {
+      "strategy": "M13",
+      "parameter": 0.0,
+      "mean_delta_u": -0.000404,
+      "worst_seed_delta_u": -0.000611,
+      "positive_seed_count": 0,
+      "turnover": 23.51,
+      "selected": false
+    },
+    {
+      "strategy": "M14",
+      "parameter": 0.25,
+      "mean_delta_u": 2.1e-05,
+      "worst_seed_delta_u": -8e-06,
+      "positive_seed_count": 2,
+      "turnover": 26.6,
+      "selected": true
+    },
+    {
+      "strategy": "M14",
+      "parameter": 0.5,
+      "mean_delta_u": 2.2e-05,
+      "worst_seed_delta_u": -3.1e-05,
+      "positive_seed_count": 2,
+      "turnover": 26.6,
+      "selected": false
+    },
+    {
+      "strategy": "M14",
+      "parameter": 1.0,
+      "mean_delta_u": 2.4e-05,
+      "worst_seed_delta_u": -5e-05,
+      "positive_seed_count": 2,
+      "turnover": 26.6,
+      "selected": false
+    },
+    {
+      "strategy": "M14",
+      "parameter": 2.0,
+      "mean_delta_u": 2.3e-05,
+      "worst_seed_delta_u": -7e-05,
+      "positive_seed_count": 2,
+      "turnover": 26.6,
+      "selected": false
+    },
+    {
+      "strategy": "M15",
+      "parameter": 0.1,
+      "mean_delta_u": -8.3e-05,
+      "worst_seed_delta_u": -0.000311,
+      "positive_seed_count": 2,
+      "turnover": 26.6,
+      "selected": false
+    },
+    {
+      "strategy": "M15",
+      "parameter": 0.2,
+      "mean_delta_u": -5e-05,
+      "worst_seed_delta_u": -0.000154,
+      "positive_seed_count": 1,
+      "turnover": 26.6,
+      "selected": false
+    },
+    {
+      "strategy": "M15",
+      "parameter": 0.3,
+      "mean_delta_u": -5e-06,
+      "worst_seed_delta_u": -3.3e-05,
+      "positive_seed_count": 2,
+      "turnover": 26.6,
+      "selected": true
+    },
+    {
+      "strategy": "M16",
+      "parameter": 0.1,
+      "mean_delta_u": 0.000136,
+      "worst_seed_delta_u": -4e-06,
+      "positive_seed_count": 2,
+      "turnover": 26.6,
+      "selected": true
+    },
+    {
+      "strategy": "M16",
+      "parameter": 0.25,
+      "mean_delta_u": 0.000155,
+      "worst_seed_delta_u": -8.8e-05,
+      "positive_seed_count": 2,
+      "turnover": 26.6,
+      "selected": false
+    },
+    {
+      "strategy": "M16",
+      "parameter": 0.5,
+      "mean_delta_u": 0.000146,
+      "worst_seed_delta_u": -0.000179,
+      "positive_seed_count": 2,
+      "turnover": 26.6,
+      "selected": false
+    },
+    {
+      "strategy": "M16",
+      "parameter": 1.0,
+      "mean_delta_u": 0.000121,
+      "worst_seed_delta_u": -0.000278,
+      "positive_seed_count": 2,
+      "turnover": 26.6,
+      "selected": false
+    }
+  ]
+}

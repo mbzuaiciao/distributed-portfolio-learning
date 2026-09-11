@@ -1,6 +1,3 @@
-"""Unit tests for Phase 2 mathematical equivalence reduction and audit tools."""
-
-import cvxpy as cp
 import numpy as np
 import pytest
 
@@ -14,9 +11,12 @@ from hypergraph_portfolio.consensus import (
 from hypergraph_portfolio.hypergraph import HypergraphPortfolio
 from hypergraph_portfolio.mean_variance import MeanVariancePortfolio
 
+cp = pytest.importorskip("cvxpy")
+
 
 @pytest.fixture
 def three_asset_setup():
+    pytest.importorskip("cvxpy")
     Q = np.array([
         [4.1294, 1.4527, 0.9273],
         [1.4527, 4.4150, 1.1068],

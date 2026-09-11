@@ -69,6 +69,7 @@ def test_primal_dual_solver_convergence(paper_three_asset_setup):
 
 
 def test_primal_dual_agrees_with_cvxpy(paper_three_asset_setup):
+    pytest.importorskip("cvxpy")
     hp, sub_Q, sub_mu, sub_c, sub_a = paper_three_asset_setup
     solver = PrimalDualSolver(
         hypergraph=hp,

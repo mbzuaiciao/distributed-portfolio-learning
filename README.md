@@ -1622,6 +1622,21 @@ Before provisioning cloud accelerators, representative workloads were systematic
   - Runtime: $\sim 69.9$ to $87.3$ minutes on local Apple Silicon M2 MPS.
   - Decision: **`prefer_local`** (strictly within the 30–120 minute local preference window).
 
+### 5. Phase 13B Development-Only Uncertainty Mapping Selection
+- **Temporal Enforcement**: Evaluated strictly on the frozen `2018-2019` window ($N=2,203$ events, 103 weeks). Evaluation regimes (`2020`–`2025`) completely untouched.
+- **Inference Artifact**: [`development_predictions.csv`](artifacts/phase13_uncertainty_mapping/development_predictions.csv) (SHA256: `6460761d8ba889e551ca4d0fa279f6ff2fe589fc6ce7813a8626c6b412e60b29`), generated via genuine Phase-11 frozen checkpoints (Seeds 42, 123, 777, MC=32).
+- **Portfolio Backbone**: $H=4$ rolling cohorts, equal capital weighting ($1/K$), frozen-entry Markowitz QP, 10 bps turnover friction ($c=0.0010$), risk aversion $\gamma=1.0$, cash return $=0.0$.
+- **Predeclared Deterministic Selection Rule**:
+  1. Mean $\Delta U > 0$ vs unadjusted M0.
+  2. Maximize sign consistency across seeds (positive seed count).
+  3. Maximize worst-seed $\Delta U$ (robustness against single-seed outliers).
+  4. Deterministic tie-breaker: lower average annual turnover.
+- **Frozen Selected Parameters** ([`mapping_preregistration.json`](artifacts/phase13_uncertainty_mapping/mapping_preregistration.json)):
+  - **M14 (Asset-Level Signal Shrinkage)**: $\lambda = 0.25$ ($\overline{\Delta U} = +2.1 \times 10^{-5}$, worst seed $\Delta U = -8 \times 10^{-6}$, 2/3 positive seeds).
+  - **M15 (Selective Abstention)**: $f = 0.30$ ($\overline{\Delta U} = -5 \times 10^{-6}$, worst seed $\Delta U = -3.3 \times 10^{-5}$, 2/3 positive seeds).
+  - **M16 (Asset-Level Risk Inflation)**: $\lambda_u = 0.10$ ($\overline{\Delta U} = +1.36 \times 10^{-4}$, worst seed $\Delta U = -4 \times 10^{-6}$, 2/3 positive seeds).
+- **Detailed Audit Report**: [`phase13b_development_selection_report.md`](artifacts/phase13_uncertainty_mapping/phase13b_development_selection_report.md).
+
 ---
 
 ## Code Quality & Standards

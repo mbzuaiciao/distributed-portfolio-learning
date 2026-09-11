@@ -1,0 +1,86 @@
+{
+  "timestamp_utc": "2026-09-11T03:33:07.643593+00:00",
+  "git_sha": "c688ab398a4ece311fe53b51e7456d2874f0402d",
+  "total_historical_records_in_repo": 20000,
+  "date_range_all_historical": {
+    "start_date": "2005-10-13 14:45:00",
+    "end_date": "2025-05-15 16:30:00"
+  },
+  "coverage_summary_all_historical": {
+    "category_A_phase11_inference_possible": 18201,
+    "category_B_archived_old_prediction_only": 0,
+    "category_C_missing_usable_text": 0,
+    "category_D_missing_return_data": 1799,
+    "category_E_incomplete_h4_path": 0
+  },
+  "primary_scope_period": "2018-2025",
+  "primary_scope_total_rows": 9249,
+  "primary_scope_valid_events_N": 8692,
+  "development_split": {
+    "regime_id": "2018-2019",
+    "split": "development",
+    "start_date": "2018-01-04 10:00:00",
+    "end_date": "2019-12-20 10:00:00",
+    "n_events": 2203,
+    "description": "Earliest supported multi-year period (2018-2019). Strictly reserved for parameter selection, hyperparameter tuning, and threshold calibration. Evaluated with zero lookahead into subsequent regimes."
+  },
+  "evaluation_split": {
+    "split": "evaluation",
+    "total_evaluation_events_N": 6489,
+    "start_date": "2020-01-03 10:00:00",
+    "end_date": "2025-05-15 16:30:00",
+    "description": "Multi-regime out-of-sample evaluation period (2020-2025) spanning 5 distinct macroeconomic regimes.",
+    "regimes": [
+      {
+        "regime_id": "2020",
+        "total_rows": 1303,
+        "valid_events_N": 1198,
+        "missing_return_D": 105,
+        "incomplete_h4_E": 0,
+        "start_date": "2020-01-03 10:00:00",
+        "end_date": "2020-12-22 10:00:00",
+        "split": "evaluation"
+      },
+      {
+        "regime_id": "2021",
+        "total_rows": 1278,
+        "valid_events_N": 1191,
+        "missing_return_D": 87,
+        "incomplete_h4_E": 0,
+        "start_date": "2021-01-07 09:30:00",
+        "end_date": "2021-12-22 10:00:00",
+        "split": "evaluation"
+      },
+      {
+        "regime_id": "2022",
+        "total_rows": 1253,
+        "valid_events_N": 1191,
+        "missing_return_D": 62,
+        "incomplete_h4_E": 0,
+        "start_date": "2022-01-06 09:30:00",
+        "end_date": "2022-12-22 09:00:00",
+        "split": "evaluation"
+      },
+      {
+        "regime_id": "2023",
+        "total_rows": 1230,
+        "valid_events_N": 1181,
+        "missing_return_D": 49,
+        "incomplete_h4_E": 0,
+        "start_date": "2023-01-05 09:30:00",
+        "end_date": "2023-12-21 10:00:00",
+        "split": "evaluation"
+      },
+      {
+        "regime_id": "2024-2025",
+        "total_rows": 1765,
+        "valid_events_N": 1728,
+        "missing_return_D": 37,
+        "incomplete_h4_E": 0,
+        "start_date": "2024-01-04 09:30:00",
+        "end_date": "2025-05-15 16:30:00",
+        "split": "evaluation"
+      }
+    ]
+  }
+}

@@ -1,6 +1,6 @@
 # Hypergraph Portfolio Lab
 
-[![CI Tests](https://img.shields.io/badge/pytest-183%20passed-brightgreen.svg)](tests/)
+[![CI Tests](https://img.shields.io/badge/pytest-190%20passed-brightgreen.svg)](tests/)
 [![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.14-blue.svg)](pyproject.toml)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
@@ -1606,12 +1606,28 @@ Before provisioning cloud accelerators, representative workloads were systematic
 - **Cost Accounting**: Every run logged in `artifacts/phase13_uncertainty_mapping/cloud_compute_ledger.csv` (NVIDIA L4 Spot at ~$0.284/hr).
 - **Mandatory Auto-Shutdown**: VMs include metadata startup traps for immediate self-deletion upon completion.
 
+### 4. Phase 13A Historical Data Scope & Development/Evaluation Split
+- **Historical Inventory**: 20,000 corporate earnings events cataloged in [`artifacts/phase13_uncertainty_mapping/historical_data_inventory.csv`](artifacts/phase13_uncertainty_mapping/historical_data_inventory.csv) across 2005–2025.
+- **Primary Scoped Universe**: **2018–2025** ($N = 8,692$ valid events across 9,249 rows).
+- **Development Split (`2018-2019`)**: $N = 2,203$ events (2018-01-04 to 2019-12-20). Strictly reserved for parameter selection, threshold calibration, and mapping design with zero lookahead into evaluation periods.
+- **Evaluation Split (`2020-2025`)**: $N = 6,489$ events across 5 macroeconomic regimes:
+  - `2020`: COVID-19 shock and rebound ($N = 1,198$)
+  - `2021`: Stimulus boom and tech rally ($N = 1,191$)
+  - `2022`: Inflation shock and rate-hiking bear market ($N = 1,191$)
+  - `2023`: Banking stress and early GenAI rally ($N = 1,181$)
+  - `2024-2025`: Canonical benchmark holdout ($N = 1,728$)
+- **Compute Sizing & Decision (`compute_decision.json`)**:
+  - Scale: $8,692 \text{ events} \times 3 \text{ seeds} \times 32 \text{ MC draws} = 26,076 \text{ event-inferences}$ ($834,432$ forward passes).
+  - Already computed: $5,184$ event-inferences (2024–2025 holdout). Remaining: $20,892$ event-inferences.
+  - Runtime: $\sim 69.9$ to $87.3$ minutes on local Apple Silicon M2 MPS.
+  - Decision: **`prefer_local`** (strictly within the 30–120 minute local preference window).
+
 ---
 
 ## Code Quality & Standards
 
 - **Formatting & Linting**: Verified with `ruff` (`ruff check .` passes with 0 errors).
-- **Testing**: 183 comprehensive unit tests covering all core modules with `pytest`.
+- **Testing**: 190 comprehensive unit tests covering all core modules with `pytest`.
 - **Determinism**: Fixed random seeds, exact analytical benchmarks, and verifiable hand calculations.
 
 ```bash

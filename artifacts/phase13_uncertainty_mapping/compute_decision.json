@@ -1,0 +1,35 @@
+{
+  "timestamp_utc": "2026-09-11T03:33:07.669187+00:00",
+  "git_sha": "c688ab398a4ece311fe53b51e7456d2874f0402d",
+  "hardware_platform": "Apple Silicon (M2 MPS)",
+  "measured_throughput_events_per_sec": 4.98,
+  "inference_workload_scale": {
+    "total_scoped_events": 8692,
+    "seeds": [
+      42,
+      123,
+      777
+    ],
+    "n_seeds": 3,
+    "mc_draws": 32,
+    "total_event_inferences": 26076,
+    "total_forward_passes": 834432,
+    "already_computed_2024_2025_events": 1728,
+    "already_computed_inferences": 5184,
+    "remaining_events_to_infer": 6964,
+    "remaining_inferences_to_infer": 20892
+  },
+  "runtime_projections": {
+    "full_job_local_sec": 5236.14,
+    "full_job_local_min": 87.27,
+    "remaining_job_local_sec": 4195.18,
+    "remaining_job_local_min": 69.92,
+    "cloud_l4_spot_throughput_events_per_sec": 135.0,
+    "cloud_l4_spot_inference_sec": 193.16,
+    "cloud_l4_spot_total_sec_incl_boot": 493.16,
+    "cloud_l4_spot_est_cost_usd": 0.0389
+  },
+  "decision_rule_window": "30-120 minutes (prefer local unless inconvenient)",
+  "decision": "prefer_local",
+  "decision_rationale": "Estimated local runtime on Apple Silicon M2 MPS for the full historical corpus (8692 events \u00d7 3 seeds) is ~87.3 minutes (~69.9 minutes excluding already-frozen 2024-2025). Under the Phase 13 decision protocol, jobs within the 30-120 minute window strictly prefer local execution unless inconvenient, completely avoiding cloud VM boot overhead, network authentication, and unnecessary cloud expenditure. Preemption-safe sharded cloud execution on NVIDIA L4 Spot remains fully implemented and available in reserve."
+}

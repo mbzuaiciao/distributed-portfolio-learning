@@ -1,0 +1,306 @@
+{
+  "timestamp_utc": "2026-09-11T16:31:52.088905+00:00",
+  "git_commit_before_evaluation": "87350ca3b297b8214aee6030ae8696111acea4fd",
+  "phase": "Phase 13C: Frozen Out-of-Sample Regime Evaluation",
+  "frozen_mapping_parameters": {
+    "lambda_M14": 0.25,
+    "fraction_M15": 0.3,
+    "lambda_M16": 0.1,
+    "m13_parameters": {
+      "tau_enter": 1.2,
+      "tau_exit": 0.2,
+      "s_normal": 0.85,
+      "s_reduced": 0.45
+    },
+    "horizon_H": 4,
+    "transaction_cost_bps": 10.0,
+    "gamma": 1.0
+  },
+  "evaluation_scopes": {
+    "primary_clean_regimes": [
+      "2022",
+      "2023",
+      "2024-2025"
+    ],
+    "total_clean_events": 4100,
+    "total_clean_weeks": 168,
+    "secondary_diagnostic_regimes": [
+      "2020",
+      "2021"
+    ],
+    "total_diagnostic_events": 2389,
+    "total_diagnostic_weeks": 99
+  },
+  "clean_stability_summary": [
+    {
+      "strategy": "M13",
+      "mean_delta_u_clean": -0.000731,
+      "median_delta_u_clean": -0.000485,
+      "worst_regime_delta_u": -0.001387,
+      "best_regime_delta_u": -0.000322,
+      "positive_clean_regimes": 0,
+      "negative_clean_regimes": 3,
+      "regime_std": 0.000574,
+      "positive_seed_instances_out_of_9": 1
+    },
+    {
+      "strategy": "M14",
+      "mean_delta_u_clean": -6.9e-05,
+      "median_delta_u_clean": -4.7e-05,
+      "worst_regime_delta_u": -0.000161,
+      "best_regime_delta_u": 1e-06,
+      "positive_clean_regimes": 1,
+      "negative_clean_regimes": 2,
+      "regime_std": 8.3e-05,
+      "positive_seed_instances_out_of_9": 1
+    },
+    {
+      "strategy": "M15",
+      "mean_delta_u_clean": -0.00027,
+      "median_delta_u_clean": -0.00022,
+      "worst_regime_delta_u": -0.000536,
+      "best_regime_delta_u": -5.5e-05,
+      "positive_clean_regimes": 0,
+      "negative_clean_regimes": 3,
+      "regime_std": 0.000244,
+      "positive_seed_instances_out_of_9": 1
+    },
+    {
+      "strategy": "M16",
+      "mean_delta_u_clean": 6.8e-05,
+      "median_delta_u_clean": -0.000181,
+      "worst_regime_delta_u": -0.000208,
+      "best_regime_delta_u": 0.000592,
+      "positive_clean_regimes": 1,
+      "negative_clean_regimes": 2,
+      "regime_std": 0.000454,
+      "positive_seed_instances_out_of_9": 4
+    }
+  ],
+  "seed_regime_matrix": [
+    {
+      "strategy": "M13",
+      "regime": "2020",
+      "regime_type": "TRAINING_OVERLAP_DIAGNOSTIC",
+      "delta_u_seed_42": -0.001944,
+      "delta_u_seed_123": -0.002796,
+      "delta_u_seed_777": -0.002262,
+      "mean_delta_u": -0.002334,
+      "std_delta_u": 0.000431,
+      "positive_seed_count": 0
+    },
+    {
+      "strategy": "M13",
+      "regime": "2021",
+      "regime_type": "TRAINING_OVERLAP_DIAGNOSTIC",
+      "delta_u_seed_42": -0.001999,
+      "delta_u_seed_123": -0.001501,
+      "delta_u_seed_777": -0.001571,
+      "mean_delta_u": -0.00169,
+      "std_delta_u": 0.00027,
+      "positive_seed_count": 0
+    },
+    {
+      "strategy": "M13",
+      "regime": "2022",
+      "regime_type": "CLEAN_OOS",
+      "delta_u_seed_42": 0.000323,
+      "delta_u_seed_123": -0.000218,
+      "delta_u_seed_777": -0.001072,
+      "mean_delta_u": -0.000322,
+      "std_delta_u": 0.000703,
+      "positive_seed_count": 1
+    },
+    {
+      "strategy": "M13",
+      "regime": "2023",
+      "regime_type": "CLEAN_OOS",
+      "delta_u_seed_42": -0.00183,
+      "delta_u_seed_123": -0.00081,
+      "delta_u_seed_777": -0.001521,
+      "mean_delta_u": -0.001387,
+      "std_delta_u": 0.000523,
+      "positive_seed_count": 0
+    },
+    {
+      "strategy": "M13",
+      "regime": "2024-2025",
+      "regime_type": "CLEAN_OOS",
+      "delta_u_seed_42": -0.000495,
+      "delta_u_seed_123": -0.000921,
+      "delta_u_seed_777": -3.8e-05,
+      "mean_delta_u": -0.000485,
+      "std_delta_u": 0.000442,
+      "positive_seed_count": 0
+    },
+    {
+      "strategy": "M14",
+      "regime": "2020",
+      "regime_type": "TRAINING_OVERLAP_DIAGNOSTIC",
+      "delta_u_seed_42": -0.000206,
+      "delta_u_seed_123": 5e-05,
+      "delta_u_seed_777": -1e-06,
+      "mean_delta_u": -5.2e-05,
+      "std_delta_u": 0.000136,
+      "positive_seed_count": 1
+    },
+    {
+      "strategy": "M14",
+      "regime": "2021",
+      "regime_type": "TRAINING_OVERLAP_DIAGNOSTIC",
+      "delta_u_seed_42": 7.5e-05,
+      "delta_u_seed_123": -2.5e-05,
+      "delta_u_seed_777": -3e-06,
+      "mean_delta_u": 1.6e-05,
+      "std_delta_u": 5.3e-05,
+      "positive_seed_count": 1
+    },
+    {
+      "strategy": "M14",
+      "regime": "2022",
+      "regime_type": "CLEAN_OOS",
+      "delta_u_seed_42": 3.5e-05,
+      "delta_u_seed_123": -2.8e-05,
+      "delta_u_seed_777": -5e-06,
+      "mean_delta_u": 1e-06,
+      "std_delta_u": 3.2e-05,
+      "positive_seed_count": 1
+    },
+    {
+      "strategy": "M14",
+      "regime": "2023",
+      "regime_type": "CLEAN_OOS",
+      "delta_u_seed_42": -0.00017,
+      "delta_u_seed_123": -0.00031,
+      "delta_u_seed_777": -3e-06,
+      "mean_delta_u": -0.000161,
+      "std_delta_u": 0.000154,
+      "positive_seed_count": 0
+    },
+    {
+      "strategy": "M14",
+      "regime": "2024-2025",
+      "regime_type": "CLEAN_OOS",
+      "delta_u_seed_42": -0.000104,
+      "delta_u_seed_123": -3.6e-05,
+      "delta_u_seed_777": -2e-06,
+      "mean_delta_u": -4.7e-05,
+      "std_delta_u": 5.2e-05,
+      "positive_seed_count": 0
+    },
+    {
+      "strategy": "M15",
+      "regime": "2020",
+      "regime_type": "TRAINING_OVERLAP_DIAGNOSTIC",
+      "delta_u_seed_42": -0.000121,
+      "delta_u_seed_123": -0.000415,
+      "delta_u_seed_777": 0.0,
+      "mean_delta_u": -0.000179,
+      "std_delta_u": 0.000213,
+      "positive_seed_count": 0
+    },
+    {
+      "strategy": "M15",
+      "regime": "2021",
+      "regime_type": "TRAINING_OVERLAP_DIAGNOSTIC",
+      "delta_u_seed_42": -0.000359,
+      "delta_u_seed_123": 0.0,
+      "delta_u_seed_777": -1e-06,
+      "mean_delta_u": -0.00012,
+      "std_delta_u": 0.000207,
+      "positive_seed_count": 0
+    },
+    {
+      "strategy": "M15",
+      "regime": "2022",
+      "regime_type": "CLEAN_OOS",
+      "delta_u_seed_42": 9e-06,
+      "delta_u_seed_123": -0.000168,
+      "delta_u_seed_777": -7e-06,
+      "mean_delta_u": -5.5e-05,
+      "std_delta_u": 9.8e-05,
+      "positive_seed_count": 1
+    },
+    {
+      "strategy": "M15",
+      "regime": "2023",
+      "regime_type": "CLEAN_OOS",
+      "delta_u_seed_42": -0.001142,
+      "delta_u_seed_123": -0.000461,
+      "delta_u_seed_777": -5e-06,
+      "mean_delta_u": -0.000536,
+      "std_delta_u": 0.000572,
+      "positive_seed_count": 0
+    },
+    {
+      "strategy": "M15",
+      "regime": "2024-2025",
+      "regime_type": "CLEAN_OOS",
+      "delta_u_seed_42": -0.000603,
+      "delta_u_seed_123": -5.4e-05,
+      "delta_u_seed_777": -4e-06,
+      "mean_delta_u": -0.00022,
+      "std_delta_u": 0.000332,
+      "positive_seed_count": 0
+    },
+    {
+      "strategy": "M16",
+      "regime": "2020",
+      "regime_type": "TRAINING_OVERLAP_DIAGNOSTIC",
+      "delta_u_seed_42": -0.000123,
+      "delta_u_seed_123": 0.000251,
+      "delta_u_seed_777": -0.000127,
+      "mean_delta_u": 0.0,
+      "std_delta_u": 0.000217,
+      "positive_seed_count": 1
+    },
+    {
+      "strategy": "M16",
+      "regime": "2021",
+      "regime_type": "TRAINING_OVERLAP_DIAGNOSTIC",
+      "delta_u_seed_42": 7e-06,
+      "delta_u_seed_123": -0.000379,
+      "delta_u_seed_777": 0.000124,
+      "mean_delta_u": -8.3e-05,
+      "std_delta_u": 0.000263,
+      "positive_seed_count": 2
+    },
+    {
+      "strategy": "M16",
+      "regime": "2022",
+      "regime_type": "CLEAN_OOS",
+      "delta_u_seed_42": -0.000108,
+      "delta_u_seed_123": -0.000273,
+      "delta_u_seed_777": -0.000244,
+      "mean_delta_u": -0.000208,
+      "std_delta_u": 8.8e-05,
+      "positive_seed_count": 0
+    },
+    {
+      "strategy": "M16",
+      "regime": "2023",
+      "regime_type": "CLEAN_OOS",
+      "delta_u_seed_42": 8.3e-05,
+      "delta_u_seed_123": 0.000566,
+      "delta_u_seed_777": 0.001128,
+      "mean_delta_u": 0.000592,
+      "std_delta_u": 0.000523,
+      "positive_seed_count": 3
+    },
+    {
+      "strategy": "M16",
+      "regime": "2024-2025",
+      "regime_type": "CLEAN_OOS",
+      "delta_u_seed_42": -4e-06,
+      "delta_u_seed_123": -0.000669,
+      "delta_u_seed_777": 0.000129,
+      "mean_delta_u": -0.000181,
+      "std_delta_u": 0.000428,
+      "positive_seed_count": 1
+    }
+  ],
+  "adjudicated_verdict": {
+    "classification": "Outcome F: Uncertainty mappings fail to robustly outperform unadjusted M0",
+    "scientific_interpretation": "Epistemic uncertainty provides diagnostic utility but does not reliably translate into out-of-sample portfolio decision value across tested regimes."
+  }
+}

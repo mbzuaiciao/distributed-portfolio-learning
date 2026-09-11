@@ -1,0 +1,5 @@
+strategy,mean_delta_u_clean,median_delta_u_clean,worst_regime_delta_u,best_regime_delta_u,positive_clean_regimes,negative_clean_regimes,regime_std,positive_seed_instances_out_of_9
+M13,-0.000731,-0.000485,-0.001387,-0.000322,0,3,0.000574,1
+M14,-6.9e-05,-4.7e-05,-0.000161,1e-06,1,2,8.3e-05,1
+M15,-0.00027,-0.00022,-0.000536,-5.5e-05,0,3,0.000244,1
+M16,6.8e-05,-0.000181,-0.000208,0.000592,1,2,0.000454,4

@@ -1647,12 +1647,24 @@ Before provisioning cloud accelerators, representative workloads were systematic
   - **Secondary Diagnostic Evaluation**: Regimes `2020` and `2021` ($N=2,389$). Retained as in-distribution diagnostics; prohibited from being labeled clean OOS.
 - **Detailed Audit Report**: [`phase13b_1_training_overlap_report.md`](artifacts/phase13_uncertainty_mapping/phase13b_1_training_overlap_report.md).
 
+### 7. Phase 13C Frozen Out-of-Sample Regime Evaluation
+- **Adjudication Objective**: Evaluate frozen uncertainty mappings on clean post-training historical regimes (`2022`, `2023`, `2024-2025`; $N=4,100$ clean events) vs unadjusted Markowitz ($M0$) and whole-portfolio macro timing ($M13$). Secondary diagnostic regimes (`2020`, `2021`; $N=2,389$) tracked separately.
+- **Inference Scope**: $6,489$ events $\times$ 3 seeds ($42, 123, 777$) $\times$ 32 MC draws ($19,467$ genuine predictions in [`evaluation_predictions.csv`](artifacts/phase13_uncertainty_mapping/evaluation_predictions.csv)).
+- **Adjudicated Verdict**: **Outcome F — Uncertainty mappings fail to robustly outperform unadjusted $M0$ across clean post-training regimes.**
+  - Mean Clean $\Delta U$: $M13 = -0.000731$ ($0/3$ positive regimes), $M14 = -0.000069$ ($1/3$ positive regimes), $M15 = -0.000270$ ($0/3$ positive regimes), $M16 = +0.000068$ ($1/3$ positive regimes).
+- **Core Findings**:
+  1. **Local > Global**: Local asset-level adjustments ($M16, M14$) decisively outperformed global macro timing ($M13$). $M13$ suffered severe cash drag during market rallies (remaining defensive $86.3\%$ of weeks across 2022–2025).
+  2. **Risk Inflation ($M16$) Is Strongest**: $M16$ achieved positive net utility ($\Delta U = +0.000068$, winning $4/9$ seed instances and delivering $+0.000592$ mean $\Delta U$ across all seeds in 2023), but failed multi-regime consistency.
+  3. **Mechanism Validation**: Epistemic uncertainty exhibits a strictly monotonic relationship with empirical forecast error ($0.2171$ in Q1 to $0.3489$ in Q5, $+60.7\%$), confirming informational validity even as portfolio optimization imposes non-linear translation.
+  4. **Cost Invariance**: $M14$ and $M16$ maintain identical turnover to $M0$ across 0, 10, and 25 bps.
+- **Full Report**: [`phase13_report.md`](artifacts/phase13_uncertainty_mapping/phase13_report.md).
+
 ---
 
 ## Code Quality & Standards
 
 - **Formatting & Linting**: Verified with `ruff` (`ruff check .` passes with 0 errors).
-- **Testing**: 195 comprehensive unit tests covering all core modules with `pytest`.
+- **Testing**: 200 comprehensive unit tests covering all core modules with `pytest` (200 passed, 3 skipped).
 - **Determinism**: Fixed random seeds, exact analytical benchmarks, and verifiable hand calculations.
 
 ```bash

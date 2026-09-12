@@ -1,0 +1,89 @@
+{
+  "preregistration_metadata": {
+    "experiment_id": "phase16_deterministic_lora_control",
+    "title": "Phase 16: Does Bayesian Training Add Value Beyond Deterministic LoRA?",
+    "status": "PREREGISTERED_FROZEN",
+    "created_at_utc": "2026-09-12T16:07:00Z",
+    "purpose": "Evaluate whether the Bayesian variational training procedure (variational parameters + KL divergence penalty) improves out-of-sample forecast accuracy or reliability ranking compared to an identically matched deterministic LoRA baseline."
+  },
+  "hypotheses": {
+    "primary_hypothesis_h1": "Bayesian posterior-mean training improves clean OOS forecast quality (log loss, Brier score, AUROC) or forecast-reliability ranking (Spearman rho vs absolute error) relative to matched deterministic LoRA.",
+    "null_hypothesis_h0": "Deterministic LoRA performs equivalently to Bayesian posterior-mean LoRA within predefined equivalence bounds.",
+    "secondary_hypothesis": "Bayesian MC32 posterior sampling does not materially outperform single-pass Bayesian posterior-mean inference, consistent with Phase 15.1 findings."
+  },
+  "predeclared_equivalence_margins": {
+    "auroc_difference": 0.005,
+    "brier_score_difference": 0.002,
+    "spearman_reliability_difference": 0.010
+  },
+  "matched_model_specification": {
+    "base_model": {
+      "identifier": "ProsusAI/finbert",
+      "revision": "4556d13015211d73dccd3fdd39d39232506f3e43",
+      "architecture": "BertForSequenceClassification",
+      "num_labels": 2
+    },
+    "deterministic_lora_parameters": {
+      "rank": 16,
+      "alpha": 32,
+      "dropout": 0.05,
+      "target_modules": [
+        "attention.self.query",
+        "attention.self.value"
+      ],
+      "trainable_parameters": 591362,
+      "variational_variance_parameters": 0,
+      "variational_sampling": false,
+      "kl_term": false
+    },
+    "seeds": [
+      42,
+      123,
+      777
+    ]
+  },
+  "matched_training_recipe": {
+    "dataset": "reconstructed_returns.csv pre-2022 slice",
+    "training_data_end_date": "2021-12-31 23:59:59",
+    "train_events_count": 13389,
+    "validation_events_count": 2363,
+    "validation_fraction": 0.15,
+    "optimizer": "AdamW",
+    "learning_rate": 0.0002,
+    "weight_decay": 0.01,
+    "epochs": 4,
+    "batch_size": 32,
+    "loss_function": "CrossEntropyLoss (no KL divergence)",
+    "checkpoint_selection": "best validation AUROC across 4 epochs"
+  },
+  "clean_evaluation_scope": {
+    "primary_clean_regimes": [
+      "2022",
+      "2023",
+      "2024-2025"
+    ],
+    "total_unique_events": 4100,
+    "total_observations_per_system": 12300,
+    "calendar_weeks_count": 168
+  },
+  "systems_to_compare": [
+    {
+      "system_id": "System_A_Deterministic_LoRA",
+      "name": "Deterministic LoRA",
+      "inference_passes_per_event": 1,
+      "sampling": false
+    },
+    {
+      "system_id": "System_B_Bayesian_Posterior_Mean",
+      "name": "Bayesian LoRA Posterior Mean",
+      "inference_passes_per_event": 1,
+      "sampling": false
+    },
+    {
+      "system_id": "System_C_Bayesian_MC32",
+      "name": "Bayesian LoRA MC32",
+      "inference_passes_per_event": 32,
+      "sampling": true
+    }
+  ]
+}

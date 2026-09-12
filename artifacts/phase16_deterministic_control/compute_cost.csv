@@ -1,0 +1,4 @@
+system_name,training_time_per_seed_minutes,trainable_parameters,inference_forward_passes,inference_events_per_second,inference_ms_per_event
+Deterministic LoRA,11.26,591362,1,221.0,4.52
+Bayesian LoRA Posterior Mean,17.5,1181186,1,274.0,3.65
+Bayesian LoRA MC32,17.5,1181186,32,8.6,116.8

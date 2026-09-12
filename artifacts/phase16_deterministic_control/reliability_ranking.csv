@@ -1,0 +1,8 @@
+ranking_signal,signal_column,spearman_rho,p_value_spearman,pearson_r,p_value_pearson,q5_q1_error_ratio,high_error_auroc,high_error_ap,n_observations
+Deterministic LoRA Entropy,entropy_det_lora,0.3064,1.5560515233904127e-265,0.219,1.7978655474421848e-133,1.4052,0.2497,0.1305,12300
+Deterministic LoRA Margin,margin_det_lora,0.3064,1.5560515233904127e-265,0.2059,7.323711199820118e-118,1.4052,0.2497,0.1305,12300
+Bayesian Posterior Mean Entropy,entropy_bayes_mean,0.599,0.0,0.0964,8.618851743404578e-27,1.3284,0.4998,0.1992,12300
+Bayesian Posterior Mean Margin,margin_bayes_mean,0.599,0.0,0.1037,8.665015651764185e-31,1.3284,0.4998,0.1992,12300
+Bayesian MC32 Entropy,entropy_mc32,0.5992,0.0,0.1041,5.420440533718565e-31,1.38,0.5001,0.1998,12300
+Bayesian MC32 Margin,margin_mc32,0.5992,0.0,0.112,1.2568702660761828e-35,1.38,0.5001,0.1998,12300
+Bayesian MC32 Epistemic Uncertainty,epistemic_uncertainty,0.5945,0.0,0.1014,1.8067374513660138e-29,1.4343,0.5015,0.2005,12300

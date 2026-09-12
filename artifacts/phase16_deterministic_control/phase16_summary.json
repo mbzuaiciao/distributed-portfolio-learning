@@ -1,0 +1,254 @@
+{
+  "timestamp_utc": "2026-09-12T16:42:36.722986+00:00",
+  "phase": "Phase 16: Does Bayesian Training Add Value Beyond Deterministic LoRA?",
+  "scientific_verdict": "Outcome D: Regime / Seed Dependent or Inconclusive",
+  "interpretation": "Differences between Bayesian and deterministic LoRA vary across regimes or seeds without stable advantage.",
+  "delta_auroc_bayes_vs_det": -0.01138,
+  "delta_brier_bayes_vs_det": -0.06262,
+  "delta_reliability_rho_bayes_vs_det": 0.29329,
+  "equivalence_verdicts": [
+    {
+      "comparison_metric": "Delta_Brier (Bayesian_Mean - Det_LoRA)",
+      "predeclared_margin": 0.002,
+      "ci_95_lower": -0.07496,
+      "ci_95_upper": -0.05101,
+      "strictly_within_margin": false,
+      "verdict": "NOT_EQUIVALENT_OR_INCONCLUSIVE"
+    },
+    {
+      "comparison_metric": "Delta_AUROC (Bayesian_Mean - Det_LoRA)",
+      "predeclared_margin": 0.005,
+      "ci_95_lower": -0.01875,
+      "ci_95_upper": -0.00399,
+      "strictly_within_margin": false,
+      "verdict": "NOT_EQUIVALENT_OR_INCONCLUSIVE"
+    },
+    {
+      "comparison_metric": "Delta_Reliability_Rho (Bayesian_Mean - Det_LoRA)",
+      "predeclared_margin": 0.01,
+      "ci_95_lower": 0.25861,
+      "ci_95_upper": 0.32732,
+      "strictly_within_margin": false,
+      "verdict": "NOT_EQUIVALENT_OR_INCONCLUSIVE"
+    }
+  ],
+  "primary_forecast_metrics_pooled": [
+    {
+      "evaluation_scope": "Clean_Pooled (2022-2025)",
+      "system_name": "Deterministic LoRA",
+      "log_loss": 0.71985,
+      "brier_score": 0.2557,
+      "auroc": 0.5116,
+      "average_precision": 0.2032,
+      "ece": 0.2275,
+      "mae_vs_label": 0.44286,
+      "accuracy_top20": 0.6842,
+      "n_observations": 12300
+    },
+    {
+      "evaluation_scope": "Clean_Pooled (2022-2025)",
+      "system_name": "Bayesian Posterior Mean",
+      "log_loss": 1.08042,
+      "brier_score": 0.19316,
+      "auroc": 0.5001,
+      "average_precision": 0.2013,
+      "ece": 0.1757,
+      "mae_vs_label": 0.21921,
+      "accuracy_top20": 0.6808,
+      "n_observations": 12300
+    },
+    {
+      "evaluation_scope": "Clean_Pooled (2022-2025)",
+      "system_name": "Bayesian MC32",
+      "log_loss": 1.06711,
+      "brier_score": 0.19237,
+      "auroc": 0.5003,
+      "average_precision": 0.2017,
+      "ece": 0.1723,
+      "mae_vs_label": 0.22101,
+      "accuracy_top20": 0.6803,
+      "n_observations": 12300
+    }
+  ],
+  "reliability_ranking_pooled": [
+    {
+      "ranking_signal": "Deterministic LoRA Entropy",
+      "signal_column": "entropy_det_lora",
+      "spearman_rho": 0.3064,
+      "p_value_spearman": 1.5560515233904127e-265,
+      "pearson_r": 0.219,
+      "p_value_pearson": 1.7978655474421848e-133,
+      "q5_q1_error_ratio": 1.4052,
+      "high_error_auroc": 0.2497,
+      "high_error_ap": 0.1305,
+      "n_observations": 12300
+    },
+    {
+      "ranking_signal": "Deterministic LoRA Margin",
+      "signal_column": "margin_det_lora",
+      "spearman_rho": 0.3064,
+      "p_value_spearman": 1.5560515233904127e-265,
+      "pearson_r": 0.2059,
+      "p_value_pearson": 7.323711199820118e-118,
+      "q5_q1_error_ratio": 1.4052,
+      "high_error_auroc": 0.2497,
+      "high_error_ap": 0.1305,
+      "n_observations": 12300
+    },
+    {
+      "ranking_signal": "Bayesian Posterior Mean Entropy",
+      "signal_column": "entropy_bayes_mean",
+      "spearman_rho": 0.599,
+      "p_value_spearman": 0.0,
+      "pearson_r": 0.0964,
+      "p_value_pearson": 8.618851743404578e-27,
+      "q5_q1_error_ratio": 1.3284,
+      "high_error_auroc": 0.4998,
+      "high_error_ap": 0.1992,
+      "n_observations": 12300
+    },
+    {
+      "ranking_signal": "Bayesian Posterior Mean Margin",
+      "signal_column": "margin_bayes_mean",
+      "spearman_rho": 0.599,
+      "p_value_spearman": 0.0,
+      "pearson_r": 0.1037,
+      "p_value_pearson": 8.665015651764185e-31,
+      "q5_q1_error_ratio": 1.3284,
+      "high_error_auroc": 0.4998,
+      "high_error_ap": 0.1992,
+      "n_observations": 12300
+    },
+    {
+      "ranking_signal": "Bayesian MC32 Entropy",
+      "signal_column": "entropy_mc32",
+      "spearman_rho": 0.5992,
+      "p_value_spearman": 0.0,
+      "pearson_r": 0.1041,
+      "p_value_pearson": 5.420440533718565e-31,
+      "q5_q1_error_ratio": 1.38,
+      "high_error_auroc": 0.5001,
+      "high_error_ap": 0.1998,
+      "n_observations": 12300
+    },
+    {
+      "ranking_signal": "Bayesian MC32 Margin",
+      "signal_column": "margin_mc32",
+      "spearman_rho": 0.5992,
+      "p_value_spearman": 0.0,
+      "pearson_r": 0.112,
+      "p_value_pearson": 1.2568702660761828e-35,
+      "q5_q1_error_ratio": 1.38,
+      "high_error_auroc": 0.5001,
+      "high_error_ap": 0.1998,
+      "n_observations": 12300
+    },
+    {
+      "ranking_signal": "Bayesian MC32 Epistemic Uncertainty",
+      "signal_column": "epistemic_uncertainty",
+      "spearman_rho": 0.5945,
+      "p_value_spearman": 0.0,
+      "pearson_r": 0.1014,
+      "p_value_pearson": 1.8067374513660138e-29,
+      "q5_q1_error_ratio": 1.4343,
+      "high_error_auroc": 0.5015,
+      "high_error_ap": 0.2005,
+      "n_observations": 12300
+    }
+  ],
+  "calibration_metrics": [
+    {
+      "system_name": "Deterministic LoRA",
+      "brier_score": 0.2557,
+      "ece": 0.2275,
+      "calibration_intercept": -1.3735,
+      "calibration_slope": 0.0293,
+      "n_observations": 12300
+    },
+    {
+      "system_name": "Bayesian Posterior Mean",
+      "brier_score": 0.19316,
+      "ece": 0.1757,
+      "calibration_intercept": -1.3786,
+      "calibration_slope": 0.0015,
+      "n_observations": 12300
+    },
+    {
+      "system_name": "Bayesian MC32",
+      "brier_score": 0.19237,
+      "ece": 0.1723,
+      "calibration_intercept": -1.3766,
+      "calibration_slope": 0.0019,
+      "n_observations": 12300
+    }
+  ],
+  "bootstrap_summary": [
+    {
+      "comparison_metric": "Delta_LogLoss (Bayesian_Mean - Det_LoRA)",
+      "direction_interpretation": "negative_favors_bayesian",
+      "bootstrap_mean": 0.36006,
+      "bootstrap_std": 0.03978,
+      "ci_95_lower": 0.28286,
+      "ci_95_upper": 0.43712,
+      "empirical_p_value": 0.0,
+      "statistically_significant": true,
+      "n_resamples": 1000
+    },
+    {
+      "comparison_metric": "Delta_Brier (Bayesian_Mean - Det_LoRA)",
+      "direction_interpretation": "negative_favors_bayesian",
+      "bootstrap_mean": -0.06262,
+      "bootstrap_std": 0.00632,
+      "ci_95_lower": -0.07496,
+      "ci_95_upper": -0.05101,
+      "empirical_p_value": 0.0,
+      "statistically_significant": true,
+      "n_resamples": 1000
+    },
+    {
+      "comparison_metric": "Delta_AUROC (Bayesian_Mean - Det_LoRA)",
+      "direction_interpretation": "positive_favors_bayesian",
+      "bootstrap_mean": -0.01138,
+      "bootstrap_std": 0.00382,
+      "ci_95_lower": -0.01875,
+      "ci_95_upper": -0.00399,
+      "empirical_p_value": 0.004,
+      "statistically_significant": true,
+      "n_resamples": 1000
+    },
+    {
+      "comparison_metric": "Delta_Reliability_Rho (Bayesian_Mean - Det_LoRA)",
+      "direction_interpretation": "positive_favors_bayesian",
+      "bootstrap_mean": 0.29329,
+      "bootstrap_std": 0.01739,
+      "ci_95_lower": 0.25861,
+      "ci_95_upper": 0.32732,
+      "empirical_p_value": 0.0,
+      "statistically_significant": true,
+      "n_resamples": 1000
+    },
+    {
+      "comparison_metric": "Delta_AUROC (MC32 - Bayesian_Mean)",
+      "direction_interpretation": "positive_favors_mc32",
+      "bootstrap_mean": 0.0002,
+      "bootstrap_std": 0.00036,
+      "ci_95_lower": -0.0005,
+      "ci_95_upper": 0.00093,
+      "empirical_p_value": 0.564,
+      "statistically_significant": false,
+      "n_resamples": 1000
+    },
+    {
+      "comparison_metric": "Delta_Brier (MC32 - Bayesian_Mean)",
+      "direction_interpretation": "negative_favors_mc32",
+      "bootstrap_mean": -0.00079,
+      "bootstrap_std": 9e-05,
+      "ci_95_lower": -0.00098,
+      "ci_95_upper": -0.00063,
+      "empirical_p_value": 0.0,
+      "statistically_significant": true,
+      "n_resamples": 1000
+    }
+  ],
+  "weight_similarity_mean_cosine": 0.34941
+}

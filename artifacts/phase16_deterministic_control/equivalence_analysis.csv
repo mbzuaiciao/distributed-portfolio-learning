@@ -1,0 +1,4 @@
+comparison_metric,predeclared_margin,ci_95_lower,ci_95_upper,strictly_within_margin,verdict
+Delta_Brier (Bayesian_Mean - Det_LoRA),0.002,-0.07496,-0.05101,False,NOT_EQUIVALENT_OR_INCONCLUSIVE
+Delta_AUROC (Bayesian_Mean - Det_LoRA),0.005,-0.01875,-0.00399,False,NOT_EQUIVALENT_OR_INCONCLUSIVE
+Delta_Reliability_Rho (Bayesian_Mean - Det_LoRA),0.01,0.25861,0.32732,False,NOT_EQUIVALENT_OR_INCONCLUSIVE

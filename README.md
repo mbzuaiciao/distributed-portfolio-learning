@@ -1,6 +1,6 @@
 # Hypergraph Portfolio Lab
 
-[![CI Tests](https://img.shields.io/badge/pytest-221%20passed-brightgreen.svg)](tests/)
+[![CI Tests](https://img.shields.io/badge/pytest-228%20passed-brightgreen.svg)](tests/)
 [![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.14-blue.svg)](pyproject.toml)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
@@ -60,6 +60,8 @@ This repository serves twelve core purposes:
 | **19. Does independent prospective 2026 confirmation exist for the frozen $H=4$ $M_{13}$ architecture?** | Confirmatory protocol strictly frozen & audited; 2026 data unavailable in dataset | Pre-registered commit `2afe05a`; all empirical stock returns terminate at 2025-05-15; 0 pseudo-events manufactured; classified under Outcome F / Outcome B. | **Audited & Frozen (Phase 10)** |
 | **20. Does Bayesian epistemic uncertainty provide incremental information beyond simple confidence (entropy/margin) or market risk?** | No incremental information; captures identical reliability signal | Epistemic $\rho = 0.5945$ vs predictive entropy $\rho = 0.5992$; simple confidence explains $86.2\%$ of epistemic variance; LORO $\Delta \text{AUROC} = -0.0009$ and $\Delta \text{MAE} = -0.00016$ with $95\%$ bootstrap CIs spanning zero ($p = 0.51$). Market volatility dominates binary tail risk ($\text{AUROC} = 0.5880$). | **Audited & Reconciled (Phase 15, Outcome B)** |
 | **21. Where does probability $p$ in the confidence baselines originate, and does true single-pass deterministic confidence match MC32 uncertainty?** | Originated from MC32 posterior mean; true single-pass deterministic baseline matches or exceeds MC32 uncertainty | Traced $p$ to 32 MC draws ($\bar{p}_{\text{MC32}}$); constructed true single-pass baseline $p_{\text{deterministic\_mean}}$ (1 forward pass, posterior mean parameters $\mu$); alignment $r = 0.99187$, MAE $= 0.00388$; single-pass `entropy_det` achieves $\rho = 0.5983$ vs MC32 epistemic $\rho = 0.5945$ ($\Delta \rho = +0.00397, p = 0.008$); LORO Model C_det matches Model C_MC32 to within $0.0003$ AUROC. | **Audited & Reconciled (Phase 15.1, Outcome A)** |
+| **22. Does the Bayesian training procedure add value beyond matched deterministic LoRA?** | Rejects equivalence; Bayesian variational training acts as regularizer improving calibration & error tracking, but does not dominate point AUROC | Deterministic LoRA achieves slightly higher AUROC ($0.5116$ vs $0.5001$, $p=0.004$) and lower log loss ($0.7198$ vs $1.0804$), but Bayesian training dramatically improves Brier score ($0.1932$ vs $0.2557$, $p=0.000$), ECE ($0.1757$ vs $0.2275$), and error-tracking Spearman $\rho$ ($0.5990$ vs $0.3064$, $p=0.000$) while eliminating catastrophic seed miscalibration. Single-pass Bayesian posterior mean and MC32 remain statistically indistinguishable ($\Delta \text{AUROC} = +0.0002$). | **Audited & Adjudicated (Phase 16, Outcome D)** |
+
 
 ---
 

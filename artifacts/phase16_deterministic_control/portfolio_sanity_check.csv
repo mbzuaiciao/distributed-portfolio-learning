@@ -1,0 +1,4 @@
+system_name,signal_used,annualized_return,annualized_volatility,sharpe_ratio,max_drawdown,utility_gamma1
+Deterministic LoRA,p_det_lora,0.1811,0.3912,0.4629,-0.427,0.1046
+Bayesian Posterior Mean,p_bayes_mean,0.1828,0.3987,0.4585,-0.4322,0.1033
+Bayesian MC32,p_bayes_mc32,0.2002,0.3978,0.5034,-0.4199,0.1211

@@ -1,0 +1,7 @@
+comparison_metric,direction_interpretation,bootstrap_mean,bootstrap_std,ci_95_lower,ci_95_upper,empirical_p_value,statistically_significant,n_resamples
+Delta_LogLoss (Bayesian_Mean - Det_LoRA),negative_favors_bayesian,0.36006,0.03978,0.28286,0.43712,0.0,True,1000
+Delta_Brier (Bayesian_Mean - Det_LoRA),negative_favors_bayesian,-0.06262,0.00632,-0.07496,-0.05101,0.0,True,1000
+Delta_AUROC (Bayesian_Mean - Det_LoRA),positive_favors_bayesian,-0.01138,0.00382,-0.01875,-0.00399,0.004,True,1000
+Delta_Reliability_Rho (Bayesian_Mean - Det_LoRA),positive_favors_bayesian,0.29329,0.01739,0.25861,0.32732,0.0,True,1000
+Delta_AUROC (MC32 - Bayesian_Mean),positive_favors_mc32,0.0002,0.00036,-0.0005,0.00093,0.564,False,1000
+Delta_Brier (MC32 - Bayesian_Mean),negative_favors_mc32,-0.00079,9e-05,-0.00098,-0.00063,0.0,True,1000

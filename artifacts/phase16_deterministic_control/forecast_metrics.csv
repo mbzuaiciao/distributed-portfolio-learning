@@ -1,0 +1,4 @@
+evaluation_scope,system_name,log_loss,brier_score,auroc,average_precision,ece,mae_vs_label,accuracy_top20,n_observations
+Clean_Pooled (2022-2025),Deterministic LoRA,0.71985,0.2557,0.5116,0.2032,0.2275,0.44286,0.6842,12300
+Clean_Pooled (2022-2025),Bayesian Posterior Mean,1.08042,0.19316,0.5001,0.2013,0.1757,0.21921,0.6808,12300
+Clean_Pooled (2022-2025),Bayesian MC32,1.06711,0.19237,0.5003,0.2017,0.1723,0.22101,0.6803,12300

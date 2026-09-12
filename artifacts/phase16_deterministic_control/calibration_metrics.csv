@@ -1,0 +1,4 @@
+system_name,brier_score,ece,calibration_intercept,calibration_slope,n_observations
+Deterministic LoRA,0.2557,0.2275,-1.3735,0.0293,12300
+Bayesian Posterior Mean,0.19316,0.1757,-1.3786,0.0015,12300
+Bayesian MC32,0.19237,0.1723,-1.3766,0.0019,12300

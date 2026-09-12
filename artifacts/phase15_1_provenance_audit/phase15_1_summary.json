@@ -1,0 +1,269 @@
+{
+  "timestamp_utc": "2026-09-12T02:02:20.214889+00:00",
+  "phase": "Phase 15.1: Deterministic-Confidence Provenance Audit",
+  "provenance_trace": {
+    "phase15_probability_source": "Posterior predictive mean across 32 Bayesian MC draws (p_bar_MC32)",
+    "phase15_forward_passes_per_event": 32,
+    "phase15_classification": "MC32 posterior-mean confidence (NOT single-pass deterministic)",
+    "true_single_pass_method": "Frozen Bayesian-LoRA posterior mean parameters (mu), sample_weight=False",
+    "true_single_pass_forward_passes_per_event": 1
+  },
+  "probability_alignment": {
+    "pearson_r": 0.99187,
+    "spearman_rho": 0.99891,
+    "mean_absolute_error": 0.00388,
+    "max_absolute_error": 0.12262
+  },
+  "scientific_adjudication": {
+    "verdict": "Outcome A: True single-pass entropy/margin matches MC32 uncertainty",
+    "description": "True single-pass deterministic confidence (using posterior mean parameters with exactly 1 forward pass) achieves virtually identical rank correlation with forecast error as MC32 uncertainty. Therefore, Bayesian MC sampling is computationally redundant for reliability ranking.",
+    "spearman_rho_epistemic_mc32": 0.5945,
+    "spearman_rho_entropy_mc32": 0.5992,
+    "spearman_rho_entropy_det_single_pass": 0.5983,
+    "delta_rho_det_vs_epi": 0.0038,
+    "delta_rho_det_vs_mc32": -0.0009
+  },
+  "signal_comparison_pooled": [
+    {
+      "scope": "Clean_Pooled (2022-2025)",
+      "signal_name": "epistemic_uncertainty",
+      "signal_description": "MC32 Epistemic Uncertainty (Variance)",
+      "signal_category": "BAYESIAN_MC32",
+      "forward_passes_per_event": 32,
+      "spearman_rho": 0.5945,
+      "p_value_spearman": 0.0,
+      "pearson_r": 0.1014,
+      "p_value_pearson": 1.8067374513660138e-29,
+      "q5_q1_error_ratio": 1.4343,
+      "high_error_auroc": 0.5015,
+      "high_error_ap": 0.2005,
+      "n_observations": 12300
+    },
+    {
+      "scope": "Clean_Pooled (2022-2025)",
+      "signal_name": "entropy_mc32",
+      "signal_description": "Predictive Entropy H(p_bar_MC32)",
+      "signal_category": "MC32_POSTERIOR_MEAN_CONFIDENCE",
+      "forward_passes_per_event": 32,
+      "spearman_rho": 0.5992,
+      "p_value_spearman": 0.0,
+      "pearson_r": 0.1041,
+      "p_value_pearson": 5.420440533718565e-31,
+      "q5_q1_error_ratio": 1.38,
+      "high_error_auroc": 0.5001,
+      "high_error_ap": 0.1998,
+      "n_observations": 12300
+    },
+    {
+      "scope": "Clean_Pooled (2022-2025)",
+      "signal_name": "margin_mc32",
+      "signal_description": "Confidence Margin (0.5 - |p_bar_MC32 - 0.5|)",
+      "signal_category": "MC32_POSTERIOR_MEAN_CONFIDENCE",
+      "forward_passes_per_event": 32,
+      "spearman_rho": 0.5992,
+      "p_value_spearman": 0.0,
+      "pearson_r": 0.112,
+      "p_value_pearson": 1.2568702660761828e-35,
+      "q5_q1_error_ratio": 1.38,
+      "high_error_auroc": 0.5001,
+      "high_error_ap": 0.1998,
+      "n_observations": 12300
+    },
+    {
+      "scope": "Clean_Pooled (2022-2025)",
+      "signal_name": "entropy_det",
+      "signal_description": "Predictive Entropy H(p_deterministic_mean)",
+      "signal_category": "TRUE_SINGLE_PASS_DETERMINISTIC",
+      "forward_passes_per_event": 1,
+      "spearman_rho": 0.5983,
+      "p_value_spearman": 0.0,
+      "pearson_r": 0.1036,
+      "p_value_pearson": 1.030324224903092e-30,
+      "q5_q1_error_ratio": 1.3605,
+      "high_error_auroc": 0.4998,
+      "high_error_ap": 0.1992,
+      "n_observations": 12300
+    },
+    {
+      "scope": "Clean_Pooled (2022-2025)",
+      "signal_name": "margin_det",
+      "signal_description": "Confidence Margin (0.5 - |p_deterministic_mean - 0.5|)",
+      "signal_category": "TRUE_SINGLE_PASS_DETERMINISTIC",
+      "forward_passes_per_event": 1,
+      "spearman_rho": 0.5983,
+      "p_value_spearman": 0.0,
+      "pearson_r": 0.1096,
+      "p_value_pearson": 3.274015545264631e-34,
+      "q5_q1_error_ratio": 1.3605,
+      "high_error_auroc": 0.4998,
+      "high_error_ap": 0.1992,
+      "n_observations": 12300
+    },
+    {
+      "scope": "Clean_Pooled (2022-2025)",
+      "signal_name": "asset_volatility",
+      "signal_description": "Asset Volatility (Historical Trailing Std)",
+      "signal_category": "MARKET_VOLATILITY",
+      "forward_passes_per_event": 0,
+      "spearman_rho": 0.0895,
+      "p_value_spearman": 2.769378077033036e-23,
+      "pearson_r": 0.1237,
+      "p_value_pearson": 4.1046440653981854e-43,
+      "q5_q1_error_ratio": 2.1301,
+      "high_error_auroc": 0.588,
+      "high_error_ap": 0.2499,
+      "n_observations": 12300
+    }
+  ],
+  "loro_comparison_summary": [
+    {
+      "evaluation_scope": "LORO_Pooled_Out_of_Sample",
+      "held_out_regime": "All_Clean_Regimes",
+      "model_name": "Model A_MC32 (MC32 Confidence)",
+      "features": [
+        "entropy_mc32",
+        "margin_mc32"
+      ],
+      "held_out_r2": 0.01217,
+      "held_out_mae": 0.29853,
+      "held_out_auroc": 0.4925,
+      "held_out_ap": 0.2001,
+      "n_test_observations": 12300,
+      "delta_auroc_vs_model_c_mc32": -0.0909,
+      "delta_mae_vs_model_c_mc32": 0.00576
+    },
+    {
+      "evaluation_scope": "LORO_Pooled_Out_of_Sample",
+      "held_out_regime": "All_Clean_Regimes",
+      "model_name": "Model A_det (Single-Pass Confidence)",
+      "features": [
+        "entropy_det",
+        "margin_det"
+      ],
+      "held_out_r2": 0.01162,
+      "held_out_mae": 0.29869,
+      "held_out_auroc": 0.4938,
+      "held_out_ap": 0.1992,
+      "n_test_observations": 12300,
+      "delta_auroc_vs_model_c_mc32": -0.0896,
+      "delta_mae_vs_model_c_mc32": 0.00592
+    },
+    {
+      "evaluation_scope": "LORO_Pooled_Out_of_Sample",
+      "held_out_regime": "All_Clean_Regimes",
+      "model_name": "Model B (Market Only)",
+      "features": [
+        "asset_volatility",
+        "market_vol_proxy",
+        "cross_sectional_vol_rank"
+      ],
+      "held_out_r2": 0.01273,
+      "held_out_mae": 0.29782,
+      "held_out_auroc": 0.5832,
+      "held_out_ap": 0.2472,
+      "n_test_observations": 12300,
+      "delta_auroc_vs_model_c_mc32": -0.0002,
+      "delta_mae_vs_model_c_mc32": 0.00505
+    },
+    {
+      "evaluation_scope": "LORO_Pooled_Out_of_Sample",
+      "held_out_regime": "All_Clean_Regimes",
+      "model_name": "Model C_MC32 (Confidence_MC32 + Market)",
+      "features": [
+        "entropy_mc32",
+        "margin_mc32",
+        "asset_volatility",
+        "market_vol_proxy",
+        "cross_sectional_vol_rank"
+      ],
+      "held_out_r2": 0.02497,
+      "held_out_mae": 0.29277,
+      "held_out_auroc": 0.5834,
+      "held_out_ap": 0.2475,
+      "n_test_observations": 12300,
+      "delta_auroc_vs_model_c_mc32": 0.0,
+      "delta_mae_vs_model_c_mc32": 0.0
+    },
+    {
+      "evaluation_scope": "LORO_Pooled_Out_of_Sample",
+      "held_out_regime": "All_Clean_Regimes",
+      "model_name": "Model C_det (Confidence_det + Market)",
+      "features": [
+        "entropy_det",
+        "margin_det",
+        "asset_volatility",
+        "market_vol_proxy",
+        "cross_sectional_vol_rank"
+      ],
+      "held_out_r2": 0.02443,
+      "held_out_mae": 0.29294,
+      "held_out_auroc": 0.5837,
+      "held_out_ap": 0.2475,
+      "n_test_observations": 12300,
+      "delta_auroc_vs_model_c_mc32": 0.0003,
+      "delta_mae_vs_model_c_mc32": 0.00017
+    },
+    {
+      "evaluation_scope": "LORO_Pooled_Out_of_Sample",
+      "held_out_regime": "All_Clean_Regimes",
+      "model_name": "Model D (Confidence_MC32 + Market + Epistemic)",
+      "features": [
+        "entropy_mc32",
+        "margin_mc32",
+        "asset_volatility",
+        "market_vol_proxy",
+        "cross_sectional_vol_rank",
+        "epistemic_uncertainty"
+      ],
+      "held_out_r2": 0.02491,
+      "held_out_mae": 0.2929,
+      "held_out_auroc": 0.5829,
+      "held_out_ap": 0.2461,
+      "n_test_observations": 12300,
+      "delta_auroc_vs_model_c_mc32": -0.0005,
+      "delta_mae_vs_model_c_mc32": 0.00013
+    }
+  ],
+  "block_bootstrap_summary": [
+    {
+      "comparison_metric": "Delta_Rho (Entropy_Det - Epistemic_MC32)",
+      "bootstrap_mean": 0.00397,
+      "bootstrap_std": 0.00147,
+      "ci_95_lower": 0.00122,
+      "ci_95_upper": 0.00683,
+      "empirical_p_value": 0.008,
+      "statistically_significant_at_05": true,
+      "n_resamples": 1000
+    },
+    {
+      "comparison_metric": "Delta_Rho (Entropy_Det - Entropy_MC32)",
+      "bootstrap_mean": -0.00089,
+      "bootstrap_std": 0.00047,
+      "ci_95_lower": -0.00181,
+      "ci_95_upper": 0.0001,
+      "empirical_p_value": 0.068,
+      "statistically_significant_at_05": false,
+      "n_resamples": 1000
+    },
+    {
+      "comparison_metric": "Delta_AUROC (Entropy_Det - Epistemic_MC32)",
+      "bootstrap_mean": -0.0016,
+      "bootstrap_std": 0.00106,
+      "ci_95_lower": -0.00362,
+      "ci_95_upper": 0.00047,
+      "empirical_p_value": 0.144,
+      "statistically_significant_at_05": false,
+      "n_resamples": 1000
+    },
+    {
+      "comparison_metric": "Delta_AUROC (Entropy_Det - Entropy_MC32)",
+      "bootstrap_mean": -0.00027,
+      "bootstrap_std": 0.00036,
+      "ci_95_lower": -0.00099,
+      "ci_95_upper": 0.00046,
+      "empirical_p_value": 0.422,
+      "statistically_significant_at_05": false,
+      "n_resamples": 1000
+    }
+  ]
+}

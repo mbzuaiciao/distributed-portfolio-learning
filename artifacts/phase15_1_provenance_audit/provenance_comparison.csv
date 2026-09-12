@@ -1,0 +1,7 @@
+scope,signal_name,signal_description,signal_category,forward_passes_per_event,spearman_rho,p_value_spearman,pearson_r,p_value_pearson,q5_q1_error_ratio,high_error_auroc,high_error_ap,n_observations
+Clean_Pooled (2022-2025),epistemic_uncertainty,MC32 Epistemic Uncertainty (Variance),BAYESIAN_MC32,32,0.5945,0.0,0.1014,1.8067374513660138e-29,1.4343,0.5015,0.2005,12300
+Clean_Pooled (2022-2025),entropy_mc32,Predictive Entropy H(p_bar_MC32),MC32_POSTERIOR_MEAN_CONFIDENCE,32,0.5992,0.0,0.1041,5.420440533718565e-31,1.38,0.5001,0.1998,12300
+Clean_Pooled (2022-2025),margin_mc32,Confidence Margin (0.5 - |p_bar_MC32 - 0.5|),MC32_POSTERIOR_MEAN_CONFIDENCE,32,0.5992,0.0,0.112,1.2568702660761828e-35,1.38,0.5001,0.1998,12300
+Clean_Pooled (2022-2025),entropy_det,Predictive Entropy H(p_deterministic_mean),TRUE_SINGLE_PASS_DETERMINISTIC,1,0.5983,0.0,0.1036,1.030324224903092e-30,1.3605,0.4998,0.1992,12300
+Clean_Pooled (2022-2025),margin_det,Confidence Margin (0.5 - |p_deterministic_mean - 0.5|),TRUE_SINGLE_PASS_DETERMINISTIC,1,0.5983,0.0,0.1096,3.274015545264631e-34,1.3605,0.4998,0.1992,12300
+Clean_Pooled (2022-2025),asset_volatility,Asset Volatility (Historical Trailing Std),MARKET_VOLATILITY,0,0.0895,2.769378077033036e-23,0.1237,4.1046440653981854e-43,2.1301,0.588,0.2499,12300

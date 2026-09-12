@@ -1,0 +1,25 @@
+evaluation_scope,held_out_regime,model_name,features,held_out_r2,held_out_mae,held_out_auroc,held_out_ap,n_test_observations,delta_auroc_vs_model_c_mc32,delta_mae_vs_model_c_mc32
+LORO_HeldOut_2022,2022,Model A_MC32 (MC32 Confidence),"entropy_mc32, margin_mc32",0.01312,0.29755,0.5033,0.2075,3573,-0.074,0.00686
+LORO_HeldOut_2022,2022,Model A_det (Single-Pass Confidence),"entropy_det, margin_det",0.01269,0.2978,0.5044,0.2036,3573,-0.0729,0.00711
+LORO_HeldOut_2022,2022,Model B (Market Only),"asset_volatility, market_vol_proxy, cross_sectional_vol_rank",0.00914,0.29584,0.5785,0.2433,3573,0.0012,0.00515
+LORO_HeldOut_2022,2022,Model C_MC32 (Confidence_MC32 + Market),"entropy_mc32, margin_mc32, asset_volatility, market_vol_proxy, cross_sectional_vol_rank",0.02182,0.29069,0.5773,0.2434,3573,0.0,0.0
+LORO_HeldOut_2022,2022,Model C_det (Confidence_det + Market),"entropy_det, margin_det, asset_volatility, market_vol_proxy, cross_sectional_vol_rank",0.02143,0.29091,0.5772,0.2435,3573,-0.0001,0.00022
+LORO_HeldOut_2022,2022,Model D (Confidence_MC32 + Market + Epistemic),"entropy_mc32, margin_mc32, asset_volatility, market_vol_proxy, cross_sectional_vol_rank, epistemic_uncertainty",0.02182,0.29068,0.5785,0.2436,3573,0.0012,-1e-05
+LORO_HeldOut_2023,2023,Model A_MC32 (MC32 Confidence),"entropy_mc32, margin_mc32",0.0176,0.29394,0.5004,0.1942,3543,-0.073,0.00814
+LORO_HeldOut_2023,2023,Model A_det (Single-Pass Confidence),"entropy_det, margin_det",0.0166,0.29355,0.5025,0.1949,3543,-0.0709,0.00775
+LORO_HeldOut_2023,2023,Model B (Market Only),"asset_volatility, market_vol_proxy, cross_sectional_vol_rank",0.00843,0.29039,0.5719,0.2374,3543,-0.0015,0.00459
+LORO_HeldOut_2023,2023,Model C_MC32 (Confidence_MC32 + Market),"entropy_mc32, margin_mc32, asset_volatility, market_vol_proxy, cross_sectional_vol_rank",0.02646,0.2858,0.5734,0.2382,3543,0.0,0.0
+LORO_HeldOut_2023,2023,Model C_det (Confidence_det + Market),"entropy_det, margin_det, asset_volatility, market_vol_proxy, cross_sectional_vol_rank",0.02547,0.28558,0.5746,0.2384,3543,0.0012,-0.00022
+LORO_HeldOut_2023,2023,Model D (Confidence_MC32 + Market + Epistemic),"entropy_mc32, margin_mc32, asset_volatility, market_vol_proxy, cross_sectional_vol_rank, epistemic_uncertainty",0.02625,0.28631,0.5705,0.233,3543,-0.0029,0.00051
+LORO_HeldOut_2024-2025,2024-2025,Model A_MC32 (MC32 Confidence),"entropy_mc32, margin_mc32",0.00849,0.30234,0.4936,0.2079,5184,-0.1007,0.00339
+LORO_HeldOut_2024-2025,2024-2025,Model A_det (Single-Pass Confidence),"entropy_det, margin_det",0.00813,0.30281,0.4943,0.2046,5184,-0.1,0.00386
+LORO_HeldOut_2024-2025,2024-2025,Model B (Market Only),"asset_volatility, market_vol_proxy, cross_sectional_vol_rank",0.01818,0.30425,0.5948,0.2693,5184,0.0005,0.0053
+LORO_HeldOut_2024-2025,2024-2025,Model C_MC32 (Confidence_MC32 + Market),"entropy_mc32, margin_mc32, asset_volatility, market_vol_proxy, cross_sectional_vol_rank",0.02646,0.29895,0.5943,0.2658,5184,0.0,0.0
+LORO_HeldOut_2024-2025,2024-2025,Model C_det (Confidence_det + Market),"entropy_det, margin_det, asset_volatility, market_vol_proxy, cross_sectional_vol_rank",0.02611,0.29937,0.5941,0.2656,5184,-0.0002,0.00042
+LORO_HeldOut_2024-2025,2024-2025,Model D (Confidence_MC32 + Market + Epistemic),"entropy_mc32, margin_mc32, asset_volatility, market_vol_proxy, cross_sectional_vol_rank, epistemic_uncertainty",0.02646,0.29894,0.5949,0.2674,5184,0.0006,-1e-05
+LORO_Pooled_Out_of_Sample,All_Clean_Regimes,Model A_MC32 (MC32 Confidence),"['entropy_mc32', 'margin_mc32']",0.01217,0.29853,0.4925,0.2001,12300,-0.0909,0.00576
+LORO_Pooled_Out_of_Sample,All_Clean_Regimes,Model A_det (Single-Pass Confidence),"['entropy_det', 'margin_det']",0.01162,0.29869,0.4938,0.1992,12300,-0.0896,0.00592
+LORO_Pooled_Out_of_Sample,All_Clean_Regimes,Model B (Market Only),"['asset_volatility', 'market_vol_proxy', 'cross_sectional_vol_rank']",0.01273,0.29782,0.5832,0.2472,12300,-0.0002,0.00505
+LORO_Pooled_Out_of_Sample,All_Clean_Regimes,Model C_MC32 (Confidence_MC32 + Market),"['entropy_mc32', 'margin_mc32', 'asset_volatility', 'market_vol_proxy', 'cross_sectional_vol_rank']",0.02497,0.29277,0.5834,0.2475,12300,0.0,0.0
+LORO_Pooled_Out_of_Sample,All_Clean_Regimes,Model C_det (Confidence_det + Market),"['entropy_det', 'margin_det', 'asset_volatility', 'market_vol_proxy', 'cross_sectional_vol_rank']",0.02443,0.29294,0.5837,0.2475,12300,0.0003,0.00017
+LORO_Pooled_Out_of_Sample,All_Clean_Regimes,Model D (Confidence_MC32 + Market + Epistemic),"['entropy_mc32', 'margin_mc32', 'asset_volatility', 'market_vol_proxy', 'cross_sectional_vol_rank', 'epistemic_uncertainty']",0.02491,0.2929,0.5829,0.2461,12300,-0.0005,0.00013

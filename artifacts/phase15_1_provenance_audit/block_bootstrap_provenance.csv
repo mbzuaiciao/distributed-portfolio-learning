@@ -1,0 +1,5 @@
+comparison_metric,bootstrap_mean,bootstrap_std,ci_95_lower,ci_95_upper,empirical_p_value,statistically_significant_at_05,n_resamples
+Delta_Rho (Entropy_Det - Epistemic_MC32),0.00397,0.00147,0.00122,0.00683,0.008,True,1000
+Delta_Rho (Entropy_Det - Entropy_MC32),-0.00089,0.00047,-0.00181,0.0001,0.068,False,1000
+Delta_AUROC (Entropy_Det - Epistemic_MC32),-0.0016,0.00106,-0.00362,0.00047,0.144,False,1000
+Delta_AUROC (Entropy_Det - Entropy_MC32),-0.00027,0.00036,-0.00099,0.00046,0.422,False,1000

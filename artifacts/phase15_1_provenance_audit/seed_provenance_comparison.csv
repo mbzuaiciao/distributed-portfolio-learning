@@ -1,0 +1,19 @@
+scope,signal_name,signal_description,signal_category,forward_passes_per_event,spearman_rho,p_value_spearman,pearson_r,p_value_pearson,q5_q1_error_ratio,high_error_auroc,high_error_ap,n_observations,seed
+Seed_42 (Clean),epistemic_uncertainty,MC32 Epistemic Uncertainty (Variance),BAYESIAN_MC32,32,0.587,0.0,0.1569,5.0621343387363335e-24,1.6069,0.5059,0.2011,4100,42
+Seed_42 (Clean),entropy_mc32,Predictive Entropy H(p_bar_MC32),MC32_POSTERIOR_MEAN_CONFIDENCE,32,0.6031,0.0,0.1617,1.97241383731306e-25,1.6042,0.5044,0.1996,4100,42
+Seed_42 (Clean),margin_mc32,Confidence Margin (0.5 - |p_bar_MC32 - 0.5|),MC32_POSTERIOR_MEAN_CONFIDENCE,32,0.6031,0.0,0.171,2.8492547117567187e-28,1.6042,0.5044,0.1996,4100,42
+Seed_42 (Clean),entropy_det,Predictive Entropy H(p_deterministic_mean),TRUE_SINGLE_PASS_DETERMINISTIC,1,0.5976,0.0,0.1585,1.7356271276029474e-24,1.5778,0.5024,0.1977,4100,42
+Seed_42 (Clean),margin_det,Confidence Margin (0.5 - |p_deterministic_mean - 0.5|),TRUE_SINGLE_PASS_DETERMINISTIC,1,0.5976,0.0,0.1643,3.350120035267657e-26,1.5778,0.5024,0.1977,4100,42
+Seed_42 (Clean),asset_volatility,Asset Volatility (Historical Trailing Std),MARKET_VOLATILITY,0,0.1063,8.956188557119415e-12,0.126,5.664089545252833e-16,1.7182,0.5852,0.2495,4100,42
+Seed_123 (Clean),epistemic_uncertainty,MC32 Epistemic Uncertainty (Variance),BAYESIAN_MC32,32,0.5889,0.0,-0.009,0.5654417148396622,1.1039,0.5085,0.2004,4100,123
+Seed_123 (Clean),entropy_mc32,Predictive Entropy H(p_bar_MC32),MC32_POSTERIOR_MEAN_CONFIDENCE,32,0.6109,0.0,0.0077,0.623593839424857,1.1649,0.5113,0.2024,4100,123
+Seed_123 (Clean),margin_mc32,Confidence Margin (0.5 - |p_bar_MC32 - 0.5|),MC32_POSTERIOR_MEAN_CONFIDENCE,32,0.6109,0.0,0.0031,0.8447761035543114,1.1649,0.5113,0.2024,4100,123
+Seed_123 (Clean),entropy_det,Predictive Entropy H(p_deterministic_mean),TRUE_SINGLE_PASS_DETERMINISTIC,1,0.6075,0.0,0.0098,0.5306569320204726,1.1327,0.5122,0.2036,4100,123
+Seed_123 (Clean),margin_det,Confidence Margin (0.5 - |p_deterministic_mean - 0.5|),TRUE_SINGLE_PASS_DETERMINISTIC,1,0.6075,0.0,0.0051,0.7459798932502677,1.1327,0.5122,0.2036,4100,123
+Seed_123 (Clean),asset_volatility,Asset Volatility (Historical Trailing Std),MARKET_VOLATILITY,0,0.1367,1.4822915195571616e-18,0.1242,1.419796252081098e-15,2.4507,0.5893,0.2512,4100,123
+Seed_777 (Clean),epistemic_uncertainty,MC32 Epistemic Uncertainty (Variance),BAYESIAN_MC32,32,0.4618,9.627764851769826e-216,0.0087,0.5781300981599508,0.9888,0.5022,0.2047,4100,777
+Seed_777 (Clean),entropy_mc32,Predictive Entropy H(p_bar_MC32),MC32_POSTERIOR_MEAN_CONFIDENCE,32,0.5935,0.0,-0.0085,0.5864873147182362,1.0004,0.4882,0.1964,4100,777
+Seed_777 (Clean),margin_mc32,Confidence Margin (0.5 - |p_bar_MC32 - 0.5|),MC32_POSTERIOR_MEAN_CONFIDENCE,32,0.5935,0.0,-0.0085,0.5852274043404319,1.0004,0.4882,0.1964,4100,777
+Seed_777 (Clean),entropy_det,Predictive Entropy H(p_deterministic_mean),TRUE_SINGLE_PASS_DETERMINISTIC,1,0.5826,0.0,-0.0111,0.4771199520191011,0.9562,0.4867,0.1955,4100,777
+Seed_777 (Clean),margin_det,Confidence Margin (0.5 - |p_deterministic_mean - 0.5|),TRUE_SINGLE_PASS_DETERMINISTIC,1,0.5826,0.0,-0.0112,0.47486276031105235,0.9562,0.4867,0.1955,4100,777
+Seed_777 (Clean),asset_volatility,Asset Volatility (Historical Trailing Std),MARKET_VOLATILITY,0,0.0438,0.005053447710742585,0.123,2.6645646698690325e-15,2.5279,0.5893,0.2512,4100,777

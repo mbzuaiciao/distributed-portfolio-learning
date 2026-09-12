@@ -1,0 +1,21 @@
+signal_name,signal_description,quintile,n_events,mean_signal_value,mean_forecast_error,std_forecast_error,top20_error_frequency,q5_q1_ratio,is_monotonic_progression
+epistemic_uncertainty,Bayesian Epistemic Uncertainty,Q1_Lowest,2460,0.0,0.1987,0.3985,19.84,1.4343,False
+epistemic_uncertainty,Bayesian Epistemic Uncertainty,Q2,2460,0.0,0.1982,0.3974,19.76,1.4343,False
+epistemic_uncertainty,Bayesian Epistemic Uncertainty,Q3,2460,5e-06,0.2062,0.3984,20.33,1.4343,False
+epistemic_uncertainty,Bayesian Epistemic Uncertainty,Q4,2460,0.000189,0.217,0.3746,19.8,1.4343,False
+epistemic_uncertainty,Bayesian Epistemic Uncertainty,Q5_Highest,2460,0.006397,0.2849,0.3111,20.28,1.4343,False
+predictive_entropy,Predictive Entropy H(p),Q1_Lowest,2460,0.004112,0.2056,0.4036,20.53,1.38,False
+predictive_entropy,Predictive Entropy H(p),Q2,2460,0.007879,0.1925,0.393,19.19,1.38,False
+predictive_entropy,Predictive Entropy H(p),Q3,2460,0.030992,0.2006,0.3943,19.76,1.38,False
+predictive_entropy,Predictive Entropy H(p),Q4,2460,0.131281,0.2227,0.3797,20.45,1.38,False
+predictive_entropy,Predictive Entropy H(p),Q5_Highest,2460,0.36484,0.2837,0.3091,20.08,1.38,False
+inv_confidence_margin,Inverse Confidence Margin,Q1_Lowest,2460,0.000475,0.2056,0.4036,20.53,1.38,False
+inv_confidence_margin,Inverse Confidence Margin,Q2,2460,0.001029,0.1925,0.393,19.19,1.38,False
+inv_confidence_margin,Inverse Confidence Margin,Q3,2460,0.004955,0.2006,0.3943,19.76,1.38,False
+inv_confidence_margin,Inverse Confidence Margin,Q4,2460,0.030188,0.2227,0.3797,20.45,1.38,False
+inv_confidence_margin,Inverse Confidence Margin,Q5_Highest,2460,0.132212,0.2837,0.3091,20.08,1.38,False
+asset_volatility,Historical Asset Volatility,Q1_Lowest,2460,0.029735,0.1312,0.2919,10.41,2.1301,False
+asset_volatility,Historical Asset Volatility,Q2,2460,0.043088,0.2323,0.3872,21.14,2.1301,False
+asset_volatility,Historical Asset Volatility,Q3,2460,0.05199,0.2142,0.3763,19.47,2.1301,False
+asset_volatility,Historical Asset Volatility,Q4,2460,0.061353,0.2477,0.3997,23.05,2.1301,False
+asset_volatility,Historical Asset Volatility,Q5_Highest,2460,0.089116,0.2796,0.4113,25.93,2.1301,False

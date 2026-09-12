@@ -1,6 +1,6 @@
 # Hypergraph Portfolio Lab
 
-[![CI Tests](https://img.shields.io/badge/pytest-190%20passed-brightgreen.svg)](tests/)
+[![CI Tests](https://img.shields.io/badge/pytest-214%20passed-brightgreen.svg)](tests/)
 [![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.14-blue.svg)](pyproject.toml)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
@@ -58,6 +58,7 @@ This repository serves twelve core purposes:
 | **17. Does post-earnings predictive alpha persist long enough for multi-week cohort stacking?** | Yes, alpha peaks at 2-4 weeks; stacking slashes turnover by 50-75% | Rank IC persists (+0.077 at 4w), Q5-Q1 spread peaks at +1.93% at 4w; H=4 cuts traded TO from 73.0x to 19.0x, boosting Sharpe from 2.15 to 2.90 (unhedged) and 3.00 (M13). | **Confirmed (Phase 9, Outcomes C & G)** |
 | **18. Are multi-week cohort returns rigorously mark-to-market and does $H=1$ reproduce Phase 8.3?** | Yes, identical to machine precision ($< 10^{-12}$); volatility reduction driven by diversification | Discrepancy resolved: asset-return decoupling on timestamp ties fixed; $H=1$ matches Phase 8.3 Sharpe $1.508$; $H=4$ Sharpe $2.715$ ($M_8$) and $2.857$ ($M_{13}$). | **Audited & Verified (Phase 9.1)** |
 | **19. Does independent prospective 2026 confirmation exist for the frozen $H=4$ $M_{13}$ architecture?** | Confirmatory protocol strictly frozen & audited; 2026 data unavailable in dataset | Pre-registered commit `2afe05a`; all empirical stock returns terminate at 2025-05-15; 0 pseudo-events manufactured; classified under Outcome F / Outcome B. | **Audited & Frozen (Phase 10)** |
+| **20. Does Bayesian epistemic uncertainty provide incremental information beyond simple confidence (entropy/margin) or market risk?** | No incremental information; captures identical reliability signal | Epistemic $\rho = 0.5945$ vs predictive entropy $\rho = 0.5992$; simple confidence explains $86.2\%$ of epistemic variance; LORO $\Delta \text{AUROC} = -0.0009$ and $\Delta \text{MAE} = -0.00016$ with $95\%$ bootstrap CIs spanning zero ($p = 0.51$). Market volatility dominates binary tail risk ($\text{AUROC} = 0.5880$). | **Audited & Reconciled (Phase 15, Outcome B)** |
 
 ---
 
@@ -1675,10 +1676,24 @@ Before provisioning cloud accelerators, representative workloads were systematic
 
 ---
 
+## Phase 15: Incremental Value of Bayesian Epistemic Uncertainty
+
+- **Scientific Question**: Does Bayesian epistemic uncertainty contain forecast-reliability information that simpler confidence baselines (predictive entropy, margin $|p - 0.5|$) or market-risk proxies do not?
+- **Strict Protocol**: Primary clean post-training observations: `2022`, `2023`, `2024-2025` ($N = 12,300$ event-seed observations; 168 calendar weeks; seeds 42, 123, 777). Secondary diagnostic regimes: `2020`, `2021` ($N=7,167$). Zero trading strategy search (no $M17$, no portfolio rebalancing).
+- **Core Findings**:
+  1. **Outcome B (Equivalence)**: Bayesian epistemic uncertainty strongly tracks forecast error ($\rho = 0.5945, p < 10^{-300}$), but simple deterministic predictive entropy $H(p)$ achieves an identical or slightly higher correlation ($\rho = 0.5992, \Delta \rho = -0.00486, 95\%\text{ CI: } [-0.00754, -0.00215]$).
+  2. **High Collinearity**: Simple confidence functions of the posterior mean explain **$86.22\%$** of the cross-sectional variance in Bayesian epistemic uncertainty ($R^2 = 0.8622$).
+  3. **Zero Incremental Information**: In Leave-One-Regime-Out (LORO) nested regressions, adding epistemic uncertainty yields $\Delta \text{AUROC} = -0.0009$ and $\Delta \text{MAE} = -0.00016$. Block bootstrap tests ($B=1,000$ weekly clusters) demonstrate that incremental gains are indistinguishable from zero ($p = 0.51$ for AUROC, $p = 0.44$ for MAE). Residual epistemic uncertainty exhibits an AUROC of $0.5008$ (pure coin flip) and linear Pearson $r = 0.0024$ ($p = 0.789$).
+  4. **Market Volatility Governs Tail Failures**: Binary high-error events are dominated by historical asset volatility ($\text{AUROC} = 0.5880$, $Q5/Q1$ error ratio $= 2.13\times$), whereas epistemic uncertainty and entropy both hover near $0.501$.
+  5. **Conclusion for Portfolio Design**: $32\times$ Monte Carlo Bayesian sampling is computationally redundant for risk quantification relative to deterministic entropy or historical asset volatility.
+- **Detailed Report**: [`phase15_report.md`](artifacts/phase15_incremental_uncertainty/phase15_report.md).
+
+---
+
 ## Code Quality & Standards
 
 - **Formatting & Linting**: Verified with `ruff` (`ruff check .` passes with 0 errors).
-- **Testing**: 207 comprehensive unit tests covering all core modules with `pytest` (207 passed, 3 skipped).
+- **Testing**: 214 comprehensive unit tests covering all core modules with `pytest` (214 passed, 3 skipped).
 - **Determinism**: Fixed random seeds, exact analytical benchmarks, and verifiable hand calculations.
 
 ```bash

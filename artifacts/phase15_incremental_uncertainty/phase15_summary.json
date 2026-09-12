@@ -1,0 +1,300 @@
+{
+  "timestamp_utc": "2026-09-12T01:47:56.531068+00:00",
+  "phase": "Phase 15: Incremental Value of Bayesian Epistemic Uncertainty",
+  "dataset_scope": {
+    "primary_clean_regimes": [
+      "2022",
+      "2023",
+      "2024-2025"
+    ],
+    "total_clean_observations": 12300,
+    "unique_clean_calendar_weeks": 168,
+    "secondary_diagnostic_regimes": [
+      "2020",
+      "2021"
+    ],
+    "total_diagnostic_observations": 7167
+  },
+  "target_definitions": {
+    "primary_target": "absolute_forecast_error (|p_hat - y_true|)",
+    "secondary_target": "binary_top20_high_error (error >= 80th percentile)",
+    "clean_downside_threshold_move1d": -0.046923661363633844,
+    "clean_high_error_threshold": 0.6528850363101837
+  },
+  "scientific_adjudication": {
+    "verdict": "Outcome B: Epistemic uncertainty and entropy/margin perform similarly",
+    "interpretation": "The forecast-reliability signal is real and statistically robust, but simple confidence proxies (predictive entropy, margin) capture virtually all the same information without requiring Bayesian Monte Carlo sampling.",
+    "delta_auroc_model_d_vs_c": -0.0009,
+    "delta_mae_model_d_vs_c": -0.00016,
+    "residual_epistemic_spearman_rho": 0.1772
+  },
+  "univariate_top_signals_clean_pooled": [
+    {
+      "scope": "Clean_Pooled (2022-2025)",
+      "signal_name": "asset_volatility",
+      "signal_description": "Asset Volatility (Historical Trailing Std)",
+      "signal_category": "MARKET_VOLATILITY",
+      "spearman_rho": 0.0895,
+      "p_value_spearman": 2.77e-23,
+      "pearson_r": 0.1237,
+      "p_value_pearson": 4.1e-43,
+      "q5_q1_error_ratio": 2.1301,
+      "high_error_auroc": 0.588,
+      "high_error_ap": 0.2499,
+      "n_observations": 12300
+    },
+    {
+      "scope": "Clean_Pooled (2022-2025)",
+      "signal_name": "cross_sectional_vol_rank",
+      "signal_description": "Cross-Sectional Volatility Rank",
+      "signal_category": "MARKET_VOLATILITY",
+      "spearman_rho": 0.0876,
+      "p_value_spearman": 2.11e-22,
+      "pearson_r": 0.1167,
+      "p_value_pearson": 1.47e-38,
+      "q5_q1_error_ratio": 1.9568,
+      "high_error_auroc": 0.5833,
+      "high_error_ap": 0.2508,
+      "n_observations": 12300
+    },
+    {
+      "scope": "Clean_Pooled (2022-2025)",
+      "signal_name": "market_vol_proxy",
+      "signal_description": "Market Volatility Proxy (Weekly Cross-Section)",
+      "signal_category": "MARKET_VOLATILITY",
+      "spearman_rho": 0.0154,
+      "p_value_spearman": 0.0882,
+      "pearson_r": 0.0498,
+      "p_value_pearson": 3.24e-08,
+      "q5_q1_error_ratio": 1.1659,
+      "high_error_auroc": 0.5305,
+      "high_error_ap": 0.222,
+      "n_observations": 12300
+    },
+    {
+      "scope": "Clean_Pooled (2022-2025)",
+      "signal_name": "epistemic_uncertainty",
+      "signal_description": "Bayesian Epistemic Uncertainty (Variance)",
+      "signal_category": "BAYESIAN_UNCERTAINTY",
+      "spearman_rho": 0.5945,
+      "p_value_spearman": 0.0,
+      "pearson_r": 0.1014,
+      "p_value_pearson": 1.81e-29,
+      "q5_q1_error_ratio": 1.4343,
+      "high_error_auroc": 0.5015,
+      "high_error_ap": 0.2005,
+      "n_observations": 12300
+    },
+    {
+      "scope": "Clean_Pooled (2022-2025)",
+      "signal_name": "epistemic_std",
+      "signal_description": "Bayesian Epistemic Uncertainty (Std Dev)",
+      "signal_category": "BAYESIAN_UNCERTAINTY",
+      "spearman_rho": 0.5945,
+      "p_value_spearman": 0.0,
+      "pearson_r": 0.1084,
+      "p_value_pearson": 1.82e-33,
+      "q5_q1_error_ratio": 1.4343,
+      "high_error_auroc": 0.5015,
+      "high_error_ap": 0.2005,
+      "n_observations": 12300
+    }
+  ],
+  "loro_pooled_model_comparison": [
+    {
+      "model_name": "Model A (Confidence Only)",
+      "evaluation_scope": "LORO_Pooled_Out_of_Sample",
+      "held_out_regime": "All_Clean_Regimes",
+      "features": "predictive_entropy, inv_confidence_margin, deterministic_variance",
+      "held_out_r2": 0.01213,
+      "held_out_mae": 0.29852,
+      "held_out_auroc": 0.4964,
+      "held_out_ap": 0.1994,
+      "delta_r2_vs_model_c": -0.01282,
+      "delta_mae_vs_model_c": -0.00577,
+      "delta_auroc_vs_model_c": -0.0891,
+      "delta_ap_vs_model_c": -0.0484,
+      "n_test_observations": 12300
+    },
+    {
+      "model_name": "Model B (Market Only)",
+      "evaluation_scope": "LORO_Pooled_Out_of_Sample",
+      "held_out_regime": "All_Clean_Regimes",
+      "features": "asset_volatility, market_vol_proxy, cross_sectional_vol_rank",
+      "held_out_r2": 0.01273,
+      "held_out_mae": 0.29782,
+      "held_out_auroc": 0.5832,
+      "held_out_ap": 0.2472,
+      "delta_r2_vs_model_c": -0.01222,
+      "delta_mae_vs_model_c": -0.00507,
+      "delta_auroc_vs_model_c": -0.0022,
+      "delta_ap_vs_model_c": -0.0006,
+      "n_test_observations": 12300
+    },
+    {
+      "model_name": "Model C (Confidence + Market)",
+      "evaluation_scope": "LORO_Pooled_Out_of_Sample",
+      "held_out_regime": "All_Clean_Regimes",
+      "features": "predictive_entropy, inv_confidence_margin, deterministic_variance, asset_volatility, market_vol_proxy, cross_sectional_vol_rank",
+      "held_out_r2": 0.02495,
+      "held_out_mae": 0.29275,
+      "held_out_auroc": 0.5855,
+      "held_out_ap": 0.2478,
+      "delta_r2_vs_model_c": 0.0,
+      "delta_mae_vs_model_c": 0.0,
+      "delta_auroc_vs_model_c": 0.0,
+      "delta_ap_vs_model_c": 0.0,
+      "n_test_observations": 12300
+    },
+    {
+      "model_name": "Model D (Confidence + Market + Epistemic)",
+      "evaluation_scope": "LORO_Pooled_Out_of_Sample",
+      "held_out_regime": "All_Clean_Regimes",
+      "features": "predictive_entropy, inv_confidence_margin, deterministic_variance, asset_volatility, market_vol_proxy, cross_sectional_vol_rank, epistemic_uncertainty",
+      "held_out_r2": 0.02488,
+      "held_out_mae": 0.29291,
+      "held_out_auroc": 0.5845,
+      "held_out_ap": 0.2463,
+      "delta_r2_vs_model_c": -7e-05,
+      "delta_mae_vs_model_c": -0.00016,
+      "delta_auroc_vs_model_c": -0.0009,
+      "delta_ap_vs_model_c": -0.0015,
+      "n_test_observations": 12300
+    }
+  ],
+  "residual_information_test": [
+    {
+      "sample_scope": "Clean_Pooled (2022-2025)",
+      "r2_explained_by_simple_confidence": 0.8622,
+      "raw_epistemic_spearman_rho": 0.5945,
+      "residual_epistemic_spearman_rho": 0.1772,
+      "residual_p_value_spearman": 2.43e-87,
+      "residual_pearson_r": 0.0024,
+      "residual_p_value_pearson": 0.789,
+      "raw_epistemic_auroc": 0.5015,
+      "residual_epistemic_auroc": 0.5008,
+      "residual_epistemic_ap": 0.2022,
+      "n_observations": 12300
+    },
+    {
+      "sample_scope": "2022",
+      "r2_explained_by_simple_confidence": 0.8875,
+      "raw_epistemic_spearman_rho": 0.6058,
+      "residual_epistemic_spearman_rho": 0.2082,
+      "residual_p_value_spearman": 2.86e-36,
+      "residual_pearson_r": 0.0149,
+      "residual_p_value_pearson": 0.374,
+      "raw_epistemic_auroc": 0.5047,
+      "residual_epistemic_auroc": 0.5067,
+      "residual_epistemic_ap": 0.2035,
+      "n_observations": 3573
+    },
+    {
+      "sample_scope": "2023",
+      "r2_explained_by_simple_confidence": 0.8702,
+      "raw_epistemic_spearman_rho": 0.6049,
+      "residual_epistemic_spearman_rho": 0.1787,
+      "residual_p_value_spearman": 8.13e-27,
+      "residual_pearson_r": -0.0101,
+      "residual_p_value_pearson": 0.547,
+      "raw_epistemic_auroc": 0.4981,
+      "residual_epistemic_auroc": 0.4896,
+      "residual_epistemic_ap": 0.19,
+      "n_observations": 3543
+    },
+    {
+      "sample_scope": "2024-2025",
+      "r2_explained_by_simple_confidence": 0.8687,
+      "raw_epistemic_spearman_rho": 0.5804,
+      "residual_epistemic_spearman_rho": 0.1821,
+      "residual_p_value_spearman": 6.61e-40,
+      "residual_pearson_r": 0.008,
+      "residual_p_value_pearson": 0.566,
+      "raw_epistemic_auroc": 0.5025,
+      "residual_epistemic_auroc": 0.5081,
+      "residual_epistemic_ap": 0.2183,
+      "n_observations": 5184
+    },
+    {
+      "sample_scope": "Seed_42 (Clean)",
+      "r2_explained_by_simple_confidence": 0.851,
+      "raw_epistemic_spearman_rho": 0.587,
+      "residual_epistemic_spearman_rho": -0.0908,
+      "residual_p_value_spearman": 5.66e-09,
+      "residual_pearson_r": -0.001,
+      "residual_p_value_pearson": 0.95,
+      "raw_epistemic_auroc": 0.5059,
+      "residual_epistemic_auroc": 0.4987,
+      "residual_epistemic_ap": 0.2009,
+      "n_observations": 4100
+    },
+    {
+      "sample_scope": "Seed_123 (Clean)",
+      "r2_explained_by_simple_confidence": 0.8836,
+      "raw_epistemic_spearman_rho": 0.5889,
+      "residual_epistemic_spearman_rho": 0.2471,
+      "residual_p_value_spearman": 4.18e-58,
+      "residual_pearson_r": -0.0045,
+      "residual_p_value_pearson": 0.773,
+      "raw_epistemic_auroc": 0.5085,
+      "residual_epistemic_auroc": 0.5018,
+      "residual_epistemic_ap": 0.1987,
+      "n_observations": 4100
+    },
+    {
+      "sample_scope": "Seed_777 (Clean)",
+      "r2_explained_by_simple_confidence": 0.0,
+      "raw_epistemic_spearman_rho": 0.4618,
+      "residual_epistemic_spearman_rho": -0.0178,
+      "residual_p_value_spearman": 0.256,
+      "residual_pearson_r": 0.0224,
+      "residual_p_value_pearson": 0.152,
+      "raw_epistemic_auroc": 0.5022,
+      "residual_epistemic_auroc": 0.5127,
+      "residual_epistemic_ap": 0.2086,
+      "n_observations": 4100
+    }
+  ],
+  "block_bootstrap_summary": [
+    {
+      "comparison_metric": "Delta_Rho_Univariate (Epistemic - Entropy)",
+      "bootstrap_mean": -0.00486,
+      "bootstrap_std": 0.00142,
+      "ci_95_lower": -0.00754,
+      "ci_95_upper": -0.00215,
+      "empirical_p_value": 0.0,
+      "statistically_significant_at_05": true,
+      "n_resamples": 1000
+    },
+    {
+      "comparison_metric": "Delta_AUROC_Univariate (Epistemic - Entropy)",
+      "bootstrap_mean": 0.00133,
+      "bootstrap_std": 0.00105,
+      "ci_95_lower": -0.00071,
+      "ci_95_upper": 0.00322,
+      "empirical_p_value": 0.216,
+      "statistically_significant_at_05": false,
+      "n_resamples": 1000
+    },
+    {
+      "comparison_metric": "Delta_AUROC_Incremental (Model D - Model C)",
+      "bootstrap_mean": 0.00029,
+      "bootstrap_std": 0.00048,
+      "ci_95_lower": -0.00024,
+      "ci_95_upper": 0.0016,
+      "empirical_p_value": 0.51,
+      "statistically_significant_at_05": false,
+      "n_resamples": 1000
+    },
+    {
+      "comparison_metric": "Delta_MAE_Incremental (Model C - Model D)",
+      "bootstrap_mean": 1e-05,
+      "bootstrap_std": 2e-05,
+      "ci_95_lower": -1e-05,
+      "ci_95_upper": 7e-05,
+      "empirical_p_value": 0.44,
+      "statistically_significant_at_05": false,
+      "n_resamples": 1000
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+comparison_metric,bootstrap_mean,bootstrap_std,ci_95_lower,ci_95_upper,empirical_p_value,statistically_significant_at_05,n_resamples
+Delta_Rho_Univariate (Epistemic - Entropy),-0.00486,0.00142,-0.00754,-0.00215,0.0,True,1000
+Delta_AUROC_Univariate (Epistemic - Entropy),0.00133,0.00105,-0.00071,0.00322,0.216,False,1000
+Delta_AUROC_Incremental (Model D - Model C),0.00029,0.00048,-0.00024,0.0016,0.51,False,1000
+Delta_MAE_Incremental (Model C - Model D),1e-05,2e-05,-1e-05,7e-05,0.44,False,1000

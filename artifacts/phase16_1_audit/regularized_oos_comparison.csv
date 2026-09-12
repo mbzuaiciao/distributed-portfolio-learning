@@ -1,0 +1,5 @@
+system_name,auroc,brier_score,log_loss,ece,spearman_rho_pooled,spearman_rho_y0,spearman_rho_y1,mean_probability,std_probability,n_observations
+Original Det LoRA,0.51161,0.2557,0.71985,0.22749,0.30635,0.49021,-0.45564,0.40872,0.23347,12300
+Regularized Det LoRA,0.54199,0.15971,0.49979,0.02148,0.63965,1.0,-1.0,0.17852,0.03158,12300
+Bayesian Posterior Mean,0.50013,0.19316,1.08042,0.17567,0.59896,0.99996,-0.99997,0.03205,0.07052,12300
+Bayesian MC32,0.50034,0.19237,1.06711,0.17229,0.59922,0.99998,-0.99998,0.03526,0.07332,12300

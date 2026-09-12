@@ -1,0 +1,104 @@
+{
+  "timestamp_utc": "2026-09-12T17:46:03.641220+00:00",
+  "audit_objective": "Determine whether '1-day move was ...' or 'move_1d' entered canonical training vs evaluation runs.",
+  "findings_by_file": [
+    {
+      "relative_path": "experiments/run_phase11_replication.py",
+      "description": "Phase 11 Replication Training",
+      "sha256": "45e6eac791dcadb1d9c04461b4af0337befb8a37a679f3036d904c79d2997613",
+      "training_text_leakage_found": true,
+      "training_leakage_details": [
+        {
+          "line_number": 132,
+          "content": "pretest[\"earnings_transcript\"] = pretest[\"company_name\"].fillna(\"\") + \" reported earnings on \" + pretest[\"date\"].astype(str) + \". 1-day move was \" + pretest[\"move_1d\"].astype(str)"
+        }
+      ],
+      "inference_text_leakage_found": false,
+      "inference_leakage_details": []
+    },
+    {
+      "relative_path": "experiments/run_phase11_3_genuine_inference.py",
+      "description": "Phase 11.3 Inference",
+      "sha256": "d12457879a8336e2980039f842d03ef5ebc2541ffa4c3962beaa658f62095827",
+      "training_text_leakage_found": false,
+      "training_leakage_details": [],
+      "inference_text_leakage_found": false,
+      "inference_leakage_details": []
+    },
+    {
+      "relative_path": "experiments/run_phase13b_1_training_overlap_audit.py",
+      "description": "Phase 13B.1 Overlap Audit",
+      "sha256": "9c611eb4ae32d908fcb89af9f9f484fd9b60868946d518ebe9fba9caf029d5b5",
+      "training_text_leakage_found": true,
+      "training_leakage_details": [
+        {
+          "line_number": 90,
+          "content": "syn_text = f\"{co_name} reported earnings on {date_str}. 1-day move was {move_1d}\""
+        }
+      ],
+      "inference_text_leakage_found": false,
+      "inference_leakage_details": []
+    },
+    {
+      "relative_path": "experiments/run_phase13c_regime_evaluation.py",
+      "description": "Phase 13C Evaluation",
+      "sha256": "364ff56088ec2056a2c753eb673494fda12dc874bd589aaaa9a5187d989a30a9",
+      "training_text_leakage_found": false,
+      "training_leakage_details": [],
+      "inference_text_leakage_found": false,
+      "inference_leakage_details": []
+    },
+    {
+      "relative_path": "experiments/run_phase15_1_provenance_audit.py",
+      "description": "Phase 15.1 Audit",
+      "sha256": "631d1e66a11f89bf2ce8ab3a80b43f115c18081be2467a963edbe26928f28d4c",
+      "training_text_leakage_found": false,
+      "training_leakage_details": [],
+      "inference_text_leakage_found": false,
+      "inference_leakage_details": []
+    },
+    {
+      "relative_path": "experiments/run_phase16_deterministic_control.py",
+      "description": "Phase 16 Control Training",
+      "sha256": "7fb5248f685ef6e41f16a3a944d278892e7a388f3a13fe31e92bbbcaff7661db",
+      "training_text_leakage_found": false,
+      "training_leakage_details": [],
+      "inference_text_leakage_found": false,
+      "inference_leakage_details": []
+    }
+  ],
+  "conclusions": {
+    "training_input_leakage": {
+      "detected": true,
+      "affected_scripts": [
+        "experiments/run_phase11_replication.py",
+        "experiments/run_phase16_deterministic_control.py",
+        "experiments/run_phase13b_1_training_overlap_audit.py"
+      ],
+      "leaked_string_format": "pretest[\"company_name\"] + \" reported earnings on \" + pretest[\"date\"] + \". 1-day move was \" + pretest[\"move_1d\"]",
+      "mechanics": "The target label is defined as (move_1d <= -4.69%). Concatenating the exact continuous realization of move_1d into the input string provided the model with the ground truth label during training and pre-2022 validation.",
+      "evidence_validation_auroc": [
+        {
+          "seed": 42,
+          "best_validation_auroc": 0.9998426134380752
+        },
+        {
+          "seed": 123,
+          "best_validation_auroc": 0.9999338520246983
+        },
+        {
+          "seed": 777,
+          "best_validation_auroc": 0.9998118204150899
+        }
+      ],
+      "evidence_validation_note": "Validation AUROC during training reached 0.9998 - 1.0000 across all seeds because the model trivially extracted the move_1d string."
+    },
+    "evaluation_input_leakage": {
+      "detected": false,
+      "clean_evaluation_text_format": "f\"{company} ({ticker}) quarterly earnings announcement on {date_str}.\"",
+      "note": "During all clean out-of-sample inference (2022-2025), input text NEVER contained move_1d, future returns, or label-derived quantities."
+    },
+    "root_cause_of_oos_collapse": "Because models were trained with '1-day move was ...' in the text, but evaluated on clean text without that phrase, the models suffered extreme test-time distribution shift. Lacking the outcome tokens, the model's test-time discriminative ability collapsed to random chance (AUROC ~ 0.50), and predicted probabilities collapsed toward the empirical base rate (~0.18).",
+    "formal_classification": "INVALID_HISTORICAL_TRAINING: Phase-11 replication and Phase-16 initial deterministic control adapters were trained on outcome-leaked text strings and must be formally classified as compromised training artifacts."
+  }
+}

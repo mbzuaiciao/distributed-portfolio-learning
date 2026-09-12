@@ -1,0 +1,5 @@
+system_name,prediction_type,is_constant_predictor,constant_probability,brier_score,log_loss,ece,mae_vs_label,classification_error,auroc,n_observations,interpretation
+Constant Base-Rate Predictor (p=0.20),NULL_BASE_RATE,True,0.2,0.16,0.5004,0.0,0.32,0.2,0.5,12300,Predicts exact training base rate (0.20) for every event with zero variance.
+Deterministic LoRA,MODEL,False,,0.2557,0.71985,0.22749,0.44286,0.40553,0.51161,12300,Trained Deterministic LoRA evaluated on clean test dataset.
+Bayesian Posterior Mean,MODEL,False,,0.19316,1.08042,0.17567,0.21921,0.20325,0.50013,12300,Trained Bayesian Posterior Mean evaluated on clean test dataset.
+Bayesian MC32,MODEL,False,,0.19237,1.06711,0.17229,0.22101,0.20333,0.50034,12300,Trained Bayesian MC32 evaluated on clean test dataset.

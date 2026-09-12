@@ -1,0 +1,10 @@
+system_name,sample_subset,y_value,n_observations,downside_prevalence,spearman_rho_entropy,p_value_entropy,spearman_rho_margin,p_value_margin,pearson_r_entropy,p_value_pearson_entropy,mean_abs_error,mean_probability
+Deterministic LoRA,Clean_Pooled (All y),All,12300,0.2,0.30635,1.5560515233904127e-265,0.30635,1.5560515233904127e-265,0.21901,1.7978655474408924e-133,0.44286,0.40872
+Deterministic LoRA,Non-Downside (y=0),0,9840,0.0,0.49021,0.0,0.49021,0.0,0.36016,3.4960011821131566e-299,0.40724,0.40724
+Deterministic LoRA,Downside-Extreme (y=1),1,2460,1.0,-0.45564,2.2147427314398817e-126,-0.45564,2.2147427314398817e-126,-0.34258,1.0939527162109142e-68,0.58534,0.41466
+Bayesian Posterior Mean,Clean_Pooled (All y),All,12300,0.2,0.59896,0.0,0.59896,0.0,0.0964,8.618851743404578e-27,0.21921,0.03205
+Bayesian Posterior Mean,Non-Downside (y=0),0,9840,0.0,0.99996,0.0,0.99996,0.0,0.83935,0.0,0.03204,0.03204
+Bayesian Posterior Mean,Downside-Extreme (y=1),1,2460,1.0,-0.99997,0.0,-0.99997,0.0,-0.87568,0.0,0.9679,0.0321
+Bayesian MC32,Clean_Pooled (All y),All,12300,0.2,0.59922,0.0,0.59922,0.0,0.10411,5.420440533718565e-31,0.22101,0.03526
+Bayesian MC32,Non-Downside (y=0),0,9840,0.0,0.99998,0.0,0.99998,0.0,0.87344,0.0,0.03517,0.03517
+Bayesian MC32,Downside-Extreme (y=1),1,2460,1.0,-0.99998,0.0,-0.99998,0.0,-0.89829,0.0,0.96438,0.03562

@@ -1,0 +1,63 @@
+{
+  "timestamp_utc": "2026-09-12T15:15:00Z",
+  "audit_title": "Phase 17 Legacy Checkpoint Status Invalidation",
+  "purpose": "Formally record and quarantine all historical model checkpoints trained with outcome-leaked text strings.",
+  "leakage_nature": "Input text concatenated continuous label target: '. 1-day move was ' + move_1d, causing artificial validation AUROC of ~1.0000 and test-time distribution collapse to ~0.50.",
+  "scientific_status": "All listed checkpoints are INVALID for scientific comparisons of predictive accuracy, reliability, or Bayesian value. They are preserved strictly for forensic reproducibility and are quarantined from Phase 17 primary evaluation tables.",
+  "quarantined_checkpoints": [
+    {
+      "checkpoint_path": "artifacts/phase11_replication/frozen_models/bayesian_lora_seed_42_state.pt",
+      "model_type": "BayesianLoRA",
+      "seed": 42,
+      "size_bytes": 4759645,
+      "sha256": "d382640351dbef4fd40b47c8b033b1a4823c57d8fd6740b6fd9d1709043dc309",
+      "status": "COMPROMISED_BY_TARGET_LEAKAGE",
+      "action": "PRESERVED_FOR_FORENSIC_AUDIT_ONLY_EXCLUDED_FROM_PRIMARY_SCIENCE"
+    },
+    {
+      "checkpoint_path": "artifacts/phase11_replication/frozen_models/bayesian_lora_seed_123_state.pt",
+      "model_type": "BayesianLoRA",
+      "seed": 123,
+      "size_bytes": 4759749,
+      "sha256": "e094b775c7061b7c60341704525719b2c3fd4055e1aa325581eacabc23059301",
+      "status": "COMPROMISED_BY_TARGET_LEAKAGE",
+      "action": "PRESERVED_FOR_FORENSIC_AUDIT_ONLY_EXCLUDED_FROM_PRIMARY_SCIENCE"
+    },
+    {
+      "checkpoint_path": "artifacts/phase11_replication/frozen_models/bayesian_lora_seed_777_state.pt",
+      "model_type": "BayesianLoRA",
+      "seed": 777,
+      "size_bytes": 4759749,
+      "sha256": "0f084381c8b387f5a4946e337470c8c25707228c40cf676604d1db22f3a13e2a",
+      "status": "COMPROMISED_BY_TARGET_LEAKAGE",
+      "action": "PRESERVED_FOR_FORENSIC_AUDIT_ONLY_EXCLUDED_FROM_PRIMARY_SCIENCE"
+    },
+    {
+      "checkpoint_path": "artifacts/phase16_deterministic_control/deterministic_lora_seed_42_state.pt",
+      "model_type": "DeterministicLoRA",
+      "seed": 42,
+      "size_bytes": 2383685,
+      "sha256": "3db50a7f14ad328e3b4d45fae16bf16a51d8b671bf5ff52b4faae9c824c9c279",
+      "status": "COMPROMISED_BY_TARGET_LEAKAGE",
+      "action": "PRESERVED_FOR_FORENSIC_AUDIT_ONLY_EXCLUDED_FROM_PRIMARY_SCIENCE"
+    },
+    {
+      "checkpoint_path": "artifacts/phase16_deterministic_control/deterministic_lora_seed_123_state.pt",
+      "model_type": "DeterministicLoRA",
+      "seed": 123,
+      "size_bytes": 2383741,
+      "sha256": "33fa7fb82f7c006509f6e6900223595cf23ae9bf30fbbecc49ee312d4a6fa996",
+      "status": "COMPROMISED_BY_TARGET_LEAKAGE",
+      "action": "PRESERVED_FOR_FORENSIC_AUDIT_ONLY_EXCLUDED_FROM_PRIMARY_SCIENCE"
+    },
+    {
+      "checkpoint_path": "artifacts/phase16_deterministic_control/deterministic_lora_seed_777_state.pt",
+      "model_type": "DeterministicLoRA",
+      "seed": 777,
+      "size_bytes": 2383741,
+      "sha256": "5bc839d48b7d41f53fc80d606be896f300df8374ffea7cbbe5318683e33e9b1d",
+      "status": "COMPROMISED_BY_TARGET_LEAKAGE",
+      "action": "PRESERVED_FOR_FORENSIC_AUDIT_ONLY_EXCLUDED_FROM_PRIMARY_SCIENCE"
+    }
+  ]
+}

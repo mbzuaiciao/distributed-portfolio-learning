@@ -1,0 +1,103 @@
+{
+  "preregistration_metadata": {
+    "experiment_id": "phase17_clean_bayesian_lora_comparison",
+    "title": "Phase 17: Clean Bayesian-LoRA Retraining and Fair Deterministic Comparison",
+    "status": "PREREGISTERED_FROZEN",
+    "created_at_utc": "2026-09-12T15:16:00Z",
+    "purpose": "Evaluate whether Bayesian-LoRA training provides out-of-sample value beyond regularized deterministic LoRA when both models are trained from scratch on strictly identical CLEAN text without target outcome leakage."
+  },
+  "data_universe_hashes": {
+    "clean_training_universe_rows": 11985,
+    "clean_training_universe_sha256": "5a6e316546c59eeb98b42df3c8a4459f8bfb291e9216d2d8109355f45c4c601b",
+    "clean_validation_universe_rows": 2116,
+    "clean_validation_universe_sha256": "9c998f01ca784b7200103e698ca316b8f2678ad167dc1643d88736590cae7a2e",
+    "clean_oos_universe_unique_events": 4100,
+    "clean_oos_universe_sha256": "cf89dbe5785c8cbd5ccae1e2002eaa4626242fdaa8f3ef68af54e5bd44cd7c8d",
+    "clean_text_manifest_sha256": "4560ff86b543260822a7d8dd266bd40c84b0f1d5dde0fff5ecdc3d588c99beb6",
+    "label_definition": "1 if realized 1-day post-earnings price return <= pretest 20th percentile cutoff (-4.692%), 0 otherwise",
+    "leakage_assertions": [
+      "NO move_1d in model input text",
+      "NO move_30d in model input text",
+      "NO future return or price in model input text",
+      "NO label or threshold-derived number in model input text",
+      "NO post-event market outcome in model input text"
+    ]
+  },
+  "matched_model_specifications": {
+    "base_model": {
+      "identifier": "ProsusAI/finbert",
+      "revision": "4556d13015211d73dccd3fdd39d39232506f3e43",
+      "architecture": "BertForSequenceClassification",
+      "num_labels": 2
+    },
+    "lora_architecture": {
+      "rank": 16,
+      "alpha": 32,
+      "dropout": 0.05,
+      "target_modules": [
+        "attention.self.query",
+        "attention.self.value"
+      ],
+      "trainable_parameters": 591362
+    },
+    "seeds": [
+      42,
+      123,
+      777
+    ]
+  },
+  "frozen_training_recipes": {
+    "system_a_clean_regularized_deterministic_lora": {
+      "model_type": "DeterministicLoRA",
+      "optimizer": "AdamW",
+      "learning_rate": 0.0002,
+      "weight_decay": 0.0,
+      "batch_size": 32,
+      "epochs": 2,
+      "inference_mode": "Deterministic single forward pass (1 pass/event)"
+    },
+    "system_b_clean_bayesian_lora_posterior_mean": {
+      "model_type": "BayesianLoRA",
+      "parameterization": "Mean-field Gaussian q(theta) = N(mu, softplus(rho)^2)",
+      "prior_std": 1.0,
+      "init_posterior_std": 0.01,
+      "kl_beta": 0.003,
+      "optimizer": "AdamW",
+      "learning_rate": 0.0002,
+      "weight_decay": 0.01,
+      "batch_size": 32,
+      "epochs": 2,
+      "inference_mode": "Posterior mean weights (sample_weight=False, 1 pass/event)"
+    },
+    "system_c_clean_bayesian_lora_mc32": {
+      "model_type": "BayesianLoRA",
+      "identical_checkpoint_as": "system_b",
+      "inference_mode": "Monte Carlo posterior weight sampling (sample_weight=True, 32 draws/event)"
+    },
+    "null_baseline": {
+      "system_name": "Constant Base-Rate Predictor",
+      "formula": "p_i = 0.20 for all events"
+    }
+  },
+  "primary_evaluation_metrics": [
+    "auroc",
+    "average_precision",
+    "brier_score",
+    "log_loss",
+    "ece",
+    "selective_risk_brier_at_80pct",
+    "selective_risk_clf_err_at_80pct"
+  ],
+  "predeclared_equivalence_margins": {
+    "auroc_difference": 0.005,
+    "brier_score_difference": 0.002,
+    "log_loss_difference": 0.01,
+    "ece_difference": 0.01
+  },
+  "compute_execution_plan": {
+    "device_selected": "Apple Silicon (MPS)",
+    "local_estimated_runtime_seconds": 1320,
+    "gcp_decision_rule": "Local runtime is ~22 minutes total (< 60 minute threshold). Local MPS execution is chosen to eliminate GCP provisioning latency and spot preemption risk.",
+    "incremental_checkpoint_saving": true
+  }
+}

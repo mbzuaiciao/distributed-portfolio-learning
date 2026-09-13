@@ -1,0 +1,19 @@
+system,retained_fraction,n_retained,n_abstain,brier_score,log_loss,classification_error,realized_downside_rate
+System A (Clean Deterministic LoRA),1.0,12300,0,0.16079,0.50332,0.2,0.2
+System A (Clean Deterministic LoRA),0.9,11070,1230,0.15946,0.50042,0.19756,0.19756
+System A (Clean Deterministic LoRA),0.8,9840,2460,0.15803,0.49729,0.19492,0.19492
+System A (Clean Deterministic LoRA),0.7,8610,3690,0.15826,0.49801,0.19512,0.19512
+System A (Clean Deterministic LoRA),0.6,7380,4920,0.15851,0.49883,0.19526,0.19526
+System A (Clean Deterministic LoRA),0.5,6150,6150,0.15736,0.49655,0.19285,0.19285
+System B (Clean Bayesian Posterior Mean),1.0,12300,0,0.15987,0.50007,0.2,0.2
+System B (Clean Bayesian Posterior Mean),0.9,11070,1230,0.15656,0.49261,0.19404,0.19404
+System B (Clean Bayesian Posterior Mean),0.8,9840,2460,0.15576,0.49079,0.19268,0.19268
+System B (Clean Bayesian Posterior Mean),0.7,8610,3690,0.15544,0.49005,0.1921,0.1921
+System B (Clean Bayesian Posterior Mean),0.6,7380,4920,0.15435,0.48759,0.19024,0.19024
+System B (Clean Bayesian Posterior Mean),0.5,6150,6150,0.15527,0.48975,0.19171,0.19171
+System C (Clean Bayesian MC32),1.0,12300,0,0.15987,0.50009,0.2,0.2
+System C (Clean Bayesian MC32),0.9,11070,1230,0.15657,0.49264,0.19404,0.19404
+System C (Clean Bayesian MC32),0.8,9840,2460,0.15553,0.49027,0.19228,0.19228
+System C (Clean Bayesian MC32),0.7,8610,3690,0.15483,0.48866,0.19106,0.19106
+System C (Clean Bayesian MC32),0.6,7380,4920,0.15525,0.48967,0.19173,0.19173
+System C (Clean Bayesian MC32),0.5,6150,6150,0.15538,0.49001,0.19187,0.19187

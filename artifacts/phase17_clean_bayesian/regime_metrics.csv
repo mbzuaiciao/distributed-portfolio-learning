@@ -1,0 +1,13 @@
+regime,system,n_observations,auroc,average_precision,brier_score,log_loss,ece,spearman_rho_y0,spearman_rho_y1
+2022,System A (Clean Deterministic LoRA),3573,0.50925,0.20321,0.15767,0.49604,0.022,1.0,-1.0
+2022,System B (Clean Bayesian Posterior Mean),3573,0.51501,0.21072,0.15688,0.49328,0.00978,1.0,-1.0
+2022,System C (Clean Bayesian MC32),3573,0.51494,0.21045,0.15689,0.49331,0.00748,1.0,-1.0
+2022,Null Base-Rate (p=0.20),3573,0.5,0.19479,0.15688,0.49319,0.00521,0.0,0.0
+2023,System A (Clean Deterministic LoRA),3543,0.51303,0.20567,0.15646,0.49311,0.01382,1.0,-1.0
+2023,System B (Clean Bayesian Posterior Mean),3543,0.51661,0.21257,0.1557,0.49039,0.01346,1.0,-1.0
+2023,System C (Clean Bayesian MC32),3543,0.51667,0.21279,0.1557,0.49039,0.01335,1.0,-1.0
+2023,Null Base-Rate (p=0.20),3543,0.5,0.19306,0.15583,0.49078,0.00694,0.0,0.0
+2024-2025,System A (Clean Deterministic LoRA),5184,0.51692,0.22189,0.16589,0.51531,0.02157,1.0,-1.0
+2024-2025,System B (Clean Bayesian Posterior Mean),5184,0.53786,0.24305,0.16477,0.51136,0.01544,1.0,-1.0
+2024-2025,System C (Clean Bayesian MC32),5184,0.53725,0.24235,0.16478,0.5114,0.01529,1.0,-1.0
+2024-2025,Null Base-Rate (p=0.20),5184,0.5,0.20833,0.165,0.51195,0.00833,0.0,0.0

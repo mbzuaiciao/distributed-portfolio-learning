@@ -1,0 +1,5 @@
+system,auroc,average_precision,brier_score,log_loss,ece,mean_probability,std_probability,spearman_rho_pooled,spearman_rho_y0,spearman_rho_y1,n_observations
+System A (Clean Deterministic LoRA),0.51312,0.21049,0.16079,0.50332,0.01785,0.18747,0.03083,0.61045,1.0,-1.0,12300
+System B (Clean Bayesian Posterior Mean),0.52531,0.22358,0.15987,0.50007,0.00686,0.19314,0.02049,0.62118,1.0,-1.0,12300
+System C (Clean Bayesian MC32),0.52504,0.22315,0.15987,0.50009,0.00695,0.19331,0.02053,0.62086,1.0,-1.0,12300
+Null Base-Rate (p=0.20),0.5,0.2,0.16,0.5004,0.0,0.2,0.0,0.0,0.0,0.0,12300

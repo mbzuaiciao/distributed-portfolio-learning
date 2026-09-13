@@ -1,0 +1,41 @@
+system,bin_index,bin_lower,bin_upper,sample_count,mean_predicted_prob,fraction_positive
+System A (Clean Deterministic LoRA),1,0.0,0.1,0,0.05,0.0
+System A (Clean Deterministic LoRA),2,0.1,0.2,6535,0.16406,0.19265
+System A (Clean Deterministic LoRA),3,0.2,0.3,5765,0.214,0.20833
+System A (Clean Deterministic LoRA),4,0.3,0.4,0,0.35,0.0
+System A (Clean Deterministic LoRA),5,0.4,0.5,0,0.45,0.0
+System A (Clean Deterministic LoRA),6,0.5,0.6,0,0.55,0.0
+System A (Clean Deterministic LoRA),7,0.6,0.7,0,0.65,0.0
+System A (Clean Deterministic LoRA),8,0.7,0.8,0,0.75,0.0
+System A (Clean Deterministic LoRA),9,0.8,0.9,0,0.85,0.0
+System A (Clean Deterministic LoRA),10,0.9,1.0,0,0.95,0.0
+System B (Clean Bayesian Posterior Mean),1,0.0,0.1,0,0.05,0.0
+System B (Clean Bayesian Posterior Mean),2,0.1,0.2,6626,0.17892,0.19122
+System B (Clean Bayesian Posterior Mean),3,0.2,0.3,5674,0.20976,0.21026
+System B (Clean Bayesian Posterior Mean),4,0.3,0.4,0,0.35,0.0
+System B (Clean Bayesian Posterior Mean),5,0.4,0.5,0,0.45,0.0
+System B (Clean Bayesian Posterior Mean),6,0.5,0.6,0,0.55,0.0
+System B (Clean Bayesian Posterior Mean),7,0.6,0.7,0,0.65,0.0
+System B (Clean Bayesian Posterior Mean),8,0.7,0.8,0,0.75,0.0
+System B (Clean Bayesian Posterior Mean),9,0.8,0.9,0,0.85,0.0
+System B (Clean Bayesian Posterior Mean),10,0.9,1.0,0,0.95,0.0
+System C (Clean Bayesian MC32),1,0.0,0.1,0,0.05,0.0
+System C (Clean Bayesian MC32),2,0.1,0.2,6510,0.17867,0.19155
+System C (Clean Bayesian MC32),3,0.2,0.3,5790,0.20978,0.2095
+System C (Clean Bayesian MC32),4,0.3,0.4,0,0.35,0.0
+System C (Clean Bayesian MC32),5,0.4,0.5,0,0.45,0.0
+System C (Clean Bayesian MC32),6,0.5,0.6,0,0.55,0.0
+System C (Clean Bayesian MC32),7,0.6,0.7,0,0.65,0.0
+System C (Clean Bayesian MC32),8,0.7,0.8,0,0.75,0.0
+System C (Clean Bayesian MC32),9,0.8,0.9,0,0.85,0.0
+System C (Clean Bayesian MC32),10,0.9,1.0,0,0.95,0.0
+Null Base-Rate (p=0.20),1,0.0,0.1,0,0.05,0.0
+Null Base-Rate (p=0.20),2,0.1,0.2,0,0.15,0.0
+Null Base-Rate (p=0.20),3,0.2,0.3,12300,0.2,0.2
+Null Base-Rate (p=0.20),4,0.3,0.4,0,0.35,0.0
+Null Base-Rate (p=0.20),5,0.4,0.5,0,0.45,0.0
+Null Base-Rate (p=0.20),6,0.5,0.6,0,0.55,0.0
+Null Base-Rate (p=0.20),7,0.6,0.7,0,0.65,0.0
+Null Base-Rate (p=0.20),8,0.7,0.8,0,0.75,0.0
+Null Base-Rate (p=0.20),9,0.8,0.9,0,0.85,0.0
+Null Base-Rate (p=0.20),10,0.9,1.0,0,0.95,0.0

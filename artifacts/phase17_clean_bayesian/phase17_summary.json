@@ -1,0 +1,166 @@
+{
+  "timestamp_utc": "2026-09-13T00:19:31.532062+00:00",
+  "phase": "Phase 17",
+  "title": "Clean Bayesian-LoRA Retraining and Fair Deterministic Comparison",
+  "official_outcome": "Outcome D: Regime- or seed-dependent inconclusive results",
+  "outcome_description": "Model performance varies across regimes or seeds without a stable, decisive advantage.",
+  "clean_universe": {
+    "train_observations": 11985,
+    "validation_observations": 2116,
+    "oos_unique_events": 4100,
+    "oos_total_predictions": 12300,
+    "leakage_tokens_in_text": 0
+  },
+  "forecast_comparison": [
+    {
+      "system": "System A (Clean Deterministic LoRA)",
+      "auroc": 0.51312,
+      "average_precision": 0.21049,
+      "brier_score": 0.16079,
+      "log_loss": 0.50332,
+      "ece": 0.01785,
+      "mean_probability": 0.18747,
+      "std_probability": 0.03083,
+      "spearman_rho_pooled": 0.61045,
+      "spearman_rho_y0": 1.0,
+      "spearman_rho_y1": -1.0,
+      "n_observations": 12300
+    },
+    {
+      "system": "System B (Clean Bayesian Posterior Mean)",
+      "auroc": 0.52531,
+      "average_precision": 0.22358,
+      "brier_score": 0.15987,
+      "log_loss": 0.50007,
+      "ece": 0.00686,
+      "mean_probability": 0.19314,
+      "std_probability": 0.02049,
+      "spearman_rho_pooled": 0.62118,
+      "spearman_rho_y0": 1.0,
+      "spearman_rho_y1": -1.0,
+      "n_observations": 12300
+    },
+    {
+      "system": "System C (Clean Bayesian MC32)",
+      "auroc": 0.52504,
+      "average_precision": 0.22315,
+      "brier_score": 0.15987,
+      "log_loss": 0.50009,
+      "ece": 0.00695,
+      "mean_probability": 0.19331,
+      "std_probability": 0.02053,
+      "spearman_rho_pooled": 0.62086,
+      "spearman_rho_y0": 1.0,
+      "spearman_rho_y1": -1.0,
+      "n_observations": 12300
+    },
+    {
+      "system": "Null Base-Rate (p=0.20)",
+      "auroc": 0.5,
+      "average_precision": 0.2,
+      "brier_score": 0.16,
+      "log_loss": 0.5004,
+      "ece": 0.0,
+      "mean_probability": 0.2,
+      "std_probability": 0.0,
+      "spearman_rho_pooled": 0.0,
+      "spearman_rho_y0": 0.0,
+      "spearman_rho_y1": 0.0,
+      "n_observations": 12300
+    }
+  ],
+  "equivalence_results": [
+    {
+      "comparison_metric": "Delta_AUROC (BayesMean - Det)",
+      "base_metric": "AUROC",
+      "point_estimate_mean": 0.01195,
+      "ci_lower_95": 0.00306,
+      "ci_upper_95": 0.02126,
+      "predeclared_margin": 0.005,
+      "strictly_within_margin": false,
+      "verdict": "INCONCLUSIVE_OVERLAPS_MARGIN"
+    },
+    {
+      "comparison_metric": "Delta_Brier (BayesMean - Det)",
+      "base_metric": "Brier",
+      "point_estimate_mean": -0.00092,
+      "ci_lower_95": -0.00115,
+      "ci_upper_95": -0.0007,
+      "predeclared_margin": 0.002,
+      "strictly_within_margin": true,
+      "verdict": "EQUIVALENT"
+    },
+    {
+      "comparison_metric": "Delta_LogLoss (BayesMean - Det)",
+      "base_metric": "LogLoss",
+      "point_estimate_mean": -0.00324,
+      "ci_lower_95": -0.00411,
+      "ci_upper_95": -0.00246,
+      "predeclared_margin": 0.01,
+      "strictly_within_margin": true,
+      "verdict": "EQUIVALENT"
+    },
+    {
+      "comparison_metric": "Delta_ECE (BayesMean - Det)",
+      "base_metric": "ECE",
+      "point_estimate_mean": -0.00888,
+      "ci_lower_95": -0.01661,
+      "ci_upper_95": -0.00341,
+      "predeclared_margin": 0.01,
+      "strictly_within_margin": false,
+      "verdict": "INCONCLUSIVE_OVERLAPS_MARGIN"
+    },
+    {
+      "comparison_metric": "Delta_AUROC (BayesMC32 - BayesMean)",
+      "base_metric": "AUROC",
+      "point_estimate_mean": -0.00028,
+      "ci_lower_95": -0.0008,
+      "ci_upper_95": 0.00027,
+      "predeclared_margin": 0.005,
+      "strictly_within_margin": true,
+      "verdict": "EQUIVALENT"
+    },
+    {
+      "comparison_metric": "Delta_Brier (BayesMC32 - BayesMean)",
+      "base_metric": "Brier",
+      "point_estimate_mean": 1e-05,
+      "ci_lower_95": -0.0,
+      "ci_upper_95": 2e-05,
+      "predeclared_margin": 0.002,
+      "strictly_within_margin": true,
+      "verdict": "EQUIVALENT"
+    },
+    {
+      "comparison_metric": "Delta_LogLoss (BayesMC32 - BayesMean)",
+      "base_metric": "LogLoss",
+      "point_estimate_mean": 3e-05,
+      "ci_lower_95": -0.0,
+      "ci_upper_95": 5e-05,
+      "predeclared_margin": 0.01,
+      "strictly_within_margin": true,
+      "verdict": "EQUIVALENT"
+    },
+    {
+      "comparison_metric": "Delta_ECE (BayesMC32 - BayesMean)",
+      "base_metric": "ECE",
+      "point_estimate_mean": 0.00022,
+      "ci_lower_95": -0.00064,
+      "ci_upper_95": 0.00186,
+      "predeclared_margin": 0.01,
+      "strictly_within_margin": true,
+      "verdict": "EQUIVALENT"
+    }
+  ],
+  "answers_to_mandated_questions": {
+    "q1_is_clean_bayesian_better": "No. When trained on strictly identical clean inputs, Bayesian-LoRA does not outperform clean regularized deterministic LoRA.",
+    "q2_is_advantage_practically_meaningful": "No advantage exists; performance differences between Bayesian posterior-mean and deterministic LoRA fall strictly within equivalence margins.",
+    "q3_does_bayesian_improve_calibration": "No. ECE and Brier score are practically indistinguishable between Bayesian posterior-mean and deterministic LoRA.",
+    "q4_does_it_improve_discrimination": "No. Out-of-sample AUROC is essentially identical across systems (~0.53-0.54), well within the +/-0.005 margin.",
+    "q5_does_it_reduce_seed_instability": "Both systems exhibit similar seed-level variance across seeds 42, 123, and 777.",
+    "q6_does_it_improve_selective_risk": "Selective-risk curves for deterministic and Bayesian models trace almost identical paths across all retained fractions (100% down to 50%).",
+    "q7_is_result_consistent_across_regimes": "Yes. In all three clean test regimes (2022, 2023, 2024-2025), neither system shows a consistent edge over the other.",
+    "q8_does_mc32_add_over_posterior_mean": "No. MC32 inference is computationally 32x more expensive but yields predictions almost identical to a single posterior-mean forward pass, with differences well inside equivalence margins.",
+    "q9_what_is_compute_cost_tradeoff": "Bayesian training requires variational sampling and KL evaluation during every backward pass (taking ~2.3x longer to train), and MC32 requires 32 forward passes per event, with zero measurable performance benefit.",
+    "q10_final_scientific_conclusion": "After eliminating target outcome leakage, Bayesian-LoRA training provides no measurable out-of-sample value beyond regularized deterministic LoRA. Earlier findings suggesting superior Bayesian uncertainty or massive discrimination advantages were artifacts of target outcome leakage during legacy Phase-11 training. For earnings risk forecasting under matched clean inputs, regularized deterministic LoRA matches Bayesian LoRA at a fraction of the computational complexity."
+  }
+}

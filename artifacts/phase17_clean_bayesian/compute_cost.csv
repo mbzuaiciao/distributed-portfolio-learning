@@ -1,0 +1,5 @@
+system,device,hardware_specs,trainable_parameters,total_train_time_sec,train_time_per_seed_sec,total_inference_time_sec,inference_ms_per_event,forward_passes_per_event,approximate_compute_cost_usd
+System A (Clean Deterministic LoRA),mps,Apple Silicon M-Series (MPS),591362,1150.57,383.52,101.54,8.255,1,0.0
+System B (Clean Bayesian Posterior Mean),mps,Apple Silicon M-Series (MPS),591362,1207.26,402.42,97.01,7.887,1,0.0
+System C (Clean Bayesian MC32),mps,Apple Silicon M-Series (MPS),591362,1207.26,402.42,2964.48,241.015,32,0.0
+Null Base-Rate Predictor (p=0.20),CPU / Constant,N/A,0,0.0,0.0,0.0,0.0,0,0.0

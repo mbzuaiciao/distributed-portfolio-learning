@@ -1,0 +1,9 @@
+comparison_metric,base_metric,point_estimate_mean,ci_lower_95,ci_upper_95,predeclared_margin,strictly_within_margin,verdict
+Delta_AUROC (BayesMean - Det),AUROC,0.01195,0.00306,0.02126,0.005,False,INCONCLUSIVE_OVERLAPS_MARGIN
+Delta_Brier (BayesMean - Det),Brier,-0.00092,-0.00115,-0.0007,0.002,True,EQUIVALENT
+Delta_LogLoss (BayesMean - Det),LogLoss,-0.00324,-0.00411,-0.00246,0.01,True,EQUIVALENT
+Delta_ECE (BayesMean - Det),ECE,-0.00888,-0.01661,-0.00341,0.01,False,INCONCLUSIVE_OVERLAPS_MARGIN
+Delta_AUROC (BayesMC32 - BayesMean),AUROC,-0.00028,-0.0008,0.00027,0.005,True,EQUIVALENT
+Delta_Brier (BayesMC32 - BayesMean),Brier,1e-05,-0.0,2e-05,0.002,True,EQUIVALENT
+Delta_LogLoss (BayesMC32 - BayesMean),LogLoss,3e-05,-0.0,5e-05,0.01,True,EQUIVALENT
+Delta_ECE (BayesMC32 - BayesMean),ECE,0.00022,-0.00064,0.00186,0.01,True,EQUIVALENT

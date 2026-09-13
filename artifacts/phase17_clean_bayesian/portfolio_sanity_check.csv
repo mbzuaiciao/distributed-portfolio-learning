@@ -1,0 +1,5 @@
+system_name,signal_used,annualized_return,annualized_volatility,sharpe_ratio,max_drawdown,utility_gamma1
+System A (Clean Deterministic LoRA),p_det_clean,0.21,0.3764,0.558,-0.3811,0.1392
+System B (Clean Bayesian Posterior Mean),p_bayes_mean,0.1241,0.3693,0.336,-0.402,0.0559
+System C (Clean Bayesian MC32),p_bayes_mc32,0.1083,0.3694,0.2932,-0.4371,0.0401
+Null Base-Rate (p=0.20),p_null,0.0785,0.8066,0.0974,-0.2547,-0.2468

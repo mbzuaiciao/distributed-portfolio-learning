@@ -1,0 +1,7 @@
+seed,system,trainable_parameters,epochs,learning_rate,weight_decay,final_train_loss,val_brier,val_auroc,val_ece,train_runtime_sec,checkpoint_file,sha256,prior_std,init_std,kl_beta
+42,System A (Clean Deterministic LoRA),591362,2,0.0002,0.0,0.50147,0.1626,0.58394,0.02874,394.17,clean_regularized_deterministic_lora_seed_42_state.pt,647f84879d42c9047dacab132dedf20d6afc86acc8fbed0eaf3719a71e661ce1,,,
+42,System B/C (Clean Bayesian LoRA),1181186,2,0.0002,0.01,1.10074,0.16267,0.58309,0.00742,405.0,clean_bayesian_lora_seed_42_state.pt,4285f84a10a0c3d859f8f9378b8d7e75a7289e501453bd1a1d2c2f3477fc5e69,1.0,0.01,0.003
+123,System A (Clean Deterministic LoRA),591362,2,0.0002,0.0,0.50288,0.16285,0.55696,0.00595,404.18,clean_regularized_deterministic_lora_seed_123_state.pt,9f9cf12e4bdae71259b9b2e848fddc1e530f759c51e43240eb170fffebaaae8a,,,
+123,System B/C (Clean Bayesian LoRA),1181186,2,0.0002,0.01,1.10276,0.16351,0.54153,0.01985,430.37,clean_bayesian_lora_seed_123_state.pt,ee9d2466c0e2cfe3924d0b2e1c764694f8f6d1e48c3b355b1af01086a59a7bfa,1.0,0.01,0.003
+777,System A (Clean Deterministic LoRA),591362,2,0.0002,0.0,0.50302,0.16689,0.56178,0.07225,352.22,clean_regularized_deterministic_lora_seed_777_state.pt,bff31d2a48e062bc469010180c94cb2050643a3cb782d52e847de0d09616f0d0,,,
+777,System B/C (Clean Bayesian LoRA),1181186,2,0.0002,0.01,1.10366,0.16398,0.56767,0.03541,371.89,clean_bayesian_lora_seed_777_state.pt,f5fe88e2c56b995e87073716072ca7c45e0595f07fd8346136ac02406c01fc50,1.0,0.01,0.003

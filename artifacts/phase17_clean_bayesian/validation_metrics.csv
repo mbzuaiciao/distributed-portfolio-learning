@@ -1,0 +1,11 @@
+system,seed,auroc,average_precision,brier_score,log_loss,ece,mean_p,std_p
+Base-Rate Null Predictor,All,0.5,0.20605,0.16363,0.50879,0.00605,0.2,0.0
+System A (Clean Deterministic LoRA),42,0.58394,0.25381,0.1626,0.50561,0.02874,0.20362,0.01285
+System B (Clean Bayesian Posterior Mean),42,0.58309,0.26054,0.16267,0.50594,0.00742,0.21273,0.01282
+System C (Clean Bayesian MC32),42,0.58464,0.26011,0.16266,0.50591,0.00805,0.21288,0.01281
+System A (Clean Deterministic LoRA),123,0.55696,0.246,0.16285,0.50647,0.00595,0.20999,0.01356
+System B (Clean Bayesian Posterior Mean),123,0.5065,0.2204,0.16351,0.50843,0.00555,0.2005,0.00635
+System C (Clean Bayesian MC32),123,0.50485,0.21995,0.16351,0.50844,0.00582,0.20069,0.00632
+System A (Clean Deterministic LoRA),777,0.50942,0.22399,0.16689,0.52061,0.05878,0.14727,0.0058
+System B (Clean Bayesian Posterior Mean),777,0.56767,0.24891,0.16398,0.50998,0.03541,0.17064,0.0147
+System C (Clean Bayesian MC32),777,0.56659,0.24788,0.16399,0.51,0.03525,0.1708,0.01459

@@ -1,6 +1,6 @@
 # Paper Outline: When Uncertainty Looks Useful
 
-**Working Title**: *When Uncertainty Looks Useful: Target Leakage, Metric Artifacts, and Bayesian LoRA for Financial NLP*
+**Working Title**: *When Uncertainty Looks Useful: Target Leakage, Reliability Metrics, and Bayesian LoRA in Financial Event Risk*
 
 ---
 
@@ -10,12 +10,12 @@
 - Motivation: The growing adoption of Parameter-Efficient Fine-Tuning (PEFT) and LoRA in financial NLP, coupled with the desire for well-calibrated epistemic uncertainty estimates to guide portfolio risk management.
 - The Empirical Puzzle: Initial experiments indicated that Bayesian-LoRA adapters yielded remarkable predictive confidence, high error-tracking correlations, and promising selective-risk abstention.
 - The Forensic Reality: Methodological audits revealed that these apparent advantages were driven by experimental artifacts: subtle target outcome leakage in training text and a mathematical artifact in the evaluation of reliability metrics under class imbalance.
-- The Core Question: When evaluated under matched, clean inputs without leakage and with appropriate statistical controls, does Bayesian-LoRA training provide measurable value over regularized deterministic LoRA in financial NLP?
+- The Core Question: When evaluated under matched, clean inputs without leakage and with appropriate statistical controls, does Bayesian-LoRA training provide measurable value over regularized deterministic LoRA in financial event risk?
 - Summary of Contributions:
   1. Detailed dissection of target leakage mechanics in sequence classification pipelines.
   2. Proof of mechanical correlation between predictive entropy and absolute error under probability shrinkage.
   3. Strict preregistered evaluation of clean Bayesian vs. deterministic LoRA across 12,300 clean OOS observations.
-  4. Proof of practical equivalence between 32-draw Monte Carlo sampling and single-pass posterior-mean inference.
+  4. Demonstration of practical equivalence between 32-draw Monte Carlo sampling and single-pass posterior-mean inference under preregistered margins.
   5. Downstream portfolio evaluation demonstrating lack of robust economic gains from Bayesian uncertainty adjustments.
 
 ---

@@ -1,0 +1,178 @@
+{
+  "experiment_id": "phase18_clean_cohort_revalidation",
+  "created_local_date": "2026-10-04",
+  "status": "FROZEN_BEFORE_NEW_PREDICTIONS_OR_PORTFOLIO_OUTCOMES",
+  "parent_git_sha": "9b83174272fae34180bd10a530c854bebcd9427e",
+  "file_hashes": {
+    "data/bayesian_lora/reconstructed_returns.csv": "de8d95284ae139a15cd7f04666c1a83eee8b7d300056791a8eb493c692b87604",
+    "experiments/run_phase16_1_audit.py": "356e8f31d9d9bd21ffb4604d5a57aa5ae157b47b43d9120a177ce2bc89dc041b",
+    "experiments/run_phase16_deterministic_control.py": "7fb5248f685ef6e41f16a3a944d278892e7a388f3a13fe31e92bbbcaff7661db",
+    "experiments/run_phase9_1_cohort_return_audit.py": "22ef0af70a0a17034be7f80710d827b297041acd836751fd77b6f0d17ab2e8b5",
+    "src/hypergraph_portfolio/uncertainty.py": "4e77e3b7219e6a245d4b57d15de3067ac338e92b7ad6be70631fb4ad8141fc2c",
+    "artifacts/phase16_1_audit/regularization_selection.csv": "b4062b7b92b876b18b919176954a1fa139dc93347ca6d1dc529df47cfaed93d9",
+    "artifacts/phase17_clean_bayesian/training_manifest.csv": "8069a1899417d0bbd28df3f39267f24c0b65d190834aa5b87ef4687e93692bc4",
+    "artifacts/phase9_cohort_stacking/signal_decay_by_horizon.csv": "a2860862d30a1774d9e19cf1038c1a24a850af525faacd46e56d9d145ad4d085",
+    "artifacts/phase9_1_cohort_return_audit/signal_decay_normalized.csv": "d98aed909b8cd4f0d34176204eb276bc4a4551cb0b9f75be34d4f347f610f4d9",
+    "artifacts/phase9_1_cohort_return_audit/canonical_phase9_table.csv": "0e438d6bbc57d771dd638865889a77ef7b6344af6f3109deb84bffe69dfa2c07",
+    "data/bayesian_lora/development/beta_0p003_seed_42_mc32_predictions.csv": "36b5f8e61035a55a524c4ece1a52526daf21081708a2e8c627bdaeeea5676dc8",
+    "data/bayesian_lora/development/beta_0p003_seed_123_mc32_predictions.csv": "a1a5526ced8c4d19f0d9da028d418b967594b73fa4190801043828ac45e08491",
+    "data/bayesian_lora/development/beta_0p003_seed_777_mc32_predictions.csv": "831661604eeadb56c5cdb0ef919bbc6f04e673d169c54445e7238a6549b4d747",
+    "data/bayesian_lora/holdout/beta_0p003_seed_42_mc32_predictions.csv": "12925c1d0f7ba697180fe68815a0ab22a1e4d5dcc1b5934da73e26ca4009a920",
+    "data/bayesian_lora/holdout/beta_0p003_seed_123_mc32_predictions.csv": "ed5ccf3e55c591fab7ef8a7b706e426014e2438b53ae4bd93e72c422bfa421e2",
+    "data/bayesian_lora/holdout/beta_0p003_seed_777_mc32_predictions.csv": "a7ffed1f8235e8fed3fd1653c65d32691a6d5eccf1281fda702585affab4b958"
+  },
+  "external_hashes": {
+    "/Users/xq/Documents/GitHub/bayesian-lora-portfolio-risk/scripts/run_earnings_bayesian_lora.py": "aff5fa53428b1053707851fcade8a44b7ebe0182aa2e0ad2c24f4a85cec44f54",
+    "/Users/xq/Documents/GitHub/bayesian-lora-portfolio-risk/scripts/run_earnings_bayesian_lora_final_holdout.py": "409950bbe20c17e8772ccbd092e7c6271bc89eca83710626cee36fb000e357fb",
+    "/Users/xq/Documents/GitHub/bayesian-lora-portfolio-risk/artifacts/earnings_bayesian_lora_final_holdout/beta_0p003_seed_42_mc32_predictions.csv": "12925c1d0f7ba697180fe68815a0ab22a1e4d5dcc1b5934da73e26ca4009a920",
+    "/Users/xq/Documents/GitHub/bayesian-lora-portfolio-risk/artifacts/earnings_bayesian_lora_final_holdout/beta_0p003_seed_123_mc32_predictions.csv": "ed5ccf3e55c591fab7ef8a7b706e426014e2438b53ae4bd93e72c422bfa421e2",
+    "/Users/xq/Documents/GitHub/bayesian-lora-portfolio-risk/artifacts/earnings_bayesian_lora_final_holdout/beta_0p003_seed_777_mc32_predictions.csv": "a7ffed1f8235e8fed3fd1653c65d32691a6d5eccf1281fda702585affab4b958",
+    "/Users/xq/Documents/GitHub/bayesian-lora-portfolio-risk/artifacts/earnings_bayesian_lora_uncertainty_control/beta_0p003_seed_42_mc32_predictions.csv": "36b5f8e61035a55a524c4ece1a52526daf21081708a2e8c627bdaeeea5676dc8",
+    "/Users/xq/Documents/GitHub/bayesian-lora-portfolio-risk/artifacts/earnings_bayesian_lora_uncertainty_control/beta_0p003_seed_123_mc32_predictions.csv": "a1a5526ced8c4d19f0d9da028d418b967594b73fa4190801043828ac45e08491",
+    "/Users/xq/Documents/GitHub/bayesian-lora-portfolio-risk/artifacts/earnings_bayesian_lora_uncertainty_control/beta_0p003_seed_777_mc32_predictions.csv": "831661604eeadb56c5cdb0ef919bbc6f04e673d169c54445e7238a6549b4d747",
+    "/Users/xq/.cache/huggingface/hub/models--ProsusAI--finbert/snapshots/4556d13015211d73dccd3fdd39d39232506f3e43/tokenizer_config.json": "ffc7913f6084b138dad68de5a0c2f0ee25ac983709260901e01f53be5796b9d9",
+    "/Users/xq/.cache/huggingface/hub/models--ProsusAI--finbert/snapshots/4556d13015211d73dccd3fdd39d39232506f3e43/special_tokens_map.json": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3",
+    "/Users/xq/.cache/huggingface/hub/models--ProsusAI--finbert/snapshots/4556d13015211d73dccd3fdd39d39232506f3e43/config.json": "f6449ddda85eb726207a40be59c0cd3bd4b142ccb27298d5e45f9ae3396b1abe",
+    "/Users/xq/.cache/huggingface/hub/models--ProsusAI--finbert/snapshots/4556d13015211d73dccd3fdd39d39232506f3e43/vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+    "/Users/xq/.cache/huggingface/hub/models--ProsusAI--finbert/snapshots/4556d13015211d73dccd3fdd39d39232506f3e43/pytorch_model.bin": "e15a7b5738df7f17553399b6d94c6e2ff69c89245d066e8e5d183f5803a554e3"
+  },
+  "model": {
+    "identifier": "ProsusAI/finbert",
+    "revision": "4556d13015211d73dccd3fdd39d39232506f3e43",
+    "rank": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "target_modules": [
+      "query",
+      "value"
+    ],
+    "num_labels": 2,
+    "max_length": 64,
+    "optimizer": "AdamW",
+    "lr": 0.0002,
+    "weight_decay": 0.0,
+    "train_batch_size": 32,
+    "inference_batch_size": 64,
+    "epochs": 2,
+    "checkpoint_selection": "fixed final epoch; no validation or portfolio selection",
+    "seeds": [
+      42,
+      123,
+      777
+    ],
+    "clean_text": "{company_name_or_symbol} ({symbol}) quarterly earnings announcement on {date}.",
+    "mc_samples": 0
+  },
+  "data": {
+    "train_end": "2021-12-31 23:59:59",
+    "train_fraction": 0.85,
+    "target_quantile": 0.2,
+    "label_cutoff_source": "pre-2022 only, identical to Phase16.1 training",
+    "primary_universe": "exact historical holdout events resolved uniquely by timestamp and native move_1d; explicit symbol/episode_id thereafter",
+    "development": "2022-2023 descriptive only; never selects H or model",
+    "diagnostic_horizons": [
+      1,
+      2,
+      4,
+      8,
+      13
+    ],
+    "decay_weeks": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13
+    ]
+  },
+  "portfolio": {
+    "primary_horizons": [
+      1,
+      4
+    ],
+    "exposure": 0.7073,
+    "cost_rate": 0.001,
+    "gamma": 1.0,
+    "ann_factor": 52,
+    "cash_return": 0,
+    "cohort_capital": "1 / number of active cohorts",
+    "within_cohort": "Phase9.1 group_weekly_cohorts frozen simplex Markowitz; Q=.04 I+.01 11T",
+    "return_builder": "experiments.run_phase9_1_cohort_return_audit.build_audited_event_returns",
+    "simulator": "hypergraph_portfolio.uncertainty.simulate_cohort_stacked_portfolio",
+    "utility": "mean(net_weekly_return) - .5 * sample_variance(net_weekly_return,ddof=1)",
+    "inception": "simulator charges initial entry at both H; additionally reconcile H=1 ledger with inception aligned",
+    "terminal": "same occupied bucket window; no terminal liquidation; disclose censored cohorts",
+    "overlay": null
+  },
+  "inference": {
+    "bootstrap_replicates": 1000,
+    "block_length_weeks": 13,
+    "bootstrap_seed": 180042,
+    "permutation_replicates": 199,
+    "permutation_seed": 180123,
+    "random_portfolio_replicates": 20,
+    "random_portfolio_seed": 180777,
+    "bootstrap_unit": "paired moving calendar-week blocks shared across seeds; seeds are NOT independent event observations",
+    "quintiles": "stable sort by score then event_id into five equal-count groups; constant predictor has undefined IC/spread",
+    "signal": "cumulative geometric returns AND individual reconstructed drift weeks; continuation based on incremental compounded weeks2-4 excluding week1",
+    "permutation": "shuffle probabilities within entry cohort, same permutation across seeds; one-sided pooled incremental IC test"
+  },
+  "controls": {
+    "constant": "training-only prevalence",
+    "simple_deterministic": "training-only per-ticker downside rate shrunk by 20 pseudo-events to training prevalence",
+    "equal_weight": "same cohort simulator, exposure and costs",
+    "random_ranking": "20 within-cohort score permutations, same frozen architecture; no outcome-dependent sorting"
+  },
+  "criteria": {
+    "persistence": {
+      "incremental_2_4_rank_ic_min": 0.02,
+      "incremental_2_4_q5_q1_min": 0.0025,
+      "rank_ic_ci_lower_gt": 0,
+      "spread_ci_lower_gt": 0,
+      "permutation_p_max": 0.05
+    },
+    "economic": {
+      "delta_mean_net_weekly_utility_min": 0.0001,
+      "paired_95pct_ci_lower_gt": 0,
+      "positive_seeds_min": 2
+    },
+    "mechanical": {
+      "traded_turnover_reduction_min": 0.25,
+      "net_volatility_reduction_min": 0.2,
+      "effective_holdings_ratio_min": 1.5
+    },
+    "architecture_net_guard": "mean delta net utility >= 0",
+    "classification_order": [
+      "A if persistence AND economic",
+      "B if NOT persistence AND all mechanical thresholds AND architecture_net_guard",
+      "C if NOT persistence AND delta net utility < .0001 AND NOT all mechanical thresholds",
+      "D otherwise"
+    ],
+    "scientific_qualification": "Numerical A is endpoint-reconstruction confirmation only; observed weekly alpha remains inconclusive without a weekly price tape. Integrity failure produces D/inconclusive and forbids clean-confirmation claims."
+  },
+  "execution": {
+    "estimated_local_seconds": 1140,
+    "device": "MPS outside sandbox",
+    "cloud_if_estimate_exceeds_seconds": 1200,
+    "cloud_preference": "Azure if practical; dedicated run resources only; never alter other-project VMs",
+    "speed_check": "first 10 training batches, before portfolio outcomes; abort and reassess if projected train+inference >1200 seconds",
+    "checkpoint_resume": "per completed seed, hash and recipe verified; no partial epoch skipping"
+  },
+  "limitations": [
+    "Original Phase9 leakage unverified; compromised-lineage benchmarks excluded from valid controls",
+    "Clean inputs are company/ticker/date descriptions, not transcripts",
+    "Phase16.1 fitted weights unavailable; fixed-recipe reproduction",
+    "Weekly returns are geometrically interpolated endpoints",
+    "Historical cohorts count occupied weeks, not guaranteed consecutive calendar weeks",
+    "Same universe correction uses native return only to resolve identity, never as input",
+    "No independent prospective holdout: retrospective revalidation"
+  ]
+}

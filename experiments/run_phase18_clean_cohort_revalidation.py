@@ -122,7 +122,7 @@ def frame_hash(frame, columns):
     return hashlib.sha256(frame[columns].to_csv(index=False).encode()).hexdigest()
 
 
-def train_predictions(cfg, freeze_sha, device_name):
+def train_predictions(cfg, freeze_sha, device_name, only_seed=None, cloud_cpu=False):
     import torch
     from torch.utils.data import DataLoader, Dataset
     from transformers import AutoModelForSequenceClassification, AutoTokenizer
@@ -139,7 +139,7 @@ def train_predictions(cfg, freeze_sha, device_name):
         if torch.cuda.is_available()
         else "cpu"
     )
-    if device_name == "cpu":
+    if device_name == "cpu" and not cloud_cpu:
         raise RuntimeError("CPU training exceeds runtime budget; select cloud GPU")
     device = torch.device(device_name)
     tokenizer = AutoTokenizer.from_pretrained(
@@ -170,10 +170,16 @@ def train_predictions(cfg, freeze_sha, device_name):
     oos_ds = TextDataset(oos, False)
     loader = DataLoader(train_ds, batch_size=spec["train_batch_size"], shuffle=True)
     infer_loader = DataLoader(oos_ds, batch_size=spec["inference_batch_size"], shuffle=False)
-    manifest_path = OUT / "training_manifest.json"
+    manifest_path = OUT / (
+        f"training_manifest_seed_{only_seed}.json"
+        if only_seed is not None
+        else "training_manifest.json"
+    )
     manifest = json.loads(manifest_path.read_text()) if manifest_path.exists() else []
     all_predictions = []
-    for seed in spec["seeds"]:
+    for seed in [only_seed] if only_seed is not None else spec["seeds"]:
+        if seed not in spec["seeds"]:
+            raise ValueError("Seed outside frozen matrix")
         existing = next((m for m in manifest if m["seed"] == seed), None)
         pred_path = OUT / f"clean_predictions_seed_{seed}.csv"
         checkpoint = OUT / f"clean_phase16_1_seed_{seed}_state.pt"
@@ -274,6 +280,11 @@ def train_predictions(cfg, freeze_sha, device_name):
             "oos_rows": len(oos),
             "label_cutoff": cutoff,
             "training_losses": losses,
+            "torch_version": torch.__version__,
+            "numpy_version": np.__version__,
+            "cpu_threads": torch.get_num_threads(),
+            "execution_backend": "dedicated cloud CPU" if cloud_cpu else device_name,
+            "runner_sha256": sha256(Path(__file__)),
         }
         manifest.append(row)
         manifest_path.write_text(json.dumps(manifest, indent=2) + "\n")
@@ -282,7 +293,10 @@ def train_predictions(cfg, freeze_sha, device_name):
         del model, base, optimizer
         if device_name == "mps":
             torch.mps.empty_cache()
-    pd.concat(all_predictions, ignore_index=True).to_csv(OUT / "clean_predictions.csv", index=False)
+    if only_seed is None:
+        pd.concat(all_predictions, ignore_index=True).to_csv(
+            OUT / "clean_predictions.csv", index=False
+        )
 
 
 def records_for(df, probability, center):
@@ -837,10 +851,19 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--stage", choices=["train", "evaluate", "all"], default="all")
     parser.add_argument("--device", choices=["mps", "cuda", "cpu"])
+    parser.add_argument(
+        "--seed",
+        type=int,
+        choices=[42, 123, 777],
+        help="Cloud worker shard; all seeds remain required for evaluation",
+    )
+    parser.add_argument(
+        "--cloud-cpu", action="store_true", help="Dedicated cloud CPU worker, not local fallback"
+    )
     args = parser.parse_args()
     cfg, freeze_sha = load_freeze()
     if args.stage in ["train", "all"]:
-        train_predictions(cfg, freeze_sha, args.device)
+        train_predictions(cfg, freeze_sha, args.device, args.seed, args.cloud_cpu)
     if args.stage in ["evaluate", "all"]:
         evaluate(cfg, freeze_sha)
 

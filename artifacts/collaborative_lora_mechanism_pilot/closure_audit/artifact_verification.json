@@ -1,0 +1,64 @@
+{
+  "audit_date_local": "2026-10-04",
+  "original_artifact_manifest_sha256": "1f434ec046ca941c3ab718cc0360eca6ff36f08cf85e755252c8e6f45c114921",
+  "original_artifact_hashes_verified": 41,
+  "preregistration_and_source_hashes": "PASS",
+  "frozen_code_config_signals_and_checkpoints": "PASS",
+  "prediction_rows": 7680,
+  "seed_metrics_and_sample_brier_variances_recomputed": "PASS",
+  "mixture_and_marginal_contribution_identities": "PASS",
+  "original_paired_week_bootstrap_reproduced": "PASS",
+  "primary_metric": "Brier",
+  "unchanged_practical_gain_threshold": 0.002,
+  "required_positive_seeds": 3,
+  "required_lower_95_percent_ci": "> 0 for each of target, pooled, equal",
+  "comparison_passes": [
+    {
+      "method": "equal",
+      "baseline": "target",
+      "passes": false
+    },
+    {
+      "method": "equal",
+      "baseline": "pooled",
+      "passes": false
+    },
+    {
+      "method": "equal",
+      "baseline": "equal",
+      "passes": false
+    },
+    {
+      "method": "learned",
+      "baseline": "target",
+      "passes": false
+    },
+    {
+      "method": "learned",
+      "baseline": "pooled",
+      "passes": false
+    },
+    {
+      "method": "learned",
+      "baseline": "equal",
+      "passes": true
+    },
+    {
+      "method": "colora",
+      "baseline": "target",
+      "passes": false
+    },
+    {
+      "method": "colora",
+      "baseline": "pooled",
+      "passes": false
+    },
+    {
+      "method": "colora",
+      "baseline": "equal",
+      "passes": true
+    }
+  ],
+  "continue": false,
+  "new_training_or_test_evaluation": false
+}

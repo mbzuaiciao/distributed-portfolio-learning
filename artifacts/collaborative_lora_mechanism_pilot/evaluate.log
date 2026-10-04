@@ -1,0 +1,372 @@
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 24557.39it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 43629.62it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 26130.71it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 18257.83it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 25355.80it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 58427.83it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 7986.65it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 38675.80it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 27030.53it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 13656.70it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 28326.56it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 23723.31it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 21137.68it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 12989.66it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 18267.72it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 21834.02it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 20443.15it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 13479.18it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+[
+  {
+    "method": "target",
+    "brier_mean": 0.19367860541328932,
+    "brier_variance": 2.410292957711987e-05,
+    "auroc_mean": 0.5095643694972612,
+    "auroc_variance": 0.0005019339762228545,
+    "log_loss_mean": 0.6095282630024789,
+    "log_loss_variance": 0.0007646267648947548,
+    "ece_mean": 0.1264799584945043,
+    "ece_variance": 0.00038590335284956667,
+    "average_precision_mean": 0.25127220524504673,
+    "average_precision_variance": 0.0012468787915144491,
+    "accuracy_mean": 0.76953125,
+    "accuracy_variance": 0.0,
+    "training_seconds_mean": 22.148831583249073,
+    "training_seconds_variance": 2.0377905829518537,
+    "inference_seconds_mean": 6.097180000273511,
+    "inference_seconds_variance": 2.939142867061428
+  },
+  {
+    "method": "banking",
+    "brier_mean": 0.19479893612691682,
+    "brier_variance": 2.807583601826592e-06,
+    "auroc_mean": 0.4626745820069402,
+    "auroc_variance": 0.0006583360357083564,
+    "log_loss_mean": 0.6143877041273905,
+    "log_loss_variance": 8.710693159551852e-05,
+    "ece_mean": 0.13139472610782832,
+    "ece_variance": 3.590157166536623e-05,
+    "average_precision_mean": 0.23322133129272904,
+    "average_precision_variance": 0.0001731625148049272,
+    "accuracy_mean": 0.76953125,
+    "accuracy_variance": 0.0,
+    "training_seconds_mean": 22.63206950008559,
+    "training_seconds_variance": 20.924627626582275,
+    "inference_seconds_mean": 7.645164638990536,
+    "inference_seconds_variance": 3.713169573046387
+  },
+  {
+    "method": "energy",
+    "brier_mean": 0.21920750559507537,
+    "brier_variance": 7.928809392151279e-07,
+    "auroc_mean": 0.5270584186526714,
+    "auroc_variance": 0.0007401061818163861,
+    "log_loss_mean": 0.8633255348759121,
+    "log_loss_variance": 0.00030202441882748443,
+    "ece_mean": 0.2047889238844315,
+    "ece_variance": 4.506995870464983e-06,
+    "average_precision_mean": 0.2959788416875477,
+    "average_precision_variance": 0.0020517912530784994,
+    "accuracy_mean": 0.76953125,
+    "accuracy_variance": 0.0,
+    "training_seconds_mean": 21.048222347317886,
+    "training_seconds_variance": 4.878319678524367,
+    "inference_seconds_mean": 8.177469888934866,
+    "inference_seconds_variance": 4.954821118046487
+  },
+  {
+    "method": "consumer",
+    "brier_mean": 0.21501616452642322,
+    "brier_variance": 6.0398550414069725e-06,
+    "auroc_mean": 0.5038859732140296,
+    "auroc_variance": 0.0012972757190161323,
+    "log_loss_mean": 0.794261214978178,
+    "log_loss_variance": 0.0012890515406828844,
+    "ece_mean": 0.1940151241918405,
+    "ece_variance": 4.2261050720614666e-05,
+    "average_precision_mean": 0.2725137188364197,
+    "average_precision_variance": 0.0016019970621066139,
+    "accuracy_mean": 0.76953125,
+    "accuracy_variance": 0.0,
+    "training_seconds_mean": 21.314547319275636,
+    "training_seconds_variance": 5.407081689676787,
+    "inference_seconds_mean": 6.134157513656343,
+    "inference_seconds_variance": 1.481055079901946
+  },
+  {
+    "method": "pooled",
+    "brier_mean": 0.1964200144461381,
+    "brier_variance": 1.3428617903156598e-05,
+    "auroc_mean": 0.5181966789985374,
+    "auroc_variance": 0.0005093411572311958,
+    "log_loss_mean": 0.6245085647581922,
+    "log_loss_variance": 0.0004456314278219626,
+    "ece_mean": 0.13778559366861978,
+    "ece_variance": 0.00018432940301495632,
+    "average_precision_mean": 0.2564611826904553,
+    "average_precision_variance": 0.0006178599855562478,
+    "accuracy_mean": 0.76953125,
+    "accuracy_variance": 0.0,
+    "training_seconds_mean": 86.41354480486673,
+    "training_seconds_variance": 18.268779299033046,
+    "inference_seconds_mean": 7.338753485974546,
+    "inference_seconds_variance": 3.2043859706746245
+  },
+  {
+    "method": "colora",
+    "brier_mean": 0.19636580419056324,
+    "brier_variance": 1.3211352925640048e-05,
+    "auroc_mean": 0.5163612377756746,
+    "auroc_variance": 0.00039011564546474916,
+    "log_loss_mean": 0.6241676939146904,
+    "log_loss_variance": 0.0004371480502303051,
+    "ece_mean": 0.13758016874392828,
+    "ece_variance": 0.0001813294491005609,
+    "average_precision_mean": 0.25388225318088536,
+    "average_precision_variance": 0.0004325035519952414,
+    "accuracy_mean": 0.76953125,
+    "accuracy_variance": 0.0,
+    "training_seconds_mean": 103.16953905570942,
+    "training_seconds_variance": 71.94120943370739,
+    "inference_seconds_mean": 6.361853333345304,
+    "inference_seconds_variance": 2.1576614977478905
+  },
+  {
+    "method": "equal",
+    "brier_mean": 0.20860609781801906,
+    "brier_variance": 3.214810924595107e-08,
+    "auroc_mean": 0.48295047176575184,
+    "auroc_variance": 0.0010444742075603722,
+    "log_loss_mean": 0.7166119457480393,
+    "log_loss_variance": 3.075828675425256e-06,
+    "ece_mean": 0.17673292654702286,
+    "ece_variance": 5.229119262100109e-07,
+    "average_precision_mean": 0.2578543477529154,
+    "average_precision_variance": 0.001388866600778072,
+    "accuracy_mean": 0.76953125,
+    "accuracy_variance": 0.0,
+    "training_seconds_mean": 64.99483916667911,
+    "training_seconds_variance": 82.33571017086001,
+    "inference_seconds_mean": 21.956792041581746,
+    "inference_seconds_variance": 24.096098676897295
+  },
+  {
+    "method": "learned",
+    "brier_mean": 0.19479893612691682,
+    "brier_variance": 2.807583601826516e-06,
+    "auroc_mean": 0.4626745820069402,
+    "auroc_variance": 0.0006583360357083564,
+    "log_loss_mean": 0.6143877051225424,
+    "log_loss_variance": 8.710691839615547e-05,
+    "ece_mean": 0.1313947302211697,
+    "ece_variance": 3.5901592916006407e-05,
+    "average_precision_mean": 0.23322133129272904,
+    "average_precision_variance": 0.0001731625148049272,
+    "accuracy_mean": 0.76953125,
+    "accuracy_variance": 0.0,
+    "training_seconds_mean": 65.0013870834373,
+    "training_seconds_variance": 82.29892934933778,
+    "inference_seconds_mean": 21.956792041581746,
+    "inference_seconds_variance": 24.096098676897295
+  },
+  {
+    "method": "oracle_diagnostic",
+    "brier_mean": 0.19479893612691682,
+    "brier_variance": 2.807583601826592e-06,
+    "auroc_mean": 0.4626745820069402,
+    "auroc_variance": 0.0006583360357083564,
+    "log_loss_mean": 0.6143877041273905,
+    "log_loss_variance": 8.710693159551852e-05,
+    "ece_mean": 0.13139472610782832,
+    "ece_variance": 3.590157166536623e-05,
+    "average_precision_mean": 0.23322133129272904,
+    "average_precision_variance": 0.0001731625148049272,
+    "accuracy_mean": 0.76953125,
+    "accuracy_variance": 0.0,
+    "training_seconds_mean": 22.63206950008559,
+    "training_seconds_variance": 20.924627626582275,
+    "inference_seconds_mean": 7.645164638990536,
+    "inference_seconds_variance": 3.713169573046387
+  },
+  {
+    "method": "prevalence_null",
+    "brier_mean": 0.18408203125,
+    "brier_variance": 0.0,
+    "auroc_mean": 0.5,
+    "auroc_variance": 0.0,
+    "log_loss_mean": 0.563290292943206,
+    "log_loss_variance": 0.0,
+    "ece_mean": 0.08203125,
+    "ece_variance": 0.0,
+    "average_precision_mean": 0.23046875,
+    "average_precision_variance": 0.0,
+    "accuracy_mean": 0.76953125,
+    "accuracy_variance": 0.0,
+    "training_seconds_mean": 0.0,
+    "training_seconds_variance": 0.0,
+    "inference_seconds_mean": 0.0,
+    "inference_seconds_variance": 0.0
+  }
+]

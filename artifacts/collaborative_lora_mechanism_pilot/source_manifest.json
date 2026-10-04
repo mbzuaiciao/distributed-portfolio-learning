@@ -1,0 +1,8 @@
+{
+  "scope": "Source identity only; no test statistics computed",
+  "source_hashes": {
+    "artifacts/phase17_clean_bayesian/clean_text_manifest.csv": "4560ff86b543260822a7d8dd266bd40c84b0f1d5dde0fff5ecdc3d588c99beb6",
+    "data/bayesian_lora/reconstructed_returns.csv": "de8d95284ae139a15cd7f04666c1a83eee8b7d300056791a8eb493c692b87604",
+    "references/Collaborative and Efficient Fine-tuning- Leveraging Task Similarity.pdf": "025e2da44eed419125f539c66b0009eafbfdc75d1b65ac31fa2801cdb4c6f6e4"
+  }
+}

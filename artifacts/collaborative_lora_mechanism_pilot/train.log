@@ -1,0 +1,198 @@
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 40871.44it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+seed=42 method=target train=21.8s
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 41180.89it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+seed=42 method=banking train=18.0s
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 40515.91it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+seed=42 method=energy train=18.6s
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 30990.12it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+seed=42 method=consumer train=18.8s
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 38425.48it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+seed=42 method=pooled train=81.7s
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 28313.24it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+seed=42 method=colora train=95.5s
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 19648.43it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+seed=123 method=target train=20.9s
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 39233.76it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+seed=123 method=banking train=22.7s
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 28525.92it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+seed=123 method=energy train=21.6s
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 29091.93it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+seed=123 method=consumer train=21.7s
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 36571.89it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+seed=123 method=pooled train=87.5s
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 40498.40it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+seed=123 method=colora train=112.3s
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 34306.79it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+seed=777 method=target train=23.7s
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 30440.70it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+seed=777 method=banking train=27.2s
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 32859.96it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+seed=777 method=energy train=22.9s
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 33673.71it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+seed=777 method=consumer train=23.4s
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 29360.42it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+seed=777 method=pooled train=90.0s
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 15903.10it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+seed=777 method=colora train=101.7s

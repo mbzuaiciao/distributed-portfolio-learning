@@ -1,0 +1,12 @@
+{
+  "prediction_rows": 7680,
+  "seeds": 3,
+  "methods": 10,
+  "events_per_seed_method": 256,
+  "mixture_identities": "PASS",
+  "source_and_protocol_checksums": "PASS",
+  "pytest": "266 passed, 3 skipped",
+  "ruff": "PASS",
+  "weights_frozen_before_test": true,
+  "decision": "DO_NOT_SCALE_THIS_METADATA_RECIPE"
+}

@@ -1,0 +1,77 @@
+{
+  "seeds": [
+    42,
+    123,
+    777
+  ],
+  "model": "ProsusAI/finbert",
+  "revision": "4556d13015211d73dccd3fdd39d39232506f3e43",
+  "tasks": {
+    "target": [
+      "AAPL",
+      "CSCO",
+      "INTC",
+      "IBM",
+      "AMD",
+      "GLW",
+      "EA",
+      "EBAY",
+      "ADP",
+      "AKAM",
+      "AMAT",
+      "GOOGL",
+      "CTSH",
+      "MCHP",
+      "APH",
+      "FIS",
+      "KLAC",
+      "LRCX",
+      "TXN",
+      "ADI"
+    ],
+    "banking": [
+      "JPM",
+      "BAC",
+      "C",
+      "WFC",
+      "GS",
+      "MS"
+    ],
+    "energy": [
+      "XOM",
+      "CVX",
+      "COP",
+      "SLB",
+      "EOG",
+      "OXY"
+    ],
+    "consumer": [
+      "WMT",
+      "TGT",
+      "COST",
+      "PG",
+      "KO",
+      "PEP",
+      "MCD",
+      "NKE"
+    ]
+  },
+  "train_cap_per_task": 128,
+  "development_cap": 64,
+  "validation_cap": 64,
+  "test_cap": 256,
+  "selection_salt": "collaborative-lora-v1",
+  "label_return_cutoff": -0.05,
+  "rank": 4,
+  "alpha": 8,
+  "dropout": 0.05,
+  "epochs": 3,
+  "batch_size": 16,
+  "max_length": 48,
+  "learning_rate": 0.0002,
+  "weight_decay": 0.01,
+  "threads": 2,
+  "bootstrap_replicates": 1000,
+  "practical_brier_gain": 0.002,
+  "runtime_limit_seconds": 1200
+}

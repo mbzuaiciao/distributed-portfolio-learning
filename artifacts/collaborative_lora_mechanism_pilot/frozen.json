@@ -1,0 +1,233 @@
+{
+  "seeds": {
+    "42": {
+      "gate_and_loo_seconds": 0.009587542153894901,
+      "weights": [
+        0.9999999999999989,
+        0.0,
+        1.169203622808367e-15
+      ],
+      "loo_weights": {
+        "banking": [
+          1.1102230246251568e-16,
+          0.9999999999999999
+        ],
+        "energy": [
+          0.9999999999999994,
+          5.412337245047638e-16
+        ],
+        "consumer": [
+          1.0,
+          4.163336342344337e-17
+        ]
+      },
+      "models": {
+        "target": {
+          "total_parameters": 109631234,
+          "trainable_parameters": 148994,
+          "training_seconds": 21.84749324992299,
+          "gradient_steps": 24,
+          "training_examples": 384,
+          "checkpoint_sha256": "af7b9d170549fbcc435040b30b95ede48f27eaf0aef3b8ebe6c86493a6b81005"
+        },
+        "banking": {
+          "total_parameters": 109631234,
+          "trainable_parameters": 148994,
+          "training_seconds": 18.011257417034358,
+          "gradient_steps": 24,
+          "training_examples": 384,
+          "checkpoint_sha256": "d5b6a8b88999cd4243f9de02f91cc45495272e5b66c766d074848d8a1f5d97bb"
+        },
+        "energy": {
+          "total_parameters": 109631234,
+          "trainable_parameters": 148994,
+          "training_seconds": 18.6113041669596,
+          "gradient_steps": 24,
+          "training_examples": 384,
+          "checkpoint_sha256": "f3787ab966f59579b40704b0ccb3fc5fbf9f1eaef19a8252ebe3aabca3943214"
+        },
+        "consumer": {
+          "total_parameters": 109631234,
+          "trainable_parameters": 148994,
+          "training_seconds": 18.822978249983862,
+          "gradient_steps": 24,
+          "training_examples": 384,
+          "checkpoint_sha256": "070a2f068c9a12351a7ad686ae8de525ebcb5814a29a5982f00fc6ff606cd0ef"
+        },
+        "pooled": {
+          "total_parameters": 109631234,
+          "trainable_parameters": 148994,
+          "training_seconds": 81.68970354087651,
+          "gradient_steps": 96,
+          "training_examples": 1536,
+          "checkpoint_sha256": "8486c6effec2b8c1a0dfbce95537d5655daac02729fa67ee95a9dcf40d9e9cb6"
+        },
+        "colora": {
+          "total_parameters": 109632770,
+          "trainable_parameters": 150530,
+          "training_seconds": 95.5356795839034,
+          "gradient_steps": 96,
+          "training_examples": 1536,
+          "checkpoint_sha256": "8b7af7e691b229e3244153e862017043b19af20cdebfc6306fb225079f358874"
+        }
+      },
+      "prevalence": 0.1484375
+    },
+    "123": {
+      "gate_and_loo_seconds": 0.004124167142435908,
+      "weights": [
+        0.9999999999999996,
+        0.0,
+        4.0245584642661905e-16
+      ],
+      "loo_weights": {
+        "banking": [
+          5.551115123125783e-17,
+          0.9999999999999999
+        ],
+        "energy": [
+          1.0,
+          5.551115123125783e-17
+        ],
+        "consumer": [
+          1.0,
+          0.0
+        ]
+      },
+      "models": {
+        "target": {
+          "total_parameters": 109631234,
+          "trainable_parameters": 148994,
+          "training_seconds": 20.896045374916866,
+          "gradient_steps": 24,
+          "training_examples": 384,
+          "checkpoint_sha256": "934ede255e32189c8781ded7d92b9e1ab7376f1bde8f0ebfe0e0a905ebfe848f"
+        },
+        "banking": {
+          "total_parameters": 109631234,
+          "trainable_parameters": 148994,
+          "training_seconds": 22.726465750019997,
+          "gradient_steps": 24,
+          "training_examples": 384,
+          "checkpoint_sha256": "d7c5e7c4a5e731bbffa5fbd87781f0b94847a1ee1723ccd5f7fb6c1dbcc36ebc"
+        },
+        "energy": {
+          "total_parameters": 109631234,
+          "trainable_parameters": 148994,
+          "training_seconds": 21.615227666916326,
+          "gradient_steps": 24,
+          "training_examples": 384,
+          "checkpoint_sha256": "a7808543c43e26f3b2e062bfb18e71f3c898a6a52705d3d2331ec76031d2f6d8"
+        },
+        "consumer": {
+          "total_parameters": 109631234,
+          "trainable_parameters": 148994,
+          "training_seconds": 21.693645999999717,
+          "gradient_steps": 24,
+          "training_examples": 384,
+          "checkpoint_sha256": "be5c8d6bccced1246ae4f2a69e7f3d1577b0593857de8d9e6a037e3ca45328ea"
+        },
+        "pooled": {
+          "total_parameters": 109631234,
+          "trainable_parameters": 148994,
+          "training_seconds": 87.53741370793432,
+          "gradient_steps": 96,
+          "training_examples": 1536,
+          "checkpoint_sha256": "b2fa0ff3af3598dd20fa63bbd155bb77f039bdfb81a044bf7e4235cd45428d07"
+        },
+        "colora": {
+          "total_parameters": 109632770,
+          "trainable_parameters": 150530,
+          "training_seconds": 112.30006941710599,
+          "gradient_steps": 96,
+          "training_examples": 1536,
+          "checkpoint_sha256": "112544930f2b989dc190284f999475800859b0714ebfc3fdf0db84907ab87a75"
+        }
+      },
+      "prevalence": 0.1484375
+    },
+    "777": {
+      "gate_and_loo_seconds": 0.005932040978223085,
+      "weights": [
+        0.9999999999999996,
+        4.442682554217892e-16,
+        0.0
+      ],
+      "loo_weights": {
+        "banking": [
+          1.6653345369377348e-16,
+          0.9999999999999998
+        ],
+        "energy": [
+          1.0,
+          2.7755575615628914e-17
+        ],
+        "consumer": [
+          1.0,
+          5.551115123125783e-17
+        ]
+      },
+      "models": {
+        "target": {
+          "total_parameters": 109631234,
+          "trainable_parameters": 148994,
+          "training_seconds": 23.70295612490736,
+          "gradient_steps": 24,
+          "training_examples": 384,
+          "checkpoint_sha256": "947e89ebfc64f6b4a499fb303373daab74bb25835344f5f7d07c13b2b7b2d70d"
+        },
+        "banking": {
+          "total_parameters": 109631234,
+          "trainable_parameters": 148994,
+          "training_seconds": 27.158485333202407,
+          "gradient_steps": 24,
+          "training_examples": 384,
+          "checkpoint_sha256": "4fb8b53b976ac469425f61abf075728207847615eb44549b23d0f41a10656fdc"
+        },
+        "energy": {
+          "total_parameters": 109631234,
+          "trainable_parameters": 148994,
+          "training_seconds": 22.91813520807773,
+          "gradient_steps": 24,
+          "training_examples": 384,
+          "checkpoint_sha256": "5fb5f74daa438ca816d150fe52cdf4d700da7a569779d418d362aa65aa48d1cc"
+        },
+        "consumer": {
+          "total_parameters": 109631234,
+          "trainable_parameters": 148994,
+          "training_seconds": 23.427017707843333,
+          "gradient_steps": 24,
+          "training_examples": 384,
+          "checkpoint_sha256": "baf9f040e5760fb3fd28de60d20018941645a367362ad30f5bd2bd9a7ee8009d"
+        },
+        "pooled": {
+          "total_parameters": 109631234,
+          "trainable_parameters": 148994,
+          "training_seconds": 90.01351716578938,
+          "gradient_steps": 96,
+          "training_examples": 1536,
+          "checkpoint_sha256": "531849a663a70c7b9b6df6cb7291b9078970cb3ef7289a6e74e1555d3d3c0d90"
+        },
+        "colora": {
+          "total_parameters": 109632770,
+          "trainable_parameters": 150530,
+          "training_seconds": 101.67286816611886,
+          "gradient_steps": 96,
+          "training_examples": 1536,
+          "checkpoint_sha256": "6a9fccaf1e7dc4e77c8175df2e56a9b1dd9e46fea8844434efc956b2ca29b699"
+        }
+      },
+      "prevalence": 0.1484375
+    }
+  },
+  "config_sha256": "cff7f36e9dcc48ea0c5f4b0397d264993ec45d7d2a8178938abaabc939e52b64",
+  "splits_sha256": "6a1d380721bb1654932e94242b555e4c51e486a472c0db533e44e85b298be82f",
+  "runner_sha256": "e420f71660ab4d5292489fec6254d2851089a313cce42fe4f365d89a4ced9fcf",
+  "core_sha256": "9f161c26c6ffc54305c620985c52be96ce7933a31800b4ab50927d51b7fabaa4",
+  "layers_sha256": "11154e9aa9af84b6a602f233a51f5760d82bc39de7223c267dbf3628e3dd4137",
+  "signals_sha256": "cec3ef632c8c9dd80970c4ed426192aef49f2de559e09d0004256f0dbfdaf2a2",
+  "training_wall_seconds": 876.9684805001598,
+  "hardware": "macOS-27.0-arm64-arm-64bit-Mach-O",
+  "torch": "2.14.0",
+  "test_labels_accessed": false
+}

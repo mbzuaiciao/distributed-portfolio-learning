@@ -1,0 +1,21 @@
+{
+  "train_batch_seconds": [
+    0.8516570839565247,
+    0.7258589998818934,
+    0.7119538330007344
+  ],
+  "projected_total_seconds": 1050,
+  "split_counts": {
+    "target": 128,
+    "banking": 128,
+    "energy": 128,
+    "consumer": 128,
+    "development": 64,
+    "validation": 64,
+    "test": 256
+  },
+  "device": "CPU",
+  "threads": 2,
+  "cloud_required": false,
+  "inference_allowance_seconds": 430
+}

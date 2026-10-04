@@ -63,6 +63,7 @@ This repository serves twelve core purposes:
 | **21. Where does probability $p$ in the confidence baselines originate, and does true single-pass deterministic confidence match MC32 uncertainty?** | Originated from MC32 posterior mean; true single-pass deterministic baseline matches or exceeds MC32 uncertainty | Traced $p$ to 32 MC draws ($\bar{p}_{\text{MC32}}$); constructed true single-pass baseline $p_{\text{deterministic\_mean}}$ (1 forward pass, posterior mean parameters $\mu$); alignment $r = 0.99187$, MAE $= 0.00388$; single-pass `entropy_det` achieves $\rho = 0.5983$ vs MC32 epistemic $\rho = 0.5945$ ($\Delta \rho = +0.00397, p = 0.008$); LORO Model C_det matches Model C_MC32 to within $0.0003$ AUROC. | **Audited & Reconciled (Phase 15.1, Outcome A)** |
 | **22. Does the Bayesian training procedure add value beyond matched deterministic LoRA?** | Rejects equivalence; Bayesian variational training acts as regularizer improving calibration & error tracking, but does not dominate point AUROC | Deterministic LoRA achieves slightly higher AUROC ($0.5116$ vs $0.5001$, $p=0.004$) and lower log loss ($0.7198$ vs $1.0804$), but Bayesian training dramatically improves Brier score ($0.1932$ vs $0.2557$, $p=0.000$), ECE ($0.1757$ vs $0.2275$), and error-tracking Spearman $\rho$ ($0.5990$ vs $0.3064$, $p=0.000$) while eliminating catastrophic seed miscalibration. Single-pass Bayesian posterior mean and MC32 remain statistically indistinguishable ($\Delta \text{AUROC} = +0.0002$). | **Audited & Adjudicated (Phase 16, Outcome D)** |
 | **23. Is the entropy-error relationship genuine reliability, did outcome leakage enter training, and can regularized deterministic LoRA match Bayesian LoRA?** | Entropy-error is mechanical artifact of class imbalance ($y=0$ vs $y=1$); training text contained outcome leakage (. 1-day move was); clean regularized deterministic LoRA strictly dominates Bayesian LoRA | Disaggregated reliability: $\rho = +1.0000$ for $y=0$ ($80\%$) and $\rho = -1.0000$ for $y=1$ ($20\%$), proving pooled $\rho \approx 0.60$ is purely mechanical. Selective risk curves fail to reduce downside classification error ($20.3\% \to 20.9\%$). Null base rate predictor ($p \equiv 0.20$) achieves Brier $0.1600$, beating Bayesian LoRA ($0.1932$). Audit proved Phase 11/16 training text leaked `move_1d` (causing $0.9999$ val AUROC and test-time collapse to $0.50$). Clean regularized deterministic LoRA trained on strictly clean text strictly outperforms Bayesian LoRA across all metrics: AUROC $\mathbf{0.5420}$ vs $0.5001$, Brier $\mathbf{0.1597}$ vs $0.1932$, Log Loss $\mathbf{0.4998}$ vs $1.0804$, ECE $\mathbf{0.0215}$ vs $0.1757$. | **Audited & Adjudicated (Phase 16.1, Outcomes A & C)** |
+| **24. Can heterogeneous LoRA specialists improve a held-out target through collaboration?** | Collaborative effect not established; learned weights degenerate to banking-only selection; CoLoRA does not materially beat pooled training; prevalence null remains strongest on Brier/log loss. | Mean Brier: target 0.193679, pooled 0.196420, equal 0.208606, learned 0.194799, CoLoRA 0.196366, null 0.184082 (3 seeds, 256 events). Frozen continuation criteria failed; Bayesian/UQ weighting was not pursued because prerequisite collaborative gain was absent. | **Closed — negative result under frozen pilot protocol** ([closure summary](docs/collaborative_lora_branch_closure.md)) |
 
 
 
@@ -1735,3 +1736,28 @@ If using this codebase for research or teaching, please cite:
   year={2025}
 }
 ```
+
+
+## Collaborative LoRA mechanism pilot — closed
+
+A separate, locked retrospective branch tests fresh heterogeneous FinBERT/LoRA specialists
+on earnings-metadata downside prediction, with target-only, pooled, individual specialists,
+a diagnostic best-single oracle, equal and development-learned probability mixtures, and
+a shared-factor CoLoRA baseline across seeds 42, 123 and 777.
+
+The pilot **does not establish a collaborative effect**. Mean target-test Brier scores are
+0.193679 (target-only), 0.196420 (pooled), 0.208606 (equal), 0.194799 (learned), and
+0.196366 (CoLoRA); the training-prevalence null is better at 0.184082. Learned weights
+collapse to the banking specialist. Neither learned weighting nor CoLoRA passes the frozen
+continuation criteria. Validation performance/calibration rank source usefulness here,
+but three specialists cannot establish a general explanatory weighting rule.
+
+See the [protocol](artifacts/collaborative_lora_mechanism_pilot/protocol.md),
+[scientific report](artifacts/collaborative_lora_mechanism_pilot/report.md), and
+[frozen outputs](artifacts/collaborative_lora_mechanism_pilot/). Previous findings and
+artifacts remain preserved. This metadata recipe should not be scaled or tuned on its test
+set. **Outcome: No collaborative LoRA effect established under the frozen pilot protocol.
+The branch is closed unless a materially different task regime or data-generating setup
+provides evidence of exploitable specialist complementarity.** See the
+[branch closure and reconciliation](docs/collaborative_lora_branch_closure.md). Bayesian/UQ
+weighting was not pursued because the prerequisite collaborative gain was absent.

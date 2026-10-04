@@ -1,0 +1,17 @@
+{
+  "closure_date_local": "2026-10-04",
+  "outcome": "No collaborative LoRA effect established under the frozen pilot protocol. The branch is closed unless a materially different task regime or data-generating setup provides evidence of exploitable specialist complementarity.",
+  "pytest": "266 passed, 3 skipped",
+  "pytest_seconds": 10.72,
+  "ruff": "All checks passed",
+  "new_experiment_launched": false,
+  "original_artifacts_preserved": true,
+  "frozen_model_checksums_verified": 18,
+  "closure_document_links": "PASS",
+  "files": {
+    "README.md": "111c09ab2209e76104229c930e5df80c65f54ead496dd266f815f0857f382a4e",
+    "docs/collaborative_lora_branch_closure.md": "fa227ba053c8e430bd99219ce5e8b6ba5ec31d744c3635e5d3cbd3917bfabef6"
+  },
+  "source_and_documentation_whitespace": "PASS",
+  "raw_artifact_whitespace": "Original CSV CRLF endings and captured model-log trailing spaces preserved byte-for-byte; not normalized."
+}

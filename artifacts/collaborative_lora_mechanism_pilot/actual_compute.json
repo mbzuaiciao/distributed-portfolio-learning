@@ -1,0 +1,7 @@
+{
+  "training_stage_seconds": 876.9684805001598,
+  "evaluation_stage_seconds_from_log_timestamps": 139.0875358581543,
+  "total_launch_to_evaluation_finish_seconds": 1110.1773324012756,
+  "cloud_used": false,
+  "accounting_note": "Stage durations based on file creation/final-write timestamps include Python startup; total includes the gap between stages."
+}

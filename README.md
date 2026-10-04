@@ -38,6 +38,11 @@ This repository serves twelve core purposes:
 
 ## Current Scientific Status
 
+The entries below retain the findings of successive research phases. Later leakage,
+metric and clean-input audits qualify the earlier uncertainty claims; historical
+coordination proposals are not an active specialist-weighting roadmap. The current
+collaborative-LoRA branch is [closed](docs/collaborative_lora_branch_closure.md).
+
 | Research Question | Result / Finding | Holdout Evidence (3 Seeds) | Status |
 | :--- | :--- | :--- | :--- |
 | **1. Does epistemic uncertainty predict forecast error?** | Strong monotonic information | Spearman $\rho_s = \mathbf{+0.5502}$, Pearson $r = \mathbf{+0.5707}$, AUROC $= \mathbf{0.8182}$ for top 20% errors. | **Confirmed / Supported** |
@@ -367,10 +372,19 @@ We performed an orthogonal attribution analysis deconstructing the mechanism:
 We demonstrated how Bayesian confidence shrinkage naturally integrates into the paper's hypergraph primal-dual consensus dynamics:
 - Local desks compute shrunk expected returns $\tilde{\mu}_i = \rho_i \odot \hat{\mu}_i$ autonomously without sharing model weights or epistemic variance matrices.
 - Primal-dual consensus dynamics converge to the exact lifted Bayesian optimum ($100.0\%$ numerical agreement).
-- Future architectural directions to bridge the gap from H1 to H2:
+- Historical architectural proposals to bridge H1 and H2 (not a current research roadmap):
   1. **Asymmetric / Downside-Only Shrinkage**: Shrink only when $\hat{\mu}_j > 0$ and downside epistemic variance is elevated;
   2. **Endogenous Risk Augmentation**: Expand localized covariance matrices $Q_i \leftarrow Q_i + \lambda_u \operatorname{diag}(\sigma_{\text{epi}, i}^2)$;
   3. **Confidence-Weighted Consensus**: Weight agent disagreement penalties by relative epistemic certainty.
+
+These proposals do not establish that confidence improves coordination, nor that
+financial desk allocation is equivalent to combining LoRA specialists. Later audits
+weakened the early Bayesian reliability interpretation. Independently, the frozen
+collaborative-LoRA pilot established no collaborative gain: learned weights selected
+one specialist, CoLoRA was approximately tied with pooled training, and the prevalence
+null was strongest on Brier/log loss. Continuation criteria failed, so Bayesian/UQ and
+portfolio-style specialist weighting were not escalated. See the
+[closure and research implications](docs/collaborative_lora_branch_closure.md).
 
 ---
 
@@ -1740,7 +1754,7 @@ If using this codebase for research or teaching, please cite:
 
 ## Collaborative LoRA mechanism pilot — closed
 
-A separate, locked retrospective branch tests fresh heterogeneous FinBERT/LoRA specialists
+The completed, locked retrospective pilot tested fresh heterogeneous FinBERT/LoRA specialists
 on earnings-metadata downside prediction, with target-only, pooled, individual specialists,
 a diagnostic best-single oracle, equal and development-learned probability mixtures, and
 a shared-factor CoLoRA baseline across seeds 42, 123 and 777.

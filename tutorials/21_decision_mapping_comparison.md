@@ -107,11 +107,26 @@ The optimizer is already an efficient information aggregator: its constrained qu
 
 ---
 
-## 5. Architectural Implications for Phase 5
+## 5. Historical Architectural Proposals for Phase 5
 
 Because centralized uncertainty decision mappings have not demonstrated economic improvement over deterministic point forecasts, **modifying the distributed consensus coordination mechanism (e.g., confidence-weighted dual penalties) is currently scientifically unjustified**.
 
-Before any distributed uncertainty consensus is built, future research must address the foundational bridge between epistemic uncertainty and directional alpha:
+At this stage of the historical research sequence, the following directions were
+proposed to investigate the gap between uncertainty and directional alpha. They are
+retained as historical proposals, not an active roadmap or evidence that combining
+LoRA specialists improves prediction:
 1. **Asymmetric Training Objectives**: Train the neural network to output directional downside quantiles (e.g., conditional Value-at-Risk) rather than undirected epistemic variance.
 2. **Dynamic Leverage / Cash Buffering**: Use epistemic uncertainty not to rebalance between assets, but to scale aggregate portfolio beta (moving into cash when average universe uncertainty is high).
 3. **Execution Cost Modeling**: Test whether high-uncertainty assets have higher transaction/slippage costs, where uncertainty acts as an execution friction penalty.
+
+
+Later audits weakened the early reliability interpretation and must be considered when
+reading the conclusions above. Independently, the
+[collaborative-LoRA pilot failed its frozen continuation criteria](../docs/collaborative_lora_branch_closure.md):
+learned weights collapsed to one specialist, CoLoRA was approximately tied with
+pooled/global training, and the prevalence null was strongest on Brier/log loss.
+No collaborative effect was established, so Bayesian/UQ and portfolio-style specialist
+weighting were not escalated. Financial exposure or execution proposals are distinct
+from neural specialist complementarity. That branch remains closed unless a materially
+different task regime or data-generating setup demonstrates exploitable complementarity;
+the pilot does not establish that collaboration is universally impossible.

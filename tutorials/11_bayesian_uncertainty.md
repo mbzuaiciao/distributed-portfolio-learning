@@ -1,5 +1,16 @@
 # Tutorial 11 — Bayesian Predictive Uncertainty Extension
 
+> **Historical tutorial; current scope:** the mechanisms and original numerical examples
+> below are retained as candidate portfolio formulations. Later Bayesian-LoRA audits
+> weakened the early reliability interpretation. The separate
+> [collaborative-LoRA pilot is closed](../docs/collaborative_lora_branch_closure.md): learned
+> weights selected one specialist, CoLoRA was approximately tied with pooled training,
+> the prevalence null was strongest on Brier/log loss, and frozen continuation criteria
+> failed. Bayesian/UQ and portfolio-style specialist weighting were not escalated because
+> no prerequisite collaborative gain was established. This is a scoped pilot outcome,
+> not a proof that collaboration is impossible in every task regime.
+
+
 In classical portfolio optimization—and in the paper by Papastaikoudis, Watson, and Lestas (2025)—expected returns $\mu$ are treated as **known, deterministic point estimates**.
 
 In modern quantitative finance and machine learning, point estimates are notoriously brittle. With the advent of **Bayesian deep learning, LoRA adapters, and probabilistic ensembles**, models output a full posterior predictive distribution:
@@ -119,10 +130,10 @@ Let's evaluate each hypothesis based on our experimental data:
 
 ## 7. Strategic Insight: The Multi-Layer Uncertainty Architecture
 
-Our findings show that **epistemic uncertainty should not be restricted to a single entry point**:
+The original synthetic examples illustrate three possible entry points for epistemic uncertainty; they do not establish that any is empirically preferable:
 1. **Asset Level (M1)**: Shrink point forecasts based on token-level predictive entropy from Bayesian neural nets.
 2. **Strategy Level (M2)**: Add epistemic covariance to $Q_i$ to ensure robust local risk budgeting.
-3. **Firm Level (M3)**: Re-allocate capital mandates toward allocators with the highest empirical calibration.
+3. **Firm Level (M3)**: A candidate capital-mandate mapping toward allocators with higher empirical calibration; differing calibration alone does not establish complementary predictive signal or a useful LoRA combination.
 
 In Tutorial 12, we conclude our lab with a comprehensive research synthesis.
 
@@ -138,5 +149,5 @@ In Tutorial 12, we conclude our lab with a comprehensive research synthesis.
 
 ## Questions Worth Investigating
 
-- If Desk 1 uses a Bayesian Transformer while Desk 2 uses a Classical Fama-French factor model, how should the consensus mechanism weight their respective certainty estimates?
+- In a materially different setup, do models first demonstrate complementary predictive signal and incremental uncertainty information? Certainty-weighted coordination remains conditional on that evidence, rather than an active next step for the closed pilot.
 - Can out-of-sample Sharpe ratios verify whether Mechanism 1 or Mechanism 2 produces superior risk-adjusted returns over a 10-year rolling window?

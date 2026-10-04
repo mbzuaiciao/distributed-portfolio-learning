@@ -117,7 +117,11 @@ As a result, the paired net utility difference between Bayesian shrinkage and de
 
 ---
 
-## 6. Official Scientific Conclusion (Hypothesis H2)
+## 6. Historical Scientific Conclusion (Hypothesis H2)
+
+The following verdict records this experiment's original interpretation. Later leakage,
+reliability-metric and clean-input audits qualified the early H1 claim; the quoted numbers
+are retained as historical evidence, not current proof of Bayesian incremental value.
 
 Following our strict claim discipline:
 
@@ -132,4 +136,12 @@ Following our strict claim discipline:
 
 1. **Information $\ne$ Alpha**: An epistemic uncertainty signal that correlates with error dispersion is a necessary condition, but not a sufficient condition, for economic value.
 2. **The Volatility-Alpha Confound**: Because large earnings surprises naturally carry higher epistemic dispersion, standard shrinkage operates as a general beta/volatility dampener rather than a selective risk filter.
-3. **Next Direction**: To extract economic value from epistemic uncertainty, future research must decouple *downside unreliability* from *upside conviction*—such as asymmetric tail risk penalties or uncertainty-aware hurdle rates.
+3. **Historical Proposal**: Asymmetric tail-risk penalties or uncertainty-aware hurdle rates were proposed to separate downside unreliability from upside conviction. Their benefit was not established, and this is not a current specialist-weighting roadmap.
+
+The separate [collaborative-LoRA pilot is closed](../docs/collaborative_lora_branch_closure.md).
+No collaborative effect was established: learned weights selected one specialist,
+CoLoRA was approximately tied with pooled/global training, and the prevalence null was
+strongest on Brier/log loss. Frozen continuation criteria failed, so Bayesian/UQ and
+portfolio-style specialist weighting were not escalated. A materially different setup
+with demonstrated specialist complementarity would be required to revive that branch;
+this scoped failure does not rule out all collaborative LoRA methods.

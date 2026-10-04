@@ -1,5 +1,21 @@
 # Research Design: Asymmetric Uncertainty Training & Directional Loss Formulation
 
+**Status: historical, unvalidated proposal; not an active implementation plan.** This
+proposal predates the later leakage, reliability-metric and clean-input audits. Its early
+reliability interpretation and asserted symmetric-regression root cause are not established
+explanations of the subsequently audited classification experiments. The formulations and
+original proposed validation thresholds below are retained, not newly endorsed or retuned.
+
+The separate [collaborative-LoRA pilot is closed](collaborative_lora_branch_closure.md):
+no collaborative effect was established; learned weights collapsed to one specialist;
+CoLoRA was approximately tied with pooled/global training; the prevalence null was
+strongest on Brier/log loss; and frozen continuation criteria failed. Bayesian/UQ and
+portfolio-style specialist weighting were not escalated because the prerequisite gain
+was absent. An asymmetric-loss proposal does not revive that branch. Any revival would
+require a materially different setup with demonstrated specialist complementarity and
+fresh evaluation; the pilot does not rule out collaboration in all possible regimes.
+
+
 ## 1. Executive Problem Statement
 
 Across Phases 3, 4, and 5 of this laboratory, empirical investigations have revealed a profound structural limitation in standard Bayesian deep learning applied to financial asset allocation:
@@ -11,7 +27,7 @@ Across Phases 3, 4, and 5 of this laboratory, empirical investigations have reve
    $$\mathcal{L}_{\text{sym}}(\theta) = \frac{1}{N} \sum_{i=1}^N \left(y_i - f_\theta(x_i)\right)^2$$
    Under symmetric training, the epistemic posterior $p(w | \mathcal{D})$ reflects dispersion around the central conditional expectation $\mathbb{E}[y | x]$. A large epistemic standard deviation $\sigma_{\text{epi}}$ signals that the model is uncertain about the *magnitude* of the return. It is equally likely that the true return is a massive positive surprise ($y \gg \hat{\mu}$) or a severe crash ($y \ll \hat{\mu}$).
 
-To convert epistemic uncertainty into genuine economic value, the model itself must be trained with **asymmetric, decision-relevant risk formulations**.
+At the time of this proposal, **asymmetric, decision-relevant risk formulations** were hypothesized as a route to economic value. Their necessity or benefit was not established; later audits do not support treating a new Bayesian training loss as the automatic next step.
 
 ---
 
@@ -55,7 +71,7 @@ where $\kappa \in [0, 1)$ penalizes downside forecast errors more heavily than m
 
 ---
 
-## 4. Proposed Validation Protocol
+## 4. Original Proposed Validation Protocol (Unexecuted)
 
 To verify whether asymmetric uncertainty training resolves the Phase 5 limitation:
 1. **Downside Selectivity Test**:
@@ -65,4 +81,4 @@ To verify whether asymmetric uncertainty training resolves the Phase 5 limitatio
 3. **Sharpe Expansion**:
    - Paired block bootstrap test must show that the 95% confidence interval for $\Delta \text{Sharpe} = \text{Sharpe}_{\text{asym}} - \text{Sharpe}_{M0}$ strictly excludes zero.
 
-This research design bridges the gap between statistical model uncertainty and financial decision utility.
+This historical design proposed a test of the gap between statistical uncertainty and financial decision utility; it did not demonstrate that the gap was bridged or that specialist collaboration benefits exist.

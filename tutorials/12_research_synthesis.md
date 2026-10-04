@@ -1,8 +1,14 @@
 # Tutorial 12 — Final Research Synthesis
 
-In this final tutorial, we bring together the mathematical derivations, empirical reproductions, critical audits, and research extensions developed across this entire laboratory.
+This synthesis began as the final tutorial of the original mathematical laboratory. It brings together the mathematical derivations, empirical reproductions, critical audits, and research extensions developed across this entire laboratory.
 
 We summarize the answers to the six central research questions that framed our investigation of Papastaikoudis, Watson, and Lestas (2025).
+
+Current research status: later Bayesian-LoRA audits weakened the early uncertainty
+hypotheses, and the separate collaborative-LoRA pilot failed its frozen continuation
+criteria. Its branch is closed; see the
+[scientific closure](../docs/collaborative_lora_branch_closure.md). The mathematical
+formulations below do not supply evidence of specialist complementarity.
 
 ---
 
@@ -53,26 +59,35 @@ Our controlled experiments in Tutorial 09 conclusively prove that it is **a cons
 3. **True Performance on Market Covariance**: When the resulting distributed asset allocation $z^* = (0.4545, 0.2272, 0.3173)$ is evaluated on the true market covariance $Q$, its actual objective is **2.9197**, which is slightly worse than the centralized minimum of **2.8408**.
 
 ### Question 5: Where can predictive uncertainty enter economically?
-As demonstrated in Tutorial 11, Bayesian predictive distributions $p(\mu \mid \mathcal{D}) \sim (\mathbb{E}[\mu], \operatorname{Var}(\mu))$ from Bayesian LoRA or neural ensembles enter naturally at three distinct levels:
+Tutorial 11 formulates candidate mappings through which Bayesian predictive distributions $p(\mu \mid \mathcal{D}) \sim (\mathbb{E}[\mu], \operatorname{Var}(\mu))$ from Bayesian LoRA or neural ensembles could enter at three distinct levels:
 1. **Asset Level (Return Shrinkage)**: $\tilde{\mu}_j = \frac{\mu_j}{1 + \kappa \operatorname{Var}(\mu_j)}$, penalizing assets with high epistemic uncertainty.
 2. **Strategy Level (Risk Augmentation)**: $\tilde{Q}_i = Q_i + \gamma \operatorname{diag}(\operatorname{Var}(\mu_i))$, treating parameter uncertainty as unhedged variance.
 3. **Firm Level (Mandate Re-weighting)**: $\tilde{a}_i \propto \frac{a_i}{1 + \beta \operatorname{Tr}(\operatorname{Var}(\mu_i))}$, shifting capital toward allocators with higher confidence.
 
-### Question 6: What is the strongest next research experiment?
-The most promising follow-on experiment is **Out-of-Sample Rolling Dynamic Allocation with Bayesian LoRA**:
-- Train a lightweight Bayesian LoRA adapter on historical financial sentiment and fundamental factors.
-- At each monthly rebalancing step, generate $p(\mu_t \mid \mathcal{D}_t)$.
-- Feed the signals into our hypergraph primal-dual solver across 11 sector ETFs.
-- Backtest from 2018 to 2026 and evaluate realized Sharpe ratio, maximum drawdown, and turnover against:
-  1. Centralized Markowitz
-  2. Equal-weight benchmark (1/N)
-  3. Deterministic distributed hypergraph allocation.
+### Question 6: What does the current evidence justify?
+The original proposal was an out-of-sample rolling dynamic allocation study with
+Bayesian LoRA feeding a hypergraph solver. That proposal is historical, not the current
+next experiment. Subsequent leakage and reliability-metric audits substantially weakened
+the early Bayesian uncertainty interpretation; clean metadata forecasts remained weak.
+
+The separate frozen specialist pilot did not establish a collaborative LoRA effect.
+Learned weights collapsed to the banking specialist, CoLoRA was approximately tied with
+pooled/global training, and the target-training prevalence null was strongest on Brier
+and log loss. Neither learned weighting nor CoLoRA passed the frozen continuation
+criteria. Bayesian/UQ and portfolio-style specialist weighting were therefore not escalated.
+
+The [closure document](../docs/collaborative_lora_branch_closure.md) distinguishes failure
+to establish collaboration from weak task signal and possible lack of complementarity.
+Revival requires a materially different task regime or data-generating setup with
+independently demonstrated complementary predictive signal and fresh held-out evaluation.
+Another weighting-rule search on this pilot is not justified. This scoped negative result
+does not imply that all collaborative LoRA methods are impossible.
 
 ---
 
 ## 3. Laboratory Architecture Summary
 
-All tools developed in this project are modular, tested, and ready for production research:
+The following tree records the original mathematical laboratory. It is historical, not a current inventory or production-readiness claim; see the README for the expanded repository:
 
 ```
 hypergraph-portfolio-lab/
@@ -100,7 +115,7 @@ hypergraph-portfolio-lab/
 
 1. The exact mathematical strengths and limitations of the hypergraph portfolio framework.
 2. Why claims of "free diversification" in distributed optimization must always be audited against true market covariance.
-3. How to build upon this repository to develop robust, uncertainty-aware distributed allocation systems.
+3. Why mathematical uncertainty mappings and portfolio analogies require separate empirical evidence before they justify specialist weighting.
 
 ---
 

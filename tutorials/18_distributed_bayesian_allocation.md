@@ -1,18 +1,30 @@
 # Tutorial 18 — Distributed Bayesian Allocation & Coordination Mechanisms
 
-In [Tutorial 17](file:///Users/xq/Documents/GitHub/distributed-portfolio-learning/tutorials/17_bayesian_decision_value.md), we evaluated Bayesian confidence shrinkage centrally, establishing that while epistemic uncertainty reliably predicts error magnitude (H1), simple symmetric shrinkage acts primarily as a general concentration and volatility dampener rather than an alpha generator (H2).
+In [Tutorial 17](17_bayesian_decision_value.md), the historical experiment evaluated
+Bayesian confidence shrinkage centrally. At that stage, H1 was interpreted as reliability
+information and H2 as concentration/volatility dampening rather than alpha generation.
+Later audits qualified that interpretation by identifying leakage, metric mechanics and
+limited incremental uncertainty value. The original numerical comparison below is retained
+as historical evidence, not a current justification for uncertainty-weighted coordination.
+
+The separate [collaborative-LoRA branch is closed](../docs/collaborative_lora_branch_closure.md):
+no collaborative effect was established, learned weights collapsed to one specialist,
+CoLoRA was approximately tied with pooled/global training, and the prevalence null was
+strongest on Brier/log loss. Frozen continuation criteria failed; Bayesian/UQ and
+portfolio-style specialist weighting were not escalated. These results concern the frozen
+pilot and do not establish that all collaborative LoRA methods are impossible.
 
 In this tutorial, we return to the core architectural foundation of this laboratory: **hypergraph-based distributed portfolio optimization**.
 
 We investigate two questions:
 1. **Part F (Local Shrinkage Retention)**: Does applying Bayesian confidence shrinkage locally inside distributed subportfolios ($\tilde{\mu}_i = \rho(\sigma_{\text{epi}, i}) \hat{\mu}_i$) retain, amplify, or destroy the economic behavior observed centrally?
-2. **Part G (Uncertainty in Coordination)**: How could epistemic predictive uncertainty be integrated into the consensus and pricing mechanisms themselves in future work?
+2. **Part G (Historical Uncertainty-in-Coordination Hypotheses)**: What candidate mathematical mechanisms were proposed, and what missing empirical evidence prevents their promotion to a research roadmap?
 
 ---
 
 ## 1. Pedagogical Progression
 
-$$\text{Centralized Baseline} \longrightarrow \text{Distributed Local Shrinkage} \longrightarrow \text{Equivalence Evaluation} \longrightarrow \text{Attribution} \longrightarrow \text{Future Coordination Hypotheses}$$
+$$\text{Centralized Baseline} \longrightarrow \text{Distributed Local Shrinkage} \longrightarrow \text{Equivalence Evaluation} \longrightarrow \text{Attribution} \longrightarrow \text{Unvalidated Historical Hypotheses}$$
 
 ---
 
@@ -68,11 +80,15 @@ Using the lifted equivalence formulation developed in [Tutorial 13](file:///User
 
 ---
 
-## 5. Part G: Future Speculative Hypotheses (Uncertainty in Coordination)
+## 5. Part G: Historical Speculative Hypotheses (Uncertainty in Coordination)
 
 In this laboratory, uncertainty was applied strictly to the local expected return inputs $\tilde{\mu}_i$.
 
-Could epistemic predictive uncertainty alter the **network coordination mechanism itself**? We formulate four speculative hypotheses for future research:
+Could epistemic predictive uncertainty alter the **network coordination mechanism itself**?
+The four historical hypotheses below preserve the mathematical proposal. They are
+unvalidated possibilities, not active implementation plans. Allocating capital among
+financial desks is also distinct from combining neural adapter specialists; neither the
+formulas nor the retention calculation establishes a collaborative specialist gain.
 
 ```
                             ┌────────────────────────────────────────┐
@@ -114,11 +130,11 @@ $$a_i(t) \propto \frac{1}{1 + \beta \bar{\sigma}_{\text{epi}, i}(t)}$$
 Desks whose ML models register high out-of-distribution epistemic spikes automatically receive lower overall capital limits.
 
 > [!NOTE]
-> These four coordination mechanisms represent exploratory theoretical directions. In accordance with scientific discipline, they are documented here as open hypotheses for future investigation.
+> These four mechanisms are retained as unvalidated historical hypotheses. Their application to LoRA specialist weighting is not being pursued after the frozen collaboration screen failed. Reopening that branch requires a materially different setup demonstrating exploitable specialist complementarity, not another weighting search on the same pilot.
 
 ---
 
 ## 6. What We Learned
 
 - Local Bayesian confidence shrinkage integrates seamlessly into hypergraph consensus, achieving **100% fidelity to centralized behavior** with zero inter-desk communication of model parameters.
-- The next horizon in distributed portfolio learning lies in upgrading consensus dynamics from **uniform consensus** to **confidence-weighted epistemic consensus**.
+- Reproducing a centralized allocation through distributed consensus demonstrates equivalence of execution, not improved prediction or complementary LoRA specialists. There is currently no empirical basis here for escalating to confidence-weighted epistemic consensus as a specialist-combination mechanism.

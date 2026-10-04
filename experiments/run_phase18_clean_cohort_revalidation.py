@@ -229,7 +229,10 @@ def train_predictions(cfg, freeze_sha, device_name):
                     }
                     (OUT / "runtime_preflight.json").write_text(json.dumps(speed, indent=2) + "\n")
                     print("RUNTIME PREFLIGHT", speed, flush=True)
-                    if estimate > cfg["execution"]["cloud_if_estimate_exceeds_seconds"]:
+                    if (
+                        device_name == "mps"
+                        and estimate > cfg["execution"]["cloud_if_estimate_exceeds_seconds"]
+                    ):
                         raise RuntimeError("Local projection exceeds 20 minutes; cloud required")
                 if (i + 1) % 100 == 0:
                     print(f"Seed {seed} epoch {epoch + 1} batch {i + 1}/{len(loader)}", flush=True)

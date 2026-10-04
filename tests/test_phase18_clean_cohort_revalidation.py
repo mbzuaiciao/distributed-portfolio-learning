@@ -230,3 +230,41 @@ def test_freeze_precedes_completed_seed_artifacts():
         assert row["predictions_sha256"] == sha256(
             OUT / f"clean_predictions_seed_{row['seed']}.csv"
         )
+
+
+def test_completed_prediction_content_and_adapter_schema(freeze_data):
+    """Validate returned model tensors and event rows, beyond transport hashes."""
+    if not (OUT / "training_manifest.json").exists():
+        pytest.skip("Training has not yet completed")
+    import torch
+
+    cfg, _, (_, _, _, oos, _) = freeze_data
+    manifest = json.loads((OUT / "training_manifest.json").read_text())
+    assert {m["seed"] for m in manifest} == set(cfg["model"]["seeds"])
+    expected = {"classifier.weight": (2, 768), "classifier.bias": (2,)}
+    for layer in range(12):
+        for module in cfg["model"]["target_modules"]:
+            prefix = f"bert.encoder.layer.{layer}.attention.self.{module}"
+            expected[prefix + ".lora_a"] = (cfg["model"]["rank"], 768)
+            expected[prefix + ".lora_b"] = (768, cfg["model"]["rank"])
+    for row in manifest:
+        seed = row["seed"]
+        state = torch.load(
+            OUT / f"clean_phase16_1_seed_{seed}_state.pt",
+            map_location="cpu",
+            weights_only=True,
+        )
+        assert set(state) == set(expected)
+        for name, tensor in state.items():
+            assert tuple(tensor.shape) == expected[name]
+            assert torch.isfinite(tensor).all()
+        pred = pd.read_csv(OUT / f"clean_predictions_seed_{seed}.csv")
+        assert pred.episode_id.is_unique
+        assert set(pred.seed) == {seed}
+        assert np.isfinite(pred.p_clean).all()
+        assert pred.p_clean.between(0, 1).all()
+        columns = ["episode_id", "symbol", "date", "label"]
+        pd.testing.assert_frame_equal(
+            pred[columns].sort_values("episode_id").reset_index(drop=True),
+            oos[columns].sort_values("episode_id").reset_index(drop=True),
+        )

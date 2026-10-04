@@ -1,0 +1,56 @@
+[
+  {
+    "seed": 42,
+    "recipe": {
+      "identifier": "ProsusAI/finbert",
+      "revision": "4556d13015211d73dccd3fdd39d39232506f3e43",
+      "rank": 16,
+      "alpha": 32,
+      "dropout": 0.05,
+      "target_modules": [
+        "query",
+        "value"
+      ],
+      "num_labels": 2,
+      "max_length": 64,
+      "optimizer": "AdamW",
+      "lr": 0.0002,
+      "weight_decay": 0.0,
+      "train_batch_size": 32,
+      "inference_batch_size": 64,
+      "epochs": 2,
+      "checkpoint_selection": "fixed final epoch; no validation or portfolio selection",
+      "seeds": [
+        42,
+        123,
+        777
+      ],
+      "clean_text": "{company_name_or_symbol} ({symbol}) quarterly earnings announcement on {date}.",
+      "mc_samples": 0
+    },
+    "freeze_git_sha": "ef1b859f7f56cacc8be9e70e60e032da8cecd170",
+    "execution_git_sha": "d8d9255e44cb60c7354949534517e217f3d3ebb4",
+    "device": "cpu",
+    "preregistration_sha256": "82c41e671da2af23b4aa94bb5d42703fef4fe4822a403eae16c776399b178340",
+    "training_text_sha256": "db5412aa2a95dc507b7dae1eb25a71546a40ff087c4e7965b659e76cd9a6ee4f",
+    "validation_text_sha256": "ed71eba683776bee5837feff5f95f99927d62fa59ca4511b314cca8c9c5d11e6",
+    "inference_text_sha256": "a90c94ce320c5b670467b6d895436b1087e6c6e006df50a7901869df0bd7f9fb",
+    "checkpoint_sha256": "0822f40c6dd0a915ae0018a268fa1ad3e48580f6e1925a504301a4b4862b82f6",
+    "predictions_sha256": "d71fb3512e5f72bd7297d5d4918bedec299df9b3deb591745f5527c8b7b98ea4",
+    "train_seconds": 1069.93887012,
+    "inference_seconds": 28.823359767000056,
+    "train_rows": 11985,
+    "valid_rows": 2116,
+    "oos_rows": 4100,
+    "label_cutoff": -0.0365278197933451,
+    "training_losses": [
+      0.5066218105157216,
+      0.5030291481812795
+    ],
+    "torch_version": "2.9.1+cpu",
+    "numpy_version": "2.5.3",
+    "cpu_threads": 8,
+    "execution_backend": "dedicated cloud CPU",
+    "runner_sha256": "98ff9d43163bdeaf4fc4695b9152f222b4e6641ac8f443972fdfc0705a1bc7ff"
+  }
+]

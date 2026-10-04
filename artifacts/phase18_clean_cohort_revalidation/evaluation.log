@@ -1,0 +1,44 @@
+Signal evaluation complete: clean_lora
+Signal evaluation complete: ticker_risk
+Signal evaluation complete: constant_prevalence
+{
+  "outcome": "B",
+  "persistence_pass": false,
+  "economic_pass": false,
+  "mechanical_pass": true,
+  "delta_net_weekly_utility": 0.00138041145279247,
+  "delta_utility_ci_95": [
+    -0.005467999778104229,
+    0.008433191558035603
+  ],
+  "seed_deltas": [
+    0.00102618773255986,
+    0.0016805145342387025,
+    0.001434532091578847
+  ],
+  "seed_delta_sd": 0.0003305036664029613,
+  "incremental_2_4_rank_ic": 0.006027160526927005,
+  "incremental_2_4_spread": 0.004146538927427858,
+  "permutation_p": 0.105,
+  "turnover_reduction": 0.7396593673965937,
+  "volatility_reduction": 0.6621058284936654,
+  "effective_holdings_ratio": 3.296346013128459,
+  "holdout_events": 1728,
+  "occupied_weeks": 69,
+  "calendar_weeks": 72,
+  "empty_calendar_weeks": 3,
+  "reconstruction_fallback_counts": {
+    "missing_30d": 0,
+    "missing_next_quarter": 301,
+    "corporate_action_guard": 0
+  },
+  "right_censored_last_cohorts_h4": 3,
+  "training_label_cutoff": -0.0365278197933451,
+  "pretest_rows": 14101,
+  "freeze_git_sha": "ef1b859f7f56cacc8be9e70e60e032da8cecd170",
+  "execution_git_sha": "d8d9255e44cb60c7354949534517e217f3d3ebb4",
+  "execution_dirty_files": "M artifacts/phase18_clean_cohort_revalidation/cloud_execution_status.json\n M artifacts/phase18_clean_cohort_revalidation/cloud_worker_launch.sh\n M artifacts/phase18_clean_cohort_revalidation/execution_readiness.md\n M tests/test_phase18_clean_cohort_revalidation.py\n?? artifacts/phase18_clean_cohort_revalidation/authorized_cloud_transfer_manifest.json\n?? artifacts/phase18_clean_cohort_revalidation/clean_h1_vs_h4.csv\n?? artifacts/phase18_clean_cohort_revalidation/clean_phase16_1_seed_123_state.pt\n?? artifacts/phase18_clean_cohort_revalidation/clean_phase16_1_seed_42_state.pt\n?? artifacts/phase18_clean_cohort_revalidation/clean_phase16_1_seed_777_state.pt\n?? artifacts/phase18_clean_cohort_revalidation/clean_predictions_seed_123.csv\n?? artifacts/phase18_clean_cohort_revalidation/clean_predictions_seed_42.csv\n?? artifacts/phase18_clean_cohort_revalidation/clean_predictions_seed_777.csv\n?? artifacts/phase18_clean_cohort_revalidation/clean_signal_decay.csv\n?? artifacts/phase18_clean_cohort_revalidation/cloud_collect_results.sh\n?? artifacts/phase18_clean_cohort_revalidation/cloud_collect_standard_results.sh\n?? artifacts/phase18_clean_cohort_revalidation/cloud_instance_lifecycle_audit.json\n?? artifacts/phase18_clean_cohort_revalidation/cloud_interrupted_instance_audit.json\n?? artifacts/phase18_clean_cohort_revalidation/cloud_logs/\n?? artifacts/phase18_clean_cohort_revalidation/cloud_preexecution_verification.json\n?? artifacts/phase18_clean_cohort_revalidation/cloud_price_catalog.json\n?? artifacts/phase18_clean_cohort_revalidation/cloud_runtime_preflight.json\n?? artifacts/phase18_clean_cohort_revalidation/cloud_spot_price_history.json\n?? artifacts/phase18_clean_cohort_revalidation/cloud_standard_disk_record.json\n?? artifacts/phase18_clean_cohort_revalidation/cloud_standard_preexecution_verification.json\n?? artifacts/phase18_clean_cohort_revalidation/cloud_standard_price_catalog.json\n?? artifacts/phase18_clean_cohort_revalidation/cloud_standard_vm_record.json\n?? artifacts/phase18_clean_cohort_revalidation/cloud_vm_record.json\n?? artifacts/phase18_clean_cohort_revalidation/cloud_worker_repaired_environment_launch.sh\n?? artifacts/phase18_clean_cohort_revalidation/cloud_worker_standard_vm_launch.sh\n?? artifacts/phase18_clean_cohort_revalidation/cloud_worker_status.json\n?? artifacts/phase18_clean_cohort_revalidation/decomposition.csv\n?? artifacts/phase18_clean_cohort_revalidation/evaluation.log\n?? artifacts/phase18_clean_cohort_revalidation/event_identity_manifest.csv\n?? artifacts/phase18_clean_cohort_revalidation/final_full_tests.log\n?? artifacts/phase18_clean_cohort_revalidation/final_lint.log\n?? artifacts/phase18_clean_cohort_revalidation/forecast_controls.csv\n?? artifacts/phase18_clean_cohort_revalidation/h1_reproduction.csv\n?? artifacts/phase18_clean_cohort_revalidation/permutation_null.csv\n?? artifacts/phase18_clean_cohort_revalidation/portfolio_ledger.csv\n?? artifacts/phase18_clean_cohort_revalidation/portfolio_seed_metrics.csv\n?? artifacts/phase18_clean_cohort_revalidation/postcloud_checkpoint_accounting_tests.log\n?? artifacts/phase18_clean_cohort_revalidation/remote_result_file_manifest.json\n?? artifacts/phase18_clean_cohort_revalidation/result_transfer_verification.json\n?? artifacts/phase18_clean_cohort_revalidation/seed_123_cloud.log\n?? artifacts/phase18_clean_cohort_revalidation/seed_42_cloud.log\n?? artifacts/phase18_clean_cohort_revalidation/seed_777_cloud.log\n?? artifacts/phase18_clean_cohort_revalidation/spot_worker_observations.md\n?? artifacts/phase18_clean_cohort_revalidation/standard_cloud_transfer_manifest.json\n?? artifacts/phase18_clean_cohort_revalidation/training_manifest.json\n?? artifacts/phase18_clean_cohort_revalidation/training_manifest_seed_123.json\n?? artifacts/phase18_clean_cohort_revalidation/training_manifest_seed_42.json\n?? artifacts/phase18_clean_cohort_revalidation/training_manifest_seed_777.json\n?? experiments/report_phase18_clean_cohort_revalidation.py",
+  "runner_sha256": "98ff9d43163bdeaf4fc4695b9152f222b4e6641ac8f443972fdfc0705a1bc7ff",
+  "preregistration_sha256": "82c41e671da2af23b4aa94bb5d42703fef4fe4822a403eae16c776399b178340",
+  "qualification": "Retrospective endpoint reconstruction. Genuine observed weekly alpha cannot be confirmed without a weekly price tape. Original Phase9 model leakage unverified."
+}

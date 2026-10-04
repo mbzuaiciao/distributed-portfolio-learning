@@ -1,0 +1,159 @@
+{
+  "verified_utc": "2026-10-04T22:49:24.844265+00:00",
+  "archive_bytes": 6815395,
+  "archive_local_sha256": "b672ed4a7f696fd571c4412364d84abe3dfe97a31184f9b0fcf685b36ee315df",
+  "archive_remote_sha256": "b672ed4a7f696fd571c4412364d84abe3dfe97a31184f9b0fcf685b36ee315df",
+  "all_file_hashes_match": true,
+  "files": [
+    {
+      "remote_path": "logs/environment_freeze.txt",
+      "local_path": "cloud_logs/environment_freeze.txt",
+      "bytes": 884,
+      "sha256": "0b9319b7d5b97b590bf5c78c49fb55b23a8586ad46d3885477e78dc68f4484da"
+    },
+    {
+      "remote_path": "logs/phase18_collect_results.sh",
+      "local_path": "cloud_logs/phase18_collect_results.sh",
+      "bytes": 1311,
+      "sha256": "17b462c41be406c28c7f0834e090c9cabc84be4771c73c17197242110007a8d4"
+    },
+    {
+      "remote_path": "logs/phase18_standard_environment_setup.log",
+      "local_path": "cloud_logs/phase18_standard_environment_setup.log",
+      "bytes": 26204,
+      "sha256": "65c2917f944ce05248a0a5e591904bdba235e9c46bfadc713a5e4852c09b9050"
+    },
+    {
+      "remote_path": "logs/phase18_standard_launch.sh",
+      "local_path": "cloud_logs/phase18_standard_launch.sh",
+      "bytes": 2852,
+      "sha256": "8d29c87303dfd85a792d9e3b69054e9e08cf0f2539f303353da3b6d8341c7db1"
+    },
+    {
+      "remote_path": "logs/phase18_standard_master.log",
+      "local_path": "cloud_logs/phase18_standard_master.log",
+      "bytes": 10166,
+      "sha256": "6a386002e7fa4ee27079c8aed329efb424e127432f4fa41dd93f554ea13630c5"
+    },
+    {
+      "remote_path": "results/clean_phase16_1_seed_123_state.pt",
+      "local_path": "clean_phase16_1_seed_123_state.pt",
+      "bytes": 2383573,
+      "sha256": "a992dc885001519dce3ed1ccbad8d75c242c46ac64f680c44e84d3fbaaf9cb99"
+    },
+    {
+      "remote_path": "results/clean_phase16_1_seed_42_state.pt",
+      "local_path": "clean_phase16_1_seed_42_state.pt",
+      "bytes": 2383517,
+      "sha256": "0822f40c6dd0a915ae0018a268fa1ad3e48580f6e1925a504301a4b4862b82f6"
+    },
+    {
+      "remote_path": "results/clean_phase16_1_seed_777_state.pt",
+      "local_path": "clean_phase16_1_seed_777_state.pt",
+      "bytes": 2383573,
+      "sha256": "00c65986987c97f97de0cd982d87ebb1487d7040090616d3c9a7faa20a08fd1e"
+    },
+    {
+      "remote_path": "results/clean_predictions_seed_123.csv",
+      "local_path": "clean_predictions_seed_123.csv",
+      "bytes": 217937,
+      "sha256": "177d3d316b63c05a9cd4b65985edfe04d70dec8a9342a743a22d9470339a9dc2"
+    },
+    {
+      "remote_path": "results/clean_predictions_seed_42.csv",
+      "local_path": "clean_predictions_seed_42.csv",
+      "bytes": 213798,
+      "sha256": "d71fb3512e5f72bd7297d5d4918bedec299df9b3deb591745f5527c8b7b98ea4"
+    },
+    {
+      "remote_path": "results/clean_predictions_seed_777.csv",
+      "local_path": "clean_predictions_seed_777.csv",
+      "bytes": 217956,
+      "sha256": "0bad569621f45c958f4e215b9374b0ec333d435b4fe792fb0a78f1199c29443d"
+    },
+    {
+      "remote_path": "results/cloud_worker_launch.sh",
+      "local_path": "cloud_logs/archive_cloud_worker_launch.sh",
+      "bytes": 2141,
+      "sha256": "da4fac32968b6f3cba0cbb85d4f721c3151d1f376e027667f3ff5d5410111f7c"
+    },
+    {
+      "remote_path": "results/cloud_worker_status.json",
+      "local_path": "cloud_worker_status.json",
+      "bytes": 38,
+      "sha256": "db231b2faed7d9d2239933cc0c28f8e46e5a5be4aa99b68537a761af3fa8d2be"
+    },
+    {
+      "remote_path": "results/preregistration.json",
+      "local_path": "preregistration.json",
+      "bytes": 10632,
+      "sha256": "82c41e671da2af23b4aa94bb5d42703fef4fe4822a403eae16c776399b178340"
+    },
+    {
+      "remote_path": "results/preregistration.md",
+      "local_path": "preregistration.md",
+      "bytes": 3769,
+      "sha256": "012216bc5f20adffc1605f594da33a297443696f3700deb975882aedc1a28ff7"
+    },
+    {
+      "remote_path": "results/provenance_audit.md",
+      "local_path": "provenance_audit.md",
+      "bytes": 4695,
+      "sha256": "cb000d32035127342f4699f8c3efaa7cd8dcea7fc363886a9255b902cddbbc9b"
+    },
+    {
+      "remote_path": "results/provenance_followup.md",
+      "local_path": "provenance_followup.md",
+      "bytes": 1909,
+      "sha256": "a2deba562b6ceac9fbc5658c2409d616e8a21d1780dd3afa1bbb115fbaa325cf"
+    },
+    {
+      "remote_path": "results/runtime_preflight.json",
+      "local_path": "cloud_runtime_preflight.json",
+      "bytes": 141,
+      "sha256": "c00dd7ae22441b1be93e36e49f4bbf985e8428519f722a949220372d24f6d075"
+    },
+    {
+      "remote_path": "results/seed_123_cloud.log",
+      "local_path": "seed_123_cloud.log",
+      "bytes": 1147,
+      "sha256": "75674398a3ddcac548b432f6ae8a5b420a28cf23c210c6aa4cb73aeb8a985588"
+    },
+    {
+      "remote_path": "results/seed_42_cloud.log",
+      "local_path": "seed_42_cloud.log",
+      "bytes": 1289,
+      "sha256": "9e11a790a24c099e81e72bd268af728b4b1cd2b1bda325c39ed1d35a28bc1bdd"
+    },
+    {
+      "remote_path": "results/seed_777_cloud.log",
+      "local_path": "seed_777_cloud.log",
+      "bytes": 1147,
+      "sha256": "3569a71f2bbffc35f34c9c64abd33a73366a6a16d97188435052bf1b8f869d46"
+    },
+    {
+      "remote_path": "results/training_manifest.json",
+      "local_path": "training_manifest.json",
+      "bytes": 5980,
+      "sha256": "6d7618ff02b1896a79bc3a553e9a3008c5ffa0cb21b0516bca9ec9c692206d4e"
+    },
+    {
+      "remote_path": "results/training_manifest_seed_123.json",
+      "local_path": "training_manifest_seed_123.json",
+      "bytes": 1997,
+      "sha256": "8a625e83a10c0b010a2bab765b8192d34e20532f4ac0b4c260bf36393d0de6fc"
+    },
+    {
+      "remote_path": "results/training_manifest_seed_42.json",
+      "local_path": "training_manifest_seed_42.json",
+      "bytes": 1992,
+      "sha256": "427d971f80473455c60f31bcf3063d6f3da172d229e0b49f6434812ba179a143"
+    },
+    {
+      "remote_path": "results/training_manifest_seed_777.json",
+      "local_path": "training_manifest_seed_777.json",
+      "bytes": 1997,
+      "sha256": "3c3b8683316893c11a7d67dc8faf1ce7dfdce2a33483b222df7b80bf7564bb21"
+    }
+  ]
+}

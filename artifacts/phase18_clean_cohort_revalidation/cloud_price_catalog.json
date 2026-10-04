@@ -1,0 +1,459 @@
+{
+  "retrieved_utc": "2026-10-04T21:57:43.128233+00:00",
+  "source": "https://cloudbilling.googleapis.com/v1/services/6F81-5844-456A/skus",
+  "pages": 7,
+  "matched_skus": [
+    {
+      "name": "services/6F81-5844-456A/skus/02A8-4680-9F4C",
+      "skuId": "02A8-4680-9F4C",
+      "description": "Spot Preemptible N2 Custom Extended Instance Ram running in Americas",
+      "category": {
+        "serviceDisplayName": "Compute Engine",
+        "resourceFamily": "Compute",
+        "resourceGroup": "RAM",
+        "usageType": "Preemptible"
+      },
+      "serviceRegions": [
+        "us-central1",
+        "us-east1",
+        "us-west1"
+      ],
+      "pricingInfo": [
+        {
+          "summary": "",
+          "pricingExpression": {
+            "usageUnit": "GiBy.h",
+            "displayQuantity": 1,
+            "tieredRates": [
+              {
+                "startUsageAmount": 0,
+                "unitPrice": {
+                  "currencyCode": "USD",
+                  "units": "0",
+                  "nanos": 5730000
+                }
+              }
+            ],
+            "usageUnitDescription": "gibibyte hour",
+            "baseUnit": "By.s",
+            "baseUnitDescription": "byte second",
+            "baseUnitConversionFactor": 3865470566400
+          },
+          "currencyConversionRate": 1,
+          "effectiveTime": "2026-10-04T07:00:00Z"
+        }
+      ],
+      "serviceProviderName": "Google",
+      "geoTaxonomy": {
+        "type": "MULTI_REGIONAL",
+        "regions": [
+          "us-central1",
+          "us-east1",
+          "us-west1"
+        ]
+      }
+    },
+    {
+      "name": "services/6F81-5844-456A/skus/0FE3-CAB9-E7E3",
+      "skuId": "0FE3-CAB9-E7E3",
+      "description": "Regional Balanced PD Capacity",
+      "category": {
+        "serviceDisplayName": "Compute Engine",
+        "resourceFamily": "Storage",
+        "resourceGroup": "SSD",
+        "usageType": "OnDemand"
+      },
+      "serviceRegions": [
+        "us-central1",
+        "us-central2",
+        "us-east1",
+        "us-west1",
+        "asia-east1",
+        "europe-west1"
+      ],
+      "pricingInfo": [
+        {
+          "summary": "",
+          "pricingExpression": {
+            "usageUnit": "GiBy.mo",
+            "displayQuantity": 1,
+            "tieredRates": [
+              {
+                "startUsageAmount": 0,
+                "unitPrice": {
+                  "currencyCode": "USD",
+                  "units": "0",
+                  "nanos": 200000000
+                }
+              }
+            ],
+            "usageUnitDescription": "gibibyte month",
+            "baseUnit": "By.s",
+            "baseUnitDescription": "byte second",
+            "baseUnitConversionFactor": 2875910101401600.0
+          },
+          "currencyConversionRate": 1,
+          "effectiveTime": "2026-10-04T07:00:00Z"
+        }
+      ],
+      "serviceProviderName": "Google",
+      "geoTaxonomy": {
+        "type": "MULTI_REGIONAL",
+        "regions": [
+          "asia-east1",
+          "europe-west1",
+          "us-central1",
+          "us-east1",
+          "us-west1"
+        ]
+      }
+    },
+    {
+      "name": "services/6F81-5844-456A/skus/2856-91B1-406A",
+      "skuId": "2856-91B1-406A",
+      "description": "Spot Preemptible N2 Instance Core running in Americas",
+      "category": {
+        "serviceDisplayName": "Compute Engine",
+        "resourceFamily": "Compute",
+        "resourceGroup": "CPU",
+        "usageType": "Preemptible"
+      },
+      "serviceRegions": [
+        "us-central1",
+        "us-east1",
+        "us-west1"
+      ],
+      "pricingInfo": [
+        {
+          "summary": "",
+          "pricingExpression": {
+            "usageUnit": "h",
+            "displayQuantity": 1,
+            "tieredRates": [
+              {
+                "startUsageAmount": 0,
+                "unitPrice": {
+                  "currencyCode": "USD",
+                  "units": "0",
+                  "nanos": 18960000
+                }
+              }
+            ],
+            "usageUnitDescription": "hour",
+            "baseUnit": "s",
+            "baseUnitDescription": "second",
+            "baseUnitConversionFactor": 3600
+          },
+          "currencyConversionRate": 1,
+          "effectiveTime": "2026-10-04T07:00:00Z"
+        }
+      ],
+      "serviceProviderName": "Google",
+      "geoTaxonomy": {
+        "type": "MULTI_REGIONAL",
+        "regions": [
+          "us-central1",
+          "us-east1",
+          "us-west1"
+        ]
+      }
+    },
+    {
+      "name": "services/6F81-5844-456A/skus/3982-13D4-9AD2",
+      "skuId": "3982-13D4-9AD2",
+      "description": "Regional Balanced PD Instant Snapshot data storage in Iowa",
+      "category": {
+        "serviceDisplayName": "Compute Engine",
+        "resourceFamily": "Storage",
+        "resourceGroup": "Storage",
+        "usageType": "OnDemand"
+      },
+      "serviceRegions": [
+        "us-central1"
+      ],
+      "pricingInfo": [
+        {
+          "summary": "",
+          "pricingExpression": {
+            "usageUnit": "GiBy.mo",
+            "displayQuantity": 1,
+            "tieredRates": [
+              {
+                "startUsageAmount": 0,
+                "unitPrice": {
+                  "currencyCode": "USD",
+                  "units": "0",
+                  "nanos": 200000000
+                }
+              }
+            ],
+            "usageUnitDescription": "gibibyte month",
+            "baseUnit": "By.s",
+            "baseUnitDescription": "byte second",
+            "baseUnitConversionFactor": 2875910101401600.0
+          },
+          "currencyConversionRate": 1,
+          "effectiveTime": "2026-10-04T07:00:00Z"
+        }
+      ],
+      "serviceProviderName": "Google",
+      "geoTaxonomy": {
+        "type": "REGIONAL",
+        "regions": [
+          "us-central1"
+        ]
+      }
+    },
+    {
+      "name": "services/6F81-5844-456A/skus/6276-ABCE-E764",
+      "skuId": "6276-ABCE-E764",
+      "description": "Spot Preemptible N2 Instance Ram running in Americas",
+      "category": {
+        "serviceDisplayName": "Compute Engine",
+        "resourceFamily": "Compute",
+        "resourceGroup": "RAM",
+        "usageType": "Preemptible"
+      },
+      "serviceRegions": [
+        "us-central1",
+        "us-east1",
+        "us-west1"
+      ],
+      "pricingInfo": [
+        {
+          "summary": "",
+          "pricingExpression": {
+            "usageUnit": "GiBy.h",
+            "displayQuantity": 1,
+            "tieredRates": [
+              {
+                "startUsageAmount": 0,
+                "unitPrice": {
+                  "currencyCode": "USD",
+                  "units": "0",
+                  "nanos": 2542000
+                }
+              }
+            ],
+            "usageUnitDescription": "gibibyte hour",
+            "baseUnit": "By.s",
+            "baseUnitDescription": "byte second",
+            "baseUnitConversionFactor": 3865470566400
+          },
+          "currencyConversionRate": 1,
+          "effectiveTime": "2026-10-04T07:00:00Z"
+        }
+      ],
+      "serviceProviderName": "Google",
+      "geoTaxonomy": {
+        "type": "MULTI_REGIONAL",
+        "regions": [
+          "us-central1",
+          "us-east1",
+          "us-west1"
+        ]
+      }
+    },
+    {
+      "name": "services/6F81-5844-456A/skus/6AE1-525F-8B80",
+      "skuId": "6AE1-525F-8B80",
+      "description": "Balanced PD Capacity",
+      "category": {
+        "serviceDisplayName": "Compute Engine",
+        "resourceFamily": "Storage",
+        "resourceGroup": "SSD",
+        "usageType": "OnDemand"
+      },
+      "serviceRegions": [
+        "us-central1",
+        "us-central2",
+        "us-east1",
+        "us-west1",
+        "asia-east1",
+        "europe-west1"
+      ],
+      "pricingInfo": [
+        {
+          "summary": "",
+          "pricingExpression": {
+            "usageUnit": "GiBy.mo",
+            "displayQuantity": 1,
+            "tieredRates": [
+              {
+                "startUsageAmount": 0,
+                "unitPrice": {
+                  "currencyCode": "USD",
+                  "units": "0",
+                  "nanos": 100000000
+                }
+              }
+            ],
+            "usageUnitDescription": "gibibyte month",
+            "baseUnit": "By.s",
+            "baseUnitDescription": "byte second",
+            "baseUnitConversionFactor": 2875910101401600.0
+          },
+          "currencyConversionRate": 1,
+          "effectiveTime": "2026-10-04T07:00:00Z"
+        }
+      ],
+      "serviceProviderName": "Google",
+      "geoTaxonomy": {
+        "type": "MULTI_REGIONAL",
+        "regions": [
+          "asia-east1",
+          "europe-west1",
+          "us-central1",
+          "us-east1",
+          "us-west1"
+        ]
+      }
+    },
+    {
+      "name": "services/6F81-5844-456A/skus/75F9-48A9-60C5",
+      "skuId": "75F9-48A9-60C5",
+      "description": "Spot Preemptible N2 Custom Instance Core running in Americas",
+      "category": {
+        "serviceDisplayName": "Compute Engine",
+        "resourceFamily": "Compute",
+        "resourceGroup": "CPU",
+        "usageType": "Preemptible"
+      },
+      "serviceRegions": [
+        "us-central1",
+        "us-east1",
+        "us-west1"
+      ],
+      "pricingInfo": [
+        {
+          "summary": "",
+          "pricingExpression": {
+            "usageUnit": "h",
+            "displayQuantity": 1,
+            "tieredRates": [
+              {
+                "startUsageAmount": 0,
+                "unitPrice": {
+                  "currencyCode": "USD",
+                  "units": "0",
+                  "nanos": 19910000
+                }
+              }
+            ],
+            "usageUnitDescription": "hour",
+            "baseUnit": "s",
+            "baseUnitDescription": "second",
+            "baseUnitConversionFactor": 3600
+          },
+          "currencyConversionRate": 1,
+          "effectiveTime": "2026-10-04T07:00:00Z"
+        }
+      ],
+      "serviceProviderName": "Google",
+      "geoTaxonomy": {
+        "type": "MULTI_REGIONAL",
+        "regions": [
+          "us-central1",
+          "us-east1",
+          "us-west1"
+        ]
+      }
+    },
+    {
+      "name": "services/6F81-5844-456A/skus/BCE4-4AB0-B7F2",
+      "skuId": "BCE4-4AB0-B7F2",
+      "description": "Spot Preemptible N2 Custom Instance Ram running in Americas",
+      "category": {
+        "serviceDisplayName": "Compute Engine",
+        "resourceFamily": "Compute",
+        "resourceGroup": "RAM",
+        "usageType": "Preemptible"
+      },
+      "serviceRegions": [
+        "us-central1",
+        "us-east1",
+        "us-west1"
+      ],
+      "pricingInfo": [
+        {
+          "summary": "",
+          "pricingExpression": {
+            "usageUnit": "GiBy.h",
+            "displayQuantity": 1,
+            "tieredRates": [
+              {
+                "startUsageAmount": 0,
+                "unitPrice": {
+                  "currencyCode": "USD",
+                  "units": "0",
+                  "nanos": 2669000
+                }
+              }
+            ],
+            "usageUnitDescription": "gibibyte hour",
+            "baseUnit": "By.s",
+            "baseUnitDescription": "byte second",
+            "baseUnitConversionFactor": 3865470566400
+          },
+          "currencyConversionRate": 1,
+          "effectiveTime": "2026-10-04T07:00:00Z"
+        }
+      ],
+      "serviceProviderName": "Google",
+      "geoTaxonomy": {
+        "type": "MULTI_REGIONAL",
+        "regions": [
+          "us-central1",
+          "us-east1",
+          "us-west1"
+        ]
+      }
+    },
+    {
+      "name": "services/6F81-5844-456A/skus/D90A-D1BC-5AA4",
+      "skuId": "D90A-D1BC-5AA4",
+      "description": "Balanced PD Instant Snapshot data storage in Iowa",
+      "category": {
+        "serviceDisplayName": "Compute Engine",
+        "resourceFamily": "Storage",
+        "resourceGroup": "Storage",
+        "usageType": "OnDemand"
+      },
+      "serviceRegions": [
+        "us-central1"
+      ],
+      "pricingInfo": [
+        {
+          "summary": "",
+          "pricingExpression": {
+            "usageUnit": "GiBy.mo",
+            "displayQuantity": 1,
+            "tieredRates": [
+              {
+                "startUsageAmount": 0,
+                "unitPrice": {
+                  "currencyCode": "USD",
+                  "units": "0",
+                  "nanos": 100000000
+                }
+              }
+            ],
+            "usageUnitDescription": "gibibyte month",
+            "baseUnit": "By.s",
+            "baseUnitDescription": "byte second",
+            "baseUnitConversionFactor": 2875910101401600.0
+          },
+          "currencyConversionRate": 1,
+          "effectiveTime": "2026-10-04T07:00:00Z"
+        }
+      ],
+      "serviceProviderName": "Google",
+      "geoTaxonomy": {
+        "type": "REGIONAL",
+        "regions": [
+          "us-central1"
+        ]
+      }
+    }
+  ]
+}

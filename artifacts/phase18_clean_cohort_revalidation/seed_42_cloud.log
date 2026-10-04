@@ -1,0 +1,18 @@
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 24764.42it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+RUNTIME PREFLIGHT {'ten_batch_seconds': 16.191899180999997, 'estimated_total_seconds': 3733.177315724999, 'device': 'cpu', 'batches_per_epoch': 375}
+Seed 42 epoch 1 batch 100/375
+Seed 42 epoch 1 batch 200/375
+Seed 42 epoch 1 batch 300/375
+Seed 42 epoch 2 batch 100/375
+Seed 42 epoch 2 batch 200/375
+Seed 42 epoch 2 batch 300/375
+Completed fixed recipe seed 42: 1069.9s training

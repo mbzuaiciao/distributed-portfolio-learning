@@ -1,0 +1,750 @@
+{
+  "authorization": "Explicit authorized frozen Phase18 prerequisites only",
+  "scope_change": "Identical required research files and minimal Git provenance. Large public FinBERT base weight is fetched directly on VM from exact frozen public revision and verified against the local frozen hash, avoiding slow duplicate local upload.",
+  "archive_path": "/private/tmp/phase18_standard_cloud_minimal.tar.gz",
+  "archive_bytes": 4791053,
+  "archive_sha256": "42d29ab1f8904086ec05abed16675d3547387039525e6b10e526f4109bc423a9",
+  "archive_contents": [
+    {
+      "path": "distributed-portfolio-learning/.git/HEAD",
+      "bytes": 21,
+      "sha256": "28d25bf82af4c0e2b72f50959b2beb859e3e60b9630a5e8c603dad4ddb2b6e80"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/config",
+      "bytes": 93,
+      "sha256": "2605b1c977542056086f84bfeee4a75e8752cc272569c21a5860647250c6a8c5"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/index",
+      "bytes": 75213,
+      "sha256": "01c5dc7c16f43207f8e378f9dd3923fa8af59786d81e638c09e0ab6c9ef53e12"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/01/ea189157a74bcd30b265f92b9bec9b22f2a159",
+      "bytes": 623,
+      "sha256": "33d0741bcb5a336cf4b64028de58adf9156034c34057adf7a1adef2911ebcc98"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/04/2171763f9fc9393bed30e0494d9e8f06f287e1",
+      "bytes": 72987,
+      "sha256": "4258f769ba16247aa1ff92fa74c3dfaa1c78d0647bfe468d56330b50ab4e3452"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/04/7050c2633952428fb821413a528592344c45d3",
+      "bytes": 377,
+      "sha256": "aa97002a05cac169b62c50e5797849647c88de6c6d7b033f51f52dc9bf51f696"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/0c/50c4de302255d774ac6a09a85293555980ba75",
+      "bytes": 1173,
+      "sha256": "b177d1c67c27421273d446bfb5be846fd775172e8573089aafd2167f217e2d52"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/1e/33d79639af7508ded7c6229b76aa57c990d58a",
+      "bytes": 946,
+      "sha256": "ccf1ab240837934a9c60620c93306b221cca19ed2c06dfc7c11912d0e958eab7"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/24/fa44ab43bd9c5bf40cdb0b4d28e090d351a54c",
+      "bytes": 794,
+      "sha256": "05dde2b919a012ea662f8bc4fb6f31c5e3e9aed1d529d6e8040a23cb2e140b54"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/27/5b9cea4f32d86333f32d5428c0c9e900f1e1db",
+      "bytes": 482,
+      "sha256": "7715cfdb5c6733a483bb20e5c33e65caa7a4f5bcd471ad9a20cc94f6a52382a6"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/2b/5a6ecd0c337af15ee63e527770bd48616688f8",
+      "bytes": 369,
+      "sha256": "b625cb68a253b33911eac69b6aa1948bfed4469cfbe6a193535410c973a0afc6"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/2d/db2bd7f2ae396baf545c085d54760453749117",
+      "bytes": 2965,
+      "sha256": "5269f59e5e74cf499bbba257bd546cc8c3d885a1aa6c625e387ea48e20fe5042"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/30/96730f9039f975a8704f427b63857f8e6539e2",
+      "bytes": 110,
+      "sha256": "4a857ce814500f86963dae8b32b2cfb134d8aea13dd9d00ded15e03539072b7a"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/31/b583f6d81d082045e32625ff13e97e7679eee2",
+      "bytes": 1664,
+      "sha256": "e28cc4e2af894c4ee7e83c4d780e1225685030f85e57662af40dafa922dad1bf"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/32/16c3e4263f8e4291da1a81f747914e75e1dca9",
+      "bytes": 870,
+      "sha256": "b72592af41f93d0f51ab3aa3547d5d8ae628e9f3daeb297e55bd96c6479e6869"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/34/d4c5f7f0eafc57f0dc7b635f8be9437bfde062",
+      "bytes": 217,
+      "sha256": "1cba9bc32dc44fd1e1a647b4ec650f67e32ffc480647d73124690840c1327c68"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/3a/fc08c517f0dc02fea458402b0b92bbb37a103c",
+      "bytes": 72859,
+      "sha256": "ed8ec8a7b276c7e64d754f6c011ba8eead2c1bea58d851035c94cfb291114fb6"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/40/8fa605b895a14018ea38585ce4281c9be48911",
+      "bytes": 798,
+      "sha256": "13a80a1dc64d002ef365a51d33fd6e0df8cb8ddbca453773b2f1c3989152f531"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/41/a575c6118a957371c7529255ab92ca132d3b39",
+      "bytes": 142,
+      "sha256": "da7e73ca4186bf12c22effec2b56755e540c533d9d8dec5cfc1d4dd53cae4f67"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/41/cf5b33f25572d783f536955c97ad1424312352",
+      "bytes": 1701,
+      "sha256": "b7be47dcacb414642ab6d661df384315a8f9ad48974fdcedf662dae984095004"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/42/7b8180f26de50d27fb875fc36f33f11e85df2c",
+      "bytes": 1703,
+      "sha256": "1891d6e55dd1b4f86aa33c2c3bcf5647226dbc02e08f3d3260f1acc558857ea1"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/44/440ee9200270b45088a770b438d03a103e8391",
+      "bytes": 349,
+      "sha256": "68268ce45b8c78c2cf66af8b2911146fdc7246e8a44f14a3e1090c6201767c08"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/46/e1d2297597bc843e95e2c4a56d8a983383d078",
+      "bytes": 961,
+      "sha256": "7cb9d59bd3892878352e7088538821a93c6d002b6980e73666fcced54bd5a129"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/4d/709e2a924d289e3a7a5cc4771d57d4bfbe7208",
+      "bytes": 1669,
+      "sha256": "28e608d348dfbeba100bee8b3a8acc196ef8a98583d407ed6e74c17d6e7ecb33"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/51/640d5caf0f276710734bde6992e2ee5e74f34d",
+      "bytes": 487,
+      "sha256": "b9eb4e196a44becb9dd9319154182b362648bbb780a74dffd1871de6a3cf9604"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/53/e96028fcebee75e0d94cf928b1184179ea6f04",
+      "bytes": 1371,
+      "sha256": "1f9b451f72226af5696991a7bf0e9696845dfb830bc8dc407171907e9d7c317b"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/57/739810358ded228aef02492cf55dda3cc37d17",
+      "bytes": 21329,
+      "sha256": "d62ec993e53596fb2b094d4e1ce216f005d464a79206da3bf5356bb769358adb"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/58/f0b4c36c7e027f04fc779a7fc967563cda8c27",
+      "bytes": 237,
+      "sha256": "1a3e0b0155fe5420631c94faf15d145d5bba117fd0f57c04b332f92f5b095484"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/5c/2fc9732646af150abc673dbae3a3df9e6fba7a",
+      "bytes": 2693,
+      "sha256": "a519a6fcc6ff4e6e7a0d81692e1dfcf974fd4213f15add0a6a3c05fecae50f18"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/5e/161c387980988b344e04a295500facf3ba769e",
+      "bytes": 8364,
+      "sha256": "85367f86a6d4b2e37b04aa05e2dafd9f12971f9bf53b8cacd74b447659d2fe9c"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/5e/3a95d8915c5c9cf27ebfab06b4b2363ce92f34",
+      "bytes": 13181,
+      "sha256": "3107a5784100dc6d3fb552c8b97f7e5abb301108ea7c1c7a73d0cd0fb6068d59"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/5e/4b4923821f820b2a672459debe49dc883f585a",
+      "bytes": 381,
+      "sha256": "fc6603230241afb7f44991adff60d18864e5e1efc15382973ae6cfbdb67f4fb9"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/67/ef51421f09c145f73c47adb732950a3f58f6b8",
+      "bytes": 1702,
+      "sha256": "307adfe8e7d9a5ef3f13e6b18d9cc460f3c08f88a50bd5967b2580631c147cc8"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/68/630854207931c53e0a40be0aeceb57cb84528a",
+      "bytes": 1518,
+      "sha256": "004bb41dbd6857fe0b657d337d4dd83fd1ee4d508d35a8473f0866b155f2c6f2"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/6a/638f90103d2fc9aa339ae8f26c45e535b2f69b",
+      "bytes": 1629,
+      "sha256": "623811c2a1033e62d4ee00769e803f5f6362af1c841f5fb2126f4848b5cc02a9"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/6a/9a9949243fd2904fec29ab39920dae2a80ee0b",
+      "bytes": 3134,
+      "sha256": "e5f01593a0b71fabc4246fd78410818e8b1eff2deb8dc4b1da4197ca2f24fd36"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/6c/9cd585e564ae6b09addfb9ddefd15f789d0877",
+      "bytes": 1123,
+      "sha256": "65860499f5e01645eaaac71bda5226bdf985bd7572aa19377fe537adc55daab9"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/72/e47d288347d80308b725b4bc52cbc47ea9ef5d",
+      "bytes": 62,
+      "sha256": "05673f3cdc5a6413c083800973ca797239f8885bc95ae8a29fe34d7b58300959"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/73/34bb96b3450731bb50fa1778df5b0ff9e40bd8",
+      "bytes": 376,
+      "sha256": "d3b17a32c15927c631b69c025412d49fdcf8c0d1264679526027ee9911dbd6ca"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/74/10b5a115286d9c6b6e1a9749632e23e5ecec1d",
+      "bytes": 1934,
+      "sha256": "5a38fe8ead4bc52e384bfb7e8d693318b2dd426a7ec3ede0275e55559c474348"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/7f/36e501e6fa1d050786c5999e9f0cc32addbfaa",
+      "bytes": 11463,
+      "sha256": "372f28f1ec3fec519336ccf8cd877ffe8f5480f10c309c680f30cb1c32517b7f"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/87/fbbd8a02bac3339465a78a8a67316d8efd5f13",
+      "bytes": 8573,
+      "sha256": "1885cddcbd028e2a9addd20616a4cdff94b0ea1d0cf79cb13c8b4dce455308c7"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/88/b0a05eb5b11260eb23adf50c2233393ac2d8e0",
+      "bytes": 99848,
+      "sha256": "c76590855daaad273e9e4f6c625d3dd24f854111d97a3785a58632fa4f6a4df1"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/8a/22ad7331ae768443702cf213bede1f67618497",
+      "bytes": 99848,
+      "sha256": "396af1ee2ecac35974c8ecdbbfa1e6e9023c3ab5b3fd6fc0352c371221a27262"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/8b/0835e655fb53d1acea241be1d16b40f530a983",
+      "bytes": 388,
+      "sha256": "e559dda71346eabf8bf1993031b84abaec56543a9282968faaaf58d1a72b93b2"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/8c/9797f8aa4c12ce129e966cb058673ce93afcff",
+      "bytes": 114,
+      "sha256": "b20ee1a990cab6aa75b980b0c334f704b73cf59907ec57465462abb27897aafd"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/90/2326c145984a517d9e444a01aa7a821d17f028",
+      "bytes": 487,
+      "sha256": "a92baf4b52ce975661462dea9e966cba21276fd20f2ecd0af995bfc969b0b092"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/91/8116406049d63d8c1a863aea8b1f1bae5d6a66",
+      "bytes": 828,
+      "sha256": "f319c641b7018836ea10b6b92475e47e4d8d5a0f9c292be4a837f4446e699ebd"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/92/66bbeeba46a4a552f8357a61f35a5988186669",
+      "bytes": 486,
+      "sha256": "8d1d0b101db18f202847c04b2a1becdeeab7e50cb3b16a0c2da4edab4f98ffcf"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/92/c5c4250c23c293bcdb7c6a1aa156e38da272f9",
+      "bytes": 12882,
+      "sha256": "e81ac9bf5294b60dd8bbd80a09ca08909146ddc882c637585f2a237add18a9eb"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/92/ed2da8efbd9cc4aac71e28f6936303b7bc6e61",
+      "bytes": 2409,
+      "sha256": "457876d383d1d4b2705a149f5ad887272f0bbe5131426ba22e66c9e58c7b640e"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/95/5d93128c3cf892179359cbc9dd5881d39527b7",
+      "bytes": 324,
+      "sha256": "9e623c4335e1c120b96befc5011e294c90a4b101ef830fb49e6df5ba89aa3edc"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/98/09106df312808cfe0fc00c71e512471e3bda04",
+      "bytes": 172,
+      "sha256": "28e8bf2cacd85fd85c8dd019d999e94dac38a47f8354c5ec3e3ad68bc3730c9a"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/99/0d5ae1447e15d9c64364435a2027195ce63d3d",
+      "bytes": 450,
+      "sha256": "01168b45d4dd6e1cb68befa57e80a6f02310c268e07fe6f5a7cff792f1baa460"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/99/b39675dc7971aeb58327bbddbcef792a3bbdd3",
+      "bytes": 1598,
+      "sha256": "dd3a4b4aadd40d7c17b302c3bff8f2655f0b53f40e86616b7d695c34ab50f8ea"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/a1/6771c5e644cf74c8f36f40308fabaa54c6ef07",
+      "bytes": 2765,
+      "sha256": "c17d0d16e1410756b476c0a7dd5a06383ef02bcd05c3da28dcd7080a1b45fe61"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/a9/efee000d03838383f21abac950b411ed824ce3",
+      "bytes": 239,
+      "sha256": "9037235241652c9a4a199ac54c82688f3f3de8578a5eaca393362458b45a80a0"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/ae/e73e1a93254a2ec5bb3f6217a9d1d67a0d643d",
+      "bytes": 12892,
+      "sha256": "6512a02a89307201e273c4dc5b03fa5fed3f9db54fc29ec30a2a918e9a6689ad"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/ae/f746b80f4507196ac5f2fd468d07e1eb724484",
+      "bytes": 1603,
+      "sha256": "94e258da419c79f3fe3319f3f656f82f2ff4a123d8ad82cc2534b5b685ff5c13"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/b1/6eb8829c9953e9150f04e134dbb55fe3762e62",
+      "bytes": 131,
+      "sha256": "45568d40c0f1cd475d9246ea3fa6af61ab449d9a22182a93a5b79031d72addf1"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/b1/93511d1ea6b145b886a6fdc1f9697c5ad3a86a",
+      "bytes": 99954,
+      "sha256": "c1ee9a87ef1fede55a391c7faf8701105ace729966f269abe4c408806c2a01ee"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/b2/2549d40a896724320aa050d5c53673e57cb1f3",
+      "bytes": 634,
+      "sha256": "973273d003b3d4678df3bc92cf3758a60db206898b77a3f426546a51ca4f9533"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/b2/f88b791a8446175260eba29835bc96b8faf23a",
+      "bytes": 575,
+      "sha256": "9e067651dbf5d55a9b0f2476b05ac36ffa2b861971b7d2155370693efc4f6ada"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/b5/c8919536cd805c01b40b3aeb3ca1b3ed90d95a",
+      "bytes": 485,
+      "sha256": "1c63f273872f3ec33366af74ace9213d82abc9f0bc269ec89a8ba6c916153a76"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/b7/79e2436a48e7d20e5eb731489d0900c90428cf",
+      "bytes": 562,
+      "sha256": "02b21b4b737e04b42c666896e722fbf7b13b8dc754394c5cf142769330d61f8f"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/b8/69a7c1997ed03dc64f9f61318d0929e2b23a19",
+      "bytes": 672,
+      "sha256": "18a442ddd081063f3229dc4287d186c7a7c63298007980402863f8a51e4afe1c"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/bb/1b6f3617d52dd05a9835861c7cb19b2c5ea060",
+      "bytes": 208,
+      "sha256": "b61e8861e7554da983f34d6af7fca8e300bee2524036b8d626050d694ebc3f77"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/bb/739e7b1d53e38a2e024b0d834924a654fbe196",
+      "bytes": 363,
+      "sha256": "0ba182362f863bb3480b46ec14fcf6705fb3f6dda6f4556ff4dd1b360a74fdb0"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/bc/a903534c103bdae7cda8652a37c729cacbe983",
+      "bytes": 406,
+      "sha256": "7efc319e3fedcb98f405d94e01cad0bf36ec465fd977b64fbea61d9ff6f1455f"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/bd/0477755fe879f3a7ef80e79bcbfd2e051567cd",
+      "bytes": 55,
+      "sha256": "e95709fc1684e1b4340767e13ce287e539ad5adcb40a81fb29565ee49c838fbf"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/bd/86b2920d23bafd05fa556605b1262ee0e194df",
+      "bytes": 379,
+      "sha256": "696495eec4deacba985b025b78fd4afe1beb021b5509067f223a00c9b9099541"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/c1/2bced2dd4ee0244cb8bfb072c40207a1ead135",
+      "bytes": 788,
+      "sha256": "a71b3b2e63e5eea0a060e246d7ecb097767b57b2893f3a6e237d7842bcaedd4d"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/c2/045f4f3e8146b10d2075be1440a78bc25cc77a",
+      "bytes": 709,
+      "sha256": "a9301165ece5d8c7e2e8580345fecfc7402ac59f1b37a284b994ef87c0d85e62"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/c2/ff1c2021ade3c5f7bef73377a37c90cfc20260",
+      "bytes": 4097,
+      "sha256": "a869a65e81874c1faaa55f4dbed3e7fb4b0dcfe0e5ba74320ec1379ca0b3959d"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/c6/0756172e2b292838c4d60850059dc39a8187c1",
+      "bytes": 142,
+      "sha256": "12bca8dd7f3f5e2be4a6e48c297f35e12243cd5f26ff92b2ac0e474ef05748db"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/c6/25d20c74b484adc3fcc9f7af0d218c6dcfaead",
+      "bytes": 729,
+      "sha256": "f072f608f67a3a1f5bd2a6d2ec02f1e145f55e24c8c087247ba8c574e322aa34"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/c6/53751059b36c5ebdfc7da706cac66117a89449",
+      "bytes": 139,
+      "sha256": "8878a5238221f1d265d86092aa5b813af0da7d5d406ab34de2ce751c1dc0f8d8"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/ca/a1d413cbaf405fb0ccd8e25aa6eec9d04e88c8",
+      "bytes": 1124,
+      "sha256": "84ba7f4882c5571171858dc96616bcd133b5376a93eafadd718adc67403e4ee4"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/cb/f8387d88f044c94b19e9bf29154dc583f7c64e",
+      "bytes": 1010,
+      "sha256": "b13ee735e9c39930200216e332708f1f458fafbab38d3273bc73e2f70df35254"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/ce/ee9cbe526e693365955bc35a73feeb509e7bf7",
+      "bytes": 182,
+      "sha256": "8f0d61b03d2eec556e2984260306b5af01d068e9c397bd7e405003c301f0585f"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/d2/f9f221db2dbc216b5a9a4393457b7464ba4691",
+      "bytes": 219,
+      "sha256": "9f6d3abf1028de6b6e52945d0f1431543689a0d71b15e22abb32cb6d12aab906"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/d5/ad2ee178e5a7e05304c95b5e5b27c1b3e75e39",
+      "bytes": 214,
+      "sha256": "615dbd77b8f66c809b319f5eba9632f1f36147bc6b89bbca24c3afc31645344b"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/d7/772c8401656552fe687bd777a69898c842b60f",
+      "bytes": 174,
+      "sha256": "b4429fe0654fedb491fbfb9a7d8d2466392f68ba8ab1d41436c956822c462b96"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/d8/d9255e44cb60c7354949534517e217f3d3ebb4",
+      "bytes": 223,
+      "sha256": "c8b8476c2460c2df3eac2aee41b8b3fa217215428a436d151c891906da2e9261"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/d9/123b06780938278fbba685d6c47a048e0c0516",
+      "bytes": 216,
+      "sha256": "66e4f35d569a9345aa43e2c40d83feef3cd8068ef5c117b3153a5035179cce41"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/db/f245c01ccbca1c80a165724d973752c92a18df",
+      "bytes": 253,
+      "sha256": "ee0d8f0f49f56c280891375402ea93866c29bc00f0801b22b73b238fda638582"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/dc/045dfe819db8fd793166140ce97088ae550691",
+      "bytes": 143,
+      "sha256": "d2b84c33f2adf6f951622744841a62b2e53dfa29140ddc40f1e5dc73669eeed9"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/dd/6d062574dd972a49ffcff879841a484f5ce78a",
+      "bytes": 914,
+      "sha256": "fbecc1bf9a2a13a7c16a0b4c3ad079fb956f6da73a67dacd5d117e865cb2aacd"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/de/f02199760560f04c4e08e0e470f1351315773a",
+      "bytes": 486,
+      "sha256": "1585370d38bd9fe1c574a502f7fd827d2b3722ffb42b2b8b52da91ccc4cb581a"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/ed/8d531794a616c12ab809a3521ae66ac2bee762",
+      "bytes": 72961,
+      "sha256": "815dd11766e4886ccd0ab593ee74b652e77547dc80ed1841f217a9e817f23e85"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/ee/c6f0f84153c9477547dc4c4c67317fa34a6711",
+      "bytes": 1728,
+      "sha256": "86b5616dd442736db61b8a8580a2d80635a24284bf6914eee3ff346ed175e968"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/ef/1b859f7f56cacc8be9e70e60e032da8cecd170",
+      "bytes": 215,
+      "sha256": "cdfb3511b84aff1a35380fe4776dcb12ee5328479e6aadac83ed769f436c6516"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/ef/2c33097f7d2df3de0d37ab6ac851c88dd0ad5f",
+      "bytes": 183,
+      "sha256": "f260c7d01572c1eb5168c8f650c6ab08be24e09ad7fb771b51cfe243278fb035"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/f1/7eff1926c65c5b853265851fbf375a9a7a3b01",
+      "bytes": 192,
+      "sha256": "8d0a9fbe1eda521e0734809d0630a26ad08e2251916f3d5cdb87dfe02322b834"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/f5/b0226e138aed6e61529d6fd61c3f1a5b175c05",
+      "bytes": 1619883,
+      "sha256": "135995b18581f69b9b29684a4614badada7058012e143f83dad643a700ea0068"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/f5/f231516e3ff1512d169c7bbe95f0669f4e92ec",
+      "bytes": 404,
+      "sha256": "95e8836e4b268fda1f851793b0d51a6ca41e9187654e48eb2f8ddcb4c1444b64"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/f8/76981b065c5a6866c17ae0a414ed3ea1d22084",
+      "bytes": 2131,
+      "sha256": "1133af224895fba5ab57b3454f75f6c8d8ea5b53a3a49958b5ed8bfffcb5e44e"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/fc/19c93785152d49d31e0ff3f1f8d8f7cd6e0cca",
+      "bytes": 370,
+      "sha256": "5e270dacb042aa949d6d3bc53c378b7c3bc82d6ced536ab967a03b2565e1f202"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/fd/6549b16666ccd0bda2dfd5800ac4f5d8e8c90b",
+      "bytes": 575,
+      "sha256": "96241e3be4c254f50a2e2c44ea1f91a8d1e47088156c2e2be7f9f4fae3f4b721"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/refs/heads/main",
+      "bytes": 41,
+      "sha256": "7dfc1c871459765a795a44316881181b78b441c9dded74d950c03af4452c39f8"
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/shallow",
+      "bytes": 41,
+      "sha256": "86b5781bcdc40552ce946f4e0f90c34c71ac9a63d5c63bbf4c8a45dd6ddb6d37"
+    },
+    {
+      "path": "distributed-portfolio-learning/artifacts/phase16_1_audit/regularization_selection.csv",
+      "bytes": 420,
+      "sha256": "b4062b7b92b876b18b919176954a1fa139dc93347ca6d1dc529df47cfaed93d9"
+    },
+    {
+      "path": "distributed-portfolio-learning/artifacts/phase17_clean_bayesian/training_manifest.csv",
+      "bytes": 1488,
+      "sha256": "8069a1899417d0bbd28df3f39267f24c0b65d190834aa5b87ef4687e93692bc4"
+    },
+    {
+      "path": "distributed-portfolio-learning/artifacts/phase18_clean_cohort_revalidation/cloud_worker_launch.sh",
+      "bytes": 2141,
+      "sha256": "da4fac32968b6f3cba0cbb85d4f721c3151d1f376e027667f3ff5d5410111f7c"
+    },
+    {
+      "path": "distributed-portfolio-learning/artifacts/phase18_clean_cohort_revalidation/preregistration.json",
+      "bytes": 10632,
+      "sha256": "82c41e671da2af23b4aa94bb5d42703fef4fe4822a403eae16c776399b178340"
+    },
+    {
+      "path": "distributed-portfolio-learning/artifacts/phase18_clean_cohort_revalidation/preregistration.md",
+      "bytes": 3769,
+      "sha256": "012216bc5f20adffc1605f594da33a297443696f3700deb975882aedc1a28ff7"
+    },
+    {
+      "path": "distributed-portfolio-learning/artifacts/phase18_clean_cohort_revalidation/provenance_audit.md",
+      "bytes": 4695,
+      "sha256": "cb000d32035127342f4699f8c3efaa7cd8dcea7fc363886a9255b902cddbbc9b"
+    },
+    {
+      "path": "distributed-portfolio-learning/artifacts/phase18_clean_cohort_revalidation/provenance_followup.md",
+      "bytes": 1909,
+      "sha256": "a2deba562b6ceac9fbc5658c2409d616e8a21d1780dd3afa1bbb115fbaa325cf"
+    },
+    {
+      "path": "distributed-portfolio-learning/artifacts/phase9_1_cohort_return_audit/canonical_phase9_table.csv",
+      "bytes": 3438,
+      "sha256": "0e438d6bbc57d771dd638865889a77ef7b6344af6f3109deb84bffe69dfa2c07"
+    },
+    {
+      "path": "distributed-portfolio-learning/artifacts/phase9_1_cohort_return_audit/signal_decay_normalized.csv",
+      "bytes": 675,
+      "sha256": "d98aed909b8cd4f0d34176204eb276bc4a4551cb0b9f75be34d4f347f610f4d9"
+    },
+    {
+      "path": "distributed-portfolio-learning/artifacts/phase9_cohort_stacking/signal_decay_by_horizon.csv",
+      "bytes": 648,
+      "sha256": "a2860862d30a1774d9e19cf1038c1a24a850af525faacd46e56d9d145ad4d085"
+    },
+    {
+      "path": "distributed-portfolio-learning/data/bayesian_lora/development/beta_0p003_seed_123_mc32_predictions.csv",
+      "bytes": 260349,
+      "sha256": "a1a5526ced8c4d19f0d9da028d418b967594b73fa4190801043828ac45e08491"
+    },
+    {
+      "path": "distributed-portfolio-learning/data/bayesian_lora/development/beta_0p003_seed_42_mc32_predictions.csv",
+      "bytes": 260351,
+      "sha256": "36b5f8e61035a55a524c4ece1a52526daf21081708a2e8c627bdaeeea5676dc8"
+    },
+    {
+      "path": "distributed-portfolio-learning/data/bayesian_lora/development/beta_0p003_seed_777_mc32_predictions.csv",
+      "bytes": 260889,
+      "sha256": "831661604eeadb56c5cdb0ef919bbc6f04e673d169c54445e7238a6549b4d747"
+    },
+    {
+      "path": "distributed-portfolio-learning/data/bayesian_lora/holdout/beta_0p003_seed_123_mc32_predictions.csv",
+      "bytes": 189815,
+      "sha256": "ed5ccf3e55c591fab7ef8a7b706e426014e2438b53ae4bd93e72c422bfa421e2"
+    },
+    {
+      "path": "distributed-portfolio-learning/data/bayesian_lora/holdout/beta_0p003_seed_42_mc32_predictions.csv",
+      "bytes": 189868,
+      "sha256": "12925c1d0f7ba697180fe68815a0ab22a1e4d5dcc1b5934da73e26ca4009a920"
+    },
+    {
+      "path": "distributed-portfolio-learning/data/bayesian_lora/holdout/beta_0p003_seed_777_mc32_predictions.csv",
+      "bytes": 190123,
+      "sha256": "a7ffed1f8235e8fed3fd1653c65d32691a6d5eccf1281fda702585affab4b958"
+    },
+    {
+      "path": "distributed-portfolio-learning/data/bayesian_lora/reconstructed_returns.csv",
+      "bytes": 5003155,
+      "sha256": "de8d95284ae139a15cd7f04666c1a83eee8b7d300056791a8eb493c692b87604"
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/__pycache__/run_phase18_clean_cohort_revalidation.cpython-314.pyc",
+      "bytes": 65192,
+      "sha256": "94e81a9ee4f22872448e6e7017aa8d2243634d7720cf68fa609f6496b8d64267"
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/__pycache__/run_phase9_1_cohort_return_audit.cpython-314.pyc",
+      "bytes": 41816,
+      "sha256": "76a8e40829f99d7f34bde2dd4ba2239fb8e8eee06c24d3a9820835f9ddbab5e4"
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase16_1_audit.py",
+      "bytes": 32236,
+      "sha256": "356e8f31d9d9bd21ffb4604d5a57aa5ae157b47b43d9120a177ce2bc89dc041b"
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase16_deterministic_control.py",
+      "bytes": 41980,
+      "sha256": "7fb5248f685ef6e41f16a3a944d278892e7a388f3a13fe31e92bbbcaff7661db"
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase18_clean_cohort_revalidation.py",
+      "bytes": 43323,
+      "sha256": "98ff9d43163bdeaf4fc4695b9152f222b4e6641ac8f443972fdfc0705a1bc7ff"
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase9_1_cohort_return_audit.py",
+      "bytes": 31272,
+      "sha256": "22ef0af70a0a17034be7f80710d827b297041acd836751fd77b6f0d17ab2e8b5"
+    },
+    {
+      "path": "distributed-portfolio-learning/src/hypergraph_portfolio/__init__.py",
+      "bytes": 4574,
+      "sha256": "46afd3d3241b4f0eb1da9ca6646704a11dc4660e71cd185fd45b4321c6fd1c01"
+    },
+    {
+      "path": "distributed-portfolio-learning/src/hypergraph_portfolio/__pycache__/__init__.cpython-314.pyc",
+      "bytes": 4166,
+      "sha256": "b225856b1b8d678522929de079fb34983f7fbca75ab8612424997e191a9a3b56"
+    },
+    {
+      "path": "distributed-portfolio-learning/src/hypergraph_portfolio/__pycache__/bayesian_lora_adapter.cpython-314.pyc",
+      "bytes": 11944,
+      "sha256": "50bb2f0a924ec20460d63a8b42181738afa86b09c7b904c20d77cd54a067c6a3"
+    },
+    {
+      "path": "distributed-portfolio-learning/src/hypergraph_portfolio/__pycache__/consensus.cpython-314.pyc",
+      "bytes": 13075,
+      "sha256": "08db8cb91918e4d0c8adc1410bcb64443795883c20150923739d9fb06a905dbd"
+    },
+    {
+      "path": "distributed-portfolio-learning/src/hypergraph_portfolio/__pycache__/hypergraph.cpython-314.pyc",
+      "bytes": 12321,
+      "sha256": "46b34bd7d31e555290e54c4aba521eb23f9f20ec56fa922d3e0f19498499cbd7"
+    },
+    {
+      "path": "distributed-portfolio-learning/src/hypergraph_portfolio/__pycache__/mean_variance.cpython-314.pyc",
+      "bytes": 9984,
+      "sha256": "9da45e71b599c3a9e8f5e70f9da1c4bea4469c7798e673a13eb93367217440c6"
+    },
+    {
+      "path": "distributed-portfolio-learning/src/hypergraph_portfolio/__pycache__/pricing.cpython-314.pyc",
+      "bytes": 5632,
+      "sha256": "3f7ffcc2569920aa589277f03b8c40e4debfea069850346b2e8b49088c875d3c"
+    },
+    {
+      "path": "distributed-portfolio-learning/src/hypergraph_portfolio/__pycache__/primal_dual.cpython-314.pyc",
+      "bytes": 17307,
+      "sha256": "44b536fb26a1662dd65ebe2c1be6861a2b6fe2cfd0c33ce26456a4495a9ccc05"
+    },
+    {
+      "path": "distributed-portfolio-learning/src/hypergraph_portfolio/__pycache__/uncertainty.cpython-314.pyc",
+      "bytes": 121231,
+      "sha256": "a130b7d7b40969d8ecffb95d41ef48ab39aecd7054b15ba41f8ff0609222c6e3"
+    },
+    {
+      "path": "distributed-portfolio-learning/src/hypergraph_portfolio/bayesian_lora_adapter.py",
+      "bytes": 9708,
+      "sha256": "e17236e62e84d0491ccd29ce7943bf70d3e99c447a86da9740148a25cdd24d92"
+    },
+    {
+      "path": "distributed-portfolio-learning/src/hypergraph_portfolio/consensus.py",
+      "bytes": 8148,
+      "sha256": "acdbcb16af59b5357f426f99969b1da5870a7403d7c2897aca06df2ccc461a85"
+    },
+    {
+      "path": "distributed-portfolio-learning/src/hypergraph_portfolio/hypergraph.py",
+      "bytes": 7176,
+      "sha256": "2c55ce2150394c10a66c9048ac3e5786ba2e411cfeecd83d01bd48c26973364c"
+    },
+    {
+      "path": "distributed-portfolio-learning/src/hypergraph_portfolio/mean_variance.py",
+      "bytes": 4446,
+      "sha256": "e3e9309b28b3ef13a7b6682c490a9227b836254d7c4363a664e7518f359de81e"
+    },
+    {
+      "path": "distributed-portfolio-learning/src/hypergraph_portfolio/pricing.py",
+      "bytes": 4410,
+      "sha256": "aea245d2de3220b60583290f29f8ffabbb64978f7a87ac0606b1b74774658540"
+    },
+    {
+      "path": "distributed-portfolio-learning/src/hypergraph_portfolio/primal_dual.py",
+      "bytes": 9616,
+      "sha256": "b4885ce82e265b1f3ae4d5e314dcdacf45a1ba69f5833df0535aeb84f3c0b47a"
+    },
+    {
+      "path": "distributed-portfolio-learning/src/hypergraph_portfolio/uncertainty.py",
+      "bytes": 88819,
+      "sha256": "4e77e3b7219e6a245d4b57d15de3067ac338e92b7ad6be70631fb4ad8141fc2c"
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase18_clean_cohort_revalidation.py",
+      "bytes": 8831,
+      "sha256": "d761240162af3cd9a6962bcda182c304f0760260a1c0bcbead67fe73ef2070ea"
+    },
+    {
+      "path": "hf/hub/models--ProsusAI--finbert/snapshots/4556d13015211d73dccd3fdd39d39232506f3e43/config.json",
+      "bytes": 758,
+      "sha256": "f6449ddda85eb726207a40be59c0cd3bd4b142ccb27298d5e45f9ae3396b1abe"
+    },
+    {
+      "path": "hf/hub/models--ProsusAI--finbert/snapshots/4556d13015211d73dccd3fdd39d39232506f3e43/special_tokens_map.json",
+      "bytes": 112,
+      "sha256": "303df45a03609e4ead04bc3dc1536d0ab19b5358db685b6f3da123d05ec200e3"
+    },
+    {
+      "path": "hf/hub/models--ProsusAI--finbert/snapshots/4556d13015211d73dccd3fdd39d39232506f3e43/tokenizer_config.json",
+      "bytes": 252,
+      "sha256": "ffc7913f6084b138dad68de5a0c2f0ee25ac983709260901e01f53be5796b9d9"
+    },
+    {
+      "path": "hf/hub/models--ProsusAI--finbert/snapshots/4556d13015211d73dccd3fdd39d39232506f3e43/vocab.txt",
+      "bytes": 231508,
+      "sha256": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3"
+    },
+    {
+      "path": "sibling-scripts/run_earnings_lora_baseline.py",
+      "bytes": 17798,
+      "sha256": "efaeb89a5859b3e8d6d5fbd776f5429ac101f73ad9ab0eefbb4ba9ce42467102"
+    }
+  ],
+  "public_base_model": {
+    "source_url": "https://huggingface.co/ProsusAI/finbert/resolve/4556d13015211d73dccd3fdd39d39232506f3e43/pytorch_model.bin",
+    "cache_path": "hf/hub/models--ProsusAI--finbert/snapshots/4556d13015211d73dccd3fdd39d39232506f3e43/pytorch_model.bin",
+    "bytes": 437992753,
+    "sha256": "e15a7b5738df7f17553399b6d94c6e2ff69c89245d066e8e5d183f5803a554e3"
+  },
+  "destination_project": "institutional-risk-fleet-826",
+  "destination_instance": "dpl-phase18-clean-standard-20261004",
+  "freeze_git_sha": "ef1b859f7f56cacc8be9e70e60e032da8cecd170",
+  "execution_git_sha": "d8d9255e44cb60c7354949534517e217f3d3ebb4",
+  "preregistration_sha256": "82c41e671da2af23b4aa94bb5d42703fef4fe4822a403eae16c776399b178340"
+}

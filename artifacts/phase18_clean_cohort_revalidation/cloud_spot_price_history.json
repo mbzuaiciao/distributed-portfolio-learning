@@ -1,0 +1,126 @@
+{
+  "machineType": "n2-standard-32",
+  "location": "https://www.googleapis.com/compute/beta/projects/institutional-risk-fleet-826/regions/us-central1",
+  "priceHistory": [
+    {
+      "interval": {
+        "startTime": "2026-04-09T07:00:00Z",
+        "endTime": "2026-04-13T07:00:00Z"
+      },
+      "listPrice": {
+        "currencyCode": "USD",
+        "nanos": 434432000
+      }
+    },
+    {
+      "interval": {
+        "startTime": "2026-04-13T07:00:00Z",
+        "endTime": "2026-04-27T07:00:00Z"
+      },
+      "listPrice": {
+        "currencyCode": "USD",
+        "nanos": 456064000
+      }
+    },
+    {
+      "interval": {
+        "startTime": "2026-04-27T07:00:00Z",
+        "endTime": "2026-05-11T07:00:00Z"
+      },
+      "listPrice": {
+        "currencyCode": "USD",
+        "nanos": 478720000
+      }
+    },
+    {
+      "interval": {
+        "startTime": "2026-05-11T07:00:00Z",
+        "endTime": "2026-05-25T07:00:00Z"
+      },
+      "listPrice": {
+        "currencyCode": "USD",
+        "nanos": 502720000
+      }
+    },
+    {
+      "interval": {
+        "startTime": "2026-05-25T07:00:00Z",
+        "endTime": "2026-06-08T07:00:00Z"
+      },
+      "listPrice": {
+        "currencyCode": "USD",
+        "nanos": 527744000
+      }
+    },
+    {
+      "interval": {
+        "startTime": "2026-06-08T07:00:00Z",
+        "endTime": "2026-06-22T07:00:00Z"
+      },
+      "listPrice": {
+        "currencyCode": "USD",
+        "nanos": 553600000
+      }
+    },
+    {
+      "interval": {
+        "startTime": "2026-06-22T07:00:00Z",
+        "endTime": "2026-07-06T07:00:00Z"
+      },
+      "listPrice": {
+        "currencyCode": "USD",
+        "nanos": 609088000
+      }
+    },
+    {
+      "interval": {
+        "startTime": "2026-07-06T07:00:00Z",
+        "endTime": "2026-07-20T07:00:00Z"
+      },
+      "listPrice": {
+        "currencyCode": "USD",
+        "nanos": 670016000
+      }
+    },
+    {
+      "interval": {
+        "startTime": "2026-07-20T07:00:00Z",
+        "endTime": "2026-08-03T07:00:00Z"
+      },
+      "listPrice": {
+        "currencyCode": "USD",
+        "nanos": 736960000
+      }
+    },
+    {
+      "interval": {
+        "startTime": "2026-08-03T07:00:00Z",
+        "endTime": "2026-08-10T07:00:00Z"
+      },
+      "listPrice": {
+        "currencyCode": "USD",
+        "nanos": 810688000
+      }
+    },
+    {
+      "interval": {
+        "startTime": "2026-08-10T07:00:00Z",
+        "endTime": "2026-08-24T07:00:00Z"
+      },
+      "listPrice": {
+        "currencyCode": "USD",
+        "nanos": 891776000
+      }
+    },
+    {
+      "interval": {
+        "startTime": "2026-08-24T07:00:00Z",
+        "endTime": "2026-10-04T07:00:00Z"
+      },
+      "listPrice": {
+        "currencyCode": "USD",
+        "nanos": 932096000
+      }
+    }
+  ]
+}

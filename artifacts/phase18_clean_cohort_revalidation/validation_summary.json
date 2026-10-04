@@ -1,0 +1,20 @@
+{
+  "targeted_checkpoint_accounting_tests": {
+    "passed": 24,
+    "skipped": 0,
+    "seconds": 9.8
+  },
+  "full_repository_tests": {
+    "passed": 278,
+    "skipped": 3,
+    "seconds": 14.56
+  },
+  "ruff": "passed",
+  "source_and_report_git_whitespace_check": "passed; exact raw logs excluded because captured CR/progress formatting and trailing spaces must retain transport hashes",
+  "frozen_runner_unchanged": true,
+  "preregistration_unchanged": true,
+  "returned_file_hashes_verified": 25,
+  "raw_logs_preserved_verbatim": true,
+  "figure_visual_review": "passed",
+  "cleanup_verified": true
+}

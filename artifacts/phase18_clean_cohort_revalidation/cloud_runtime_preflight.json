@@ -1,0 +1,6 @@
+{
+  "ten_batch_seconds": 16.191899180999997,
+  "estimated_total_seconds": 3733.177315724999,
+  "device": "cpu",
+  "batches_per_epoch": 375
+}

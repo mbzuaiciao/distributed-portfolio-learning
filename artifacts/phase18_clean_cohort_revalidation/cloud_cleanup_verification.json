@@ -1,0 +1,10 @@
+{
+  "verified_utc": "2026-10-04T23:01:56.264739+00:00",
+  "project": "institutional-risk-fleet-826",
+  "instances_filter": "name~dpl-phase18-clean-",
+  "remaining_experiment_instances": [],
+  "remaining_experiment_disks": [],
+  "all_temporary_cloud_payloads_removed": true,
+  "storage_buckets_created": false,
+  "cleanup_method": "Explicit deletion of standard VM with autoDelete boot disk; Spot VM and initial idle VM already absent. All cloud-resident payloads existed solely on those boot disks. No other project resources were changed."
+}

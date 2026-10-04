@@ -1,0 +1,43 @@
+{
+  "destination_project": "institutional-risk-fleet-826",
+  "destination_instance": "dpl-phase18-clean-standard-20261004",
+  "zone": "us-central1-a",
+  "vm_configuration": {
+    "machine_type": "n2-standard-32",
+    "provisioning": "STANDARD",
+    "vcpus": 32,
+    "memory_gib": 128,
+    "boot_disk_gb": 100,
+    "boot_disk_type": "pd-balanced",
+    "max_run_seconds": 7200,
+    "termination_action": "DELETE"
+  },
+  "freeze_git_sha": "ef1b859f7f56cacc8be9e70e60e032da8cecd170",
+  "execution_git_sha": "d8d9255e44cb60c7354949534517e217f3d3ebb4",
+  "preregistration_sha256": "82c41e671da2af23b4aa94bb5d42703fef4fe4822a403eae16c776399b178340",
+  "local_archive_bytes": 4791053,
+  "local_archive_sha256": "42d29ab1f8904086ec05abed16675d3547387039525e6b10e526f4109bc423a9",
+  "scripts": {
+    "cloud_worker_standard_vm_launch.sh": "8d29c87303dfd85a792d9e3b69054e9e08cf0f2539f303353da3b6d8341c7db1",
+    "cloud_collect_standard_results.sh": "17b462c41be406c28c7f0834e090c9cabc84be4771c73c17197242110007a8d4"
+  },
+  "checksums_match": true,
+  "execution_authorized": true,
+  "public_base_model": {
+    "source_url": "https://huggingface.co/ProsusAI/finbert/resolve/4556d13015211d73dccd3fdd39d39232506f3e43/pytorch_model.bin",
+    "cache_path": "hf/hub/models--ProsusAI--finbert/snapshots/4556d13015211d73dccd3fdd39d39232506f3e43/pytorch_model.bin",
+    "bytes": 437992753,
+    "sha256": "e15a7b5738df7f17553399b6d94c6e2ff69c89245d066e8e5d183f5803a554e3"
+  },
+  "archive_contents_manifest": "standard_cloud_transfer_manifest.json",
+  "recorded_utc": "2026-10-04T22:28:33.127304+00:00",
+  "remote_archive_bytes": 4791053,
+  "remote_archive_sha256": "42d29ab1f8904086ec05abed16675d3547387039525e6b10e526f4109bc423a9",
+  "remote_launcher_sha256": "8d29c87303dfd85a792d9e3b69054e9e08cf0f2539f303353da3b6d8341c7db1",
+  "remote_collector_sha256": "17b462c41be406c28c7f0834e090c9cabc84be4771c73c17197242110007a8d4",
+  "verified_utc": "2026-10-04T22:28:53Z",
+  "model_weight_gate": "Launcher downloads exact revision, asserts frozen SHA256 before seed launch; checksum success retained in master log.",
+  "public_base_model_remote_checksum_verified": true,
+  "public_base_model_verification_observed_utc": "2026-10-04T22:30:59Z",
+  "public_base_model_verification_evidence": "Master log: exact frozen cache pytorch_model.bin: OK, from sha256sum -c gate before worker launch."
+}

@@ -1,0 +1,25 @@
+{
+  "verified_utc": "2026-10-04T22:01:03.943198+00:00",
+  "destination_project": "institutional-risk-fleet-826",
+  "destination_vm": "dpl-phase18-clean-cpu-20261004",
+  "vm_configuration": {
+    "machine_type": "n2-standard-32",
+    "provisioning": "SPOT",
+    "image_family": "pytorch-2-9-cu129-ubuntu-2404-nvidia-580",
+    "image_project": "deeplearning-platform-release",
+    "boot_disk_gb": 100,
+    "max_run_seconds": 7200,
+    "termination_action": "DELETE"
+  },
+  "freeze_git_sha": "ef1b859f7f56cacc8be9e70e60e032da8cecd170",
+  "preregistration_sha256": "82c41e671da2af23b4aa94bb5d42703fef4fe4822a403eae16c776399b178340",
+  "local_archive_bytes": 410235376,
+  "remote_archive_bytes": 410235376,
+  "local_archive_sha256": "cff97c288e4c24636ba50d2dd7d2da9e7933b695cfa42f7e1c384b3dfad39698",
+  "remote_archive_sha256": "cff97c288e4c24636ba50d2dd7d2da9e7933b695cfa42f7e1c384b3dfad39698",
+  "launcher_sha256": "885a582a54717bbf0a8117c09c60def33897dc368f9895b669dc96c97ed841ef",
+  "remote_launcher_sha256": "885a582a54717bbf0a8117c09c60def33897dc368f9895b669dc96c97ed841ef",
+  "checksums_match": true,
+  "billing_export_available": false,
+  "execution_authorized": true
+}

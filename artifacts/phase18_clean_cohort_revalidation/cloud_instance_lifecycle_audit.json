@@ -1,0 +1,647 @@
+[
+  {
+    "insertId": "oz19qpc44w",
+    "labels": {
+      "compute.googleapis.com/root_trigger_id": "45a89ca1-c16f-4542-a88c-b0d0050440b8"
+    },
+    "logName": "projects/institutional-risk-fleet-826/logs/cloudaudit.googleapis.com%2Factivity",
+    "operation": {
+      "id": "operation-1791150752201-65d0ac852f9b3-d0531e63-e7753f0d",
+      "last": true,
+      "producer": "compute.googleapis.com"
+    },
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "apiVersionIdentifier": "2026-09-01",
+      "authenticationInfo": {
+        "oauthInfo": {
+          "oauthClientId": "32555940559.apps.googleusercontent.com"
+        },
+        "principalEmail": "sgx.ciao@gmail.com",
+        "principalSubject": "user:sgx.ciao@gmail.com"
+      },
+      "methodName": "v1.compute.instances.insert",
+      "request": {
+        "@type": "type.googleapis.com/compute.instances.insert"
+      },
+      "requestMetadata": {
+        "callerIp": "104.175.54.148",
+        "callerSuppliedUserAgent": "google-cloud-sdk gcloud/587.0.0 agent-name/codex_cli command/gcloud.compute.instances.create invocation-id/20445bc0cb0f48bab783cdd671e31f2c environment/None environment-version/None client-os/MACOSX client-os-ver/27.0.0 client-pltf-arch/arm interactive/False from-script/False python/3.14.8 term/dumb  (Macintosh; Intel Mac OS X 27.0.0),gzip(gfe)",
+        "destinationAttributes": {},
+        "requestAttributes": {}
+      },
+      "resourceName": "projects/institutional-risk-fleet-826/zones/us-central1-a/instances/dpl-phase18-clean-cpu-20261004",
+      "serviceName": "compute.googleapis.com",
+      "status": {}
+    },
+    "receiveTimestamp": "2026-10-04T21:52:42.971833111Z",
+    "resource": {
+      "labels": {
+        "instance_id": "1646823689904157775",
+        "project_id": "institutional-risk-fleet-826",
+        "zone": "us-central1-a"
+      },
+      "type": "gce_instance"
+    },
+    "severity": "NOTICE",
+    "timestamp": "2026-10-04T21:52:42.797965Z"
+  },
+  {
+    "insertId": "-8lh7qnds2ao",
+    "labels": {
+      "compute.googleapis.com/root_trigger_id": "45a89ca1-c16f-4542-a88c-b0d0050440b8"
+    },
+    "logName": "projects/institutional-risk-fleet-826/logs/cloudaudit.googleapis.com%2Factivity",
+    "operation": {
+      "first": true,
+      "id": "operation-1791150752201-65d0ac852f9b3-d0531e63-e7753f0d",
+      "producer": "compute.googleapis.com"
+    },
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "apiVersionIdentifier": "2026-09-01",
+      "authenticationInfo": {
+        "oauthInfo": {
+          "oauthClientId": "32555940559.apps.googleusercontent.com"
+        },
+        "principalEmail": "sgx.ciao@gmail.com",
+        "principalSubject": "user:sgx.ciao@gmail.com"
+      },
+      "authorizationInfo": [
+        {
+          "granted": true,
+          "permission": "compute.instances.create",
+          "permissionType": "ADMIN_WRITE",
+          "resource": "projects/institutional-risk-fleet-826/zones/us-central1-a/instances/dpl-phase18-clean-cpu-20261004",
+          "resourceAttributes": {
+            "name": "projects/institutional-risk-fleet-826/zones/us-central1-a/instances/dpl-phase18-clean-cpu-20261004",
+            "service": "compute",
+            "type": "compute.instances"
+          }
+        },
+        {
+          "granted": true,
+          "permission": "compute.disks.create",
+          "permissionType": "ADMIN_WRITE",
+          "resource": "projects/institutional-risk-fleet-826/zones/us-central1-a/disks/dpl-phase18-clean-cpu-20261004",
+          "resourceAttributes": {
+            "name": "projects/institutional-risk-fleet-826/zones/us-central1-a/disks/dpl-phase18-clean-cpu-20261004",
+            "service": "compute",
+            "type": "compute.disks"
+          }
+        },
+        {
+          "granted": true,
+          "permission": "compute.subnetworks.use",
+          "permissionType": "ADMIN_WRITE",
+          "resource": "projects/institutional-risk-fleet-826/regions/us-central1/subnetworks/default",
+          "resourceAttributes": {
+            "name": "projects/institutional-risk-fleet-826/regions/us-central1/subnetworks/default",
+            "service": "compute",
+            "type": "compute.subnetworks"
+          }
+        },
+        {
+          "granted": true,
+          "permission": "compute.subnetworks.useExternalIp",
+          "permissionType": "ADMIN_WRITE",
+          "resource": "projects/institutional-risk-fleet-826/regions/us-central1/subnetworks/default",
+          "resourceAttributes": {
+            "name": "projects/institutional-risk-fleet-826/regions/us-central1/subnetworks/default",
+            "service": "compute",
+            "type": "compute.subnetworks"
+          }
+        },
+        {
+          "granted": true,
+          "permission": "compute.instances.setLabels",
+          "permissionType": "ADMIN_WRITE",
+          "resource": "projects/institutional-risk-fleet-826/zones/us-central1-a/instances/dpl-phase18-clean-cpu-20261004",
+          "resourceAttributes": {
+            "name": "projects/institutional-risk-fleet-826/zones/us-central1-a/instances/dpl-phase18-clean-cpu-20261004",
+            "service": "compute",
+            "type": "compute.instances"
+          }
+        },
+        {
+          "granted": true,
+          "permission": "compute.instances.setServiceAccount",
+          "permissionType": "ADMIN_WRITE",
+          "resource": "projects/institutional-risk-fleet-826/zones/us-central1-a/instances/dpl-phase18-clean-cpu-20261004",
+          "resourceAttributes": {
+            "name": "projects/institutional-risk-fleet-826/zones/us-central1-a/instances/dpl-phase18-clean-cpu-20261004",
+            "service": "compute",
+            "type": "compute.instances"
+          }
+        }
+      ],
+      "metadata": {
+        "usedResources": {
+          "attachedDisks": [
+            {
+              "isBootDisk": true,
+              "sourceImage": "https://www.googleapis.com/compute/v1/projects/473485888518/global/images/pytorch-2-9-cu129-ubuntu-2404-nvidia-580-v20261001",
+              "sourceImageId": "8190671948398954841"
+            }
+          ]
+        }
+      },
+      "methodName": "v1.compute.instances.insert",
+      "request": {
+        "@type": "type.googleapis.com/compute.instances.insert",
+        "canIpForward": false,
+        "deletionProtection": false,
+        "disks": [
+          {
+            "autoDelete": true,
+            "boot": true,
+            "initializeParams": {
+              "diskSizeGb": "100",
+              "diskType": "https://compute.googleapis.com/compute/v1/projects/institutional-risk-fleet-826/zones/us-central1-a/diskTypes/pd-balanced",
+              "sourceImage": "https://compute.googleapis.com/compute/v1/projects/deeplearning-platform-release/global/images/family/pytorch-2-9-cu129-ubuntu-2404-nvidia-580"
+            },
+            "mode": "READ_WRITE",
+            "type": "PERSISTENT"
+          }
+        ],
+        "labels": [
+          {
+            "key": "experiment",
+            "value": "phase18-clean"
+          },
+          {
+            "key": "project",
+            "value": "dpl"
+          }
+        ],
+        "machineType": "https://compute.googleapis.com/compute/v1/projects/institutional-risk-fleet-826/zones/us-central1-a/machineTypes/n2-standard-32",
+        "name": "dpl-phase18-clean-cpu-20261004",
+        "networkInterfaces": [
+          {
+            "accessConfigs": [
+              {
+                "name": "external-nat",
+                "type": "ONE_TO_ONE_NAT"
+              }
+            ],
+            "network": "https://compute.googleapis.com/compute/v1/projects/institutional-risk-fleet-826/global/networks/default"
+          }
+        ],
+        "scheduling": {
+          "automaticRestart": false,
+          "instanceTerminationAction": "DELETE",
+          "maxRunDuration": {
+            "seconds": "7200"
+          },
+          "onHostMaintenance": "TERMINATE",
+          "preemptible": true,
+          "provisioningModel": "SPOT"
+        },
+        "serviceAccounts": [
+          {
+            "email": "default",
+            "scopes": [
+              "https://www.googleapis.com/auth/devstorage.read_only",
+              "https://www.googleapis.com/auth/logging.write",
+              "https://www.googleapis.com/auth/monitoring.write",
+              "https://www.googleapis.com/auth/pubsub",
+              "https://www.googleapis.com/auth/service.management.readonly",
+              "https://www.googleapis.com/auth/servicecontrol",
+              "https://www.googleapis.com/auth/trace.append"
+            ]
+          }
+        ]
+      },
+      "requestMetadata": {
+        "callerIp": "104.175.54.148",
+        "callerSuppliedUserAgent": "google-cloud-sdk gcloud/587.0.0 agent-name/codex_cli command/gcloud.compute.instances.create invocation-id/20445bc0cb0f48bab783cdd671e31f2c environment/None environment-version/None client-os/MACOSX client-os-ver/27.0.0 client-pltf-arch/arm interactive/False from-script/False python/3.14.8 term/dumb  (Macintosh; Intel Mac OS X 27.0.0),gzip(gfe)",
+        "destinationAttributes": {},
+        "requestAttributes": {
+          "auth": {},
+          "time": "2026-10-04T21:52:32.997861Z"
+        }
+      },
+      "resourceLocation": {
+        "currentLocations": [
+          "us-central1-a"
+        ]
+      },
+      "resourceName": "projects/institutional-risk-fleet-826/zones/us-central1-a/instances/dpl-phase18-clean-cpu-20261004",
+      "response": {
+        "@type": "type.googleapis.com/operation",
+        "id": "502422880721531983",
+        "insertTime": "2026-10-04T14:52:32.922-07:00",
+        "name": "operation-1791150752201-65d0ac852f9b3-d0531e63-e7753f0d",
+        "operationType": "insert",
+        "progress": "0",
+        "selfLink": "https://www.googleapis.com/compute/v1/projects/institutional-risk-fleet-826/zones/us-central1-a/operations/operation-1791150752201-65d0ac852f9b3-d0531e63-e7753f0d",
+        "startTime": "2026-10-04T14:52:32.953-07:00",
+        "status": "RUNNING",
+        "targetId": "1646823689904157775",
+        "targetLink": "https://www.googleapis.com/compute/v1/projects/institutional-risk-fleet-826/zones/us-central1-a/instances/dpl-phase18-clean-cpu-20261004",
+        "user": "sgx.ciao@gmail.com",
+        "zone": "https://www.googleapis.com/compute/v1/projects/institutional-risk-fleet-826/zones/us-central1-a"
+      },
+      "serviceName": "compute.googleapis.com",
+      "status": {}
+    },
+    "receiveTimestamp": "2026-10-04T21:52:33.595217377Z",
+    "resource": {
+      "labels": {
+        "instance_id": "1646823689904157775",
+        "project_id": "institutional-risk-fleet-826",
+        "zone": "us-central1-a"
+      },
+      "type": "gce_instance"
+    },
+    "severity": "NOTICE",
+    "timestamp": "2026-10-04T21:52:32.259213Z"
+  },
+  {
+    "insertId": "-31rb01d2gl2",
+    "labels": {
+      "compute.googleapis.com/root_trigger_id": "ffd275bc-680c-41a6-ac3c-cfd381dca2ca"
+    },
+    "logName": "projects/institutional-risk-fleet-826/logs/cloudaudit.googleapis.com%2Factivity",
+    "operation": {
+      "id": "operation-1791150353352-65d0ab08d08a7-7b7d6bfa-c373c909",
+      "last": true,
+      "producer": "compute.googleapis.com"
+    },
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "apiVersionIdentifier": "2026-09-01",
+      "authenticationInfo": {
+        "oauthInfo": {
+          "oauthClientId": "32555940559.apps.googleusercontent.com"
+        },
+        "principalEmail": "sgx.ciao@gmail.com",
+        "principalSubject": "user:sgx.ciao@gmail.com"
+      },
+      "methodName": "v1.compute.instances.delete",
+      "request": {
+        "@type": "type.googleapis.com/compute.instances.delete"
+      },
+      "requestMetadata": {
+        "callerIp": "104.175.54.148",
+        "callerSuppliedUserAgent": "google-cloud-sdk gcloud/587.0.0 agent-name/codex_cli command/gcloud.compute.instances.delete invocation-id/c24ca429e4f74148ba7ed4e451049613 environment/None environment-version/None client-os/MACOSX client-os-ver/27.0.0 client-pltf-arch/arm interactive/False from-script/False python/3.14.8 term/dumb  (Macintosh; Intel Mac OS X 27.0.0),gzip(gfe)",
+        "destinationAttributes": {},
+        "requestAttributes": {}
+      },
+      "resourceName": "projects/institutional-risk-fleet-826/zones/us-central1-a/instances/dpl-phase18-clean-cpu-20261004",
+      "serviceName": "compute.googleapis.com",
+      "status": {}
+    },
+    "receiveTimestamp": "2026-10-04T21:46:43.802050950Z",
+    "resource": {
+      "labels": {
+        "instance_id": "1452975580859299532",
+        "project_id": "institutional-risk-fleet-826",
+        "zone": "us-central1-a"
+      },
+      "type": "gce_instance"
+    },
+    "severity": "NOTICE",
+    "timestamp": "2026-10-04T21:46:43.213900Z"
+  },
+  {
+    "insertId": "-lv1ty2dqcsq",
+    "labels": {
+      "compute.googleapis.com/root_trigger_id": "ffd275bc-680c-41a6-ac3c-cfd381dca2ca"
+    },
+    "logName": "projects/institutional-risk-fleet-826/logs/cloudaudit.googleapis.com%2Factivity",
+    "operation": {
+      "first": true,
+      "id": "operation-1791150353352-65d0ab08d08a7-7b7d6bfa-c373c909",
+      "producer": "compute.googleapis.com"
+    },
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "apiVersionIdentifier": "2026-09-01",
+      "authenticationInfo": {
+        "oauthInfo": {
+          "oauthClientId": "32555940559.apps.googleusercontent.com"
+        },
+        "principalEmail": "sgx.ciao@gmail.com",
+        "principalSubject": "user:sgx.ciao@gmail.com"
+      },
+      "authorizationInfo": [
+        {
+          "granted": true,
+          "permission": "compute.instances.delete",
+          "permissionType": "ADMIN_WRITE",
+          "resource": "projects/institutional-risk-fleet-826/zones/us-central1-a/instances/dpl-phase18-clean-cpu-20261004",
+          "resourceAttributes": {
+            "name": "projects/institutional-risk-fleet-826/zones/us-central1-a/instances/dpl-phase18-clean-cpu-20261004",
+            "service": "compute",
+            "type": "compute.instances"
+          }
+        }
+      ],
+      "methodName": "v1.compute.instances.delete",
+      "request": {
+        "@type": "type.googleapis.com/compute.instances.delete"
+      },
+      "requestMetadata": {
+        "callerIp": "104.175.54.148",
+        "callerSuppliedUserAgent": "google-cloud-sdk gcloud/587.0.0 agent-name/codex_cli command/gcloud.compute.instances.delete invocation-id/c24ca429e4f74148ba7ed4e451049613 environment/None environment-version/None client-os/MACOSX client-os-ver/27.0.0 client-pltf-arch/arm interactive/False from-script/False python/3.14.8 term/dumb  (Macintosh; Intel Mac OS X 27.0.0),gzip(gfe)",
+        "destinationAttributes": {},
+        "requestAttributes": {
+          "auth": {},
+          "time": "2026-10-04T21:45:53.745922Z"
+        }
+      },
+      "resourceLocation": {
+        "currentLocations": [
+          "us-central1-a"
+        ]
+      },
+      "resourceName": "projects/institutional-risk-fleet-826/zones/us-central1-a/instances/dpl-phase18-clean-cpu-20261004",
+      "response": {
+        "@type": "type.googleapis.com/operation",
+        "id": "8207433058277619710",
+        "insertTime": "2026-10-04T14:45:53.635-07:00",
+        "name": "operation-1791150353352-65d0ab08d08a7-7b7d6bfa-c373c909",
+        "operationType": "delete",
+        "progress": "0",
+        "selfLink": "https://www.googleapis.com/compute/v1/projects/institutional-risk-fleet-826/zones/us-central1-a/operations/operation-1791150353352-65d0ab08d08a7-7b7d6bfa-c373c909",
+        "startTime": "2026-10-04T14:45:53.680-07:00",
+        "status": "RUNNING",
+        "targetId": "1452975580859299532",
+        "targetLink": "https://www.googleapis.com/compute/v1/projects/institutional-risk-fleet-826/zones/us-central1-a/instances/dpl-phase18-clean-cpu-20261004",
+        "user": "sgx.ciao@gmail.com",
+        "zone": "https://www.googleapis.com/compute/v1/projects/institutional-risk-fleet-826/zones/us-central1-a"
+      },
+      "serviceName": "compute.googleapis.com",
+      "status": {}
+    },
+    "receiveTimestamp": "2026-10-04T21:45:54.366785787Z",
+    "resource": {
+      "labels": {
+        "instance_id": "1452975580859299532",
+        "project_id": "institutional-risk-fleet-826",
+        "zone": "us-central1-a"
+      },
+      "type": "gce_instance"
+    },
+    "severity": "NOTICE",
+    "timestamp": "2026-10-04T21:45:53.413156Z"
+  },
+  {
+    "insertId": "z0hf2jd7k6w",
+    "labels": {
+      "compute.googleapis.com/root_trigger_id": "6bc245f2-0968-4321-9475-5099276fb2bd"
+    },
+    "logName": "projects/institutional-risk-fleet-826/logs/cloudaudit.googleapis.com%2Factivity",
+    "operation": {
+      "id": "operation-1791150114249-65d0aa24c9a8c-26d30678-b1454b1f",
+      "last": true,
+      "producer": "compute.googleapis.com"
+    },
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "apiVersionIdentifier": "2026-09-01",
+      "authenticationInfo": {
+        "oauthInfo": {
+          "oauthClientId": "32555940559.apps.googleusercontent.com"
+        },
+        "principalEmail": "sgx.ciao@gmail.com",
+        "principalSubject": "user:sgx.ciao@gmail.com"
+      },
+      "methodName": "v1.compute.instances.insert",
+      "request": {
+        "@type": "type.googleapis.com/compute.instances.insert"
+      },
+      "requestMetadata": {
+        "callerIp": "104.175.54.148",
+        "callerSuppliedUserAgent": "google-cloud-sdk gcloud/587.0.0 agent-name/codex_cli command/gcloud.compute.instances.create invocation-id/2dfe340b758c4fc5ac903439e1af1aef environment/None environment-version/None client-os/MACOSX client-os-ver/27.0.0 client-pltf-arch/arm interactive/False from-script/False python/3.14.8 term/dumb  (Macintosh; Intel Mac OS X 27.0.0),gzip(gfe)",
+        "destinationAttributes": {},
+        "requestAttributes": {}
+      },
+      "resourceName": "projects/institutional-risk-fleet-826/zones/us-central1-a/instances/dpl-phase18-clean-cpu-20261004",
+      "serviceName": "compute.googleapis.com",
+      "status": {}
+    },
+    "receiveTimestamp": "2026-10-04T21:42:14.390334600Z",
+    "resource": {
+      "labels": {
+        "instance_id": "1452975580859299532",
+        "project_id": "institutional-risk-fleet-826",
+        "zone": "us-central1-a"
+      },
+      "type": "gce_instance"
+    },
+    "severity": "NOTICE",
+    "timestamp": "2026-10-04T21:42:13.620661Z"
+  },
+  {
+    "insertId": "-jypsz0d8w1g",
+    "labels": {
+      "compute.googleapis.com/root_trigger_id": "6bc245f2-0968-4321-9475-5099276fb2bd"
+    },
+    "logName": "projects/institutional-risk-fleet-826/logs/cloudaudit.googleapis.com%2Factivity",
+    "operation": {
+      "first": true,
+      "id": "operation-1791150114249-65d0aa24c9a8c-26d30678-b1454b1f",
+      "producer": "compute.googleapis.com"
+    },
+    "protoPayload": {
+      "@type": "type.googleapis.com/google.cloud.audit.AuditLog",
+      "apiVersionIdentifier": "2026-09-01",
+      "authenticationInfo": {
+        "oauthInfo": {
+          "oauthClientId": "32555940559.apps.googleusercontent.com"
+        },
+        "principalEmail": "sgx.ciao@gmail.com",
+        "principalSubject": "user:sgx.ciao@gmail.com"
+      },
+      "authorizationInfo": [
+        {
+          "granted": true,
+          "permission": "compute.instances.create",
+          "permissionType": "ADMIN_WRITE",
+          "resource": "projects/institutional-risk-fleet-826/zones/us-central1-a/instances/dpl-phase18-clean-cpu-20261004",
+          "resourceAttributes": {
+            "name": "projects/institutional-risk-fleet-826/zones/us-central1-a/instances/dpl-phase18-clean-cpu-20261004",
+            "service": "compute",
+            "type": "compute.instances"
+          }
+        },
+        {
+          "granted": true,
+          "permission": "compute.disks.create",
+          "permissionType": "ADMIN_WRITE",
+          "resource": "projects/institutional-risk-fleet-826/zones/us-central1-a/disks/dpl-phase18-clean-cpu-20261004",
+          "resourceAttributes": {
+            "name": "projects/institutional-risk-fleet-826/zones/us-central1-a/disks/dpl-phase18-clean-cpu-20261004",
+            "service": "compute",
+            "type": "compute.disks"
+          }
+        },
+        {
+          "granted": true,
+          "permission": "compute.subnetworks.use",
+          "permissionType": "ADMIN_WRITE",
+          "resource": "projects/institutional-risk-fleet-826/regions/us-central1/subnetworks/default",
+          "resourceAttributes": {
+            "name": "projects/institutional-risk-fleet-826/regions/us-central1/subnetworks/default",
+            "service": "compute",
+            "type": "compute.subnetworks"
+          }
+        },
+        {
+          "granted": true,
+          "permission": "compute.subnetworks.useExternalIp",
+          "permissionType": "ADMIN_WRITE",
+          "resource": "projects/institutional-risk-fleet-826/regions/us-central1/subnetworks/default",
+          "resourceAttributes": {
+            "name": "projects/institutional-risk-fleet-826/regions/us-central1/subnetworks/default",
+            "service": "compute",
+            "type": "compute.subnetworks"
+          }
+        },
+        {
+          "granted": true,
+          "permission": "compute.instances.setLabels",
+          "permissionType": "ADMIN_WRITE",
+          "resource": "projects/institutional-risk-fleet-826/zones/us-central1-a/instances/dpl-phase18-clean-cpu-20261004",
+          "resourceAttributes": {
+            "name": "projects/institutional-risk-fleet-826/zones/us-central1-a/instances/dpl-phase18-clean-cpu-20261004",
+            "service": "compute",
+            "type": "compute.instances"
+          }
+        },
+        {
+          "granted": true,
+          "permission": "compute.instances.setServiceAccount",
+          "permissionType": "ADMIN_WRITE",
+          "resource": "projects/institutional-risk-fleet-826/zones/us-central1-a/instances/dpl-phase18-clean-cpu-20261004",
+          "resourceAttributes": {
+            "name": "projects/institutional-risk-fleet-826/zones/us-central1-a/instances/dpl-phase18-clean-cpu-20261004",
+            "service": "compute",
+            "type": "compute.instances"
+          }
+        }
+      ],
+      "metadata": {
+        "usedResources": {
+          "attachedDisks": [
+            {
+              "isBootDisk": true,
+              "sourceImage": "https://www.googleapis.com/compute/v1/projects/473485888518/global/images/pytorch-2-9-cu129-ubuntu-2404-nvidia-580-v20261001",
+              "sourceImageId": "8190671948398954841"
+            }
+          ]
+        }
+      },
+      "methodName": "v1.compute.instances.insert",
+      "request": {
+        "@type": "type.googleapis.com/compute.instances.insert",
+        "canIpForward": false,
+        "deletionProtection": false,
+        "disks": [
+          {
+            "autoDelete": true,
+            "boot": true,
+            "initializeParams": {
+              "diskSizeGb": "100",
+              "diskType": "https://compute.googleapis.com/compute/v1/projects/institutional-risk-fleet-826/zones/us-central1-a/diskTypes/pd-balanced",
+              "sourceImage": "https://compute.googleapis.com/compute/v1/projects/deeplearning-platform-release/global/images/family/pytorch-2-9-cu129-ubuntu-2404-nvidia-580"
+            },
+            "mode": "READ_WRITE",
+            "type": "PERSISTENT"
+          }
+        ],
+        "labels": [
+          {
+            "key": "experiment",
+            "value": "phase18-clean"
+          },
+          {
+            "key": "project",
+            "value": "dpl"
+          }
+        ],
+        "machineType": "https://compute.googleapis.com/compute/v1/projects/institutional-risk-fleet-826/zones/us-central1-a/machineTypes/n2-standard-32",
+        "name": "dpl-phase18-clean-cpu-20261004",
+        "networkInterfaces": [
+          {
+            "accessConfigs": [
+              {
+                "name": "external-nat",
+                "type": "ONE_TO_ONE_NAT"
+              }
+            ],
+            "network": "https://compute.googleapis.com/compute/v1/projects/institutional-risk-fleet-826/global/networks/default"
+          }
+        ],
+        "scheduling": {
+          "automaticRestart": false,
+          "instanceTerminationAction": "DELETE",
+          "maxRunDuration": {
+            "seconds": "7200"
+          },
+          "onHostMaintenance": "TERMINATE",
+          "preemptible": true,
+          "provisioningModel": "SPOT"
+        },
+        "serviceAccounts": [
+          {
+            "email": "default",
+            "scopes": [
+              "https://www.googleapis.com/auth/devstorage.read_only",
+              "https://www.googleapis.com/auth/logging.write",
+              "https://www.googleapis.com/auth/monitoring.write",
+              "https://www.googleapis.com/auth/pubsub",
+              "https://www.googleapis.com/auth/service.management.readonly",
+              "https://www.googleapis.com/auth/servicecontrol",
+              "https://www.googleapis.com/auth/trace.append"
+            ]
+          }
+        ]
+      },
+      "requestMetadata": {
+        "callerIp": "104.175.54.148",
+        "callerSuppliedUserAgent": "google-cloud-sdk gcloud/587.0.0 agent-name/codex_cli command/gcloud.compute.instances.create invocation-id/2dfe340b758c4fc5ac903439e1af1aef environment/None environment-version/None client-os/MACOSX client-os-ver/27.0.0 client-pltf-arch/arm interactive/False from-script/False python/3.14.8 term/dumb  (Macintosh; Intel Mac OS X 27.0.0),gzip(gfe)",
+        "destinationAttributes": {},
+        "requestAttributes": {
+          "auth": {},
+          "time": "2026-10-04T21:41:58.265170Z"
+        }
+      },
+      "resourceLocation": {
+        "currentLocations": [
+          "us-central1-a"
+        ]
+      },
+      "resourceName": "projects/institutional-risk-fleet-826/zones/us-central1-a/instances/dpl-phase18-clean-cpu-20261004",
+      "response": {
+        "@type": "type.googleapis.com/operation",
+        "id": "7457131039357368011",
+        "insertTime": "2026-10-04T14:41:56.910-07:00",
+        "name": "operation-1791150114249-65d0aa24c9a8c-26d30678-b1454b1f",
+        "operationType": "insert",
+        "progress": "0",
+        "selfLink": "https://www.googleapis.com/compute/v1/projects/institutional-risk-fleet-826/zones/us-central1-a/operations/operation-1791150114249-65d0aa24c9a8c-26d30678-b1454b1f",
+        "status": "PENDING",
+        "targetId": "1452975580859299532",
+        "targetLink": "https://www.googleapis.com/compute/v1/projects/institutional-risk-fleet-826/zones/us-central1-a/instances/dpl-phase18-clean-cpu-20261004",
+        "user": "sgx.ciao@gmail.com",
+        "zone": "https://www.googleapis.com/compute/v1/projects/institutional-risk-fleet-826/zones/us-central1-a"
+      },
+      "serviceName": "compute.googleapis.com",
+      "status": {}
+    },
+    "receiveTimestamp": "2026-10-04T21:41:58.479100651Z",
+    "resource": {
+      "labels": {
+        "instance_id": "1452975580859299532",
+        "project_id": "institutional-risk-fleet-826",
+        "zone": "us-central1-a"
+      },
+      "type": "gce_instance"
+    },
+    "severity": "NOTICE",
+    "timestamp": "2026-10-04T21:41:54.309474Z"
+  }
+]

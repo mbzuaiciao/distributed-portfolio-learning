@@ -1,0 +1,76 @@
+{
+  "currency": "USD",
+  "cost_status": "Conservative list-price estimate, not invoiced charges; billing export unavailable; credits/taxes/discounts and account-wide network free tier not observable.",
+  "lifecycle_method": "Creation-request through completed deletion/preemption; includes provisioning and shutdown, conservatively wider than exact metered CPU uptime.",
+  "rates": {
+    "spot_compute_usd_per_hour": 0.932096,
+    "standard_compute_usd_per_hour": 1.5538880000000002,
+    "disk_100_gib_usd_per_hour": 0.013440860215053764,
+    "disk_catalog_month_hours": 744.0,
+    "spot_ipv4_usd_per_hour": 0.0025,
+    "standard_ipv4_usd_per_hour": 0.005,
+    "north_america_result_egress_usd_per_gib_upper_rate": 0.12
+  },
+  "instances": [
+    {
+      "instance_id": "1452975580859299532",
+      "name": "dpl-phase18-clean-cpu-20261004",
+      "provisioning": "SPOT",
+      "start_request_utc": "2026-10-04T21:41:54.309474Z",
+      "end_completed_or_preempted_utc": "2026-10-04T21:46:43.213900Z",
+      "provisioned_lifetime_seconds": 288.904426,
+      "compute_usd_per_hour": 0.932096,
+      "compute_estimate_usd": 0.0748018499602489,
+      "balanced_disk_estimate_usd": 0.0010786455570489845,
+      "ipv4_estimate_usd": 0.00020062807361111113,
+      "total_estimate_usd": 0.07608112359090899
+    },
+    {
+      "instance_id": "1646823689904157775",
+      "name": "dpl-phase18-clean-cpu-20261004",
+      "provisioning": "SPOT",
+      "start_request_utc": "2026-10-04T21:52:32.259213Z",
+      "end_completed_or_preempted_utc": "2026-10-04T22:19:42.202391Z",
+      "provisioned_lifetime_seconds": 1629.943178,
+      "compute_usd_per_hour": 0.932096,
+      "compute_estimate_usd": 0.4220176434558578,
+      "balanced_disk_estimate_usd": 0.006085510670549582,
+      "ipv4_estimate_usd": 0.0011319049847222221,
+      "total_estimate_usd": 0.4292350591111296
+    },
+    {
+      "instance_id": "1481816380741218143",
+      "name": "dpl-phase18-clean-standard-20261004",
+      "provisioning": "STANDARD",
+      "start_request_utc": "2026-10-04T22:22:40.496250Z",
+      "end_completed_or_preempted_utc": "2026-10-04T22:52:42.958091Z",
+      "provisioned_lifetime_seconds": 1802.461841,
+      "compute_usd_per_hour": 1.5538880000000002,
+      "compute_estimate_usd": 0.7780066181077246,
+      "balanced_disk_estimate_usd": 0.0067296215688470735,
+      "ipv4_estimate_usd": 0.0025034192236111116,
+      "total_estimate_usd": 0.7872396589001828
+    }
+  ],
+  "result_archive_bytes": 6815395,
+  "result_archive_egress_upper_estimate_usd": 0.0007616797462105751,
+  "compute_disk_ipv4_estimate_usd": 1.2925558416022214,
+  "total_estimate_with_result_egress_usd": 1.293317521348432,
+  "parallel_training_max_seconds": 1069.93887012,
+  "parallel_training_and_inference_max_seconds": 1098.762229887,
+  "sum_seed_training_and_inference_seconds": 3221.1234609850003,
+  "evaluation_runtime": {
+    "start_utc": "2026-10-04T22:49:50.522554+00:00",
+    "end_utc": "2026-10-04T22:51:32.396073+00:00",
+    "elapsed_seconds": 101.87346262499705,
+    "exit_code": 0
+  },
+  "unmetered_in_estimate": "Small SSH protocol/log traffic and any shared-account logging charges; invoice/export unavailable. No cloud storage bucket or GPU was provisioned.",
+  "pricing_sources": [
+    "cloud_price_catalog.json",
+    "cloud_standard_price_catalog.json",
+    "cloud_spot_price_history.json",
+    "https://cloud.google.com/vpc/network-pricing"
+  ],
+  "recorded_utc": "2026-10-04T23:01:56.300993+00:00"
+}

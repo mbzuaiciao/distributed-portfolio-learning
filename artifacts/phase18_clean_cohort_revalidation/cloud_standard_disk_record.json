@@ -1,0 +1,46 @@
+{
+  "creationTimestamp": "2026-10-04T15:22:41.050-07:00",
+  "enableConfidentialCompute": false,
+  "guestOsFeatures": [
+    {
+      "type": "VIRTIO_SCSI_MULTIQUEUE"
+    },
+    {
+      "type": "UEFI_COMPATIBLE"
+    },
+    {
+      "type": "GVNIC"
+    }
+  ],
+  "id": "665164757844586335",
+  "kind": "compute#disk",
+  "labelFingerprint": "42WmSpB8rSM=",
+  "lastAttachTimestamp": "2026-10-04T15:22:41.783-07:00",
+  "licenseCodes": [
+    "5592494605997326117",
+    "1045467480970708420",
+    "5696107195841859039",
+    "1995568437320998868",
+    "7402374144844814744"
+  ],
+  "licenses": [
+    "https://www.googleapis.com/compute/v1/projects/click-to-deploy-images/global/licenses/c2d-dl-platform-dlvm",
+    "https://www.googleapis.com/compute/v1/projects/click-to-deploy-images/global/licenses/c2d-dl-platform-gvnic",
+    "https://www.googleapis.com/compute/v1/projects/click-to-deploy-images/global/licenses/c2d-dl-platform-py310",
+    "https://www.googleapis.com/compute/v1/projects/click-to-deploy-images/global/licenses/c2d-dl-platform-gpu-pytorch-2-9",
+    "https://www.googleapis.com/compute/v1/projects/click-to-deploy-images/global/licenses/c2d-dl-platform-ubuntu-2404"
+  ],
+  "name": "dpl-phase18-clean-standard-20261004",
+  "physicalBlockSizeBytes": "4096",
+  "satisfiesPzi": true,
+  "selfLink": "https://www.googleapis.com/compute/v1/projects/institutional-risk-fleet-826/zones/us-central1-a/disks/dpl-phase18-clean-standard-20261004",
+  "sizeGb": "100",
+  "sourceImage": "https://www.googleapis.com/compute/v1/projects/deeplearning-platform-release/global/images/pytorch-2-9-cu129-ubuntu-2404-nvidia-580-v20261001",
+  "sourceImageId": "8190671948398954841",
+  "status": "READY",
+  "type": "https://www.googleapis.com/compute/v1/projects/institutional-risk-fleet-826/zones/us-central1-a/diskTypes/pd-balanced",
+  "users": [
+    "https://www.googleapis.com/compute/v1/projects/institutional-risk-fleet-826/zones/us-central1-a/instances/dpl-phase18-clean-standard-20261004"
+  ],
+  "zone": "https://www.googleapis.com/compute/v1/projects/institutional-risk-fleet-826/zones/us-central1-a"
+}

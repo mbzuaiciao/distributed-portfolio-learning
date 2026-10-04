@@ -4,8 +4,8 @@ set -euo pipefail
 mkdir -p "$HOME/phase18-run"
 tar -xzf "$HOME/phase18_cloud.tar.gz" -C "$HOME/phase18-run"
 cd "$HOME/phase18-run/distributed-portfolio-learning"
-# The VM image supplies PyTorch. Use an isolated dependency environment.
-/opt/conda/bin/python -m venv --system-site-packages "$HOME/phase18-run/env"
+# Use a dedicated CPU environment; the image did not provide /opt/conda.
+python3 -m venv --system-site-packages "$HOME/phase18-run/env"
 PY="$HOME/phase18-run/env/bin/python"
 "$PY" -m pip install 'transformers==5.16.1' pandas scipy scikit-learn matplotlib pytest
 export HF_HOME="$HOME/phase18-run/hf"

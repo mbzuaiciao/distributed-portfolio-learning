@@ -1,0 +1,12 @@
+{
+  "status": "AWAITING_EXPLICIT_TRANSFER_AUTHORIZATION",
+  "destination_project": "institutional-risk-fleet-826",
+  "dedicated_instance": "dpl-phase18-clean-cpu-20261004",
+  "zone": "us-central1-a",
+  "vm_state": "DELETED_CONFIRMED",
+  "cloud_payload_transferred": false,
+  "completed_prediction_seeds": [],
+  "portfolio_outcomes_evaluated": false,
+  "automatic_review_rejection": "Private repository code, Git history, research data and model weights sent to a separate cloud project without explicit payload/destination authorization",
+  "next_step": "After explicit approval, recreate isolated VM, transfer archive, run fixed seed workers, retrieve and hash-check checkpoints/predictions, rerun checkpoint tests, evaluate frozen outcomes, finalize report and README."
+}

@@ -1,0 +1,21 @@
+[transformers] You passed `num_labels=2` which is incompatible to the `id2label` map of length `3`.
+Loading weights:   0%|          | 0/201 [00:00<?, ?it/s]Loading weights: 100%|██████████| 201/201 [00:00<00:00, 13957.40it/s]
+[transformers] [1mBertForSequenceClassification LOAD REPORT[0m from: ProsusAI/finbert
+Key               | Status   |                                                                                       
+------------------+----------+---------------------------------------------------------------------------------------
+classifier.weight | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3, 768]) vs model:torch.Size([2, 768])
+classifier.bias   | MISMATCH | Reinit due to size mismatch - ckpt: torch.Size([3]) vs model:torch.Size([2])          
+
+Notes:
+- MISMATCH:	ckpt weights were loaded, but they did not match the original empty weight shapes.
+RUNTIME PREFLIGHT {'ten_batch_seconds': 6.116188707997935, 'estimated_total_seconds': 1466.1424592995354, 'device': 'mps', 'batches_per_epoch': 375}
+Traceback (most recent call last):
+  File "/Users/xq/Documents/GitHub/distributed-portfolio-learning/experiments/run_phase18_clean_cohort_revalidation.py", line 846, in <module>
+    main()
+    ~~~~^^
+  File "/Users/xq/Documents/GitHub/distributed-portfolio-learning/experiments/run_phase18_clean_cohort_revalidation.py", line 840, in main
+    train_predictions(cfg, freeze_sha, args.device)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/xq/Documents/GitHub/distributed-portfolio-learning/experiments/run_phase18_clean_cohort_revalidation.py", line 233, in train_predictions
+    raise RuntimeError("Local projection exceeds 20 minutes; cloud required")
+RuntimeError: Local projection exceeds 20 minutes; cloud required

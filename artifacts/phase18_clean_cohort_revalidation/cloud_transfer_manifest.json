@@ -1,0 +1,1531 @@
+{
+  "archive_path": "/private/tmp/phase18_cloud.tar.gz",
+  "archive_bytes": 492267613,
+  "archive_sha256": "ac4968376a02068aba49142b16b40eb78608e184cc62787b9b139c36a09c16f4",
+  "destination_project": "institutional-risk-fleet-826",
+  "destination_instance": "dpl-phase18-clean-cpu-20261004",
+  "zone": "us-central1-a",
+  "approval_status": "PENDING_EXPLICIT_USER_AUTHORIZATION",
+  "members": [
+    {
+      "path": "distributed-portfolio-learning/.git/COMMIT_EDITMSG",
+      "bytes": 71
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/FETCH_HEAD",
+      "bytes": 120
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/HEAD",
+      "bytes": 21
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/ORIG_HEAD",
+      "bytes": 41
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/config",
+      "bytes": 477
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/description",
+      "bytes": 73
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/hooks/applypatch-msg.sample",
+      "bytes": 478
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/hooks/commit-msg.sample",
+      "bytes": 896
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/hooks/fsmonitor-watchman.sample",
+      "bytes": 4726
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/hooks/post-update.sample",
+      "bytes": 189
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/hooks/pre-applypatch.sample",
+      "bytes": 424
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/hooks/pre-commit.sample",
+      "bytes": 1649
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/hooks/pre-merge-commit.sample",
+      "bytes": 416
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/hooks/pre-push.sample",
+      "bytes": 1374
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/hooks/pre-rebase.sample",
+      "bytes": 4898
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/hooks/pre-receive.sample",
+      "bytes": 544
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/hooks/prepare-commit-msg.sample",
+      "bytes": 1492
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/hooks/push-to-checkout.sample",
+      "bytes": 2783
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/hooks/sendemail-validate.sample",
+      "bytes": 2308
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/hooks/update.sample",
+      "bytes": 3650
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/index",
+      "bytes": 74020
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/info/exclude",
+      "bytes": 240
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/info/refs",
+      "bytes": 586
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/logs/HEAD",
+      "bytes": 11227
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/logs/refs/heads/colora_research_framework",
+      "bytes": 4044
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/logs/refs/heads/main",
+      "bytes": 10660
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/logs/refs/heads/playground",
+      "bytes": 176
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/logs/refs/remotes/origin/HEAD",
+      "bytes": 156
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/logs/refs/remotes/origin/main",
+      "bytes": 7260
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/01/197b9daf3a485411506991d887b1c81215c497",
+      "bytes": 2083
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/03/51da2014c701e05c203eb4bd25654bd124c9d3",
+      "bytes": 3645
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/04/7fd92c3a9f97106941ab19405a2be545bb02d2",
+      "bytes": 2140
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/06/4011b0ae64a9f5cf10acfcda7cd9f25feb16c7",
+      "bytes": 3385
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/06/daf09ee9711adca942bc569c94bc5994128f75",
+      "bytes": 564590
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/08/5fec2316953b189383b8d7fb0168a5a7aaa871",
+      "bytes": 5359
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/08/fce0b165ee244ddb24edc413af4c4523691ed3",
+      "bytes": 3654
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/0d/227c02f0a9039340214184c8a9ee19735cc38b",
+      "bytes": 594
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/0d/a9f28394dd5c1bb3f5fe34cd23eb5bb30aab92",
+      "bytes": 3378
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/0d/f083b138bbddf6cdfeadb508c5cc96a12cba01",
+      "bytes": 322
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/10/c67b9ad25b03fc2b9fc6fdeae22a8149d922c1",
+      "bytes": 3654
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/10/d2a0d5a3803666cabda31c283d3e996b0f8803",
+      "bytes": 57642
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/10/e37dcca47c7b7b7fd7135ba3d33be7426b3d17",
+      "bytes": 3680
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/11/7fde636648c7d09de3c3073c2af43b753510ac",
+      "bytes": 393
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/12/2063097591f3baf4e3b8fa09e0bab87e8d3131",
+      "bytes": 3523
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/16/50125ef17444b79f1453e8a4b72c8188e268ae",
+      "bytes": 3647
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/16/61b8f2c80a77d882c122f0ca68bdc482cc4f49",
+      "bytes": 104
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/19/0a8cc922ec0b4a6195d986b8c852f00f7d4281",
+      "bytes": 89
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/19/50eed09c79cfd3abacbd03f88956db5baa7638",
+      "bytes": 563278
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/19/5e4a9161bed596ad46c50106c8ef722b9b6838",
+      "bytes": 2153
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/1a/f3017fb9679a11f773ab865d035b6763012f6d",
+      "bytes": 565806
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/1b/010640ab9dbce982994f6234cb9b0e33114f3d",
+      "bytes": 487
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/1c/c8be90d46d73f7a93d79935486e6085a5cefbd",
+      "bytes": 97401
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/1d/a6d43e784c0a3822ba4f15413b8003bf71e131",
+      "bytes": 565898
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/1d/abda1a5f4302d12d109e018757db4c79099be6",
+      "bytes": 3377
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/1f/5f344d054fae10f39140fb7199c99321d9190a",
+      "bytes": 35
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/20/307d84c740a36aa7ef98ba806618e37dfe20d0",
+      "bytes": 267
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/20/560bf9717f20e602adeddd9beac6a53a130761",
+      "bytes": 564178
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/25/72158b43fbffd53f12171a7a63a8633dd64840",
+      "bytes": 3407
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/25/af5c279543ed9d2519e4d9c7c0f6177bff5eec",
+      "bytes": 3508
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/29/87e5ba627e8a8a58c1abcd8c4d2eaaf24717c4",
+      "bytes": 3236
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/2a/8b2fadba6e281ece0d18683df7d8f6519dac3a",
+      "bytes": 454
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/2b/3f1257db0bd0dba96b2477995a1ca81bd9a065",
+      "bytes": 3385
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/2e/a79b2b06738a7316c993d286c9660f0b40a20c",
+      "bytes": 7750
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/31/2148c3dae9fb97d0612e166b37a6aafa6ed3dc",
+      "bytes": 565883
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/31/78abb4860ff45bf105937f659a69e380c43d9c",
+      "bytes": 2692
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/31/896a0b00890f3b9d569deb76f671c5d56eb4f2",
+      "bytes": 3530
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/31/b583f6d81d082045e32625ff13e97e7679eee2",
+      "bytes": 1686
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/34/d4c5f7f0eafc57f0dc7b635f8be9437bfde062",
+      "bytes": 217
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/35/0074976e18329a45c4b6c96905e107028558a1",
+      "bytes": 112006
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/36/2994792e4a2576167eade8c64dc392f46136ee",
+      "bytes": 3655
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/38/7a768fb5471c9e1030ccf6d239b2c072064e1f",
+      "bytes": 898
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/3c/57ac9941ec366d8ae6283b6630b09e47b7b9c7",
+      "bytes": 230
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/41/a575c6118a957371c7529255ab92ca132d3b39",
+      "bytes": 142
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/41/cf5b33f25572d783f536955c97ad1424312352",
+      "bytes": 1725
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/42/7b8180f26de50d27fb875fc36f33f11e85df2c",
+      "bytes": 1731
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/42/9964edb45b8a6bd8a45a3bb94978b3341e6d1b",
+      "bytes": 1393
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/43/17d24b52604d2abcc3ec0936a91a4485b5bb03",
+      "bytes": 3653
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/44/b47a4f293f88fc793a944df7a93baa0d3ceb26",
+      "bytes": 3453
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/4c/f482cd24aa7e2d954ba9f3a8c7b02ee3ea9752",
+      "bytes": 3625
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/4d/709e2a924d289e3a7a5cc4771d57d4bfbe7208",
+      "bytes": 1692
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/4f/2b6bd4a2ebb81bd3ae535d7d03afe35a182078",
+      "bytes": 7344
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/4f/91681d1b522970bb05fec5f715a19c1a10b710",
+      "bytes": 1419
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/51/640d5caf0f276710734bde6992e2ee5e74f34d",
+      "bytes": 487
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/51/a462aeedd51c5d43aaaf0bf59b717a22321a32",
+      "bytes": 3484
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/53/4af78c03d47354f3df3fd595176bc792bdf37d",
+      "bytes": 493
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/53/c16f67e31a6a44f847175a3a17a5ff273d0b60",
+      "bytes": 9302
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/53/e96028fcebee75e0d94cf928b1184179ea6f04",
+      "bytes": 1391
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/54/5d7801c4cf9dd1a5ccc7e9e7ce0979e57c318f",
+      "bytes": 518
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/56/29988baa4302931d530008709112ba0b7a9569",
+      "bytes": 3417
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/57/32d7d944cf2f8a8469215b436c7e3e3111ddfe",
+      "bytes": 565669
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/58/67cae4af41caeff1b7399f21f06258ab279a95",
+      "bytes": 565703
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/58/tmp_obj_L4eeXn",
+      "bytes": 565703
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/5d/3b88c7ee7f023c3aab816d8e076c4126911ee5",
+      "bytes": 1659
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/5d/5d163e726494de60d4d9ee377896c74c633bf2",
+      "bytes": 3414
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/5e/3a95d8915c5c9cf27ebfab06b4b2363ce92f34",
+      "bytes": 15260
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/5e/cc470e0b3f02d07325df5552550e433c2f0bde",
+      "bytes": 3416
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/5f/e6e17e54bbdfca56434f9c38b919746d7f10a2",
+      "bytes": 573536
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/63/6afd0d2a34bc5ab361759cb205ad6c7bd6522a",
+      "bytes": 487
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/65/0851788356f53897d984bfe6fe44993d94a74f",
+      "bytes": 3671
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/65/52eff2250f74834c7b518a0146a36b1c36f32f",
+      "bytes": 3412
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/67/ef51421f09c145f73c47adb732950a3f58f6b8",
+      "bytes": 1731
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/6a/3fb6f9283832b5caa072fd76406c7d8ac98a93",
+      "bytes": 3466
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/6a/638f90103d2fc9aa339ae8f26c45e535b2f69b",
+      "bytes": 1653
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/6a/9a9949243fd2904fec29ab39920dae2a80ee0b",
+      "bytes": 3437
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/6a/fca82c577c5e4da46a9ca6ef790ca0bbb381af",
+      "bytes": 58491
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/6c/18900aa620536073a8588fa2cab89a87db4dd4",
+      "bytes": 343
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/6c/23c80b63c8e6b6519f87888d03a2679a77c7a3",
+      "bytes": 3631
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/6f/9cbea45e1741c0b24fcd8e81d116b1a0c931ab",
+      "bytes": 193
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/70/04c42938bcd65608e13d359c20f203fa5a2d73",
+      "bytes": 564094
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/71/52f7eb4face9e3cb908446c3470f23ecda5b96",
+      "bytes": 3512
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/72/e47d288347d80308b725b4bc52cbc47ea9ef5d",
+      "bytes": 62
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/72/fc36cb9ccb71eb473b869ab161656289876f31",
+      "bytes": 6076
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/73/34bb96b3450731bb50fa1778df5b0ff9e40bd8",
+      "bytes": 376
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/73/4458b31f4ceb65eb85510bbbb6277737cab8e5",
+      "bytes": 1106
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/74/10b5a115286d9c6b6e1a9749632e23e5ecec1d",
+      "bytes": 2011
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/74/2b006fee8914d3857d764350461892558bb3f3",
+      "bytes": 3462
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/79/ace8ddd5d9d0e644c0328225cdf4c8569a631a",
+      "bytes": 314
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/7e/437aa805544eca631683424c2ae4444e53bd07",
+      "bytes": 3410
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/7e/e5f230bf37098085d1cb69d8465fa928092614",
+      "bytes": 3431
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/81/4906e1579966ed227eda260b17a4cc522c9f1c",
+      "bytes": 564649
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/82/09676f342ea6e7075734d06eb6f9e3e1e7e233",
+      "bytes": 564320
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/84/8c50b61d8e07e40eec9da52febe4ae6e7b55fb",
+      "bytes": 75120
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/85/9413e28225dc93f104266144d67264a7d024f0",
+      "bytes": 3425
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/87/e62a5e899e84a43c95f3ed3d59357ddad60813",
+      "bytes": 4649
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/88/8947a639b6ed15a3ac0e54e04310ea7a06b179",
+      "bytes": 100036
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/88/a0d8e5d0a798aa55875b92f84c700e1e9a08a2",
+      "bytes": 59389
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/89/4f9f5a5b2049fc77f7f76e4fe61dd31872b97f",
+      "bytes": 19670
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/89/b95cbeecf9bd44cd8c983ef664ca8522f0fac9",
+      "bytes": 565788
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/8a/e5ff99d653a0a93f248868b5c401b13519add9",
+      "bytes": 3642
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/8c/5f8b289416eea67e9039580307e020de4ce3d4",
+      "bytes": 3451
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/8c/7a4e380d82a2c3811e4f66069d10914ae38a7b",
+      "bytes": 365
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/8e/899bf756a2ef7840a1f749faf6858c3757cf2c",
+      "bytes": 688
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/90/2326c145984a517d9e444a01aa7a821d17f028",
+      "bytes": 487
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/91/849b430913fc896586bc301e5d3f65a51c7729",
+      "bytes": 4401
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/92/66bbeeba46a4a552f8357a61f35a5988186669",
+      "bytes": 486
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/92/c5c4250c23c293bcdb7c6a1aa156e38da272f9",
+      "bytes": 14909
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/93/8e74a594b14de1df038ba7cab7dbbe4b124548",
+      "bytes": 3681
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/93/c1d3a1e46826d9a88eab975bec53d1a9d32fb9",
+      "bytes": 3433
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/94/18b20b129396fcff057e7f2b16f431eb888b6a",
+      "bytes": 734
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/94/6afb174db121a86a86ee094ce63227df41e300",
+      "bytes": 571833
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/96/4658aef335b057cf2eb9c488d725c881679043",
+      "bytes": 136815
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/96/b5a884ef32fe038fcc05bbfb9358958a971aa1",
+      "bytes": 142
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/9b/5a7a06687d1b0931bb42c2d3fee40e1d5cc0a8",
+      "bytes": 565022
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/9b/83174272fae34180bd10a530c854bebcd9427e",
+      "bytes": 205
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/9e/e33430c7ef442cf31c393295b3c2e3a5b88c78",
+      "bytes": 889
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/a1/b444a789db4beaa224fe9aad6e6f357360d7ff",
+      "bytes": 3382
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/a2/8cbfa5c307c0f58aeea23574b8509dde534f5e",
+      "bytes": 109452
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/a3/19f5a2b6c0a652b40130f3a8c516098b196241",
+      "bytes": 486
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/a3/c6b1407ecfd7d7568886d99f5730ab40ec5131",
+      "bytes": 591
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/a4/68ec8f072967038b369d6963d805c87868e91d",
+      "bytes": 261
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/a4/70d01ef551a0e34c19f08ee70fcb7828c0e8a1",
+      "bytes": 3499
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/a8/cd02b771d325aef7223d36f21afc49962b2790",
+      "bytes": 4337
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/aa/2b1dd16b3fd8617abbe7ae97801cd8fdaf29bf",
+      "bytes": 562381
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/aa/35b781959c9aab1af48270ccf294621cc19016",
+      "bytes": 2076
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/ab/a6ed3e83bed07c4ffc7ec650e4f989593b61c3",
+      "bytes": 4390
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/ad/42f879ac111a6389126c35952e951e02493201",
+      "bytes": 211
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/ad/6ff3ab6e59b48564b3195cf80dc025526264e3",
+      "bytes": 89
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/ad/885f473d2faf392877ee963a581ca3139030d2",
+      "bytes": 4410
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/ad/f8e81f904a6639be06add745e7b7f65426286c",
+      "bytes": 3696
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/ad/fe11326d34e27748f568f63d874cbe5c48a3c4",
+      "bytes": 563583
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/ae/e73e1a93254a2ec5bb3f6217a9d1d67a0d643d",
+      "bytes": 14922
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/ae/f746b80f4507196ac5f2fd468d07e1eb724484",
+      "bytes": 1626
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/b1/310d111ed95aaafacfa4a01e411df86bc80f2a",
+      "bytes": 3509
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/b1/6abdc8feb2ad85e7f80617c8eff63d1d7762e2",
+      "bytes": 3484
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/b1/6eb8829c9953e9150f04e134dbb55fe3762e62",
+      "bytes": 132
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/b1/944c596012bbebe9f2fd34c98235ac493266c7",
+      "bytes": 3499
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/b1/d77dddd66412bafb527057cd98361d29c9efdf",
+      "bytes": 2036
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/b1/e22c3dd433b7e2b96caeafed3ec47136c59187",
+      "bytes": 3644
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/b2/6f488ce38a0db8698f147e140f691be6cc60cf",
+      "bytes": 89
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/b9/a6ea80cf1aa914059f96926811269405cfb7d9",
+      "bytes": 725
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/b9/e521149f6c2f6ac0735f5229c495ce3d680172",
+      "bytes": 9155
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/bc/6f1ec5b5be56e9f8d6fe73638917ba767d50e9",
+      "bytes": 3642
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/bd/d545ac99d03c52b9516c2e23d976c766129853",
+      "bytes": 3396
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/be/790f72a087eff49240f88fa97e905a113837ab",
+      "bytes": 3491
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/bf/ce92e679b258f0e4ba35070309dd76a9f6556f",
+      "bytes": 3426
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/c0/34d7380326a74f9dbe24ef3901027b3c0772ec",
+      "bytes": 2327
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/c0/ea374e4bc6402e7937f38a06aa3f4dddf979c7",
+      "bytes": 3499
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/c1/dbb3da9714bdfca27fc72709ce6235de394629",
+      "bytes": 217
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/c2/ff1c2021ade3c5f7bef73377a37c90cfc20260",
+      "bytes": 4334
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/c4/60da20e0849df5e356bfe2a8c6ad74b2f011ea",
+      "bytes": 5380
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/c4/c904a6360de7d25a6df421368214733c3f6534",
+      "bytes": 3642
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/c5/ab758e72def1f5751dd2b3fec2778a57d7a3a5",
+      "bytes": 4518
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/c5/ff274537d91f8cbd7764968aeea35311e6ce20",
+      "bytes": 1107
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/c8/3e0c1f3cb5ca8ab4eb973949f041db171b2468",
+      "bytes": 3582
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/c8/880c027e69defa22b95743573458905d3fd53e",
+      "bytes": 3642
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/ca/02403b3d40e1472aa402d168844070a438ffbd",
+      "bytes": 282
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/ca/a1d413cbaf405fb0ccd8e25aa6eec9d04e88c8",
+      "bytes": 1140
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/cc/2218325da565d80e568f000f8d74d806f50a16",
+      "bytes": 3400
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/cf/b256a512ef7654be8b289aef3505984b3aaa13",
+      "bytes": 3376
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/d0/a2af09876428515952d2dd0733b805a69fd65a",
+      "bytes": 1449
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/d0/f6016db5aff2a771fbbf0e2b9d08d265eefcf0",
+      "bytes": 570
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/d2/b8af8ceff9a53f6c1802c15afd612e44a4d22e",
+      "bytes": 58937
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/d2/f9f221db2dbc216b5a9a4393457b7464ba4691",
+      "bytes": 219
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/d5/ad2ee178e5a7e05304c95b5e5b27c1b3e75e39",
+      "bytes": 216
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/d6/5b17e020c0082bb3d38216367b59dc036e0d6d",
+      "bytes": 3493
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/d7/772c8401656552fe687bd777a69898c842b60f",
+      "bytes": 174
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/d8/742129d319f34325b46b89de9dd713aa3db6b0",
+      "bytes": 3506
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/da/0ad22b59e4539ee1f7117a34521f17e4083ae6",
+      "bytes": 3587
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/dc/45f6699ad4daf5ba0ede853341bd429a5bf69c",
+      "bytes": 141
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/dc/a86899524c83cf58c1b083d313fb6f96423af6",
+      "bytes": 1955
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/dd/4b81c8cd770882b321676c733fefd5da2d66dc",
+      "bytes": 3433
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/de/f02199760560f04c4e08e0e470f1351315773a",
+      "bytes": 486
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/df/845b9442e5999af92d5033db6216d714b052fe",
+      "bytes": 249
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/e0/5737396f592dd151edd3bdff3de3489db5f518",
+      "bytes": 3519
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/e1/ad1fc708204c061b8bb25f98ea907adb54a7a4",
+      "bytes": 390
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/e3/6adcae127277839c19c2c6aaad39e6e28ef9da",
+      "bytes": 3500
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/e5/938e488b50ea7d54de0bcd6d62867888759f32",
+      "bytes": 3636
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/e8/4f78eb24f35a214e6b2e4f98317ba066e5136e",
+      "bytes": 573353
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/e8/e0798e7a9c23db1960409f30317e3be6640efd",
+      "bytes": 486
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/e9/c4f64949f45ca5a17ec397bd25173f75403776",
+      "bytes": 3524
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/eb/f77897815fb592e4169d72e9198b4c0772f2ea",
+      "bytes": 3654
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/ec/1b7a3a558d2a04b16bc7835b86c090343bde7a",
+      "bytes": 1514
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/ef/1b859f7f56cacc8be9e70e60e032da8cecd170",
+      "bytes": 215
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/ef/2818224cb87f7bc21e654c0fd2784e885994ad",
+      "bytes": 1355
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/f0/14e4ebba2a56a210813167974cdb26ee8c82f6",
+      "bytes": 3646
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/f2/2a9cc9103b2f7ebf7b4d6b087f652a55532d16",
+      "bytes": 181691
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/f8/76981b065c5a6866c17ae0a414ed3ea1d22084",
+      "bytes": 2245
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/f9/4debf21c5df5f9d16d5fe91bf4466e5a411161",
+      "bytes": 5659
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/fb/5dcf896b31b6be4f1e61a764433bd15e3743d6",
+      "bytes": 3563
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/fb/a4d0b634b26138e9ab8b79036e987d0f3ff115",
+      "bytes": 4479
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/ff/c6f2f86eed18221f88c9d32a7e5039a1119d46",
+      "bytes": 3482
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/info/packs",
+      "bytes": 54
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/pack/multi-pack-index",
+      "bytes": 772792
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/pack/pack-453fda93aba306d2583a23ffa6c261ed1f4c704e.idx",
+      "bytes": 772696
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/pack/pack-453fda93aba306d2583a23ffa6c261ed1f4c704e.pack",
+      "bytes": 69335281
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/objects/pack/pack-453fda93aba306d2583a23ffa6c261ed1f4c704e.rev",
+      "bytes": 110284
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/refs/codex/turn-diffs/captures/1791148913105/559a152e-2f31-4680-a4dd-8fc822aa6c8f/base",
+      "bytes": 41
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/refs/codex/turn-diffs/checkpoints/c63f773e6ff1245fbfe312406444e044/143d5a0956f32fd83ac808fd334987e0/1791148313519/7233cf29-1391-4359-8eb2-4d28b5549383",
+      "bytes": 41
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/refs/heads/colora_research_framework",
+      "bytes": 41
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/refs/heads/main",
+      "bytes": 41
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/refs/heads/playground",
+      "bytes": 41
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/refs/remotes/origin/HEAD",
+      "bytes": 30
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/refs/remotes/origin/main",
+      "bytes": 41
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/worktrees/colora_research_framework/COMMIT_EDITMSG",
+      "bytes": 71
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/worktrees/colora_research_framework/HEAD",
+      "bytes": 42
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/worktrees/colora_research_framework/ORIG_HEAD",
+      "bytes": 41
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/worktrees/colora_research_framework/commondir",
+      "bytes": 6
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/worktrees/colora_research_framework/gitdir",
+      "bytes": 102
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/worktrees/colora_research_framework/index",
+      "bytes": 5278303
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/worktrees/colora_research_framework/logs/HEAD",
+      "bytes": 4190
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/worktrees/distributed-portfolio-playground/FETCH_HEAD",
+      "bytes": 133
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/worktrees/distributed-portfolio-playground/HEAD",
+      "bytes": 27
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/worktrees/distributed-portfolio-playground/ORIG_HEAD",
+      "bytes": 41
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/worktrees/distributed-portfolio-playground/commondir",
+      "bytes": 6
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/worktrees/distributed-portfolio-playground/gitdir",
+      "bytes": 65
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/worktrees/distributed-portfolio-playground/index",
+      "bytes": 17718
+    },
+    {
+      "path": "distributed-portfolio-learning/.git/worktrees/distributed-portfolio-playground/logs/HEAD",
+      "bytes": 322
+    },
+    {
+      "path": "distributed-portfolio-learning/src/hypergraph_portfolio/__init__.py",
+      "bytes": 4574
+    },
+    {
+      "path": "distributed-portfolio-learning/src/hypergraph_portfolio/bayesian_lora_adapter.py",
+      "bytes": 9708
+    },
+    {
+      "path": "distributed-portfolio-learning/src/hypergraph_portfolio/collaborative_lora.py",
+      "bytes": 3345
+    },
+    {
+      "path": "distributed-portfolio-learning/src/hypergraph_portfolio/collaborative_lora_layers.py",
+      "bytes": 2001
+    },
+    {
+      "path": "distributed-portfolio-learning/src/hypergraph_portfolio/consensus.py",
+      "bytes": 8148
+    },
+    {
+      "path": "distributed-portfolio-learning/src/hypergraph_portfolio/hypergraph.py",
+      "bytes": 7176
+    },
+    {
+      "path": "distributed-portfolio-learning/src/hypergraph_portfolio/mean_variance.py",
+      "bytes": 4446
+    },
+    {
+      "path": "distributed-portfolio-learning/src/hypergraph_portfolio/pricing.py",
+      "bytes": 4410
+    },
+    {
+      "path": "distributed-portfolio-learning/src/hypergraph_portfolio/primal_dual.py",
+      "bytes": 9616
+    },
+    {
+      "path": "distributed-portfolio-learning/src/hypergraph_portfolio/uncertainty.py",
+      "bytes": 88819
+    },
+    {
+      "path": "distributed-portfolio-learning/src/hypergraph_portfolio_lab.egg-info/PKG-INFO",
+      "bytes": 133997
+    },
+    {
+      "path": "distributed-portfolio-learning/src/hypergraph_portfolio_lab.egg-info/SOURCES.txt",
+      "bytes": 1962
+    },
+    {
+      "path": "distributed-portfolio-learning/src/hypergraph_portfolio_lab.egg-info/dependency_links.txt",
+      "bytes": 1
+    },
+    {
+      "path": "distributed-portfolio-learning/src/hypergraph_portfolio_lab.egg-info/requires.txt",
+      "bytes": 92
+    },
+    {
+      "path": "distributed-portfolio-learning/src/hypergraph_portfolio_lab.egg-info/top_level.txt",
+      "bytes": 21
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/build_phase13_data_scope.py",
+      "bytes": 13025
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/cloud/manage_gcp_execution.py",
+      "bytes": 4538
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/cloud/sharded_inference.py",
+      "bytes": 7595
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/figures/audit_comparison.png",
+      "bytes": 138734
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/figures/gics_etf_allocations.png",
+      "bytes": 211341
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/figures/three_asset_convergence.png",
+      "bytes": 359395
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/figures/uncertainty_allocations.png",
+      "bytes": 104664
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/freeze_new_prospective_event.py",
+      "bytes": 13198
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/report_collaborative_lora_pilot.py",
+      "bytes": 13346
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_audit_experiments.py",
+      "bytes": 11415
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_bayesian_allocation_value.py",
+      "bytes": 12589
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_bayesian_decision_value.py",
+      "bytes": 22898
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_bayesian_uncertainty_calibration.py",
+      "bytes": 14586
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_collaborative_lora_pilot.py",
+      "bytes": 21959
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_gics_etf.py",
+      "bytes": 7988
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase10_1_model_provenance_audit.py",
+      "bytes": 21397
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase10_2026_confirmation.py",
+      "bytes": 27172
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase10_2_checkpoint_recovery_audit.py",
+      "bytes": 12424
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase11_3_genuine_inference.py",
+      "bytes": 21196
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase11_4_uncertainty_metric_audit.py",
+      "bytes": 8795
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase11_replication.py",
+      "bytes": 29213
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase12_1_continuation_freeze.py",
+      "bytes": 19224
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase12_2_input_provenance_audit.py",
+      "bytes": 20002
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase12_prospective_evaluation.py",
+      "bytes": 42175
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase13_local_profile.py",
+      "bytes": 11888
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase13b_1_training_overlap_audit.py",
+      "bytes": 12164
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase13b_development_selection.py",
+      "bytes": 26960
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase13c_regime_evaluation.py",
+      "bytes": 41281
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase14_m16_mechanism.py",
+      "bytes": 44047
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase15_1_provenance_audit.py",
+      "bytes": 32640
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase15_incremental_uncertainty.py",
+      "bytes": 32392
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase16_1_audit.py",
+      "bytes": 32236
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase16_deterministic_control.py",
+      "bytes": 41980
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase17_clean_bayesian.py",
+      "bytes": 54325
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase18_clean_cohort_revalidation.py",
+      "bytes": 43323
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase4_decision_mapping.py",
+      "bytes": 37978
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase5_exposure_scaling.py",
+      "bytes": 49130
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase6_downside_signal.py",
+      "bytes": 12559
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase6_matched_exposure_timing.py",
+      "bytes": 45408
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase7_timing_robustness.py",
+      "bytes": 45238
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase8_1_accounting_audit.py",
+      "bytes": 37239
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase8_2_transaction_mechanics.py",
+      "bytes": 28576
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase8_3_metric_reconciliation.py",
+      "bytes": 35776
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase8_4_base_churn_diagnostic.py",
+      "bytes": 32318
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase8_cost_aware_timing.py",
+      "bytes": 42452
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase9_1_cohort_return_audit.py",
+      "bytes": 31272
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase9_audit_confirmation.py",
+      "bytes": 32823
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_phase9_cohort_stacking.py",
+      "bytes": 35849
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_three_asset.py",
+      "bytes": 8849
+    },
+    {
+      "path": "distributed-portfolio-learning/experiments/run_uncertainty_experiments.py",
+      "bytes": 8079
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_bayesian_lora_decision_value.py",
+      "bytes": 5275
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_bayesian_simulation.py",
+      "bytes": 6091
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_collaborative_lora.py",
+      "bytes": 3675
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_consensus.py",
+      "bytes": 2346
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_equivalence_reduction.py",
+      "bytes": 5253
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_hypergraph.py",
+      "bytes": 2207
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_mean_variance.py",
+      "bytes": 1720
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase10_1_model_provenance.py",
+      "bytes": 5485
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase10_2026_confirmation.py",
+      "bytes": 6347
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase10_2_checkpoint_recovery.py",
+      "bytes": 3492
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase11_1_freeze_audit.py",
+      "bytes": 4973
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase11_2_endpoint_reconciliation.py",
+      "bytes": 5575
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase11_3_genuine_inference.py",
+      "bytes": 4912
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase11_4_metric_semantic_audit.py",
+      "bytes": 4662
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase11_replication.py",
+      "bytes": 5722
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase12_1_continuation_freeze.py",
+      "bytes": 4989
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase12_2_input_provenance.py",
+      "bytes": 4888
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase12_3_event_ingestion.py",
+      "bytes": 7791
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase12_prospective_evaluation.py",
+      "bytes": 7926
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase13_cloud_execution.py",
+      "bytes": 5519
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase13a_data_scope.py",
+      "bytes": 7491
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase13b_1_training_overlap.py",
+      "bytes": 5358
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase13b_development_selection.py",
+      "bytes": 7046
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase13c_regime_evaluation.py",
+      "bytes": 5877
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase14_m16_mechanism.py",
+      "bytes": 5491
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase15_1_provenance_audit.py",
+      "bytes": 6930
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase15_incremental_uncertainty.py",
+      "bytes": 5808
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase16_1_audit.py",
+      "bytes": 6564
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase16_deterministic_control.py",
+      "bytes": 7066
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase17_clean_bayesian.py",
+      "bytes": 10572
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase18_clean_cohort_revalidation.py",
+      "bytes": 8831
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase4_decision_mapping.py",
+      "bytes": 9626
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase5_exposure_scaling.py",
+      "bytes": 6475
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase6_matched_exposure.py",
+      "bytes": 6120
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase7_falsification.py",
+      "bytes": 4834
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase8_1_accounting_audit.py",
+      "bytes": 8933
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase8_2_transaction_mechanics.py",
+      "bytes": 9781
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase8_3_metric_reconciliation.py",
+      "bytes": 5979
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase8_4_base_churn_diagnostic.py",
+      "bytes": 6675
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase8_cost_aware.py",
+      "bytes": 6570
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase9_1_cohort_return_audit.py",
+      "bytes": 8725
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase9_accounting_audit.py",
+      "bytes": 7757
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_phase9_cohort_stacking.py",
+      "bytes": 6465
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_pricing.py",
+      "bytes": 2421
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_primal_dual.py",
+      "bytes": 2380
+    },
+    {
+      "path": "distributed-portfolio-learning/tests/test_uncertainty.py",
+      "bytes": 1878
+    },
+    {
+      "path": "distributed-portfolio-learning/pyproject.toml",
+      "bytes": 897
+    },
+    {
+      "path": "distributed-portfolio-learning/data/bayesian_lora/reconstructed_returns.csv",
+      "bytes": 5003155
+    },
+    {
+      "path": "distributed-portfolio-learning/artifacts/phase16_1_audit/regularization_selection.csv",
+      "bytes": 420
+    },
+    {
+      "path": "distributed-portfolio-learning/artifacts/phase17_clean_bayesian/training_manifest.csv",
+      "bytes": 1488
+    },
+    {
+      "path": "distributed-portfolio-learning/artifacts/phase9_cohort_stacking/signal_decay_by_horizon.csv",
+      "bytes": 648
+    },
+    {
+      "path": "distributed-portfolio-learning/artifacts/phase9_1_cohort_return_audit/signal_decay_normalized.csv",
+      "bytes": 675
+    },
+    {
+      "path": "distributed-portfolio-learning/artifacts/phase9_1_cohort_return_audit/canonical_phase9_table.csv",
+      "bytes": 3438
+    },
+    {
+      "path": "distributed-portfolio-learning/data/bayesian_lora/development/beta_0p003_seed_42_mc32_predictions.csv",
+      "bytes": 260351
+    },
+    {
+      "path": "distributed-portfolio-learning/data/bayesian_lora/development/beta_0p003_seed_123_mc32_predictions.csv",
+      "bytes": 260349
+    },
+    {
+      "path": "distributed-portfolio-learning/data/bayesian_lora/development/beta_0p003_seed_777_mc32_predictions.csv",
+      "bytes": 260889
+    },
+    {
+      "path": "distributed-portfolio-learning/data/bayesian_lora/holdout/beta_0p003_seed_42_mc32_predictions.csv",
+      "bytes": 189868
+    },
+    {
+      "path": "distributed-portfolio-learning/data/bayesian_lora/holdout/beta_0p003_seed_123_mc32_predictions.csv",
+      "bytes": 189815
+    },
+    {
+      "path": "distributed-portfolio-learning/data/bayesian_lora/holdout/beta_0p003_seed_777_mc32_predictions.csv",
+      "bytes": 190123
+    },
+    {
+      "path": "distributed-portfolio-learning/artifacts/phase18_clean_cohort_revalidation/preregistration.json",
+      "bytes": 10632
+    },
+    {
+      "path": "distributed-portfolio-learning/artifacts/phase18_clean_cohort_revalidation/preregistration.md",
+      "bytes": 3769
+    },
+    {
+      "path": "distributed-portfolio-learning/artifacts/phase18_clean_cohort_revalidation/provenance_audit.md",
+      "bytes": 4695
+    },
+    {
+      "path": "sibling-scripts/run_earnings_lora_baseline.py",
+      "bytes": 17798
+    },
+    {
+      "path": "hf/hub/models--ProsusAI--finbert/snapshots/4556d13015211d73dccd3fdd39d39232506f3e43/tokenizer_config.json",
+      "bytes": 252
+    },
+    {
+      "path": "hf/hub/models--ProsusAI--finbert/snapshots/4556d13015211d73dccd3fdd39d39232506f3e43/special_tokens_map.json",
+      "bytes": 112
+    },
+    {
+      "path": "hf/hub/models--ProsusAI--finbert/snapshots/4556d13015211d73dccd3fdd39d39232506f3e43/config.json",
+      "bytes": 758
+    },
+    {
+      "path": "hf/hub/models--ProsusAI--finbert/snapshots/4556d13015211d73dccd3fdd39d39232506f3e43/vocab.txt",
+      "bytes": 231508
+    },
+    {
+      "path": "hf/hub/models--ProsusAI--finbert/snapshots/4556d13015211d73dccd3fdd39d39232506f3e43/pytorch_model.bin",
+      "bytes": 437992753
+    }
+  ]
+}

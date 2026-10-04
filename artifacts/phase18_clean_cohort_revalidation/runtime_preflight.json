@@ -1,0 +1,6 @@
+{
+  "ten_batch_seconds": 6.116188707997935,
+  "estimated_total_seconds": 1466.1424592995354,
+  "device": "mps",
+  "batches_per_epoch": 375
+}

@@ -21,12 +21,13 @@ This checklist tracks the remaining non-experimental work required before extern
 ## References and literature positioning
 The current Markdown draft contains provisional author-year citations but no verified reference list in the paper package. Do not submit until every citation is backed by a complete bibliographic entry.
 
-- [ ] Verify the exact bibliographic record for Papastaikoudis et al. (2025).
-- [ ] Verify and add the cited Bayesian neural-network reference (Blundell et al., 2015).
-- [ ] Verify and add the cited LoRA reference (Hu et al., 2021).
-- [ ] Add directly relevant portfolio-execution / turnover / holding-period literature needed to position the contribution.
-- [ ] Add post-earnings announcement-drift literature only where the manuscript discusses that empirical motivation.
-- [ ] Check every in-text citation against the final reference list.
+- [x] Verify the exact bibliographic record for Papastaikoudis et al. (2025).
+- [x] Verify and add the cited Bayesian neural-network reference (Blundell et al., 2015).
+- [x] Correct and verify the LoRA conference citation as Hu et al. (2022).
+- [x] Add the closest portfolio-execution comparator: Gârleanu and Pedersen (2013).
+- [x] Add Bernard and Thomas (1989) only for post-earnings-announcement-drift motivation.
+- [x] Add Markowitz (1952) for the mean-variance foundation.
+- [x] Check every current in-text citation against the verified reference ledger.
 - [ ] Avoid novelty claims such as "first" unless the literature review establishes them.
 
 ## Reproducibility
@@ -39,7 +40,7 @@ The current Markdown draft contains provisional author-year citations but no ver
 ## Venue formatting
 A target journal has not yet been frozen, so venue-specific formatting should remain separate from scientific content.
 
-- [ ] Select target venue.
+- [x] Select target venue: **Quantitative Finance** (primary); *Mathematical Finance* retained as a more theory-intensive secondary option.
 - [ ] Apply its word/page limits, abstract length, heading format, citation style, figure-resolution rules, and supplementary-material policy.
 - [ ] Prepare anonymous/blinded version if required.
 - [ ] Prepare cover letter and required declarations.

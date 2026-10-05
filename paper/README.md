@@ -26,6 +26,9 @@ Overlapping cohort portfolios function as a **temporal regularization mechanism*
 | [`results_inventory.md`](./results_inventory.md) | Master inventory tracking primary Phase 20 evidence vs. evolutionary forensic/negative results. |
 | [`reproducibility.md`](./reproducibility.md) | Complete provenance manifest, environment details, git commits, seeds, and execution instructions. |
 | [`submission_audit.md`](./submission_audit.md) | Quantitative verification audit linking numerical statements to canonical artifacts. |
+| [`references.md`](./references.md) | Verified bibliography ledger and citation-role guardrails. |
+| [`target_venue.md`](./target_venue.md) | Target-journal decision and submission-positioning guidance. |
+| [`submission_checklist.md`](./submission_checklist.md) | Remaining non-experimental steps before external submission. |
 
 ## Core Scientific Finding Summary
 1. **Analytical Frontier**: Derived stylized expected utility $U(H) = \mu_0 \frac{1 - \rho^H}{H(1 - \rho)} - \frac{c \cdot \text{TO}_0}{H} - \frac{1}{2}\gamma(\sigma_0^2 + \frac{\sigma_1^2}{H})$, establishing monotonic comparative statics across friction, persistence, noise, alpha value, and risk aversion.

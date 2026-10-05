@@ -8,7 +8,7 @@ This document specifies the primary LaTeX/Markdown tables for the consolidated m
 
 ### Table 1: Primary Comparative Statics Confirmation (Phase 20)
 - **Source**: `artifacts/phase20_optimal_cohort_horizon/scientific_report.md`
-- **Columns**: Hypothesis, Theoretical Formula, Predicted Direction, Empirical Consistency (%), Statistical Confirmation
+- **Columns**: Hypothesis, Theoretical Formula, Predicted Direction, Simulation Consistency (%), Statistical Confirmation
 - **Rows**:
   - H1: Cost Monotonicity ($\partial H^* / \partial c \ge 0$) — 100.0% — Confirmed
   - H2: Persistence Monotonicity ($\partial H^* / \partial \rho \ge 0$, $\beta > 0$) — 90.0% — Confirmed
@@ -32,11 +32,11 @@ This document specifies the primary LaTeX/Markdown tables for the consolidated m
 - **Source**: `artifacts/phase20_optimal_cohort_horizon/empirical_sanity_mapping.json`
 - **Columns**: Parameter / Dimension, Empirical Event Strategy Value, Synthetic Grid Mapping, Simulated Optimal Horizon $H^*$, Economic Mechanism
 - **Rows**:
-  - Transaction Friction ($c$): 10 bps — $c = 10\text{ bps}$ — Favors $H \ge 2$ — Amortizes weekly rebalancing churn
-  - Predictive Signal Quality: Rank IC $\approx 0.05\text{--}0.06$ — $\beta \in [0.005, 0.010], \sigma_{\text{noise}} \ge 1.0$ — Favors $H \ge 2\text{--}4$ — Cancels transient ranking errors
-  - Information Persistence: $\rho \approx 0.50\text{--}0.75$ ($\tau_{1/2} \approx 1\text{--}2.4\text{ wks}$) — $\rho \in [0.50, 0.75]$ — Favors $H \ge 2\text{--}4$ — Alpha dilution is moderate
-  - Risk Aversion ($\gamma$): 1.0 — $\gamma = 1.0$ — Favors $H \ge 2\text{--}4$ — Dampens non-systematic tracking variance
-  - **Overall Empirical Synthesis**: Clean event strategy falls directly into the simulated $H^* \ge 2\text{--}4$ region.
+  - Transaction Friction ($c$): 10 bps — exact grid match — nearby weak/noisy synthetic cells typically select $H^* \in \{1,2\}$ — higher friction shifts preference toward longer horizons
+  - Predictive Signal Quality: Rank IC $\approx 0.05\text{--}0.06$ — descriptive comparison to weak/noisy synthetic cells only; no structural identification of $\beta$ or $\sigma_{\text{noise}}$
+  - Information Persistence: historical weeks 2–4 incremental IC $=0.0060$ with $p=0.105$ — no statistically established persistence parameter; any $\rho$ mapping is illustrative
+  - Risk Aversion ($\gamma$): 1.0 in the retrospective portfolio accounting — exact utility-parameter match
+  - **Overall Empirical Synthesis**: Phase 18/19 motivate the high-churn, weak-signal regime; they do not independently estimate the Phase 20 synthetic frontier.
 
 ---
 

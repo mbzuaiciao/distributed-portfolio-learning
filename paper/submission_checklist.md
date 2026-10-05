@@ -17,7 +17,25 @@
 
 ---
 
-## 2. Figure Package Audit
+## 2. Manuscript Content & Scientific Guardrails
+
+- [x] Scope the headline contribution as analytical + controlled synthetic, with retrospective empirical motivation.
+- [x] Define "optimal horizon" as utility-maximizing within the frozen candidate set $H \in \{1, 2, 4, 8, 13\}$ and model.
+- [x] Correct Phase 20 calendar length to 156 weeks and seed schedule to 200001–200030.
+- [x] Qualify the Phase 18/19-to-Phase 20 mapping as descriptive rather than structurally identified.
+- [x] Remove causal wording that treats the retrospective $H=4$ result as proof of the synthetic mechanism.
+- [x] Perform a final line edit after figures and tables are inserted.
+- [x] Disclose author names, affiliations, acknowledgements, disclosures, and data/code availability statements in `declarations.md`.
+- [x] Confirm no claims of:
+  - prospective or live trading validation;
+  - statistically established multi-week post-earnings alpha in Phase 18;
+  - universal superiority of $H=4$;
+  - structural identification of Phase 18/19 parameters inside the Phase 20 DGP;
+  - real-world global optimality outside the frozen model, utility, and candidate horizon set.
+
+---
+
+## 3. Figure Package Audit
 
 All figures are compiled in vector PDF and 300 DPI PNG formats in `paper/figures/` and mirrored in `paper/submission/figures/`:
 
@@ -30,13 +48,14 @@ All figures are compiled in vector PDF and 300 DPI PNG formats in `paper/figures
 - [x] **Figure 3**: `fig3_phase20_synthetic_horizon_frontier.{pdf,png}`
   - *Content*: 2D phase diagrams of utility-maximizing horizon $H^* \in \{1, 2, 4, 8, 13\}$ across $(c, \rho)$ with exact-null tie baseline.
   - *Type*: Controlled synthetic simulation ($N=30, T=156, S=30, 360{,}000$ evaluations).
+  - *Labeling*: Explicitly labeled as a controlled simulation frontier, not an empirical frontier.
 - [x] **Figure 4**: `fig4_retrospective_empirical_motivation.{pdf,png}`
   - *Content*: 4-panel retrospective empirical evidence (Phase 18 signal decay, turnover reduction, volatility reduction, and Phase 19 synthetic alpha reversal).
-  - *Type*: Retrospective empirical motivation and reconciliation.
+  - *Type*: Retrospective empirical motivation and reconciliation (not independent confirmation).
 
 ---
 
-## 3. Table Package Audit
+## 4. Table Package Audit
 
 All tables are compiled in LaTeX (`.tex`) and Markdown (`.md`) formats in `paper/tables/` and mirrored in `paper/submission/tables/`:
 
@@ -49,23 +68,32 @@ All tables are compiled in LaTeX (`.tex`) and Markdown (`.md`) formats in `paper
 
 ---
 
-## 4. Scientific Guardrail & Terminology Verification
+## 5. References and Literature Positioning
 
-- [x] **Synthetic vs. Empirical Separation**:
-  - Phase 20 is strictly designated as a controlled synthetic simulation under linear-Gaussian dynamics.
-  - Phases 18 and 19 are strictly designated as retrospective empirical motivation and stress tests.
-  - No prospective trading claims or live out-of-sample claims are made.
-- [x] **Definition of "Optimal Horizon"**:
-  - Defined explicitly in the Introduction, Abstract, and Section 3 as the utility-maximizing horizon within the discrete candidate set $H \in \{1, 2, 4, 8, 13\}$ under the specified portfolio rule, linear cost model, and mean-variance utility.
-- [x] **Accounting Closure & Exact-Null Audit**:
-  - Max closure error $3.144\times 10^{-17} < 10^{-12}$.
-  - Null baseline ($\beta=0$) invariant discrepancy $0.00\text{e}+00$ across all 7 invariants.
-- [x] **Limitations Fully Disclosed**:
-  - Section 9 details all 10 boundary conditions (synthetic idealizations, linear costs, no capacity constraints, static horizons, discrete candidate grid, finite-memory truncation, reconstructed event returns, retrospective scope, live execution omissions, heuristic context).
+- [x] Verify the exact bibliographic record for Papastaikoudis et al. (2025).
+- [x] Verify and add the cited Bayesian neural-network reference (Blundell et al., 2015).
+- [x] Correct and verify the LoRA conference citation as Hu et al. (2022).
+- [x] Add the closest portfolio-execution comparator: Gârleanu and Pedersen (2013, 2016).
+- [x] Add Bernard and Thomas (1989, 1990) only for post-earnings-announcement-drift motivation.
+- [x] Add Markowitz (1952) and Merton (1969, 1971) for the theoretical portfolio execution foundations.
+- [x] Add Jegadeesh and Titman (1993, 2001) for empirical staggered cohort momentum precedents.
+- [x] Check every current in-text citation against the verified reference ledger.
+- [x] Avoid unsupported novelty claims such as "first" or "universal".
 
 ---
 
-## 5. ScholarOne Submission Portal Placeholders
+## 6. Reproducibility & Computational Integrity
+
+- [x] Recenter `paper/reproducibility.md` on the frozen Phase 20 experiment.
+- [x] Verify all 30 raw CSV artifact hashes across Phases 18, 19, and 20 are unchanged.
+- [x] Re-run full test suite (`pytest`, 305 tests passed).
+- [x] Re-run linter (`ruff check .`, 0 errors).
+- [x] Confirm accounting closure error $\le 3.144\times 10^{-17} < 10^{-12}$.
+- [x] Confirm exact-null ($\beta=0$) discrepancy $0.00\text{e}+00$ across all 7 invariants.
+
+---
+
+## 7. ScholarOne Submission Portal Placeholders
 
 The following items are prepared for entry during the online submission workflow:
 

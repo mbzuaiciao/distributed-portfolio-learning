@@ -1,117 +1,99 @@
 # Claims Ledger & Rhetorical Guardrails
 
-This ledger records every empirical and methodological claim in the paper, specifying its verification status, supporting artifacts, provenance classification, allowed scientific wording, forbidden overclaims, and explicit scope boundaries.
+This ledger records every primary and contextual empirical and methodological claim in the paper, specifying its verification status, supporting artifacts, provenance classification, allowed scientific wording, forbidden overclaims, and explicit scope boundaries.
 
 ---
 
-## 1. Methodological & Forensic Claims
+## 1. Primary Theoretical & Synthetic Claims (Phase 20)
 
-### Claim 1.1: Target Outcome Leakage in Historical Training Text
-- **Status**: **SUPPORTED (CONFIRMED BY CODE AUDIT)**
+### Claim 1.1: Cohort Stacking Acts as a Temporal Regularizer
+- **Status**: **CONFIRMED (ANALYTICALLY DERIVED & SYNTHETICALLY VALIDATED)**
 - **Supporting Artifacts**:
-  - `artifacts/phase16_1_audit/input_leakage_audit.json`
-  - `artifacts/phase17_clean_bayesian/legacy_checkpoint_status.json`
-  - `experiments/run_phase11_replication.py:L132`
-  - `experiments/run_phase16_deterministic_control.py:L427`
-- **Data Provenance**: Forensic Code Audit
-- **Scope Limitation**: Applies strictly to the historical Phase 11 and Phase 16 training scripts within this codebase where text serialization inadvertently included `move_1d`.
+  - `artifacts/phase20_optimal_cohort_horizon/analytical_derivation.md`
+  - `artifacts/phase20_optimal_cohort_horizon/scientific_report.md`
+  - `artifacts/phase20_optimal_cohort_horizon/outcome_classification.json`
+- **Data Provenance**: Valid Clean Synthetic DGP & Closed-Form Derivations
+- **Scope Limitation**: Applies to overlapping rolling cohort portfolios with discrete rebalancing and decaying predictive signals.
 - **Allowed Wording**:
-  - *"The historical training and validation data pipeline inadvertently concatenated continuous post-event price realizations (`. 1-day move was ` + `move_1d`) into the model input text."*
-  - *"Because the downstream binary target $y_i$ was deterministically defined by thresholding `move_1d`, the model had access to ground-truth outcome tokens during training, producing artificial validation AUROC ($> 0.999$) followed by out-of-sample distribution collapse when evaluated on clean text."*
+  - *"Cohort stacking acts as a temporal regularization mechanism that balances the responsiveness to fresh predictive information against execution turnover, transaction friction, and estimation noise."*
+  - *"Overlapping cohort portfolios reduce portfolio turnover proportionally to $1/H$ and diversify cross-cohort entry variance, but incur an alpha dilution penalty as decaying signals age."*
 - **Forbidden Overclaims**:
-  - *"Target leakage was the sole reason why Bayesian uncertainty failed to deliver portfolio gains."*
-  - *"All past findings in the broader literature are invalidated by target leakage."*
-  - *"The leak was intentional."*
+  - *"Cohort stacking creates new predictive information out of nothing."*
+  - *"Cohort stacking is universally superior to single-period rebalancing regardless of signal strength or friction."*
 
 ---
 
-### Claim 1.2: Mechanical Distortion in Spearman Reliability Correlation
-- **Status**: **SUPPORTED (ANALYTICALLY DERIVED & EMPIRICALLY CONFIRMED)**
+### Claim 1.2: Monotonic Optimal Horizon Comparative Statics (H1–H5)
+- **Status**: **CONFIRMED (PREREGISTERED SIMULATION, 360,000 EVALUATIONS)**
 - **Supporting Artifacts**:
-  - `artifacts/phase16_1_audit/within_class_reliability.csv`
-  - `artifacts/phase17_clean_bayesian/forecast_metrics.csv`
-- **Data Provenance**: Valid Clean Primary & Analytical Derivation
-- **Scope Limitation**: Applies to binary classification where labels are imbalanced and predicted probabilities undergo shrinkage toward the majority class (e.g., $p < 0.5$).
+  - `artifacts/phase20_optimal_cohort_horizon/experiment_matrix.csv`
+  - `artifacts/phase20_optimal_cohort_horizon/horizon_optimum_table.csv`
+  - `artifacts/phase20_optimal_cohort_horizon/outcome_classification.json`
+- **Data Provenance**: Controlled Synthetic Factorial Simulation across 30 seeds
+- **Verified Consistency**:
+  - H1 (Cost Monotonicity, $\partial H^* / \partial c \ge 0$): **100.0%**
+  - H2 (Persistence Monotonicity, $\partial H^* / \partial \rho \ge 0$): **90.0%** (for $\beta > 0$)
+  - H3 (Short-Lived Alpha Reversal, $\partial H^* / \partial \beta \le 0$ under fast decay): **100.0%**
+  - H4 (Noise Regularization, $\partial H^* / \partial \sigma_{\text{noise}} \ge 0$): **100.0%**
+  - H5 (Risk Aversion Preference, $\partial H^* / \partial \gamma \ge 0$): **100.0%**
 - **Allowed Wording**:
-  - *"The apparent pooled Spearman rank correlation between predictive entropy and absolute prediction error ($\rho \approx 0.60$) is largely mechanically induced by the shared algebraic dependence of both quantities on $p$ and by class composition."*
-  - *"Because entropy and absolute error are both deterministic functions of $p$, within-class correlations for probabilities below $0.5$ are mechanically forced to $+1.0000$ for the non-downside class ($y=0$, representing $80\%$ of events) and $-1.0000$ for the downside class ($y=1$). The pooled metric is therefore not independent evidence of learned error awareness."*
+  - *"The optimal cohort holding horizon $H^*$ increases monotonically with transaction costs, signal half-life, observation noise, and risk aversion, while strong, rapidly decaying alpha favors shorter, more responsive horizons."*
 - **Forbidden Overclaims**:
-  - *"The correlation is entirely a meaningless artifact in all settings."*
-  - *"Predictive entropy has zero relationship to model accuracy."*
+  - *"The comparative statics hold identically in every single individual seed without exception."* (H2 holds across 90% of slices, with minor plateau ties).
 
 ---
 
-### Claim 1.3: Baseline Competitiveness of the Constant Base-Rate Null
-- **Status**: **SUPPORTED (EMPIRICALLY CONFIRMED)**
+### Claim 1.3: Machine-Precision Accounting Closure & Exact-Null Invariant
+- **Status**: **CONFIRMED (MACHINE-PRECISION AUDIT)**
 - **Supporting Artifacts**:
-  - `artifacts/phase16_1_audit/base_rate_control.csv`
-  - `artifacts/phase17_clean_bayesian/forecast_metrics.csv`
-- **Data Provenance**: Valid Clean Primary
-- **Scope Limitation**: Evaluated on binary 1-day earnings downside classification ($20\%$ base rate) using minimal clean metadata inputs across 2022–2025.
+  - `artifacts/phase20_optimal_cohort_horizon/null_regime_invariant_audit.md`
+  - `artifacts/phase20_optimal_cohort_horizon/null_regime_invariant_audit.json`
+  - `artifacts/phase20_optimal_cohort_horizon/outcome_classification.json`
+- **Data Provenance**: Exhaustive Invariant Audit across all 288,000 pairwise cells and 72,000 null-regime cells
+- **Verified Metrics**:
+  - Maximum numerical closure error: $3.144 \times 10^{-17} \ll 10^{-12}$.
+  - Null regime ($\beta = 0.000$) maximum absolute discrepancy across 7 invariants: **0.00e+00**.
+  - All $\beta = 0$ cells classified as `Tie_1-2-4-8-13` with $p = 1.000$.
 - **Allowed Wording**:
-  - *"A zero-parameter constant base-rate predictor ($p_i \equiv 0.20$) achieves an out-of-sample Brier score of $0.16000$ and zero calibration error across the clean 2022–2025 regimes."*
-  - *"Neither regularized deterministic LoRA ($\text{Brier} = 0.16079$) nor Bayesian LoRA ($\text{Brier} = 0.15987$) demonstrates substantial scoring-rule improvement over predicting the training prevalence unconditionally on this minimal input representation."*
+  - *"Accounting closure between utility differences, gross return deltas, turnover cost savings, and risk differentials holds to machine precision ($3.14\times 10^{-17}$)."*
+  - *"Under constant uniform weighting ($\beta = 0.000$), rebalancing turnover is identically zero, producing an exact mathematical tie across all evaluated horizons."*
 - **Forbidden Overclaims**:
-  - *"Machine learning is universally incapable of beating the base rate in finance."*
-  - *"Pre-trained language models contain zero financial signal."*
+  - *"Stacking at $H \ge 4$ dominates under transaction friction when weights are time-invariant."* (This claim was falsified; friction only advantages stacking when base weights churn).
 
 ---
 
-## 2. Model Comparison & Forecasting Claims
+## 2. Empirical Reconciliation Claims (Phases 18 & 19)
 
-### Claim 2.1: Clean Bayesian vs. Deterministic Out-of-Sample Performance
-- **Status**: **SUPPORTED (STATISTICALLY BOUNDED)**
+### Claim 2.1: Empirical $H=4$ Survival was an Architectural Effect
+- **Status**: **SUPPORTED (CLEAN EMPIRICAL REVALIDATION & STRESS TESTING)**
 - **Supporting Artifacts**:
-  - `artifacts/phase17_clean_bayesian/forecast_metrics.csv`
-  - `artifacts/phase17_clean_bayesian/bootstrap_intervals.csv`
-  - `artifacts/phase17_clean_bayesian/equivalence_analysis.csv`
-- **Data Provenance**: Valid Clean Primary ($N_{\text{train}}=11,985$, $N_{\text{val}}=2,116$, $N_{\text{test}}=12,300$)
-- **Scope Limitation**: Specifically bounded to FinBERT with rank-16 LoRA on query/value projections predicting 1-day earnings downside from minimal metadata inputs.
+  - `artifacts/phase18_clean_cohort_revalidation/scientific_report.md`
+  - `artifacts/phase19_architecture_signal_stress_test/scientific_report.md`
+  - `artifacts/phase20_optimal_cohort_horizon/empirical_sanity_mapping.json`
+- **Data Provenance**: Quarterly earnings event study (2022–2025) and architecture stress tests
 - **Allowed Wording**:
-  - *"Under this earnings-event prediction setup, dataset, label construction, FinBERT/LoRA architecture, and minimal clean input representation, Bayesian LoRA achieves a modest improvement in discriminative ability over regularized deterministic LoRA ($\text{AUROC} = 0.5253$ vs. $0.5131$, mean difference $+0.012$, $95\%\text{ CI: } [+0.003, +0.021]$)."*
-  - *"Proper scoring rules (Brier score and log loss) were practically equivalent between Bayesian posterior-mean LoRA and regularized deterministic LoRA under preregistered equivalence margins ($\Delta \text{Brier} = -0.00092$, $95\%\text{ CI: } [-0.00115, -0.00070]$; $\Delta \text{LogLoss} = -0.00324$, $95\%\text{ CI: } [-0.00411, -0.00246]$)."*
-  - *"Both architectures remain weak predictors of 1-day post-earnings price return direction on this clean metadata representation."*
+  - *"In clean empirical revalidation on uncompromised metadata, residual post-earnings predictive alpha across weeks 2–4 was statistically insignificant (residual IC $= 0.0060, p=0.105$)."*
+  - *"Nevertheless, multi-week cohort stacking ($H=4$) delivered robust turnover reductions ($-74\%$) and volatility reductions ($-66\%$) that generalized across empirical, random, constant, and synthetic signal regimes."*
+  - *"Mapping empirical parameters ($c = 10\text{ bps}$, Rank IC $\approx 0.05$, $\tau_{1/2} \approx 1\text{--}2.4\text{ wks}$) into the synthetic phase diagram confirms that $H=4$ was optimal due to execution cost amortization and noise smoothing rather than persistent alpha."*
 - **Forbidden Overclaims**:
-  - *"Bayesian LoRA clearly dominates deterministic LoRA."*
-  - *"Deterministic LoRA universally outperforms Bayesian LoRA."*
-  - *"Bayesian LoRA has zero value for financial NLP."*
-  - *"Bayesian LoRA is proven to be useless."*
+  - *"We have discovered a high-capacity, live-trading alpha strategy that beats the market."*
+  - *"The empirical results constitute independent prospective confirmation of the Phase 20 frontier."* (Empirical data is retrospective only).
 
 ---
 
-### Claim 2.2: Computational Redundancy of Monte Carlo Posterior Sampling (MC32)
-- **Status**: **SUPPORTED (STATISTICALLY EQUIVALENT & EXPERIMENTALLY BOUNDED)**
-- **Supporting Artifacts**:
-  - `artifacts/phase17_clean_bayesian/equivalence_analysis.csv`
-  - `artifacts/phase17_clean_bayesian/compute_cost.csv`
-  - `artifacts/phase17_clean_bayesian/bootstrap_intervals.csv`
-- **Data Provenance**: Valid Clean Primary
-- **Scope Limitation**: Applies to inference-time evaluation of the trained variational Bayesian LoRA model on this dataset.
-- **Allowed Wording**:
-  - *"For this task, dataset, and trained model, 32-draw Monte Carlo posterior weight sampling was practically equivalent to single-pass posterior-mean inference under preregistered equivalence margins ($\Delta \text{AUROC} = -0.00028$, $\Delta \text{Brier} = +0.00001$, $\Delta \text{LogLoss} = +0.00003$, $\Delta \text{ECE} = +0.00022$)."*
-  - *"Because MC32 incurs an inference latency penalty of roughly $30\times$ ($241.0\text{ ms/event}$ vs. $7.9\text{ ms/event}$) with no measurable improvement in calibration or scoring accuracy, test-time MC sampling was computationally redundant in this experiment."*
-- **Forbidden Overclaims**:
-  - *"We prove Monte Carlo sampling is identical to the posterior mean."*
-  - *"Monte Carlo sampling is always useless in deep learning."*
-  - *"Bayesian posterior sampling can never provide value in any domain."*
+## 3. Quarantined Contextual & Forensic Claims (Phases 11–17)
 
----
+### Claim 3.1: Target Outcome Leakage in Historical Training Text
+- **Status**: **CONFIRMED (FORENSIC CODE AUDIT)**
+- **Supporting Artifacts**: `artifacts/phase16_1_audit/input_leakage_audit.json`
+- **Role in Paper**: Contextual background explaining how the research inquiry was redirected away from model complexity toward execution architecture.
 
-## 3. Economic & Portfolio Claims (Secondary Evidence)
+### Claim 3.2: Mechanical Distortion in Spearman Reliability Metrics
+- **Status**: **CONFIRMED (ANALYTICAL DERIVATION & CLEAN AUDIT)**
+- **Supporting Artifacts**: `artifacts/phase16_1_audit/within_class_reliability.csv`
+- **Role in Paper**: Methodological finding explaining why predictive entropy appeared correlated with forecast error in earlier phases.
 
-### Claim 3.1: Downstream Portfolio Economic Value of Uncertainty Mappings
-- **Status**: **NOT SUPPORTED AS PRIMARY / SECONDARY EVIDENCE ONLY**
-- **Supporting Artifacts**:
-  - `artifacts/phase17_clean_bayesian/portfolio_sanity_check.csv`
-  - `artifacts/phase13c_regime_evaluation/regime_adjudication_summary.csv`
-  - `artifacts/phase14_m16_mechanism/mechanism_decomposition_summary.json`
-- **Data Provenance**: Valid Clean Secondary & Primary Sanity Check
-- **Scope Limitation**: Simplified Markowitz optimization ($H=4$, $\gamma=1.0$, $10\text{ bps}$ turnover) evaluated on clean post-training regimes.
-- **Allowed Wording**:
-  - *"Downstream portfolio experiments are treated as secondary evidence because the underlying clean point-prediction signal is inherently weak."*
-  - *"Across multiple historical regimes, no robust, ex-ante beneficial portfolio policy based on asset-level or portfolio-level Bayesian uncertainty adjustments was established."*
-  - *"In clean unadjusted Markowitz portfolio simulation ($M_0$), Clean Deterministic LoRA achieved higher Sharpe ($0.5580$ vs. $0.3360$) and higher utility ($+0.1392$ vs. $+0.0559$) than Bayesian Posterior Mean, demonstrating that uncertainty-aware adjustments did not translate into clean economic gains in this setting."*
-- **Forbidden Overclaims**:
-  - *"Uncertainty-aware portfolio optimization is fundamentally flawed."*
-  - *"Deterministic models are universally superior portfolio engines."*
-  - *"Bayesian methods can never improve financial utility."*
+### Claim 3.3: Collaborative LoRA Pilot Closure
+- **Status**: **CONFIRMED NEGATIVE (PILOT EVALUATION)**
+- **Supporting Artifacts**: `docs/collaborative_lora_branch_closure.md`
+- **Role in Paper**: Transparent negative result establishing that heterogeneous specialist coordination failed continuation criteria.

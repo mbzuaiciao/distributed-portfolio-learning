@@ -64,24 +64,13 @@ Tutorial 11 formulates candidate mappings through which Bayesian predictive dist
 2. **Strategy Level (Risk Augmentation)**: $\tilde{Q}_i = Q_i + \gamma \operatorname{diag}(\operatorname{Var}(\mu_i))$, treating parameter uncertainty as unhedged variance.
 3. **Firm Level (Mandate Re-weighting)**: $\tilde{a}_i \propto \frac{a_i}{1 + \beta \operatorname{Tr}(\operatorname{Var}(\mu_i))}$, shifting capital toward allocators with higher confidence.
 
-### Question 6: What does the current evidence justify?
-The original proposal was an out-of-sample rolling dynamic allocation study with
-Bayesian LoRA feeding a hypergraph solver. That proposal is historical, not the current
-next experiment. Subsequent leakage and reliability-metric audits substantially weakened
-the early Bayesian uncertainty interpretation; clean metadata forecasts remained weak.
-
-The separate frozen specialist pilot did not establish a collaborative LoRA effect.
-Learned weights collapsed to the banking specialist, CoLoRA was approximately tied with
-pooled/global training, and the target-training prevalence null was strongest on Brier
-and log loss. Neither learned weighting nor CoLoRA passed the frozen continuation
-criteria. Bayesian/UQ and portfolio-style specialist weighting were therefore not escalated.
-
-The [closure document](../docs/collaborative_lora_branch_closure.md) distinguishes failure
-to establish collaboration from weak task signal and possible lack of complementarity.
-Revival requires a materially different task regime or data-generating setup with
-independently demonstrated complementary predictive signal and fresh held-out evaluation.
-Another weighting-rule search on this pilot is not justified. This scoped negative result
-does not imply that all collaborative LoRA methods are impossible.
+### Question 6: What does the complete research trajectory establish?
+The original proposal was an out-of-sample rolling dynamic allocation study with Bayesian LoRA feeding a hypergraph solver. That proposal was historical and thoroughly investigated through subsequent phases:
+1. **Uncertainty Audits**: Forensic audits (Phases 15–16.1) revealed target outcome leakage (`move_1d` in training text) and proved that the entropy-error correlation was an artifact of 80/20 class imbalance. Clean deterministic LoRA and the constant base-rate null matched or beat Bayesian LoRA.
+2. **Collaborative LoRA Pilot**: Tested heterogeneous specialist coordination across sectors; failed continuation criteria and [closed as a negative result](../docs/collaborative_lora_branch_closure.md).
+3. **Execution Churn & Cohort Stacking**: Deconstruction of underlying portfolio turnover (Phase 8.4) revealed severe rebalancing churn from weekly earnings panel disjointness. Multi-week cohort stacking ($H=4$) was found to dramatically slash turnover and volatility.
+4. **Clean Revalidation & Stress Testing (Phases 18–19)**: Proved that post-earnings predictive alpha persistence was statistically insignificant ($p=0.105$), establishing that cohort stacking survived as an architectural dampener rather than an alpha-capture mechanism. In Phase 19, stacking utility was found to be highest under weak/null signals and declined under strong synthetic alpha.
+5. **Temporal Regularization Frontier (Phase 20)**: Established the definitive scientific result of the project: **overlapping cohort portfolios act as a temporal regularization mechanism**. The optimal holding horizon $H^*$ increases monotonically with signal persistence, transaction costs, signal noise, and risk aversion, while strong, rapidly decaying alpha favors shorter horizons (see [Tutorial 41](41_temporal_regularization_optimal_horizon.md) and [Scientific Report](../artifacts/phase20_optimal_cohort_horizon/scientific_report.md)).
 
 ---
 

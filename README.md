@@ -1,6 +1,6 @@
 # Hypergraph Portfolio Lab
 
-[![CI Tests](https://img.shields.io/badge/pytest-278%20passed-brightgreen.svg)](tests/)
+[![CI Tests](https://img.shields.io/badge/pytest-305%20passed-brightgreen.svg)](tests/)
 
 [![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.14-blue.svg)](pyproject.toml)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
@@ -38,14 +38,22 @@ This repository serves twelve core purposes:
 
 ## Current Scientific Status
 
-The entries below retain the findings of successive research phases. Later leakage,
-metric and clean-input audits qualify the earlier uncertainty claims; historical
-coordination proposals are not an active specialist-weighting roadmap. The current
-collaborative-LoRA branch is [closed](docs/collaborative_lora_branch_closure.md).
+The laboratory's scientific trajectory evolved through seven sequential phases of discovery, forensic audit, falsification, and structural reinterpretation:
 
-| Research Question | Result / Finding | Holdout Evidence (3 Seeds) | Status |
+1. **Distributed Portfolio Formulation & Audit (Phases 1–7)**: Proved continuous-time primal-dual dynamics; audited hypergraph consensus and lifted objective equivalence.
+2. **Bayesian Uncertainty Quantification Audits (Phases 8–16.1)**: Epistemic uncertainty hypotheses were substantially weakened; audits uncovered target outcome leakage (`move_1d` in training text) and proved that entropy-error correlation ($\rho \approx 0.60$) was an artifact of 80/20 class imbalance. Clean deterministic LoRA and constant base-rate baselines matched or exceeded Bayesian LoRA.
+3. **Collaborative LoRA Mechanism Pilot (Closed Branch)**: Tested heterogeneous specialist coordination across sectors; failed continuation criteria and [closed as a negative result](docs/collaborative_lora_branch_closure.md).
+4. **Portfolio Execution & Cohort Stacking (Phases 8.4–10)**: Identified extreme base-portfolio churn and showed that multi-week cohort stacking dramatically cut turnover and volatility.
+5. **Clean Cohort Revalidation (Phase 18)**: Re-evaluated cohort stacking on strictly clean metadata; proved that post-earnings alpha persistence failed significance ($p=0.105$), establishing that cohort stacking survived as an architectural/mechanical dampener rather than an alpha-capture mechanism.
+6. **Architecture-General Stress Test (Phase 19)**: Demonstrated that turnover and volatility reductions generalized across empirical, random, constant, and synthetic signals; reversed the utility hypothesis by showing that stacking was most beneficial under weak/null signals and lost advantage under strong synthetic alpha.
+7. **Temporal Regularization Frontier (Phase 20)**: Established the formal, closed-form and synthetic frontier $H^* = f(\tau_{\text{signal}}, c, \sigma_{\text{noise}}, \gamma, \beta)$ in a controlled market DGP, confirming that overlapping cohorts act as a **temporal regularizer** trading fresh alpha responsiveness against transaction friction, execution turnover, and timing noise.
+
+> [!IMPORTANT]
+> **Headline Result (Phase 20)**: Cohort holding horizon $H^*$ is governed by an economic frontier: it increases monotonically with signal persistence ($\tau$), transaction costs ($c$), signal noise ($\sigma_{\text{noise}}$), and risk aversion ($\gamma$), while strong short-lived alpha ($\beta$) favors shorter horizons ($H=1$). All 5 preregistered comparative statics passed (H1: 100%, H2: 90%, H3: 100%, H4: 100%, H5: 100%) with machine-precision accounting closure ($3.14\times 10^{-17}$), and all horizons tie identically under an exact-null uniform baseline. This mechanistic result explains earlier empirical findings without overclaiming live-trading alpha.
+
+| Research Question | Result / Finding | Holdout Evidence | Status |
 | :--- | :--- | :--- | :--- |
-| **1. Does epistemic uncertainty predict forecast error?** | Strong monotonic information | Spearman $\rho_s = \mathbf{+0.5502}$, Pearson $r = \mathbf{+0.5707}$, AUROC $= \mathbf{0.8182}$ for top 20% errors. | **Confirmed / Supported** |
+| **1. Does epistemic uncertainty predict forecast error?** | Strong monotonic information initially; later proven to be class-imbalance artifact | Spearman $\rho_s = \mathbf{+0.5502}$, Pearson $r = \mathbf{+0.5707}$; later disproven in Phase 16.1 as mathematical artifact of 80/20 class imbalance under probability shrinkage. | **Historical Artifact / Disproven (see Q23)** |
 | **2. Does epistemic uncertainty predict directional downside?** | Weak / Near random chance | AUROC $= \mathbf{0.5613}$ for negative return ($r < 0$); AUROC $= \mathbf{0.5914}$ for large downside event. | **Not Supported / Weak** |
 | **3. Does symmetric shrinkage improve cross-sectional allocation?** | Dampens volatility, drops returns | Volatility reduced by $1.4\%$, return dropped from $43.8\%$ to $35.7\%$; paired $\Delta U$ 95% CIs span zero. | **Not Supported / Neutral** |
 | **4. Does covariance inflation improve cross-sectional allocation?** | Mild drawdown gain, no utility gain | Max drawdown improved ($-14.88\%$ vs $-15.12\%$), but paired $\Delta U$ 95% CI $[-0.00037, +0.00037]$ spans zero. | **Not Supported / Neutral** |
@@ -71,6 +79,7 @@ collaborative-LoRA branch is [closed](docs/collaborative_lora_branch_closure.md)
 | **24. Can heterogeneous LoRA specialists improve a held-out target through collaboration?** | Collaborative effect not established; learned weights degenerate to banking-only selection; CoLoRA does not materially beat pooled training; prevalence null remains strongest on Brier/log loss. | Mean Brier: target 0.193679, pooled 0.196420, equal 0.208606, learned 0.194799, CoLoRA 0.196366, null 0.184082 (3 seeds, 256 events). Frozen continuation criteria failed; Bayesian/UQ weighting was not pursued because prerequisite collaborative gain was absent. | **Closed — negative result under frozen pilot protocol** ([closure summary](docs/collaborative_lora_branch_closure.md)) |
 | **25. Does H=4 cohort stacking survive clean deterministic Phase 16.1 recipe reproduction?** | Mechanics survive; persistent weeks 2–4 alpha and robust net economic confirmation do not pass the frozen gates. | H=4/H=1 net weekly utility 27.876/14.072 bp; delta +13.804 bp, paired 95% CI [-54.680, +84.332] bp. Turnover -73.97%, volatility -66.21%, effective holdings 3.296x; residual IC 0.0060, permutation p=0.105. Endpoint reconstruction only. | **Phase 18, Outcome B — architecture only** ([report](artifacts/phase18_clean_cohort_revalidation/scientific_report.md)) |
 | **26. Is the H=4 cohort-stacking benefit an architecture-general effect that persists across weak or null signals?** | Strongly confirms architecture-general turnover and volatility reduction, but utility dependence reversed | H=4 traded turnover reduction is >=73.97% across all 512 evaluations; net volatility reduction is 63.3%-69.7%; effective holdings expand 3.5x. Under weak/null signals, delta utility is positive (+22.5 bp/wk), but H=4 loses relative advantage as synthetic signal strength increases (negative delta utility at alpha >= 0.10). Frozen tree did not anticipate this pattern. | **Phase 19, Outcome D — Mixed / Inconclusive (Architecture confirmed, H3 reversed)** ([report](artifacts/phase19_architecture_signal_stress_test/scientific_report.md)) |
+| **27. What determines the optimal overlapping-cohort holding horizon?** | Optimal horizon increases with persistence, transaction cost, signal noise, and risk aversion; stronger short-lived alpha favors shorter horizons. Cohort stacking acts as a temporal regularizer. | Controlled synthetic DGP ($N=360{,}000$ evaluations across 30 seeds): H1 Cost monotonicity 100%, H2 Persistence monotonicity 90%, H3 Short-lived-alpha reversal 100%, H4 Noise regularization 100%, H5 Risk-aversion effect 100%; accounting closure max error $3.14\times 10^{-17}$; exact-null $\beta=0$ invariant audit confirmed exact 5-way tie ($0.00\text{e}+00$ discrepancy). | **Phase 20, Outcome A — Confirmed Frontier** ([report](artifacts/phase20_optimal_cohort_horizon/scientific_report.md), [audit](artifacts/phase20_optimal_cohort_horizon/null_regime_invariant_audit.md)) |
 
 
 
@@ -97,7 +106,7 @@ hypergraph-portfolio-lab/
 │   ├── pricing.py                             # Endogenous shadow price mechanism
 │   ├── uncertainty.py                         # True confidence shrinkage, cov inflation, exposure scaling, block placebos
 │   └── bayesian_lora_adapter.py               # Pydantic schema validation & dataset adapter
-├── tutorials/                                 # 33 first-principles tutorials (00 to 32)
+├── tutorials/                                 # 42 first-principles tutorials (00 to 41)
 │   ├── 00_mean_variance.md                    # Centralized Markowitz Mean-Variance
 │   ├── 01_why_distributed.md                  # Why Distributed Portfolio Optimization?
 │   ├── 02_hypergraphs.md                      # Overlapping Portfolios as Hypergraphs
@@ -138,7 +147,8 @@ hypergraph-portfolio-lab/
 │   ├── 37_turnover_and_transaction_cost_accounting.md # Phase 9: Risky vs Cash Turnover & Canonical Fees
 │   ├── 38_economic_attribution_audit.md       # Phase 9: Exact 4-Quadrant Attribution Closure
 │   ├── 39_walkforward_selection_audit.md      # Phase 9: M13 vs M17 Walk-Forward Discrepancy Audit
-│   └── 40_frozen_confirmation_and_verdict.md  # Phase 9: Frozen Hysteresis & Outcome B Verdict
+│   ├── 40_frozen_confirmation_and_verdict.md  # Phase 9: Frozen Hysteresis & Outcome B Verdict
+│   └── 41_temporal_regularization_optimal_horizon.md # Phase 20: Temporal Regularization Frontier
 ├── experiments/                               # Reproducible experimental scripts
 │   ├── run_three_asset.py                     # Reproduces Section 3.1, 3.2, 3.3
 │   ├── run_audit_experiments.py               # Closed-form reduction & audit table

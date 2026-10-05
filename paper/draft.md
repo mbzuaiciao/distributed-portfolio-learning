@@ -13,7 +13,7 @@ Quantitative investment strategies that translate periodic predictive signals in
 
 ## 1. Introduction
 
-A central dilemma in systematic asset management is managing the tension between forecast freshness and portfolio implementation drag. Machine learning models, factor scoring systems, and fundamental analysts frequently generate refreshed cross-sectional forecasts at high frequencies (e.g., daily or weekly). When an unconstrained mean-variance or rank-based optimizer translates these signals into target portfolios, the resulting asset weights exhibit severe instability. Rebalancing to track the latest forecast incurs heavy portfolio turnover, elevated transaction costs, and vulnerability to transient estimation noise.
+A central dilemma in systematic asset management is managing the tension between forecast freshness and portfolio implementation drag. Machine learning models, factor scoring systems, and fundamental analysts frequently generate refreshed cross-sectional forecasts at high frequencies (e.g., daily or weekly). When a Markowitz-style mean-variance (Markowitz, 1952) or rank-based optimizer translates these signals into target portfolios, the resulting asset weights can exhibit substantial instability. Rebalancing to track the latest forecast incurs heavy portfolio turnover, elevated transaction costs, and vulnerability to transient estimation noise.
 
 To dampen this churn, quantitative practitioners often employ heuristic execution rules, including trade bands, turnover penalties, or holding-period constraints. One practical execution rule is the **overlapping cohort portfolio** (or "cohort stacking"), in which staggered sub-portfolios are held concurrently. Under cohort stacking with holding horizon $H$, capital is partitioned into $H$ independent sub-portfolios. At each rebalancing date $t$, the oldest sub-portfolio (initiated at date $t-H$) is liquidated, and a fresh sub-portfolio is formed based on the latest signal. The aggregate portfolio is the uniform average of all $H$ currently active cohorts.
 
@@ -38,7 +38,7 @@ We explicitly delineate the boundaries of our investigation: Phase 20 is a contr
 
 ## 2. Related Setting and Evolutionary Motivation
 
-This investigation arose from a broader multi-phase empirical laboratory studying distributed portfolio optimization, execution stability, and machine learning uncertainty quantification (Papastaikoudis et al., 2025; Blundell et al., 2015; Hu et al., 2021). 
+This investigation arose from a broader multi-phase empirical laboratory studying distributed portfolio optimization, execution stability, and machine learning uncertainty quantification (Papastaikoudis et al., 2025; Blundell et al., 2015; Hu et al., 2022). 
 
 Initially, our research evaluated whether Bayesian Low-Rank Adaptation (LoRA) could provide actionable epistemic uncertainty estimates to guide portfolio risk management in financial event forecasting. While preliminary experiments appeared to show strong error-tracking correlations ($\rho \approx 0.60$) and promising selective-risk retention curves, comprehensive forensic audits revealed that these early results were driven by methodological artifacts:
 - **Target Outcome Leakage**: Historical text serialization pipelines had inadvertently concatenated continuous post-event price realizations (`move_1d`) into input text, allowing models to extract labels during training.
@@ -49,6 +49,8 @@ Initially, our research evaluated whether Bayesian Low-Rank Adaptation (LoRA) co
 Concurrently, portfolio-level diagnostics revealed that underlying event-driven portfolios turned over at an extreme rate (~72x/year traded turnover, 104x/year base turnover) due to weekly earnings panel disjointness and optimizer corner solutions. Implementing multi-week cohort stacking ($H=4$) slashed turnover by $74\%$ and volatility by $66\%$, delivering substantial Sharpe ratio improvements.
 
 However, when this cohort architecture was subjected to clean revalidation on uncompromised metadata (Phase 18), residual predictive signal across weeks 2–4 was statistically indistinguishable from zero (residual IC $= 0.0060, p=0.105$). Furthermore, stress-testing across diverse signal regimes (Phase 19) established that turnover and volatility reductions were **architecture-general**, persisting across empirical, random, constant, and synthetic signals. Crucially, Phase 19 revealed a directional reversal: cohort stacking delivered maximum relative utility under weak or null signals, but lost relative advantage as synthetic signal strength increased.
+
+A particularly close theoretical benchmark is Gârleanu and Pedersen (2013), who derive optimal dynamic trading policies when returns are predictable and trading is costly, with slower-decaying predictors receiving greater weight in the dynamic target. Our question is narrower and structurally different: we study a discrete overlapping-cohort execution rule and characterize how its utility-maximizing horizon changes with signal decay, noise, costs, and risk aversion. We therefore interpret the cohort frontier as a complementary execution-design result rather than a replacement for the general dynamic-control solution.
 
 These findings shifted our scientific focus from predictive model complexity to execution architecture: **why does cohort stacking function so effectively under weak signals, and how does the optimal horizon respond to market friction and signal decay?**
 
@@ -227,7 +229,7 @@ The resulting 2D synthetic horizon phase diagrams reveal four distinct operation
 
 ## 7. Retrospective Empirical Reconciliation (Phases 18 & 19)
 
-We connect these synthetic findings back to the empirical event-risk setting that motivated this research:
+We connect these synthetic findings back to the retrospective event-risk setting that motivated this research. The empirical motivation is related to the long post-earnings-announcement-drift literature (e.g., Bernard and Thomas, 1989), but our clean revalidation does not establish persistent multi-week drift:
 
 In Phase 18, clean revalidation of quarterly post-earnings portfolios on uncompromised metadata exhibited:
 - Transaction cost assumption: $c = 10\text{ bps}$
@@ -297,3 +299,20 @@ For quantitative practitioners, our findings offer clear architectural design pr
 - **Measure Signal Half-Life Before Setting Horizons**: For transient signals ($\tau_{1/2} < 0.5\text{ weeks}$), stacking beyond $H=1$ severely penalizes performance unless transaction costs exceed $25\text{ bps}$.
 - **Use Stacking to Dampen High-Frequency Panel Churn**: In event-driven strategies with highly disjoint cross-sections, cohort stacking can materially reduce turnover; in the retrospective earnings setting studied here, the reduction was about $74\%$ for $H=4$.
 - **Recognize the Friction-Decay Frontier**: Within the controlled model and candidate horizon grid, the utility-maximizing horizon generally shifts upward with transaction costs, signal persistence, observation noise, and risk aversion. When alpha is weak and noisy, temporal regularization can be an important implementation lever.
+
+
+---
+
+## References
+
+Bernard, V. L., & Thomas, J. K. (1989). Post-earnings-announcement drift: Delayed price response or risk premium? *Journal of Accounting Research, 27*, 1–36. https://doi.org/10.2307/2491062
+
+Blundell, C., Cornebise, J., Kavukcuoglu, K., & Wierstra, D. (2015). Weight uncertainty in neural networks. In *Proceedings of the 32nd International Conference on Machine Learning* (PMLR 37, pp. 1613–1622).
+
+Gârleanu, N., & Pedersen, L. H. (2013). Dynamic trading with predictable returns and transaction costs. *The Journal of Finance, 68*(6), 2309–2340. https://doi.org/10.1111/jofi.12080
+
+Hu, E. J., Shen, Y., Wallis, P., Allen-Zhu, Z., Li, Y., Wang, S., Wang, L., & Chen, W. (2022). LoRA: Low-rank adaptation of large language models. In *International Conference on Learning Representations (ICLR)*.
+
+Markowitz, H. (1952). Portfolio selection. *The Journal of Finance, 7*(1), 77–91. https://doi.org/10.1111/j.1540-6261.1952.tb01525.x
+
+Papastaikoudis, I., Watson, J., & Lestas, I. (2025). Distributed portfolio optimization & decentralized pricing. *Cambridge Working Papers in Economics*, No. 2531, Faculty of Economics, University of Cambridge. https://doi.org/10.17863/CAM.119662

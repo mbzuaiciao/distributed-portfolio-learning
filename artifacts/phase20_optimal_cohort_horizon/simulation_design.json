@@ -3,7 +3,7 @@
     "universe": {
       "asset_count": 30,
       "calendar_weeks": 156,
-      "burn_in_weeks": 20,
+      "signal_history_truncation_weeks": 52,
       "annualization_factor": 52
     },
     "latent_signal_process": {
@@ -13,8 +13,8 @@
       "observation_noise": "sigma_noise * N(0, 1)"
     },
     "return_generating_process": {
-      "formula": "R_{i,u} = beta * sum_{k=0}^{K_burn} rho^k * s_{i,u-k} + eps_{mkt,u} + xi_{i,u}",
-      "beta": 0.01,
+      "formula": "R_{i,u} = beta * sum_{k=0}^{K_history} rho^k * s_{i,u-k} + eps_{mkt,u} + xi_{i,u}",
+      "K_history": 52,
       "market_factor_sigma": 0.02,
       "idiosyncratic_sigma": 0.04,
       "calendar_return_invariance": "Each asset has exactly one realized return per calendar week, shared identically across all active cohorts holding that asset."
@@ -27,6 +27,7 @@
       "portfolio_gross_return": "R_{gross, u} = (w_u^stacked)^T R_u"
     },
     "grid_dimensions": {
+      "signal_strength_beta": [0.000, 0.005, 0.010, 0.020],
       "horizons": [1, 2, 4, 8, 13],
       "persistence_rho": [0.0, 0.25, 0.50, 0.75, 0.90, 0.97],
       "transaction_costs_bps": [0, 5, 10, 25, 50],

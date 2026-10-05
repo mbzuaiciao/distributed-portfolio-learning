@@ -1,4 +1,4 @@
-"""Tests for Phase 20: Optimal Cohort Holding Horizon Experiment (Amended DGP)."""
+"""Tests for Phase 20: Optimal Cohort Holding Horizon Experiment (Frozen Beta & 52-week Memory)."""
 
 import json
 from pathlib import Path
@@ -28,6 +28,7 @@ def test_preregistration_json_schema():
         cfg = json.load(f)
 
     assert cfg["phase"] == 20
+    assert cfg["parameter_grids"]["signal_strength_beta"] == [0.000, 0.005, 0.010, 0.020]
     assert cfg["parameter_grids"]["horizons"] == [1, 2, 4, 8, 13]
     assert cfg["parameter_grids"]["persistence_rho"] == [0.0, 0.25, 0.50, 0.75, 0.90, 0.97]
     assert cfg["parameter_grids"]["transaction_costs_bps"] == [0, 5, 10, 25, 50]
@@ -37,11 +38,12 @@ def test_preregistration_json_schema():
     assert cfg["accounting_closure_tolerance"] == 1e-12
     assert cfg["dgp_parameters"]["calendar_return_structure"] == "shared_single_return_per_asset_per_calendar_week"
     assert cfg["dgp_parameters"]["cohort_specific_idiosyncratic_shocks"] is False
+    assert cfg["dgp_parameters"]["signal_history_truncation_weeks"] == 52
 
 
 def test_all_simulator_audits_pass():
     audits = run_simulator_audits()
-    assert len(audits) >= 10
+    assert len(audits) >= 11
     for name, passed in audits.items():
         assert passed, f"Audit failed: {name}"
 
@@ -52,29 +54,21 @@ def test_shared_calendar_return_across_cohorts():
     in the same calendar week receive exactly the same asset return, with zero
     cohort-specific idiosyncratic shocks.
     """
-    u = generate_synthetic_universe(seed=200001, num_assets=30, num_weeks=100, beta=0.01, rho=0.5, sigma_noise=0.5)
+    u = generate_synthetic_universe(seed=200001, num_assets=30, num_weeks=100, beta=0.01, rho=0.5, sigma_noise=0.5, history_weeks=52)
 
-    # Consider two different entry cohorts: e.g. entry week t1=10 and entry week t2=12
-    # In calendar week u=13, cohort t1 is at holding age k1 = 13 - 10 = 3
-    # and cohort t2 is at holding age k2 = 13 - 12 = 1.
     calendar_week_u = 13
     assert calendar_week_u >= 12 >= 10
 
-    # In calendar week u, the market return vector across all 30 assets is R_calendar[u]
     R_u = u["R_calendar"][calendar_week_u]
     assert R_u.shape == (30,)
 
-    # The return received on asset i in calendar week u by cohort t1
     cohort_t1_asset_returns = R_u
-    # The return received on asset i in calendar week u by cohort t2
     cohort_t2_asset_returns = R_u
 
-    # Exact equality across all assets
     diff = cohort_t1_asset_returns - cohort_t2_asset_returns
     assert np.all(diff == 0.0), "Cohorts received different returns on the same asset in calendar week u"
     assert np.max(np.abs(diff)) == 0.0
 
-    # Verify across multiple calendar weeks and arbitrary pairs of active cohorts
     for u_idx in [5, 20, 50, 80]:
         for c1 in range(max(0, u_idx - 4), u_idx + 1):
             for c2 in range(max(0, u_idx - 4), u_idx + 1):
@@ -84,7 +78,7 @@ def test_shared_calendar_return_across_cohorts():
 
 
 def test_turnover_strictly_decreases_with_horizon():
-    u = generate_synthetic_universe(200001, 30, 100, 0.01, 0.5, 0.5)
+    u = generate_synthetic_universe(200001, 30, 100, 0.01, 0.5, 0.5, history_weeks=52)
     turnovers = []
     for h in [1, 2, 4, 8, 13]:
         _, to, _, _ = simulate_horizon_trajectories(u["base_weights"], u["R_calendar"], horizon=h)
@@ -95,7 +89,7 @@ def test_turnover_strictly_decreases_with_horizon():
 
 
 def test_volatility_strictly_decreases_with_horizon():
-    u = generate_synthetic_universe(200002, 30, 156, 0.01, 0.5, 0.5)
+    u = generate_synthetic_universe(200002, 30, 156, 0.01, 0.5, 0.5, history_weeks=52)
     vols = []
     for h in [1, 2, 4, 8, 13]:
         g, _, _, _ = simulate_horizon_trajectories(u["base_weights"], u["R_calendar"], horizon=h)
@@ -106,7 +100,7 @@ def test_volatility_strictly_decreases_with_horizon():
 
 
 def test_exact_accounting_closure():
-    u = generate_synthetic_universe(200003, 30, 156, 0.01, 0.5, 0.5)
+    u = generate_synthetic_universe(200003, 30, 156, 0.01, 0.5, 0.5, history_weeks=52)
     g1, to1, _, _ = simulate_horizon_trajectories(u["base_weights"], u["R_calendar"], horizon=1)
     g4, to4, _, _ = simulate_horizon_trajectories(u["base_weights"], u["R_calendar"], horizon=4)
 

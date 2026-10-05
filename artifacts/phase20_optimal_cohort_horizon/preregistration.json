@@ -1,11 +1,10 @@
 {
   "phase": 20,
-  "title": "Optimal Cohort Holding Horizon Experiment (Amended Shared Calendar Return DGP)",
+  "title": "Optimal Cohort Holding Horizon Experiment (Frozen Beta Dimension & Lengthened History Truncation)",
   "dgp_parameters": {
     "num_assets": 30,
     "num_weeks": 156,
-    "burn_in_weeks": 20,
-    "signal_strength_beta": 0.01,
+    "signal_history_truncation_weeks": 52,
     "market_shock_std": 0.02,
     "idiosyncratic_noise_std": 0.04,
     "covariance_diag_scale": 0.04,
@@ -15,6 +14,7 @@
     "cohort_specific_idiosyncratic_shocks": false
   },
   "parameter_grids": {
+    "signal_strength_beta": [0.000, 0.005, 0.010, 0.020],
     "horizons": [1, 2, 4, 8, 13],
     "persistence_rho": [0.0, 0.25, 0.50, 0.75, 0.90, 0.97],
     "implied_half_life_weeks": [0.0, 0.50, 1.00, 2.41, 6.58, 22.76],
@@ -33,17 +33,17 @@
   ],
   "experiment_counts": {
     "num_seeds": 30,
-    "cells_per_seed": 3000,
-    "total_evaluated_cells": 90000,
-    "simulated_rollouts": 3600
+    "cells_per_seed": 12000,
+    "total_evaluated_cells": 360000,
+    "simulated_rollouts": 14400
   },
   "utility_definition": "mean(r_net) - 0.5 * gamma * var(r_net, ddof=1)",
   "accounting_closure_tolerance": 1e-12,
   "significance_alpha": 0.05,
   "hypotheses": {
     "H1": "Cost comparative static: dH*/dc >= 0",
-    "H2": "Persistence comparative static: dH*/drho >= 0",
-    "H3": "Short-lived alpha: at rho=0, c=0, sigma=0, gamma<=1, H*=1",
+    "H2": "Persistence comparative static: for beta>0, dH*/drho >= 0",
+    "H3": "Short-lived alpha & beta reversal: at rho=0, c=0, sigma=0, beta>=0.01, H*=1; as beta increases under low rho, H* decreases",
     "H4": "Noise regularization: dH*/dsigma >= 0",
     "H5": "Risk aversion effect: dH*/dgamma >= 0"
   },

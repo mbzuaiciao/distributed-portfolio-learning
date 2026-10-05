@@ -122,6 +122,12 @@ $$\boxed{c \cdot \text{TO}_0 + \frac{1}{2}\gamma \sigma_1^2 > \mu_0 \Lambda(H, \
    $$\frac{\partial \Delta U(H, 1)}{\partial \gamma} = \frac{1}{2}\left(1 - \frac{1}{H}\right)\sigma_1^2 > 0$$
    Increasing risk aversion places greater weight on the variance reduction offered by overlapping entry cohorts. **The optimal horizon $H^*$ weakly increases with risk aversion $\gamma$.**
 
+6. **Signal Strength ($\beta$):**
+   Since $\mu_0 \propto \beta$, the derivative of the horizon utility delta with respect to signal strength is:
+   $$\frac{\partial \Delta U(H, 1)}{\partial \beta} = \left[ \frac{1 - \rho^H}{H(1 - \rho)} - 1 \right] \frac{\partial \mu_0}{\partial \beta} \le 0 \quad (\text{for } \rho < 1)$$
+   As predictive signal strength $\beta$ increases when persistence is finite ($\rho < 1$), the absolute penalty of holding stale cohorts scales up linearly. **Higher signal strength $\beta$ shifts preference toward shorter horizons ($H=1$ or $H=2$).**
+   Conversely, at $\beta = 0$ (Null signal), the alpha dilution penalty is identically zero, so regularizer savings ($c \cdot \text{TO}_0 + \frac{1}{2}\gamma \sigma_1^2$) dominate completely, making $H \ge 4$ optimal across all friction regimes.
+
 ---
 
 ## 4. Break-Even Boundaries

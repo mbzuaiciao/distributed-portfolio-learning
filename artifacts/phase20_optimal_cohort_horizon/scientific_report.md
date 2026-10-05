@@ -7,7 +7,7 @@
 - **Accounting Closure**: Confirmed exact across all 288,000 cell-seed evaluations ($|\text{error}| \le 3.14e-17 < 10^{-12}$).
 - **Core Scientific Finding**: Cohort holding horizon $H^*$ is governed by a fundamental, stable economic frontier:
   $$H^* = f(\tau_{\text{signal}},\ c,\ \sigma_{\text{noise}},\ \gamma,\ \beta)$$
-  This provides the rigorous mechanistic explanation for the Phase 19 empirical reversal: **cohort stacking acts as a temporal regularizer** that amortizes trading costs and diversifies estimation noise under a realistic market DGP where all active cohorts share the single realized return of each asset per calendar week. Under weak or null signals ($\beta \to 0$), alpha dilution is zero, allowing regularizer savings to make $H \ge 4$ dominant. Under strong alpha ($\beta \ge 0.02$), fresh alpha preservation dominates and selects $H=1$ when decay is fast.
+  This provides the rigorous mechanistic explanation for the Phase 19 empirical reversal: **cohort stacking acts as a temporal regularizer** that amortizes trading costs and diversifies estimation noise under a realistic market DGP where all active cohorts share the single realized return of each asset per calendar week. Under weak alpha ($\beta = 0.005$), alpha dilution is small, allowing regularizer cost and risk savings to make $H \ge 4$ dominant under realistic friction. Under exact null uniform weighting ($\beta = 0.000$), rebalancing churn is zero ($TO \equiv 0$), resulting in an exact mathematical tie across all horizons. Under strong alpha ($\beta \ge 0.02$), fresh alpha preservation dominates and selects $H=1$ when decay is fast.
 
 ---
 
@@ -39,7 +39,7 @@ The generated phase diagrams (`horizon_phase_diagram.png`) illustrate the four p
    - Dominates when transaction friction is high ($c \ge 25\text{ bps}$), signals are highly persistent ($\tau_{1/2} > 6\text{ wks}$), or signal noise is severe ($\sigma_{\text{noise}} \ge 2.0$).
 
 4. **Exact Null Signal Regime ($\beta = 0.000$)**:
-   - Alpha dilution is identically zero. Stacking at $H \ge 4$ dominates for all $c > 0$, proving that temporal regularization functions as an architectural dampener independently of predictive skill.
+   - Constant uniform weighting ($w_t = 1/N$) has zero rebalancing turnover ($\text{TO} \equiv 0$). Consequently, all horizons $H \in \{1, 2, 4, 8, 13\}$ yield identical aggregate portfolio weights, identical gross/net returns, and identical utility ($U(H) \equiv U(1)$), forming an exact mathematical tie across all parameters ($100\%$ classified as `Tie_1-2-4-8-13`). Stacking dominance under friction emerges as soon as the portfolio has rebalancing churn (weak alpha or ranking noise).
 
 ---
 

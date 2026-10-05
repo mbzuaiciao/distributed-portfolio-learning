@@ -4,7 +4,6 @@ import json
 from pathlib import Path
 
 import numpy as np
-import pytest
 
 from experiments.run_phase20_optimal_cohort_horizon import (
     generate_synthetic_universe,

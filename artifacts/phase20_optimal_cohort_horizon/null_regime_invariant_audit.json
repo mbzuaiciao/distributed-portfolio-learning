@@ -1,0 +1,113 @@
+{
+  "audit_date": "2026-10-05",
+  "evaluated_regime": "beta = 0.000 (Exact Null Signal)",
+  "sample_size": {
+    "num_parameter_cells": 600,
+    "num_seeds": 30,
+    "total_beta_0_evaluations": 90000,
+    "total_h_comparisons_vs_h1": 72000
+  },
+  "invariants": {
+    "aggregate_portfolio_weight_vector": {
+      "max_abs_discrepancy": 0.0,
+      "tolerance": 1e-12,
+      "passed": true
+    },
+    "weekly_gross_return": {
+      "max_abs_discrepancy": 0.0,
+      "tolerance": 1e-12,
+      "passed": true
+    },
+    "weekly_turnover": {
+      "max_abs_discrepancy": 0.0,
+      "tolerance": 1e-12,
+      "passed": true
+    },
+    "weekly_transaction_cost": {
+      "max_abs_discrepancy": 0.0,
+      "tolerance": 1e-12,
+      "passed": true
+    },
+    "weekly_net_return": {
+      "max_abs_discrepancy": 0.0,
+      "tolerance": 1e-12,
+      "passed": true
+    },
+    "mean_utility": {
+      "max_abs_discrepancy": 0.0,
+      "tolerance": 1e-12,
+      "passed": true
+    },
+    "variance_term": {
+      "max_abs_discrepancy": 0.0,
+      "tolerance": 1e-12,
+      "passed": true
+    }
+  },
+  "overall_invariants_passed": true,
+  "case_classification": "Case A",
+  "classification_detail": "Reporting/classification prose inconsistency only. Simulator, accounting closure, and data generation mechanics are mathematically exact.",
+  "root_cause": "Under the Phase 20 DGP, beta=0 assigns uniform 1/N base portfolio weights across all assets at every week t. Because base weights are time-invariant, active cohorts hold identical weights, aggregate weights are identically 1/N, and rebalancing turnover is identically zero. Without rebalancing turnover, there is zero turnover churn to amortize and zero cohort weight divergence to diversify, resulting in an exact mathematical tie across all horizons H in {1, 2, 4, 8, 13}. The simulation outputs correctly classified 100% of beta=0 cells as Tie_1-2-4-8-13 (is_dominant_winner=False). The contradiction was confined to report prose that conflated the constant-uniform null baseline with Phase 19's random-ranking null baseline (which featured weekly permutations and ~100% turnover).",
+  "tie_handling_audit": {
+    "total_beta_0_cells": 600,
+    "cells_classified_as_tie_1_2_4_8_13": 600,
+    "percentage_tied": 100.0,
+    "cells_with_is_dominant_winner_false": 600,
+    "max_t_stat_vs_h1": 0.0,
+    "min_p_value_vs_h1": 1.0,
+    "max_mean_utility_difference": 0.0,
+    "arbitrary_argmax_index_default": 1
+  },
+  "freeze_to_execution_diff_audit": {
+    "freeze_commit": "cfdb7529d0a74c7f7fb62b821200a9c3facf4957",
+    "execution_commit": "0dab572ee985e504ddcc01ee66121feff418a9fc",
+    "scientific_computations_changed": false,
+    "changes": [
+      {
+        "file": "experiments/run_phase20_optimal_cohort_horizon.py",
+        "type": "numerical_guard",
+        "description": "Added max(1e-12, ...) guard in turnover_reduction_pct to prevent division by zero when beta=0 has zero turnover."
+      },
+      {
+        "file": "experiments/run_phase20_optimal_cohort_horizon.py",
+        "type": "numerical_guard",
+        "description": "Added check for abs(u1 - u0) < 1e-14 in breakeven cost interpolation to prevent division by zero in tie regimes."
+      },
+      {
+        "file": "experiments/run_phase20_optimal_cohort_horizon.py",
+        "type": "prose_refinement",
+        "description": "Refined empirical_sanity_mapping narrative to accurately describe the empirical parameter slice."
+      }
+    ]
+  },
+  "hypothesis_impact_and_outcome_assessment": {
+    "H1_cost_monotonicity": {
+      "pass_pct": 100.0,
+      "confirmed": true,
+      "note": "Exact ties weakly satisfy dH*/dc >= 0."
+    },
+    "H2_persistence_monotonicity": {
+      "pass_pct": 90.0,
+      "confirmed": true,
+      "note": "Evaluated exclusively on beta > 0 as preregistered."
+    },
+    "H3_short_lived_alpha_reversal": {
+      "pass_pct": 100.0,
+      "confirmed": true,
+      "note": "H*=1 under frictionless transient alpha; alpha preservation shifts H* down as beta increases."
+    },
+    "H4_noise_regularization": {
+      "pass_pct": 100.0,
+      "confirmed": true,
+      "note": "Weakly increasing in noise across all beta slices."
+    },
+    "H5_risk_aversion_preference": {
+      "pass_pct": 100.0,
+      "confirmed": true,
+      "note": "Weakly increasing in gamma across all beta slices."
+    },
+    "outcome_classification": "Outcome A",
+    "outcome_valid": true,
+    "max_accounting_closure_error": 3.144186300207963e-17
+  }
+}

@@ -11,7 +11,7 @@ where:
 - **Cost Amortization**: Rolling cohorts over horizon $H$ reduces portfolio turnover proportionally to $1/H$ ($\partial \text{Cost}/\partial H < 0$).
 - **Temporal Diversification**: Stacking overlapping entry cohorts averages independent estimation noise and idiosyncratic return shocks ($\partial \text{Risk}/\partial H \le 0$).
 
-This framework explains the Phase 19 empirical reversal mechanistically: under weak or null signals ($\mu_0 \approx 0$), alpha dilution vanishes, allowing mechanical cost amortization and temporal diversification to dominate and make longer horizons ($H=4$) optimal. Conversely, under strong, rapidly decaying signals, alpha preservation forces the optimal horizon to $H=1$.
+This framework explains the Phase 19 empirical reversal mechanistically: under weak signals with rebalancing churn ($\mu_0 \to 0, \text{TO}_0 > 0$), alpha dilution vanishes, allowing mechanical cost amortization and temporal diversification to dominate and make longer horizons ($H=4$) optimal. (Under an exact time-invariant uniform null where $\text{TO}_0 = 0$, all horizons tie exactly with $\Delta U \equiv 0$). Conversely, under strong, rapidly decaying signals, alpha preservation forces the optimal horizon to $H=1$.
 
 ---
 
@@ -126,7 +126,7 @@ $$\boxed{c \cdot \text{TO}_0 + \frac{1}{2}\gamma \sigma_1^2 > \mu_0 \Lambda(H, \
    Since $\mu_0 \propto \beta$, the derivative of the horizon utility delta with respect to signal strength is:
    $$\frac{\partial \Delta U(H, 1)}{\partial \beta} = \left[ \frac{1 - \rho^H}{H(1 - \rho)} - 1 \right] \frac{\partial \mu_0}{\partial \beta} \le 0 \quad (\text{for } \rho < 1)$$
    As predictive signal strength $\beta$ increases when persistence is finite ($\rho < 1$), the absolute penalty of holding stale cohorts scales up linearly. **Higher signal strength $\beta$ shifts preference toward shorter horizons ($H=1$ or $H=2$).**
-   Conversely, at $\beta = 0$ (Null signal), the alpha dilution penalty is identically zero, so regularizer savings ($c \cdot \text{TO}_0 + \frac{1}{2}\gamma \sigma_1^2$) dominate completely, making $H \ge 4$ optimal across all friction regimes.
+   Conversely, when predictive alpha is weak but rebalancing churn exists ($\beta \to 0, \text{TO}_0 > 0$, as in Phase 19 random permutations), the alpha dilution penalty is vanishingly small, so regularizer savings ($c \cdot \text{TO}_0 + \frac{1}{2}\gamma \sigma_1^2$) dominate, selecting $H \ge 4$. If the null regime is implemented as time-invariant equal weighting ($w_t \equiv 1/N$, as in Phase 20's $\beta = 0$), rebalancing turnover is identically zero ($\text{TO}_0 = 0$), causing all horizons to tie mathematically with $\Delta U \equiv 0$.
 
 ---
 

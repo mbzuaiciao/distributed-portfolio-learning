@@ -19,19 +19,17 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import math
 import subprocess
-import sys
 import time
 from pathlib import Path
-from typing import Any, Dict, List, Sequence, Tuple
+from typing import Any, Dict, List, Tuple
 
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from scipy.stats import t as student_t
 
-from hypergraph_portfolio.mean_variance import MeanVariancePortfolio, project_to_simplex
+from hypergraph_portfolio.mean_variance import project_to_simplex
 from hypergraph_portfolio.uncertainty import simulate_cohort_stacked_portfolio
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -83,7 +81,7 @@ def generate_synthetic_universe(
     history_weeks: int = 52,
 ) -> Dict[str, Any]:
     """Generate synthetic asset universe with single realized return per asset per calendar week.
-    
+
     Invariance: All active cohorts holding asset i during calendar week u receive
     the exact same realized return R[u, i]. History truncation covers history_weeks.
     """
@@ -880,7 +878,7 @@ def run_optimal_cohort_horizon_experiment(cfg: Dict[str, Any], freeze_sha: str) 
         reason = f"Audits and closure held, but only {num_hypotheses_confirmed}/5 hypotheses confirmed."
     else:
         classification = "Outcome C"
-        reason = f"Audits and closure held, but fewer than 2 hypotheses confirmed."
+        reason = "Audits and closure held, but fewer than 2 hypotheses confirmed."
 
     outcome_record = {
         "outcome": classification,
@@ -909,7 +907,7 @@ def run_optimal_cohort_horizon_experiment(cfg: Dict[str, Any], freeze_sha: str) 
 - **Accounting Closure**: Confirmed exact across all {len(closure_errors):,} cell-seed evaluations ($|\\text{{error}}| \\le {max_closure:.2e} < 10^{{-12}}$).
 - **Core Scientific Finding**: Cohort holding horizon $H^*$ is governed by a fundamental, stable economic frontier:
   $$H^* = f(\\tau_{{\\text{{signal}}}},\\ c,\\ \\sigma_{{\\text{{noise}}}},\\ \\gamma,\\ \\beta)$$
-  This provides the rigorous mechanistic explanation for the Phase 19 empirical reversal: **cohort stacking acts as a temporal regularizer** that amortizes trading costs and diversifies estimation noise under a realistic market DGP where all active cohorts share the single realized return of each asset per calendar week. Under weak or null signals ($\\beta \\to 0$), alpha dilution is zero, allowing regularizer savings to make $H \\ge 4$ dominant. Under strong alpha ($\\beta \\ge 0.02$), fresh alpha preservation dominates and selects $H=1$ when decay is fast.
+  This provides the rigorous mechanistic explanation for the Phase 19 empirical reversal: **cohort stacking acts as a temporal regularizer** that amortizes trading costs and diversifies estimation noise under a realistic market DGP where all active cohorts share the single realized return of each asset per calendar week. Under weak alpha ($\beta = 0.005$), alpha dilution is small, allowing regularizer cost and risk savings to make $H \\ge 4$ dominant under realistic friction. Under exact null uniform weighting ($\beta = 0.000$), rebalancing churn is zero ($TO \\equiv 0$), resulting in an exact mathematical tie across all horizons. Under strong alpha ($\beta \\ge 0.02$), fresh alpha preservation dominates and selects $H=1$ when decay is fast.
 
 ---
 
@@ -941,7 +939,7 @@ The generated phase diagrams (`horizon_phase_diagram.png`) illustrate the four p
    - Dominates when transaction friction is high ($c \\ge 25\\text{{ bps}}$), signals are highly persistent ($\\tau_{{1/2}} > 6\\text{{ wks}}$), or signal noise is severe ($\\sigma_{{\\text{{noise}}}} \\ge 2.0$).
 
 4. **Exact Null Signal Regime ($\\beta = 0.000$)**:
-   - Alpha dilution is identically zero. Stacking at $H \\ge 4$ dominates for all $c > 0$, proving that temporal regularization functions as an architectural dampener independently of predictive skill.
+   - Constant uniform weighting ($w_t = 1/N$) has zero rebalancing turnover ($\\text{{TO}} \\equiv 0$). Consequently, all horizons $H \\in \\{{1, 2, 4, 8, 13\\}}$ yield identical aggregate portfolio weights, identical gross/net returns, and identical utility ($U(H) \\equiv U(1)$), forming an exact mathematical tie across all parameters ($100\\%$ classified as `Tie_1-2-4-8-13`). Stacking dominance under friction emerges as soon as the portfolio has rebalancing churn (weak alpha or ranking noise).
 
 ---
 

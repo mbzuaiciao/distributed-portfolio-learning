@@ -24,7 +24,7 @@ This document specifies the four core figures for the consolidated manuscript an
 
 ### Figure 3: Phase 20 Horizon Phase Diagram
 - **Source**: `artifacts/phase20_optimal_cohort_horizon/horizon_phase_diagram.png`
-- **Purpose**: The primary empirical artifact of the paper mapping the optimal horizon $H^*$ across transaction costs $c \in [0, 50]\text{ bps}$ and signal half-life $\tau_{1/2} \in [0, 23]\text{ weeks}$.
+- **Purpose**: The primary synthetic result figure of the paper mapping the utility-maximizing horizon $H^*$ across transaction costs $c \in [0, 50]\text{ bps}$ and signal half-life $\tau_{1/2} \in [0, 23]\text{ weeks}$.
 - **Panels**:
   - 4-panel grid across observation noise $\sigma_{\text{noise}} \in \{0.0, 1.0\}$ and signal strength $\beta \in \{0.005, 0.020\}$.
   - Color-coded regions for $H^* \in \{1, 2, 4, 8, 13\}$, with hatched or shaded markers indicating statistical tie zones.
@@ -32,7 +32,7 @@ This document specifies the four core figures for the consolidated manuscript an
 
 ### Figure 4: Empirical Motivation & Architectural Invariance (Phases 18 & 19 Sanity Check)
 - **Source**: `artifacts/phase19_architecture_signal_stress_test/architecture_stress_test_figures.png` & `artifacts/phase18_clean_cohort_revalidation/clean_signal_decay.png`
-- **Purpose**: Connect the synthetic frontier back to empirical event-study portfolios, demonstrating that turnover and volatility savings are architectural.
+- **Purpose**: Connect the synthetic frontier to retrospective event-study motivation, illustrating that turnover and volatility savings persisted across several signal regimes without treating the historical data as independent causal confirmation.
 - **Panels**:
   - Panel A: Empirical signal decay curve from Phase 18 clean revalidation, showing rapid dissipation of residual Rank IC by week 2 ($p=0.105$).
   - Panel B: Traded turnover reduction ($>73.9\%$) across empirical, random, constant, and synthetic signal regimes.

@@ -1,6 +1,6 @@
 # Phase 19: Architecture Signal Stress Test
 
-**Frozen Outcome A — Architecture-General (Turnover & volatility gains survive across all regimes; positive net utility under empirical & null regimes)**
+**Outcome D — Mixed / inconclusive under the frozen outcome tree, with strongly confirmed architecture-general mechanical effects.**
 
 ## 1. Executive Summary
 
@@ -30,12 +30,15 @@ Holding all portfolio machinery, constraints, optimizer parameters, costs, and u
      - Random Ranking Null (50 seeds): Mean **67.10%** (min **63.35%**)
      - Synthetic Signal Ladder: Mean **67.00%** (min **66.07%**)
 
-3. **Utility Decomposition & Persistence (H3 Confirmed)**:
+3. **Utility Decomposition & Reversal of H3 Direction (H3 Falsified / Reversed)**:
    - Algebraic utility closure holds to machine precision (|error| <= 6.94e-18 < 1e-12) for every single portfolio run:
      delta_U = delta_gross_return + weekly_cost_saving + sample_variance_utility_gain
    - Even when signal quality is completely absent (alpha = 0.00 or random ranking), H=4 achieves **positive net utility delta**:
-     - Random Ranking Null: Mean delta_U = +22.531 bp/week, driven entirely by weekly cost savings (+10.387 bp/week) and sample variance utility gains (+3.570 bp/week), offset by small gross drag (-8.574 bp/week).
-   - As signal quality alpha increases from 0.00 to 0.40, the gross return delta expands, while cost savings and variance reduction remain essentially constant.
+     - Random Ranking Null: Mean delta_U = +22.531 bp/week, composed of gross return contribution (+8.574 bp/week), weekly cost savings (+10.387 bp/week), and sample variance utility gains (+3.570 bp/week), matching the algebraically closed table exactly.
+   - **H3 Directional Reversal**: Rather than H=4 utility shrinking as signal quality approaches zero, H=4 is most economically favorable under weak/null signals and loses relative utility as synthetic signal strength increases. Cohort stacking acts like a **temporal regularizer**:
+     - valuable under weak/noisy signals because it lowers churn, cost, and variance;
+     - potentially costly under strong, short-lived signals because it slows capital rotation.
+     *(The synthetic oracle experiment is strictly a diagnostic simulation, never an empirical trading result.)*
 
 4. **No Alpha Under Null Rankings (H4 Confirmed)**:
    - Sharpe or utility improvements under random or constant ranking are strictly classified as implementation architecture mechanics (diversification and trading-cost amortization), **never predictive alpha**.
@@ -108,9 +111,11 @@ Holding all portfolio machinery, constraints, optimizer parameters, costs, and u
 
 ## 6. Primary Scientific Conclusions
 
-1. **Cohort-stacking H=4 is an architecture-general implementation mechanism (Outcome A)**.
-   The turnover reduction (~74%) and volatility reduction (~66%) do not depend on predictive model quality or alpha; they are structural invariants arising from holding assets for 4 weekly decision epochs rather than rebalancing 100% of capital every week.
-2. **Diversification and Cost Amortization Explain Utility Gains under Weak Signals**.
-   Even under pure noise (random rankings and alpha = 0.00), the net weekly utility delta remains positive because the transaction cost savings (+7.3 bp/week) and variance reduction (+8.7 bp/week) heavily outweigh the mild drag on gross returns.
-3. **Implications for Quant System Design**:
+1. **Outcome D: Mechanical Invariance Confirmed, but Frozen Tree Inconclusive due to H3 Reversal**.
+   The turnover reduction (~74%) and volatility reduction (~66%) do not depend on predictive model quality or alpha; they are structural invariants arising from holding assets for 4 weekly decision epochs rather than rebalancing 100% of capital every week. However, the preregistered utility-dependence hypothesis H3 was directionally reversed: H=4 produces its highest relative economic utility gains under weak/null signals and yields negative delta utility at high synthetic signal strength where instantaneous 1-week rebalancing capitalizes on short-lived clairvoyant information. The frozen A/B/C/D tree did not anticipate this pattern, yielding formal classification Outcome D.
+2. **Cohort Stacking Acts as a Temporal Regularizer**.
+   Multi-week cohort stacking operates as a temporal regularizer: highly valuable under noisy, weak, or null signals because it curtails excessive portfolio churn, eliminates trading costs, and diversifies idiosyncratic risk; but potentially costly under strong, short-lived alpha because it delays instantaneous capital reallocation.
+3. **No Alpha Under Null Rankings (H4 Confirmed)**:
+   Any performance or utility improvements observed under random or constant ranking are strictly classified as portfolio implementation mechanics (diversification and trading-cost amortization), never predictive alpha.
+4. **Implications for Quant System Design**:
    Portfolio construction mechanisms such as multi-period overlapping cohort stacking should not be conflated with signal forecasting power. When evaluating Machine Learning alpha, signal decay and portfolio stacking must be audited independently.

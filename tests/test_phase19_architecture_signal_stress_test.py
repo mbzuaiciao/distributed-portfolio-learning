@@ -181,9 +181,13 @@ def test_outcome_classification_integrity():
     class_path = OUT / "outcome_classification.json"
     assert class_path.exists()
     c = json.loads(class_path.read_text())
-    assert c["outcome"] == "A"
+    assert c["outcome"] == "D"
     assert c["h1_mechanical_invariance_pass"] is True
     assert c["h2_diversification_invariance_pass"] is True
+    assert c["h3_utility_dependence_confirmed"] is False
+    assert c["h3_direction_reversed"] is True
+    assert c["h4_no_alpha_interpretation_enforced"] is True
+    assert c["net_utility_all_positive"] is False
     assert c["algebraic_closure_pass"] is True
     assert c["max_closure_error"] < 1e-12
 

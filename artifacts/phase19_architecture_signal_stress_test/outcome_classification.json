@@ -1,12 +1,13 @@
 {
   "experiment_id": "phase19_architecture_signal_stress_test",
-  "outcome": "A",
-  "outcome_title": "Architecture-General (Turnover & volatility gains survive across all regimes; positive net utility under empirical & null regimes)",
+  "outcome": "D",
+  "outcome_title": "Mixed / inconclusive under frozen tree, with strongly confirmed architecture-general mechanical effects",
   "h1_mechanical_invariance_pass": true,
   "h2_diversification_invariance_pass": true,
-  "h3_utility_dependence_confirmed": true,
+  "h3_utility_dependence_confirmed": false,
+  "h3_direction_reversed": true,
   "h4_no_alpha_interpretation_enforced": true,
-  "net_utility_all_positive": true,
+  "net_utility_all_positive": false,
   "algebraic_closure_pass": true,
   "max_closure_error": 6.938893903907228e-18,
   "traded_turnover_reductions": {

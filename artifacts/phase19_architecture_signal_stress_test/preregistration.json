@@ -1,0 +1,104 @@
+{
+  "experiment_id": "phase19_architecture_signal_stress_test",
+  "created_local_date": "2026-10-04",
+  "status": "FROZEN_BEFORE_EXPERIMENT_EXECUTION",
+  "parent_git_sha": "023e3f98c8eefd226a273b5e403d5267ff612c6a",
+  "source_file_hashes": {
+    "data/bayesian_lora/reconstructed_returns.csv": "de8d95284ae139a15cd7f04666c1a83eee8b7d300056791a8eb493c692b87604",
+    "artifacts/phase18_clean_cohort_revalidation/clean_predictions_seed_42.csv": "d71fb3512e5f72bd7297d5d4918bedec299df9b3deb591745f5527c8b7b98ea4",
+    "artifacts/phase18_clean_cohort_revalidation/clean_predictions_seed_123.csv": "177d3d316b63c05a9cd4b65985edfe04d70dec8a9342a743a22d9470339a9dc2",
+    "artifacts/phase18_clean_cohort_revalidation/clean_predictions_seed_777.csv": "0bad569621f45c958f4e215b9374b0ec333d435b4fe792fb0a78f1199c29443d",
+    "artifacts/phase18_clean_cohort_revalidation/event_identity_manifest.csv": "a279820dc93bfb2f003f08d0c192c0e0ac0badfbb9acff7a5c023c5b8d02ae64",
+    "experiments/run_phase9_1_cohort_return_audit.py": "22ef0af70a0a17034be7f80710d827b297041acd836751fd77b6f0d17ab2e8b5",
+    "experiments/run_phase18_clean_cohort_revalidation.py": "98ff9d43163bdeaf4fc4695b9152f222b4e6641ac8f443972fdfc0705a1bc7ff",
+    "src/hypergraph_portfolio/uncertainty.py": "4e77e3b7219e6a245d4b57d15de3067ac338e92b7ad6be70631fb4ad8141fc2c"
+  },
+  "signal_regimes": {
+    "clean_lora": {
+      "description": "Deterministic clean LoRA predictions from Phase 18 (seeds 42, 123, 777)",
+      "seeds": [42, 123, 777],
+      "score_formula": "center - p_clean"
+    },
+    "ticker_risk": {
+      "description": "Training-only per-ticker historical downside rate shrunk by 20 pseudo-events to training prevalence",
+      "score_formula": "center - baseline_ticker_risk"
+    },
+    "constant_ranking": {
+      "description": "Constant null score with zero cross-sectional information passing through Markowitz solver",
+      "score_formula": "0.0"
+    },
+    "equal_weight": {
+      "description": "Direct equal weighting within each active cohort (1/m)",
+      "mode": "equal_weight"
+    },
+    "random_ranking": {
+      "description": "Cross-sectional score permutation within each weekly cohort across 50 predeclared seeds",
+      "seeds": [
+        190001, 190002, 190003, 190004, 190005, 190006, 190007, 190008, 190009, 190010,
+        190011, 190012, 190013, 190014, 190015, 190016, 190017, 190018, 190019, 190020,
+        190021, 190022, 190023, 190024, 190025, 190026, 190027, 190028, 190029, 190030,
+        190031, 190032, 190033, 190034, 190035, 190036, 190037, 190038, 190039, 190040,
+        190041, 190042, 190043, 190044, 190045, 190046, 190047, 190048, 190049, 190050
+      ],
+      "base_models": [42, 123, 777]
+    },
+    "synthetic_ladder": {
+      "description": "Controlled diagnostic signal ladder: score(alpha) = alpha * z_oracle + sqrt(1 - alpha^2) * z_noise",
+      "alpha_grid": [0.00, 0.05, 0.10, 0.20, 0.40],
+      "noise_seeds": [
+        195001, 195002, 195003, 195004, 195005, 195006, 195007, 195008, 195009, 195010,
+        195011, 195012, 195013, 195014, 195015, 195016, 195017, 195018, 195019, 195020
+      ],
+      "oracle_definition": "Standardized reconstructed 4-week cumulative return of event; strictly diagnostic simulation, never an empirical strategy claim"
+    }
+  },
+  "portfolio_parameters": {
+    "horizons": [1, 4],
+    "target_exposure": 0.7073,
+    "cost_rate": 0.0010,
+    "gamma": 1.0,
+    "annualization_factor": 52,
+    "optimizer": "Markowitz simplex solver with Q = 0.04 * I + 0.01 * 11^T",
+    "cohort_capital": "1 / number of active cohorts",
+    "inception_accounting": "initial entry fee charged at both H=1 and H=4 per Phase 18 audit",
+    "terminal_accounting": "same occupied bucket window; terminal cohorts censored without liquidation"
+  },
+  "statistical_parameters": {
+    "bootstrap_replicates": 1000,
+    "bootstrap_block_length_weeks": 13,
+    "bootstrap_seed": 190042,
+    "permutation_replicates": 199,
+    "permutation_seed": 190123
+  },
+  "frozen_hypotheses": {
+    "H1_mechanical_invariance": {
+      "statement": "H=4 reduces traded turnover by at least 50% relative to H=1 across all empirical and null ranking regimes",
+      "metric": "1 - traded_turnover_h4 / traded_turnover_h1",
+      "threshold": 0.50
+    },
+    "H2_diversification_invariance": {
+      "statement": "H=4 reduces annualized net volatility by at least 30% relative to H=1 across all empirical and null ranking regimes",
+      "metric": "1 - volatility_h4 / volatility_h1",
+      "threshold": 0.30
+    },
+    "H3_utility_dependence": {
+      "statement": "H=4 net weekly utility gain shrinks toward zero as ranking signal quality approaches zero, even while mechanical turnover and volatility gains remain",
+      "test": "monotonic relationship between signal quality (rank IC / alpha) and delta utility, evaluated against null delta"
+    },
+    "H4_no_alpha_interpretation": {
+      "statement": "Any Sharpe or utility improvement under random or constant ranking is strictly categorized as mechanical portfolio diversification and cost savings, not predictive alpha"
+    }
+  },
+  "outcome_criteria": {
+    "A": "Architecture-general: Turnover reduction >= 50% and volatility reduction >= 30% across all regimes including random/constant, and delta net weekly utility >= 0 across regimes",
+    "B": "Signal-dependent architecture: Turnover reduction >= 50% and volatility reduction >= 30% across regimes, but delta net utility falls below zero when signal quality is weak or null",
+    "C": "Phase 18-specific: Mechanical turnover or volatility reduction fails (<50% turnover or <30% volatility reduction) in controls or synthetic ladder",
+    "D": "Mixed / inconclusive: Inconsistent behavior across seeds or algebraic accounting closure fails"
+  },
+  "accounting_closure_tolerance": 1e-12,
+  "execution": {
+    "device": "CPU local",
+    "projected_runtime_seconds": 60,
+    "cloud_compute": false
+  }
+}

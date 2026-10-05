@@ -1,0 +1,40 @@
+\begin{table}[t]
+\centering
+\small
+\caption{\textbf{Retrospective Empirical Evidence and Stress Tests (Phases 18 \& 19).} Panel A reports clean out-of-sample portfolio revalidation on quarterly earnings events (2022--2025). Panel B reports the architecture stress test across signal regimes. The empirical evidence demonstrates that turnover reduction ($\sim 74\%$) and volatility reduction ($\sim 66\%$) are architecture-general regularizer effects that persist even under null signals, while utility gains reverse under strong synthetic alpha (Outcome D).}
+\label{tab:empirical_evidence}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccc}
+\hline
+\multicolumn{5}{l}{\textbf{Panel A: Clean Empirical Revalidation (Phase 18, Quarterly Earnings Holdout 2022--2025)}} \\
+\hline
+\textbf{Metric} & \textbf{Single Horizon ($H=1$)} & \textbf{Cohort Stacking ($H=4$)} & \textbf{Differential ($\Delta$)} & \textbf{Statistical Status} \\
+\hline
+Annualized Net Return & 9.24\% & 14.71\% & +5.47\% & Arithmetic mean \\
+Annualized Net Volatility & 19.59\% & 6.62\% & \textbf{-66.21\%} & Diversification gain \\
+Traded Risky Turnover (L1/yr) & 73.03 & 19.01 & \textbf{-73.97\%} & Cost amortization \\
+Annualized Sharpe Ratio & \textbf{0.469} & \textbf{2.223} & \textbf{+1.754} & Clean revalidation \\
+Maximum Drawdown & -18.77\% & -5.00\% & +13.77\% & Capital preservation \\
+Mean Net Weekly Utility (bp/wk) & 14.072 & 27.876 & \textbf{+13.804} & 95\% CI: $[-54.68, +84.33]$ \\
+Gross Return Contribution & --- & --- & +0.145 & Negligible alpha gain \\
+Transaction Cost Savings & --- & --- & +10.387 & Primary point driver \\
+Variance Term Utility Gain & --- & --- & +3.272 & Secondary point driver \\
+Residual Weeks 2--4 Rank IC & --- & --- & \textbf{0.0060} & $p = 0.105$ (Insignificant) \\
+\hline
+\multicolumn{5}{l}{\textbf{Panel B: Architecture-General Signal Stress Test (Phase 19)}} \\
+\hline
+\textbf{Signal Regime} & \textbf{Traded TO Red.} & \textbf{Net Vol Red.} & \textbf{Net $\Delta U$ (bp/wk)} & \textbf{Regime Classification} \\
+\hline
+Clean Empirical LoRA & 73.97\% & 66.16\% & +13.80 & Retrospective empirical \\
+Ticker-Risk Baseline & 73.97\% & 69.71\% & +15.63 & Historical control \\
+Random Ranking Null (50 seeds) & 73.97\% & 67.10\% & \textbf{+22.53} & Rebalancing churn null \\
+Constant / Equal-Weight Null & 73.97\% & 65.67\% & \textbf{+22.40} & Time-invariant control \\
+Synthetic $\alpha = 0.00$ & 73.97\% & 67.35\% & +2.04 & Noise smoothing dominates \\
+Synthetic $\alpha = 0.05$ & 73.97\% & 67.30\% & +0.88 & Modest stacking advantage \\
+Synthetic $\alpha = 0.10$ & 73.97\% & 67.24\% & \textbf{-0.27} & \textbf{Reversal Threshold} \\
+Synthetic $\alpha = 0.20$ & 73.97\% & 67.01\% & -2.52 & Instantaneous rebalancing wins \\
+Synthetic $\alpha = 0.40$ & 73.97\% & 66.07\% & -7.09 & Fresh alpha preservation \\
+\hline
+\end{tabular}%
+}
+\end{table}

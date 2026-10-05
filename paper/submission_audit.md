@@ -9,9 +9,9 @@ This audit systematically verifies every quantitative statement, sample size, eq
 | Component / Metric | Stated in Draft | Canonical Artifact | Verified Value | Status | Audit Note |
 | :--- | :---: | :--- | :---: | :---: | :--- |
 | **Total Factorial Evaluations** | 360,000 | `experiment_matrix.csv` (rows) | **360,000** | **VERIFIED** | $4 \times 6 \times 4 \times 5 \times 5 \times 5 \times 30 = 360{,}000$. |
-| **Random Seed Schedule** | 30 seeds ($S \in \{42, \dots, 71\}$) | `simulation_design.json` | **30 seeds** | **VERIFIED** | Seeds 42 through 71 inclusive. |
+| **Random Seed Schedule** | 30 seeds ($200001$ through $200030$) | `preregistration.json` | **30 seeds** | **VERIFIED** | Seeds 200001 through 200030 inclusive. |
 | **Asset Universe Size ($N$)** | 30 assets | `simulation_design.json` | **30** | **VERIFIED** | Synthetic cross-section. |
-| **Calendar Evaluation Weeks** | 52 weeks (after 52w burn-in) | `simulation_design.json` | **52** | **VERIFIED** | 52 evaluation weeks following 52-week initialization. |
+| **Calendar Evaluation Weeks** | 156 evaluation weeks | `simulation_design.json` | **156** | **VERIFIED** | 156 calendar evaluation weeks ($T=156$, 3 years). |
 | **Candidate Horizons Grid ($H$)** | $H \in \{1, 2, 4, 8, 13\}$ | `simulation_design.json` | **5 levels** | **VERIFIED** | Frozen discrete candidate set. |
 | **Signal Magnitude Grid ($\beta$)** | $\{0.000, 0.005, 0.010, 0.020\}$ | `simulation_design.json` | **4 levels** | **VERIFIED** | Deactivates at 0.000 (uniform null). |
 | **Signal Persistence Grid ($\rho$)**| $\{0.0, 0.25, 0.50, 0.75, 0.90, 0.97\}$ | `simulation_design.json` | **6 levels** | **VERIFIED** | Half-lives $\tau_{1/2} \in [0.0, 22.8]\text{ weeks}$. |

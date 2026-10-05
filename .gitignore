@@ -41,3 +41,11 @@ uv.lock
 
 # macOS
 .DS_Store
+
+# TeX auxiliary files
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.synctex.gz

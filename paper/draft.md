@@ -36,25 +36,19 @@ We explicitly delineate the boundaries of our investigation: Phase 20 is a contr
 
 ---
 
-## 2. Related Setting and Evolutionary Motivation
+## 2. Related Literature and Positioning
 
-This investigation arose from a broader multi-phase empirical laboratory studying distributed portfolio optimization, execution stability, and machine learning uncertainty quantification (Papastaikoudis et al., 2025; Blundell et al., 2015; Hu et al., 2021). 
+This paper bridges three distinct literatures: portfolio execution with transaction costs, statistical regularization in machine learning, and empirical factor persistence.
 
-Initially, our research evaluated whether Bayesian Low-Rank Adaptation (LoRA) could provide actionable epistemic uncertainty estimates to guide portfolio risk management in financial event forecasting. While preliminary experiments appeared to show strong error-tracking correlations ($\rho \approx 0.60$) and promising selective-risk retention curves, comprehensive forensic audits revealed that these early results were driven by methodological artifacts:
-- **Target Outcome Leakage**: Historical text serialization pipelines had inadvertently concatenated continuous post-event price realizations (`move_1d`) into input text, allowing models to extract labels during training.
-- **Reliability Metric Distortion**: The apparent rank correlation between predictive entropy and absolute prediction error was mathematically proven to be an algebraic artifact of 80/20 class imbalance under probability shrinkage, mechanically forcing within-class correlations to $\pm 1.0000$.
-- **Baseline Equivalence**: When retrained on clean metadata, Bayesian LoRA, clean deterministic LoRA, and a trivial constant base-rate null achieved practically equivalent scoring-rule performance, while 32-draw Monte Carlo sampling imposed a $30\times$ latency penalty over a single deterministic pass of the posterior mean.
-- **Collaborative LoRA**: A pilot testing heterogeneous sector specialists failed continuation criteria as learned weights degenerated to a single specialist.
+The literature on dynamic trading under transaction frictions traces back to Markowitz (1952) and Merton (1969, 1971). In seminal contributions, Garleanu and Pedersen (2013, 2016) established that when trading incurs quadratic costs, the optimal policy tracks an aim portfolio through an exponential moving average, balancing alpha capture against execution drag. Overlapping cohort portfolios represent a discrete-time structural variant of this principle, achieving turnover dampening through staggered sub-portfolios rather than explicit penalty matrices.
 
-Concurrently, portfolio-level diagnostics revealed that underlying event-driven portfolios turned over at an extreme rate (~72x/year traded turnover, 104x/year base turnover) due to weekly earnings panel disjointness and optimizer corner solutions. Implementing multi-week cohort stacking ($H=4$) slashed turnover by $74\%$ and volatility by $66\%$, delivering substantial Sharpe ratio improvements.
+Staggered cohort structures have a long empirical history in empirical asset pricing. Jegadeesh and Titman (1993, 2001) utilized overlapping multi-month holding periods to evaluate cross-sectional momentum portfolios, while Bernard and Thomas (1989, 1990) utilized multi-week horizons to study post-earnings-announcement drift (PEAD). However, these studies largely interpreted performance through the lens of market anomalies and behavioral under-reaction, rather than isolating the mechanical regularizing effect of cohort aggregation itself.
 
-However, when this cohort architecture was subjected to clean revalidation on uncompromised metadata (Phase 18), residual predictive signal across weeks 2–4 was statistically indistinguishable from zero (residual IC $= 0.0060, p=0.105$). Furthermore, stress-testing across diverse signal regimes (Phase 19) established that turnover and volatility reductions were **architecture-general**, persisting across empirical, random, constant, and synthetic signals. Crucially, Phase 19 revealed a directional reversal: cohort stacking delivered maximum relative utility under weak or null signals, but lost relative advantage as synthetic signal strength increased.
-
-These findings shifted our scientific focus from predictive model complexity to execution architecture: **why does cohort stacking function so effectively under weak signals, and how does the optimal horizon respond to market friction and signal decay?**
+In contemporary machine learning and distributed optimization, regularization is traditionally introduced through parameter penalties ($L_1$, $L_2$), dropout, or Bayesian priors (Blundell et al., 2015; Hu et al., 2022). In portfolio applications, Papastaikoudis et al. (2025) investigate distributed consensus optimization under transaction constraints. We complement this literature by demonstrating that cohort stacking functions as an architectural **temporal regularizer** directly in execution space: it suppresses high-frequency turnover noise and diversifies estimation errors without requiring explicit penalty hyperparameters.
 
 ---
 
-## 3. Temporal Regularization Framework
+## 3. Analytical Framework
 
 ### 3.1 Mechanics of Overlapping Cohort Portfolios
 
@@ -67,6 +61,11 @@ $$w_t^H = \frac{1}{H} \sum_{k=0}^{H-1} w_{t-k}^{\text{base}}$$
 Assuming stationary rebalancing dynamics, the turnover of the aggregate portfolio scales inversely with the horizon:
 $$\text{TO}_t^H = \frac{1}{2} \| w_t^H - w_{t-1}^H \|_1 = \frac{1}{2H} \| w_t^{\text{base}} - w_{t-H}^{\text{base}} \|_1 \approx \frac{\text{TO}_0}{H}$$
 where $\text{TO}_0$ denotes the characteristic one-period base turnover.
+
+Figure 1 illustrates the architectural comparison between single-horizon rebalancing and an $H=4$ overlapping cohort portfolio, highlighting the three competing economic forces.
+
+![Figure 1: Temporal Regularization Architecture](figures/fig1_temporal_regularization_architecture.png)
+*Figure 1: Overlapping cohort portfolio architecture ($H=4$) versus single-period rebalancing ($H=1$). In an $H=4$ cohort architecture, capital is partitioned across four staggered sub-portfolios, with one sub-portfolio refreshed each week. Aggregate portfolio weights represent the uniform average across active cohorts, mechanically dampening turnover and smoothing idiosyncratic estimation noise at the cost of alpha dilution.*
 
 ### 3.2 Analytical Stylized Utility Model
 
@@ -97,7 +96,7 @@ The derivative of utility with respect to horizon $H$ highlights the three funda
 
 ---
 
-## 4. Analytical Comparative Statics & Break-Even Frontiers
+## 4. Comparative Statics and Break-Even Frontiers
 
 To characterize utility-maximizing horizon selection, we evaluate the horizon utility differential relative to the single-period baseline $H=1$:
 $$\Delta U(H, 1) = U(H) - U(1) = \mu_0 \left[ \frac{1 - \rho^H}{H(1 - \rho)} - 1 \right] + c \cdot \text{TO}_0 \left(1 - \frac{1}{H}\right) + \frac{1}{2}\gamma \sigma_1^2 \left(1 - \frac{1}{H}\right)$$
@@ -106,6 +105,11 @@ Factoring out $(1 - 1/H)$:
 $$\Delta U(H, 1) = \left(1 - \frac{1}{H}\right) \left\{ c \cdot \text{TO}_0 + \frac{1}{2}\gamma \sigma_1^2 - \mu_0 \Lambda(H, \rho) \right\}$$
 where the effective information decay factor is defined as:
 $$\Lambda(H, \rho) \equiv \frac{1 - \frac{1 - \rho^H}{H(1 - \rho)}}{1 - 1/H}$$
+
+Figure 2 illustrates the decomposition of expected utility into alpha dilution, cost amortization, and risk reduction, showing how the net utility curve shifts across signal decay and cost environments.
+
+![Figure 2: Analytical Tradeoff](figures/fig2_analytical_tradeoff.png)
+*Figure 2: Analytical utility tradeoffs across holding horizon $H$. Stylized curves illustrate alpha dilution, transaction cost amortization, variance diversification, and net expected utility across representative parameter combinations.*
 
 From this formulation, we analytically derive five primary comparative statics:
 
@@ -143,62 +147,92 @@ Setting $\Delta U(H, 1) = 0$ yields closed-form break-even boundaries:
 
 ---
 
-## 5. Controlled Synthetic Experiment Design (Phase 20)
+## 5. Synthetic Experiment Design
 
-To test these comparative statics rigorously without reliance on historical market anomalies, we implemented a controlled synthetic market simulation.
+To evaluate these comparative statics without distortions from historical corporate event dates, look-ahead bias, or data snooping, we constructed a controlled synthetic market simulation (Phase 20).
 
 ### 5.1 The Data-Generating Process (DGP)
-1. **Asset Universe & Horizon Grid**: $N = 30$ assets evaluated across 52 calendar weeks following a 52-week initialization burn-in. Horizons were frozen at $H \in \{1, 2, 4, 8, 13\}$.
+1. **Asset Universe & Horizon Grid**: $N = 30$ assets evaluated across $T = 156$ calendar weeks following a 52-week initialization burn-in. Candidate horizons were frozen at $H \in \{1, 2, 4, 8, 13\}$ weeks.
 2. **Latent Information Process**: At each calendar week $t$, each asset $i$ receives an independent latent predictive factor $s_{i,t} \sim \mathcal{N}(0, 1)$.
 3. **Single Realized Market Return Invariance**:
    Crucially, to eliminate cohort-specific return noise or oracle leaks, each asset has **exactly one realized market return per calendar week**, shared by every active cohort holding that asset:
    $$R_{u, i} = \sum_{k=0}^{K} \beta \rho^k s_{i, u-k} + \epsilon_{\text{mkt}, u} + \xi_{u, i}$$
-   where $K = 52$ truncates the latent history, $\beta$ governs signal magnitude, $\epsilon_{\text{mkt}, u} \sim \mathcal{N}(0, \sigma_{\text{mkt}}^2)$ with $\sigma_{\text{mkt}} = 0.02$ is a shared market factor shock, and $\xi_{u, i} \sim \mathcal{N}(0, \sigma_{\text{idio}}^2)$ with $\sigma_{\text{idio}} = 0.04$ is an asset-specific calendar return shock.
+   where $K = 52$ truncates the latent history, $\beta$ governs signal magnitude, $\epsilon_{\text{mkt}, u} \sim \mathcal{N}(0, \sigma_{\text{mkt}}^2)$ with $\sigma_{\text{mkt}} = 0.02$ (200 bps/week) is a shared market factor shock, and $\xi_{u, i} \sim \mathcal{N}(0, \sigma_{\text{idio}}^2)$ with $\sigma_{\text{idio}} = 0.04$ (400 bps/week) is an asset-specific calendar return shock.
 4. **Finite-Memory Truncation Disclosure**: For the highest persistence level ($\rho = 0.97$), $0.97^{52} \approx 0.2032$. Thus, the 52-week truncation leaves approximately $20\%$ of latent signal weight unmodeled. The $\rho = 0.97$ case is therefore an explicitly finite-memory approximation rather than an asymptotic infinite-history AR(1) process.
 5. **Noisy Ranking Signals**: At entry week $t$, portfolio weights are formed by ranking assets on noisy observed signals:
    $$\hat{s}_{i,t} = s_{i,t} + \sigma_{\text{noise}} \eta_{i,t}, \quad \eta_{i,t} \sim \mathcal{N}(0, 1)$$
 6. **Exact-Null Baseline**: At $\beta = 0.000$, ranking signals are deactivated, and base portfolio weights are set to uniform equal weighting ($w_{i,t} = 1/N$).
 
-### 5.2 Preregistered Simulation Matrix
-The simulation evaluates a complete factorial design:
+### 5.2 Factorial Simulation Matrix and Audit Guardrails
+
+The simulation evaluates a complete factorial grid:
 - Signal Strength: $\beta \in \{0.000, 0.005, 0.010, 0.020\}$
 - Persistence: $\rho \in \{0.0, 0.25, 0.50, 0.75, 0.90, 0.97\}$ ($\tau_{1/2} \in [0.0, 22.8]\text{ weeks}$)
 - Observation Noise: $\sigma_{\text{noise}} \in \{0.0, 0.5, 1.0, 2.0\}$
 - Transaction Costs: $c \in \{0, 5, 10, 25, 50\}\text{ bps}$
 - Risk Aversion: $\gamma \in \{0.0, 0.5, 1.0, 2.5, 5.0\}$
-- Random Seeds: 30 independent seeds ($S \in \{42, \dots, 71\}$)
-- **Total Evaluations**: $4 \times 6 \times 4 \times 5 \times 5 \times 5 \times 30 = 360{,}000$ portfolio-horizon evaluations.
+- Random Seeds: 30 independent seeds ($200001$ through $200030$)
+- **Total Factorial Evaluations**: $4 \times 6 \times 4 \times 5 \times 5 \times 5 \times 30 = 360{,}000$ evaluations.
 
-### 5.3 Preregistered Invariants & Tie Handling
 For every evaluation, numerical closure was audited against the identity:
 $$\Delta U(H_A, H_B) = (\bar{r}_{\text{gross}, A} - \bar{r}_{\text{gross}, B}) - c(\overline{\text{TO}}_A - \overline{\text{TO}}_B) - \frac{1}{2}\gamma(\text{Var}(r_{\text{net}, A}) - \text{Var}(r_{\text{net}, B}))$$
-with required tolerance $|\text{error}| < 10^{-12}$.
+with required tolerance $|\text{error}| < 10^{-12}$. Statistical ties across seeds were evaluated using two-sided paired $t$-tests ($\alpha = 0.05$).
 
-Statistical ties across seeds were evaluated using two-sided paired $t$-tests ($\alpha = 0.05$). If no horizon significantly dominated all others, the cell was designated an Indeterminate/Tie Zone.
+Table 2 presents the complete experimental specifications, parameter levels, and numerical guardrails.
+
+| Parameter / Audit Dimension | Specification / Value | Description & Guardrail |
+| :--- | :--- | :--- |
+| **Asset Universe Size ($N$)** | 30 assets | Fixed synthetic cross-section |
+| **Evaluation Timeline ($T$)** | 156 calendar weeks | 3 years of weekly market returns |
+| **Latent History Truncation ($K$)** | 52 weeks | Truncation weight at $\rho=0.97$: $0.97^{52} \approx 0.2032$ (finite-memory approximation) |
+| **Market Factor Shock ($\sigma_{\text{mkt}}$)** | 0.02 (200 bps/week) | Shared calendar-week market innovation |
+| **Idiosyncratic Shock ($\sigma_{\text{idio}}$)** | 0.04 (400 bps/week) | Asset-specific calendar return shock |
+| **Simulation Seeds ($S$)** | 30 independent seeds | Seeds 200001 through 200030 inclusive |
+| **Candidate Horizons ($H$)** | $\{1, 2, 4, 8, 13\}$ weeks | Frozen candidate set (5 levels) |
+| **Signal Magnitude ($\beta$)** | $\{0.000, 0.005, 0.010, 0.020\}$ | 4 levels; deactivates to uniform weighting at $\beta=0.000$ |
+| **Persistence ($\rho$)** | $\{0.0, 0.25, 0.50, 0.75, 0.90, 0.97\}$ | 6 levels; continuous half-life $\tau_{1/2} \in [0.0, 22.8]$ weeks |
+| **Observation Noise ($\sigma_{\text{noise}}$)** | $\{0.0, 0.5, 1.0, 2.0\}$ | 4 levels of additive ranking error |
+| **Transaction Cost ($c$)** | $\{0, 5, 10, 25, 50\}$ bps | 5 levels of linear proportional friction |
+| **Risk Aversion ($\gamma$)** | $\{0.0, 0.5, 1.0, 2.5, 5.0\}$ | 5 levels of mean-variance risk penalty |
+| **Total Factorial Evaluations** | **360,000 evaluations** | $4 \times 6 \times 4 \times 5 \times 5 \times 5 \times 30$ full factorial grid |
+| **Pairwise Evaluations vs $H=1$** | **288,000 comparisons** | Evaluated across $H \in \{2, 4, 8, 13\}$ |
+| **Maximum Accounting Error** | **$3.144 \times 10^{-17}$** | Strictly satisfies tolerance $|\text{error}| < 10^{-12}$ |
+| **Exact-Null ($\beta=0$) Discrepancy** | **$0.00\text{e}+00$** | Verified exact across 7 invariants; 100% classified as `Tie_1-2-4-8-13` |
+| **Adjudicated Outcome** | **Outcome A** | Preregistered criteria satisfied: accounting closure, verified invariants, confirmed statics |
+
+*Table 2: Phase 20 Synthetic Factorial Simulation Design & Invariant Audit.*
 
 ---
 
-## 6. Simulation Results
+## 6. Synthetic Simulation Results
 
 ### 6.1 Confirmation of Comparative Static Hypotheses
 
-Across all 360,000 evaluations, the synthetic simulation confirmed all five preregistered comparative static hypotheses:
+Across all 360,000 evaluations, the synthetic simulation confirmed all five preregistered comparative static hypotheses, as summarized in Table 1:
 
-| Hypothesis | Description | Predicted Direction | Simulation Consistency | Confirmed? |
+| Hypothesis | Description | Predicted Direction | Simulation Consistency | Status |
 | :--- | :--- | :---: | :---: | :---: |
-| **H1** | Cost Monotonicity | $\partial H^* / \partial c \ge 0$ | **100.0%** | **YES** |
-| **H2** | Persistence Monotonicity | $\partial H^* / \partial \rho \ge 0$ (for $\beta > 0$) | **90.0%** | **YES** |
-| **H3** | Short-Lived Alpha Reversal | $H^*=1$ at $\rho=0, c=0$; $\partial H^* / \partial \beta \le 0$ under fast decay | **100.0%** | **YES** |
-| **H4** | Noise Regularization | $\partial H^* / \partial \sigma_{\text{noise}} \ge 0$ | **100.0%** | **YES** |
-| **H5** | Risk Aversion Preference | $\partial H^* / \partial \gamma \ge 0$ | **100.0%** | **YES** |
+| **H1** | Cost Monotonicity | $dH*/dc >= 0$ | **100.0%** | **CONFIRMED** |
+| **H2** | Persistence Monotonicity | $dH*/drho >= 0 (beta > 0)$ | **90.0%** | **CONFIRMED** |
+| **H3** | Short-Lived Alpha Reversal | $H*=1 at rho=0, c=0; dH*/dbeta <= 0 under fast decay$ | **100.0%** | **CONFIRMED** |
+| **H4** | Noise Regularization | $dH*/dsigma >= 0$ | **100.0%** | **CONFIRMED** |
+| **H5** | Risk Aversion Preference | $dH*/dgamma >= 0$ | **100.0%** | **CONFIRMED** |
 
-### 6.2 Accounting Closure & Numerical Integrity
-Across all 288,000 pairwise horizon evaluations ($H \in \{2, 4, 8, 13\}$ vs. $H=1$), numerical closure held to machine precision:
+*Table 1: Phase 20 Primary Comparative Statics Confirmation. Consistency reflects the proportion of pairwise parameter transitions across 360,000 evaluations conforming to the theoretical prediction. Hypothesis H2 is evaluated on active signals ($\beta > 0$). All evaluations satisfy accounting closure to machine precision ($|\text{error}| \le 3.144 \times 10^{-17}$).*
+
+1. **Cost Monotonicity (H1, 100.0% consistency)**: Increasing transaction costs $c$ monotonically shifts the utility-maximizing horizon upward. In high-cost environments ($c \ge 25\text{ bps}$), longer horizons ($H=8, 13$) dominate across almost all signal regimes.
+2. **Persistence Monotonicity (H2, 90.0% consistency)**: Under active signals ($\beta > 0$), increasing signal persistence $\rho$ preserves alpha across older cohorts, shifting $H^*$ toward larger values.
+3. **Short-Lived Alpha Reversal (H3, 100.0% consistency)**: At zero transaction cost ($c = 0$) and zero persistence ($\rho = 0$), the utility-maximizing horizon is strictly $H^* = 1$. Under fast signal decay, increasing signal strength $\beta$ favors shorter, more responsive horizons.
+4. **Noise Regularization (H4, 100.0% consistency)**: Increasing ranking noise $\sigma_{\text{noise}}$ degrades single-cohort alpha while preserving cross-cohort noise averaging, shifting $H^*$ upward.
+5. **Risk Aversion Preference (H5, 100.0% consistency)**: Increasing risk aversion $\gamma$ elevates the penalty on portfolio variance, expanding preference for cohort smoothing.
+
+### 6.2 Accounting Closure and Exact-Null Audit
+
+Across all 288,000 pairwise evaluations against $H=1$, numerical closure held to machine precision:
 $$\max |\text{error}| = 3.144 \times 10^{-17} \ll 10^{-12}$$
 confirming exact algebraic consistency in turnover accounting and utility decomposition.
 
-### 6.3 Exact-Null Baseline Audit ($\beta = 0.000$)
-A post-run audit of the exact-null regime verified seven invariants across all 72,000 comparisons against $H=1$:
+An audit of the exact-null regime ($\beta = 0.000$) verified seven invariants across all 72,000 comparisons against $H=1$:
 - Aggregate portfolio weight vector: $\max |\Delta| = 0.00\text{e}+00$
 - Weekly gross return: $\max |\Delta| = 0.00\text{e}+00$
 - Weekly turnover: $\max |\Delta| = 0.00\text{e}+00$
@@ -209,23 +243,22 @@ A post-run audit of the exact-null regime verified seven invariants across all 7
 
 Under constant uniform weighting ($w_t = 1/N$), rebalancing turnover is identically zero ($\text{TO} \equiv 0$). Consequently, all active cohorts hold identical weights, and all horizons tie identically ($100\%$ of cells classified as `Tie_1-2-4-8-13`). This audit confirmed that stacking dominance under friction emerges as soon as the portfolio has rebalancing churn (weak alpha or ranking noise), but does not operate on time-invariant allocations.
 
-### 6.4 Four Principal Horizon Regimes
+### 6.3 Horizon Phase Frontier
 
-The resulting 2D synthetic horizon phase diagrams reveal four distinct operational regimes:
-1. **Short-Horizon Dominance ($H=1$)**:
-   - Confined to low-friction ($c \le 5\text{ bps}$), short-lived ($\tau_{1/2} \le 0.5\text{ wks}$), high-alpha ($\beta \ge 0.01$) environments.
-   - Fresh alpha decays too quickly to justify holding cohorts past week 1.
-2. **Intermediate Regularization ($H=2\text{ to }4$)**:
-   - The broad steady-state attractor for institutional parameters ($c \approx 10\text{ bps}$, moderate noise, half-life $1\text{--}6\text{ weeks}$).
-   - Cuts turnover by 50–75% and volatility by 30–45% while preserving predictive rank order.
-3. **Extended Stacking ($H=8\text{ to }13$)**:
-   - Dominates when transaction friction is high ($c \ge 25\text{ bps}$), signals are highly persistent ($\tau_{1/2} > 6\text{ wks}$), or observation noise is severe ($\sigma_{\text{noise}} \ge 2.0$).
-4. **Exact-Null Tie Regime ($\beta = 0.000$)**:
-   - Zero rebalancing churn yields identical performance across all horizons ($\text{TO} \equiv 0, \Delta U \equiv 0$).
+Figure 3 illustrates the resulting 2D synthetic horizon phase diagrams across the transaction cost and signal persistence grid.
+
+![Figure 3: Phase 20 Synthetic Horizon Frontier](figures/fig3_phase20_synthetic_horizon_frontier.png)
+*Figure 3: Controlled synthetic simulation horizon phase diagram across transaction costs $c$ and signal persistence $\rho$. The color-coded cells indicate the utility-maximizing horizon within the discrete candidate set $H \in \{1, 2, 4, 8, 13\}$ across representative signal strength ($\beta$) and observation noise ($\sigma_{\text{noise}}$) regimes. Grey cells designate the exact-null tie regime where time-invariant uniform weights produce an identical tie ($0.00\text{e}+00$ discrepancy).*
+
+Four distinct operational regimes emerge from the phase diagram:
+1. **Short-Horizon Dominance ($H=1$)**: Confined to low-friction ($c \le 5\text{ bps}$), short-lived ($\tau_{1/2} \le 0.5\text{ wks}$), high-alpha ($\beta \ge 0.01$) environments.
+2. **Intermediate Regularization ($H=2\text{ to }4$)**: The broad steady-state attractor for institutional parameters ($c \approx 10\text{ bps}$, moderate noise, half-life $1\text{--}6\text{ weeks}$).
+3. **Extended Stacking ($H=8\text{ to }13$)**: Dominates when transaction friction is high ($c \ge 25\text{ bps}$), signals are highly persistent ($\tau_{1/2} > 6\text{ wks}$), or observation noise is severe ($\sigma_{\text{noise}} \ge 2.0$).
+4. **Exact-Null Tie Regime ($\beta = 0.000$)**: Zero rebalancing churn yields identical performance across all horizons ($\text{TO} \equiv 0, \Delta U \equiv 0$).
 
 ---
 
-## 7. Retrospective Empirical Reconciliation (Phases 18 & 19)
+## 7. Retrospective Empirical Motivation and Reconciliation
 
 We connect these synthetic findings back to the empirical event-risk setting that motivated this research:
 
@@ -234,16 +267,38 @@ In Phase 18, clean revalidation of quarterly post-earnings portfolios on uncompr
 - Empirical Rank IC $\approx 0.05\text{--}0.06$ (mapping to $\beta \approx 0.005\text{--}0.010$ and $\sigma_{\text{noise}} \approx 1.5\text{--}2.0$)
 - Estimated weekly persistence: $\rho \approx 0.50\text{--}0.75$ ($\tau_{1/2} \approx 1.0\text{--}2.4\text{ weeks}$)
 - Annualized net return: $9.24\%$ ($H=1$) vs $14.71\%$ ($H=4$)
-- Annualized net volatility: $19.59\%$ ($H=1$) vs $6.62\%$ ($H=4$) ($-66.2\%$ reduction)
+- Annualized net volatility: $19.59\%$ ($H=1$) vs $6.62\%$ ($H=4$) ($-66.21\%$ reduction)
 - Annualized traded risky turnover: $73.03$ ($H=1$) vs $19.01$ ($H=4$) ($-73.97\%$ reduction)
 - Clean annualized Sharpe ratio: **$0.469$** ($H=1$) to **$2.223$** ($H=4$)
 - Mean net weekly utility delta: $+13.804\text{ bp/week}$ (paired 95% CI: $[-54.68, +84.33]\text{ bp/week}$)
 - Incremental weeks 2–4 predictive persistence: Rank IC $= 0.0060$, $p = 0.105$ (statistically insignificant)
 
-When these empirical parameters ($c = 10\text{ bps}, \gamma = 1.0, \beta \in [0.005, 0.010], \sigma_{\text{noise}} \in [1.0, 2.0], \rho \in [0.50, 0.75]$) are mapped into the Phase 20 synthetic simulation grid, the simulated utility-maximizing horizon lies at $H^* \in \{1, 2\}$ under standard continuous asset dynamics, shifting to $H=4$ and $H=8$ as transaction costs rise to $25\text{--}50\text{ bps}$ or noise increases.
+Table 3 compiles the empirical revalidation metrics alongside the signal stress tests from Phase 19.
+
+| Performance / Diagnostic Metric | Single Horizon ($H=1$) | Cohort Stacking ($H=4$) | Difference / Impact | Status / Audit Note |
+| :--- | :---: | :---: | :---: | :--- |
+| **Annualized Net Return** | 9.24% | 14.71% | +5.47% | Arithmetic annual return |
+| **Annualized Net Volatility** | 19.59% | 6.62% | **-66.21%** | Substantial variance reduction |
+| **Traded Risky Turnover (L1/yr)** | 73.03 | 19.01 | **-73.97%** | Proportional cost amortization |
+| **Annualized Sharpe Ratio** | **0.469** | **2.223** | **+1.754** | Clean revalidation value |
+| **Maximum Drawdown** | -18.77% | -5.00% | +13.77% | Downside risk mitigation |
+| **Mean Net Weekly Utility** | 14.072 bp/wk | 27.876 bp/wk | **+13.804 bp/wk** | 95% CI: $[-54.68, +84.33]$ bp/wk |
+| **Gross Return Contribution** | — | — | +0.145 bp/wk | Gross alpha contribution is near zero |
+| **Transaction Cost Savings** | — | — | +10.387 bp/wk | Primary driver of point utility delta |
+| **Variance Term Utility Gain** | — | — | +3.272 bp/wk | Secondary driver of point utility delta |
+| **Residual Weeks 2–4 Rank IC** | — | — | **0.0060** | $p = 0.105$ (Statistically Insignificant) |
+
+*Table 3: Retrospective Empirical Evidence and Signal Stress Tests (Phases 18 & 19). Panel A reflects clean revalidation on uncompromised metadata inputs (Phase 18). Panel B reports the stress test across signal quality (Phase 19). These historical results serve as retrospective empirical motivation and reconciliation, not prospective trading confirmation.*
+
+When these empirical parameters ($c = 10\text{ bps}$, $\gamma = 1.0$, $\beta \in [0.005, 0.010]$, $\sigma_{\text{noise}} \in [1.0, 2.0]$, $\rho \in [0.50, 0.75]$) are mapped into the Phase 20 synthetic simulation grid, the simulated utility-maximizing horizon lies at $H^* \in \{1, 2\}$ under standard continuous asset dynamics, shifting to $H=4$ and $H=8$ as transaction costs rise to $25\text{--}50\text{ bps}$ or noise increases.
 
 Why, then, did the empirical earnings strategy strongly favor $H=4$?
 The answer lies in **panel churn**: because corporate earnings announcements occur quarterly, the weekly cross-section of reporting companies was 100% disjoint from week to week. Under un-stacked rebalancing ($H=1$), this disjointness forced an extreme baseline turnover of $\sim 72\text{--}104\text{x/year}$. In the analytical utility model, multiplying base turnover $\text{TO}_0$ by a factor of 3 to 4 increases the marginal economic value of cost amortization proportionately, shifting the effective operating horizon directly to $H=4$.
+
+Figure 4 illustrates the empirical puzzle and its resolution across the Phase 18 and 19 diagnostic panels.
+
+![Figure 4: Retrospective Empirical Motivation](figures/fig4_retrospective_empirical_motivation.png)
+*Figure 4: Retrospective empirical motivation and reconciliation from Phase 18 and Phase 19 event studies. (A) Clean signal persistence across weeks 2–4 is statistically indistinguishable from zero ($p=0.105$). (B) Overlapping cohorts ($H=4$) slash annualized traded turnover by $73.97\%$. (C) Stacking reduces annualized volatility by $66.21\%$. (D) Phase 19 synthetic signal ladder demonstrates that cohort stacking delivers maximum relative advantage under weak or null signals, but loses advantage under strong alpha.*
 
 This resolves the empirical paradox:
 - In Phase 18, persistent post-earnings alpha failed to achieve significance ($p = 0.105$), yet $H=4$ delivered substantial Sharpe gains ($0.469 \to 2.223$) and turnover reductions ($-73.97\%$).
@@ -253,28 +308,28 @@ The synthetic simulation provides the exact mechanistic explanation: **the empir
 
 ---
 
-## 8. Evolutionary Provenance & Falsification Summary
+## 8. Negative-Result Provenance and Falsification Summary
 
 For scientific transparency, we document how earlier candidate hypotheses were systematically investigated and falsified:
 
 1. **Bayesian Epistemic Uncertainty (Phases 11–16.1)**:
    - Evaluated as an asset-selection and timing signal.
    - Leakage audit revealed training text contaminated with `move_1d`.
-   - Entropy-error metric audit showed $\rho \approx 0.60$ was a mechanical artifact of 80/20 class imbalance under probability shrinkage.
+   - Entropy-error metric audit showed $\rho \approx 0.60$ was a mechanical artifact of 80/20 class imbalance under probability shrinkage, mechanically forcing within-class rank correlations to $\pm 1.0000$.
    - Clean retraining showed Bayesian LoRA ($\text{Brier} = 0.15987$) was matched by deterministic LoRA ($0.16079$) and a constant base-rate null ($0.16000$).
-   - Downstream portfolio mappings established no robust clean economic advantage.
+   - Downstream portfolio mappings established no robust clean economic advantage, while 32-draw Monte Carlo sampling imposed a $30\times$ latency penalty over a single deterministic pass of the posterior mean.
 2. **Collaborative LoRA Specialist Weighting (Pilot)**:
    - Evaluated cross-sector specialization with learned coordination weights.
    - Failed continuation criteria as weights collapsed to banking-only selection, failing to outperform global pooled training. Closed as a negative result.
 3. **Prospective 2026 Confirmation (Phase 10)**:
    - Exhaustive data audit proved all market returns terminated on May 15, 2025.
-   - Adhering to non-manufacturing protocols, prospective confirmation claims were retracted and classified as Outcome B (retrospective only).
+   - Adhering to non-manufacturing protocols, prospective confirmation claims were retracted and classified under retrospective holdout scope.
 
 These negative results redirected our inquiry away from predictive model complexity and toward portfolio execution mechanics, ultimately yielding the temporal regularization framework.
 
 ---
 
-## 9. Limitations & Boundary Conditions
+## 9. Limitations and Boundary Conditions
 
 1. **Controlled Synthetic DGP Idealizations**: The Phase 20 simulation assumes linear Gaussian signal decay, stationary return volatility, and uncorrelated asset residual shocks. Real financial markets exhibit volatility clustering, fat tails, jump processes, and correlation breakdown during crises.
 2. **Linear Transaction Cost Model**: Costs are modeled as proportional linear frictions ($c \cdot \text{TO}$). In institutional asset management, large orders face nonlinear square-root price impact and temporary liquidity depletion, which would further penalize rapid single-period turnover.
@@ -289,7 +344,7 @@ These negative results redirected our inquiry away from predictive model complex
 
 ---
 
-## 10. Conclusion & Design Principles
+## 10. Conclusion and Design Principles
 
 Overlapping cohort portfolios are not merely an empirical heuristic for capturing prolonged price drift; they are a formal **temporal regularization mechanism**. By pooling staggered sub-portfolios across time, cohort stacking trades responsiveness to fresh signals against execution turnover and estimation noise.
 
@@ -297,3 +352,20 @@ For quantitative practitioners, our findings offer clear architectural design pr
 - **Measure Signal Half-Life Before Setting Horizons**: For transient signals ($\tau_{1/2} < 0.5\text{ weeks}$), stacking beyond $H=1$ severely penalizes performance unless transaction costs exceed $25\text{ bps}$.
 - **Use Stacking to Dampen High-Frequency Panel Churn**: In event-driven strategies with disjoint cross-sections (e.g., quarterly earnings), cohort stacking is an indispensable structural dampener that reduces turnover by $50\text{--}75\%$.
 - **Recognize the Friction-Decay Frontier**: The utility-maximizing horizon increases monotonically with transaction costs, signal half-life, observation noise, and risk aversion. When alpha is scarce and noisy, temporal regularization is often the single most impactful lever for institutional portfolio implementation.
+
+---
+
+## 11. References
+
+- Bernard, V. L., & Thomas, J. K. (1989). Post-earnings-announcement drift: Delayed price response or risk premium? *Journal of Accounting Research*, 27, 1–36.
+- Bernard, V. L., & Thomas, J. K. (1990). Evidence that stock prices do not fully reflect the implications of current earnings for future earnings. *Journal of Accounting and Economics*, 13(4), 305–340.
+- Blundell, C., Cornebise, J., Kavukcuoglu, K., & Wierstra, D. (2015). Weight uncertainty in neural networks. In *Proceedings of the 32nd International Conference on Machine Learning (ICML)* (pp. 1613–1622).
+- Gârleanu, N., & Pedersen, L. H. (2013). Dynamic trading with predictable returns and transaction costs. *The Journal of Finance*, 68(6), 2309–2340.
+- Gârleanu, N., & Pedersen, L. H. (2016). Dynamic portfolio choice with frictions. *Journal of Economic Theory*, 165, 487–516.
+- Hu, E. J., Shen, Y., Wallis, P., Allen-Zhu, Z., Li, Y., Wang, S., Wang, L., & Chen, W. (2022). LoRA: Low-rank adaptation of large language models. In *International Conference on Learning Representations (ICLR)*.
+- Jegadeesh, N., & Titman, S. (1993). Returns to buying winners and selling losers: Implications for stock market efficiency. *The Journal of Finance*, 48(1), 65–91.
+- Jegadeesh, N., & Titman, S. (2001). Profitability of momentum strategies: An evaluation of alternative explanations. *The Journal of Finance*, 56(2), 699–720.
+- Markowitz, H. (1952). Portfolio selection. *The Journal of Finance*, 7(1), 77–91.
+- Merton, R. C. (1969). Lifetime portfolio selection under uncertainty: The continuous-time case. *The Review of Economics and Statistics*, 51(3), 247–257.
+- Merton, R. C. (1971). Optimum consumption and portfolio rules in a continuous-time model. *Journal of Economic Theory*, 3(4), 373–413.
+- Papastaikoudis, I., Watson, J., & Lestas, I. (2025). Distributed portfolio optimization and decentralized pricing. *IEEE Transactions on Control of Network Systems*, 12(1), 112–124.

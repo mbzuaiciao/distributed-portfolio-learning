@@ -1,0 +1,19 @@
+\begin{table}[t]
+\centering
+\small
+\caption{\textbf{Phase 20 Primary Comparative Statics Confirmation.} Consistency reflects the proportion of pairwise parameter transitions across 360,000 evaluations conforming to the theoretical prediction. Hypothesis H2 is evaluated on active signals ($\beta > 0$). All evaluations satisfy accounting closure to machine precision ($|\text{error}| \le 3.144 \times 10^{-17}$).}
+\label{tab:comparative_statics}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llccc}
+\hline
+\textbf{Hypothesis} & \textbf{Economic Mechanism} & \textbf{Predicted Direction} & \textbf{Simulation Consistency} & \textbf{Status} \\
+\hline
+\textbf{H1} & Cost Monotonicity & $\partial H^* / \partial c \ge 0$ & \textbf{100.0\%} & \textbf{CONFIRMED} \\
+\textbf{H2} & Persistence Monotonicity & $\partial H^* / \partial \rho \ge 0$ & \textbf{90.0\%} & \textbf{CONFIRMED} \\
+\textbf{H3} & Short-Lived Alpha Reversal & $H^*=1\ (\rho=0, c=0);\, \partial H^* / \partial \beta \le 0$ & \textbf{100.0\%} & \textbf{CONFIRMED} \\
+\textbf{H4} & Noise Regularization & $\partial H^* / \partial \sigma_{\text{noise}} \ge 0$ & \textbf{100.0\%} & \textbf{CONFIRMED} \\
+\textbf{H5} & Risk Aversion Preference & $\partial H^* / \partial \gamma \ge 0$ & \textbf{100.0\%} & \textbf{CONFIRMED} \\
+\hline
+\end{tabular}%
+}
+\end{table}

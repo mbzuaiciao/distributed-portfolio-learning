@@ -1,71 +1,71 @@
-# Phase 18.1 Submission-Readiness Scientific Audit
+# Phase 20 Submission-Readiness Scientific Audit
 
-This audit systematically checks every quantitative claim, sample size, input representation description, and architectural statement in `paper/draft.md` and supporting documents against canonical clean artifacts (`artifacts/phase17_clean_bayesian/` and `artifacts/phase16_1_audit/`).
+This audit systematically verifies every quantitative statement, sample size, equation, statistical test, and architectural claim in `paper/draft.md` and supporting documents against canonical clean artifacts (`artifacts/phase20_optimal_cohort_horizon/`, `artifacts/phase19_architecture_signal_stress_test/`, and `artifacts/phase18_clean_cohort_revalidation/`).
 
 ---
 
-## 1. Dataset Counts & Universe Verification
+## 1. Phase 20 Synthetic Simulation Verification
 
-| Split / Universe | Stated in Draft | Canonical Artifact | Verified Count | Status | Required Edit |
+| Component / Metric | Stated in Draft | Canonical Artifact | Verified Value | Status | Audit Note |
 | :--- | :---: | :--- | :---: | :---: | :--- |
-| **Training Observations ($N_{\text{train}}$)** | "trained on 18,201 events" / "11,985" | `clean_text_manifest.csv` (`split == 'train'`) | **11,985** | **NEEDS_REWORDING** | Correct all instances stating models were "trained on 18,201 events". Total universe is 18,201; training set is strictly 11,985. |
-| **Validation Observations ($N_{\text{val}}$)** | 2,116 | `clean_text_manifest.csv` (`split == 'validation'`) | **2,116** | **VERIFIED** | Pre-2022 validation universe strictly equals 2,116. |
-| **Clean OOS Unique Events ($N_{\text{test, unique}}$)** | 4,100 | `clean_text_manifest.csv` (`split == 'clean_oos'`) | **4,100** | **VERIFIED** | 4,100 unique calendar events across 2022–2025. |
-| **Clean OOS Seed Observations ($N_{\text{test, total}}$)** | 12,300 | `clean_oos_predictions.csv` (12,300 rows) | **12,300** | **VERIFIED** | Exactly 4,100 unique events $\times$ 3 seeds (42, 123, 777). |
-| **Total Universe Events** | 18,201 | `clean_text_manifest.csv` (total rows) | **18,201** | **VERIFIED** | $11,985 + 2,116 + 4,100 = 18,201$. Clearly label as the total partitioned universe, not the training set size. |
+| **Total Factorial Evaluations** | 360,000 | `experiment_matrix.csv` (rows) | **360,000** | **VERIFIED** | $4 \times 6 \times 4 \times 5 \times 5 \times 5 \times 30 = 360{,}000$. |
+| **Random Seed Schedule** | 30 seeds ($S \in \{42, \dots, 71\}$) | `simulation_design.json` | **30 seeds** | **VERIFIED** | Seeds 42 through 71 inclusive. |
+| **Asset Universe Size ($N$)** | 30 assets | `simulation_design.json` | **30** | **VERIFIED** | Synthetic cross-section. |
+| **Calendar Evaluation Weeks** | 52 weeks (after 52w burn-in) | `simulation_design.json` | **52** | **VERIFIED** | 52 evaluation weeks following 52-week initialization. |
+| **Candidate Horizons Grid ($H$)** | $H \in \{1, 2, 4, 8, 13\}$ | `simulation_design.json` | **5 levels** | **VERIFIED** | Frozen discrete candidate set. |
+| **Signal Magnitude Grid ($\beta$)** | $\{0.000, 0.005, 0.010, 0.020\}$ | `simulation_design.json` | **4 levels** | **VERIFIED** | Deactivates at 0.000 (uniform null). |
+| **Signal Persistence Grid ($\rho$)**| $\{0.0, 0.25, 0.50, 0.75, 0.90, 0.97\}$ | `simulation_design.json` | **6 levels** | **VERIFIED** | Half-lives $\tau_{1/2} \in [0.0, 22.8]\text{ weeks}$. |
+| **Observation Noise Grid ($\sigma_{\text{noise}}$)**| $\{0.0, 0.5, 1.0, 2.0\}$ | `simulation_design.json` | **4 levels** | **VERIFIED** | Additive ranking noise. |
+| **Transaction Cost Grid ($c$)** | $\{0, 5, 10, 25, 50\}\text{ bps}$ | `simulation_design.json` | **5 levels** | **VERIFIED** | Proportional linear friction. |
+| **Risk Aversion Grid ($\gamma$)** | $\{0.0, 0.5, 1.0, 2.5, 5.0\}$ | `simulation_design.json` | **5 levels** | **VERIFIED** | Mean-variance objective weight. |
+| **H1 Cost Monotonicity** | 100.0% consistency | `comparative_statics_table.csv:L2` | **100.0%** | **VERIFIED** | $\partial H^* / \partial c \ge 0$. |
+| **H2 Persistence Monotonicity** | 90.0% consistency | `comparative_statics_table.csv:L3` | **90.0%** | **VERIFIED** | $\partial H^* / \partial \rho \ge 0$ for $\beta > 0$. |
+| **H3 Short-Lived Alpha Reversal**| 100.0% consistency | `comparative_statics_table.csv:L4` | **100.0%** | **VERIFIED** | $H^*=1$ at $\rho=0, c=0$; $\partial H^*/\partial\beta \le 0$. |
+| **H4 Noise Regularization** | 100.0% consistency | `comparative_statics_table.csv:L5` | **100.0%** | **VERIFIED** | $\partial H^* / \partial \sigma_{\text{noise}} \ge 0$. |
+| **H5 Risk Aversion Preference** | 100.0% consistency | `comparative_statics_table.csv:L6` | **100.0%** | **VERIFIED** | $\partial H^* / \partial \gamma \ge 0$. |
+| **Accounting Closure Error** | $\max \|\text{error}\| \le 3.14\times 10^{-17}$ | `scientific_report.md:L7` | **3.144e-17** | **VERIFIED** | Across all 288,000 comparisons vs $H=1$. |
+| **Exact Null Invariant Discrepancy** | $0.00\text{e}+00$ across 7 invariants | `null_regime_invariant_audit.json` | **0.00e+00** | **VERIFIED** | Exact mathematical tie across 72,000 cells. |
+| **Finite Truncation at $\rho=0.97$** | $0.97^{52} \approx 0.203$ | $(0.97)^{52} = 0.2032$ | **0.2032** | **VERIFIED** | Finite-memory approximation disclosed. |
+| **Market Shock $\sigma_{\text{mkt}}$** | 0.02 (2% weekly) | `experiments/run_phase20_*.py:L79` | **0.02** | **VERIFIED** | Shared market factor shock. |
+| **Idiosyncratic Shock $\sigma_{\text{idio}}$** | 0.04 (4% weekly) | `experiments/run_phase20_*.py:L80` | **0.04** | **VERIFIED** | Asset-specific calendar return shock. |
 
 ---
 
-## 2. Input Representation & Linguistic Scope Audit
+## 2. Retrospective Empirical Reconciliation Verification (Phases 18 & 19)
 
-| Component | Draft Statement | Exact Code / Artifact | Status | Required Edit |
-| :--- | :--- | :--- | :---: | :--- |
-| **Clean Input Text Template** | Implied general "financial text" / "earnings text" | `experiments/run_phase17_clean_bayesian.py:L268`: `f"{company} ({ticker}) quarterly earnings announcement on {date_str}."` | **AMBIGUOUS** | Explicitly qualify that clean experiments evaluated a **minimal metadata-based input representation** consisting of company name, ticker, and announcement date. Disclaim that full earnings call transcripts or 10-Q narrative text were not evaluated. |
-| **Target Leakage String** | Concatenated `. 1-day move was ` + `move_1d` | `experiments/run_phase11_replication.py:L132` | **VERIFIED** | Accurately describes historical pipeline bug where label derivation variable was concatenated to inputs. |
-| **Forbidden Token Assertions** | Zero outcome tokens in clean manifest | Automated assertions in `test_phase17_clean_bayesian.py` checking `move_1d`, `move_30d`, `1-day move was`, `30-day move was`, `-4.69`, `downside` | **VERIFIED** | Retain verified assertion checks. |
-
----
-
-## 3. Quantitative & Statistical Performance Audit
-
-| Metric / Result | Draft Location | Canonical Artifact | Verified Value | Status | Required Edit |
-| :--- | :--- | :--- | :---: | :---: | :--- |
-| **Clean Det LoRA AUROC** | Table 1, Sec 6.1 | `forecast_metrics.csv:L2` | **0.51312** | **VERIFIED** | Exact match. |
-| **Clean Bayes Mean AUROC** | Table 1, Sec 6.1 | `forecast_metrics.csv:L3` | **0.52531** | **VERIFIED** | Exact match. |
-| **Clean Bayes MC32 AUROC** | Table 1, Sec 6.1 | `forecast_metrics.csv:L4` | **0.52504** | **VERIFIED** | Exact match. |
-| **Base-Rate Null AUROC** | Table 1, Sec 6.1 | `forecast_metrics.csv:L5` | **0.50000** | **VERIFIED** | Exact match. |
-| **Clean Det LoRA Brier** | Table 1, Sec 6.1 | `forecast_metrics.csv:L2` | **0.16079** | **VERIFIED** | Exact match. |
-| **Clean Bayes Mean Brier** | Table 1, Sec 6.1 | `forecast_metrics.csv:L3` | **0.15987** | **VERIFIED** | Exact match. |
-| **Clean Bayes MC32 Brier** | Table 1, Sec 6.1 | `forecast_metrics.csv:L4` | **0.15987** | **VERIFIED** | Exact match. |
-| **Base-Rate Null Brier** | Table 1, Sec 6.1 | `forecast_metrics.csv:L5` | **0.16000** | **VERIFIED** | Exact match. |
-| **Clean Det LoRA Log Loss** | Table 1, Sec 6.1 | `forecast_metrics.csv:L2` | **0.50332** | **VERIFIED** | Exact match. |
-| **Clean Bayes Mean Log Loss**| Table 1, Sec 6.1 | `forecast_metrics.csv:L3` | **0.50007** | **VERIFIED** | Exact match. |
-| **Clean Bayes MC32 Log Loss**| Table 1, Sec 6.1 | `forecast_metrics.csv:L4` | **0.50009** | **VERIFIED** | Exact match. |
-| **Base-Rate Null Log Loss** | Table 1, Sec 6.1 | `forecast_metrics.csv:L5` | **0.50040** | **VERIFIED** | Exact match. |
-| **Clean Det LoRA ECE** | Table 1, Sec 6.1 | `forecast_metrics.csv:L2` | **0.01785** | **VERIFIED** | Exact match. |
-| **Clean Bayes Mean ECE** | Table 1, Sec 6.1 | `forecast_metrics.csv:L3` | **0.00686** | **VERIFIED** | Exact match. |
-| **Clean Bayes MC32 ECE** | Table 1, Sec 6.1 | `forecast_metrics.csv:L4` | **0.00695** | **VERIFIED** | Exact match. |
-| **Base-Rate Null ECE** | Table 1, Sec 6.1 | `forecast_metrics.csv:L5` | **0.00000** | **VERIFIED** | Exact match. |
-| **$\Delta$ Brier (Bayes - Det)** | Abstract, Sec 6.1 | `bootstrap_intervals.csv:L13` | **-0.00092** | **VERIFIED** | $95\%\text{ CI: } [-0.00115, -0.00070]$, within $\pm 0.002$ margin. |
-| **$\Delta$ LogLoss (Bayes - Det)**| Abstract, Sec 6.1 | `bootstrap_intervals.csv:L14` | **-0.00324** | **VERIFIED** | $95\%\text{ CI: } [-0.00411, -0.00246]$, within $\pm 0.010$ margin. |
-| **$\Delta$ AUROC (Bayes - Det)** | Abstract, Sec 6.1 | `bootstrap_intervals.csv:L12` | **+0.01195** | **VERIFIED** | $95\%\text{ CI: } [+0.00306, +0.02126]$, mean difference $+0.012$. |
-| **$\Delta$ Brier (MC32 - Mean)** | Table 3, Sec 7 | `bootstrap_intervals.csv:L17` | **+0.00001** | **VERIFIED** | $95\%\text{ CI: } [0.00000, +0.00002]$, within $\pm 0.002$ margin. |
-| **$\Delta$ AUROC (MC32 - Mean)**| Table 3, Sec 7 | `bootstrap_intervals.csv:L16` | **-0.00028** | **VERIFIED** | $95\%\text{ CI: } [-0.00080, +0.00027]$, within $\pm 0.005$ margin. |
-| **Inference Latency (Mean)** | Table 3, Sec 7 | `compute_cost.csv:L3` | **7.887 ms** | **VERIFIED** | Forward pass time per event. |
-| **Inference Latency (MC32)** | Table 3, Sec 7 | `compute_cost.csv:L4` | **241.015 ms** | **VERIFIED** | 32 forward passes per event. |
-| **Latency Ratio** | Abstract, Sec 7 | $241.015 / 7.887$ | **30.56x** | **VERIFIED** | Stated as $\sim 30.6\times$ or roughly $30\times$. |
-| **Within-Class $\rho$ ($y=0$)** | Sec 4.2 | `forecast_metrics.csv:L2-4` | **+1.00000** | **VERIFIED** | Mechanically forced identity for $p < 0.5$. |
-| **Within-Class $\rho$ ($y=1$)** | Sec 4.2 | `forecast_metrics.csv:L2-4` | **-1.00000** | **VERIFIED** | Mechanically forced identity for $p < 0.5$. |
+| Metric / Parameter | Stated in Draft | Canonical Artifact | Verified Value | Status | Audit Note |
+| :--- | :---: | :--- | :---: | :---: | :--- |
+| **Phase 18 $H=1$ Net Return** | 9.24% | `clean_h1_vs_h4.csv:L2` | **9.24%** | **VERIFIED** | Annualized arithmetic return. |
+| **Phase 18 $H=4$ Net Return** | 14.71% | `clean_h1_vs_h4.csv:L3` | **14.71%** | **VERIFIED** | Annualized arithmetic return. |
+| **Phase 18 $H=1$ Net Volatility** | 19.59% | `clean_h1_vs_h4.csv:L2` | **19.59%** | **VERIFIED** | Annualized volatility. |
+| **Phase 18 $H=4$ Net Volatility** | 6.62% | `clean_h1_vs_h4.csv:L3` | **6.62%** | **VERIFIED** | Annualized volatility. |
+| **Phase 18 Net Volatility Reduction**| 66.2% (or ~66%) | `scientific_report.md:L55` | **66.21%** | **VERIFIED** | $1 - 0.066179 / 0.195858 = 66.21\%$. |
+| **Phase 18 $H=1$ Traded Turnover** | 73.03 | `clean_h1_vs_h4.csv:L2` | **73.026** | **VERIFIED** | Traded risky L1 turnover/year. |
+| **Phase 18 $H=4$ Traded Turnover** | 19.01 | `clean_h1_vs_h4.csv:L3` | **19.012** | **VERIFIED** | Traded risky L1 turnover/year. |
+| **Phase 18 Turnover Reduction** | 73.97% (or ~74%) | `scientific_report.md:L57` | **73.97%** | **VERIFIED** | $1 - 19.011677 / 73.026162 = 73.97\%$. |
+| **Phase 18 $H=1$ Sharpe** | 0.469 | `clean_h1_vs_h4.csv:L2` | **0.469** | **VERIFIED** | Clean revalidation value (was misstated as 1.508). |
+| **Phase 18 $H=4$ Sharpe** | 2.223 | `clean_h1_vs_h4.csv:L3` | **2.223** | **VERIFIED** | Clean revalidation value (was misstated as 2.715). |
+| **Phase 18 Incremental W2–4 Rank IC**| 0.0060 | `clean_signal_decay.csv:L7` | **0.006027** | **VERIFIED** | Residual predictive alpha is near zero. |
+| **Phase 18 Permutation $p$-value** | 0.105 | `clean_signal_decay.csv:L7` | **0.1050** | **VERIFIED** | Fails statistical significance gate ($p > 0.05$). |
+| **Phase 18 Paired $\Delta U$ 95% CI** | [-54.7, +84.3] bp/wk | `scientific_report.md:L34` | **[-54.68, +84.33]** | **VERIFIED** | Paired moving-block bootstrap spans zero. |
+| **Phase 18 Gross Return $\Delta$** | 0.145 bp/wk | `decomposition.csv` | **0.145 bp/wk** | **VERIFIED** | Gross alpha gain is negligible. |
+| **Phase 18 Cost Saving** | 10.387 bp/wk | `decomposition.csv` | **10.387 bp/wk** | **VERIFIED** | Main driver of point utility delta. |
+| **Phase 18 Variance Utility Gain** | 3.272 bp/wk | `decomposition.csv` | **3.272 bp/wk** | **VERIFIED** | Secondary driver of point utility delta. |
+| **Phase 19 Turnover Invariance** | $\ge 73.97\%$ across all | `scientific_report.md:L17` | **$\ge 73.97\%$** | **VERIFIED** | Across empirical, null, and synthetic signals. |
+| **Phase 19 Volatility Invariance** | 63.3% to 69.7% | `scientific_report.md:L25` | **63.35%–69.71%** | **VERIFIED** | Across all evaluated signal regimes. |
+| **Phase 19 Random Null $\Delta U$** | +22.5 bp/wk | `scientific_report.md:L37` | **+22.531 bp/wk** | **VERIFIED** | Rebalancing churn creates regularizer benefit. |
+| **Phase 19 Reversal at $\alpha=0.10$** | -0.27 bp/wk | `synthetic_signal_ladder.csv`| **-0.271 bp/wk** | **VERIFIED** | Stacking loses advantage under strong alpha. |
+| **Phase 19 Outcome Classification** | Outcome D | `outcome_classification.json`| **Outcome D** | **VERIFIED** | Architecture confirmed; H3 reversed. |
 
 ---
 
-## 4. Methodological Tone & Rhetorical Claim Audit
+## 3. Rhetorical & Terminological Guardrails Audit
 
-| Category / Passage | Current Wording | Issue Identified | Required Modification |
-| :--- | :--- | :--- | :--- |
-| **Inference Equivalence** | "we prove MC32 is identical" / "mathematical identity" | Implies exact bitwise floating-point identity across random samples. | Replace with: *"MC32 was practically equivalent to posterior-mean inference under the preregistered equivalence margins."* |
-| **Reliability Correlation** | "the pooled correlation is entirely an artifact" | Overstates the conclusion beyond the analytical derivation. | Replace with: *"The apparent pooled reliability relationship is largely mechanically induced by the shared algebraic dependence of both quantities on $p$ and by class composition."* |
-| **Promotional / Superlatives**| "remarkable", "compelling", "decisive", "catastrophic collapse" | Non-neutral, sensational tone. | Replace with neutral scientific phrasing: "apparent initial signal", "rapid test-time degradation", "near-chance discrimination". |
-| **Generalization Scope** | "Bayesian LoRA provides no value in financial NLP" | Overgeneralizes across all financial NLP tasks and architectures. | Strictly scope to: *"Under this earnings-event downside prediction setup, dataset, label thresholding, FinBERT/LoRA architecture, and metadata-based input representation..."* |
-| **Portfolio Section Framing** | Headlined as primary finding with detailed return numbers. | Confuses the primary contribution hierarchy; clean point forecast is inherently weak. | Demote portfolio section to secondary empirical sanity check. Emphasize that portfolio adjustments cannot compensate for weak underlying point forecasts. |
-| **Base-Rate Baseline** | "Machine learning cannot beat the base rate" | Broad overclaim. | State neutrally: *"A constant prevalence predictor ($p \equiv 0.20$) was highly competitive under proper scoring rules, matching or slightly exceeding fine-tuned models on metadata inputs."* |
+| Category / Rule | Requirement | Audited Manuscript Status | Verdict |
+| :--- | :--- | :--- | :---: |
+| **Synthetic vs Empirical Separation** | Use "empirical" strictly for historical market studies; use "simulation" or "synthetic" for Phase 20. | Table 1 updated to "Simulation Consistency"; Abstract and Section 5 explicitly state controlled synthetic DGP. | **PASS** |
+| **"Optimal Horizon" Qualification** | Define optimal horizon as utility-maximizing within discrete candidate set $H \in \{1, 2, 4, 8, 13\}$ under specified model. | Explicit definition added in Introduction and Section 3. | **PASS** |
+| **Causal Claims** | Avoid "noise causes longer horizons" or "proves live performance". | Softened to "Within the controlled model, increasing signal noise shifts the utility-maximizing horizon upward." | **PASS** |
+| **Empirical Sanity Mapping** | Do not overclaim $H^* \ge 4$ at 10 bps across all seeds in synthetic space. | Accurately explains $H^* \in \{1, 2\}$ at 10 bps under continuous dynamics, shifting to $H=4$ under the extreme panel churn of disjoint earnings baskets. | **PASS** |
+| **Limitations Disclosure** | Explicitly detail all 10 boundary conditions in the limitations section. | Section 9 expanded to 10 comprehensive items. | **PASS** |
+| **Trading Strategy Disclaimer** | Conclude as an architectural design principle, not a deployable trading strategy. | Section 10 framed strictly as design principles for quantitative portfolio construction. | **PASS** |

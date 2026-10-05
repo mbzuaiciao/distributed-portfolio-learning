@@ -1,4 +1,4 @@
-# Phase 20 Preregistration: Optimal Cohort Holding Horizon
+# Phase 20 Preregistration: Optimal Cohort Holding Horizon (Amended DGP)
 
 ## Scientific Question
 
@@ -19,28 +19,34 @@ The DGP generates a stationary universe of $N = 30$ assets across $T = 156$ week
    At each entry week $t \in \{0, \dots, T-1\}$, asset $i \in \{1, \dots, N\}$ receives:
    $$s_{i, t} \sim \mathcal{N}(0, 1)$$
 
-2. **Observed Ranking Signal (with Noise)**:
-   Portfolio entry weights observe only the noisy signal:
+2. **Observed Ranking Signal (with Measurement Noise)**:
+   Portfolio entry weights observe only the noisy proxy:
    $$\hat{s}_{i, t} = s_{i, t} + \sigma_{\text{noise}} \eta_{i, t}, \quad \eta_{i, t} \sim \mathcal{N}(0, 1)$$
    The true latent signal $s_{i,t}$ remains strictly unobserved at portfolio formation.
 
-3. **Multi-Horizon Return Realization with Signal Decay**:
-   For a cohort entered at week $t$, when held at age $k \in \{0, 1, \dots, 13\}$ (corresponding to calendar week $u = t + k$), the asset's realized return is:
-   $$r_{i, t, k} = \beta \cdot \rho^k s_{i, t} + \epsilon_{\text{mkt}, t+k} + \sigma_{\text{idio}} \xi_{i, t, k}$$
+3. **Single Realized Calendar Return Per Asset (Shared Across Cohorts)**:
+   In accordance with actual market mechanics, each asset $i$ has **exactly one realized return per calendar week $u$**, shared by every active cohort holding that asset during week $u$. Cohort-specific realized idiosyncratic shocks are strictly eliminated.
+   For calendar week $u \in \{0, \dots, T-1\}$, asset $i$ realizes return:
+   $$R_{i, u} = \beta \sum_{k=0}^{K_{\text{burn}}} \rho^k s_{i, u-k} + \epsilon_{\text{mkt}, u} + \xi_{i, u}$$
    where:
-   - $\beta = 0.02$ (signal strength coefficient);
+   - $\beta = 0.01$ (signal predictive strength coefficient);
    - $\rho \in [0, 1)$ governs weekly signal persistence;
-   - $\epsilon_{\text{mkt}, u} \sim \mathcal{N}(0, \sigma_{\text{mkt}}^2)$ is a systematic market shock at week $u$ ($\sigma_{\text{mkt}} = 0.02$);
-   - $\xi_{i, t, k} \sim \mathcal{N}(0, 1)$ is idiosyncratic return noise ($\sigma_{\text{idio}} = 0.04$).
+   - $K_{\text{burn}} = 20$ weeks of historical signal superposition;
+   - $\epsilon_{\text{mkt}, u} \sim \mathcal{N}(0, \sigma_{\text{mkt}}^2)$ is the systematic market factor in calendar week $u$ ($\sigma_{\text{mkt}} = 0.02$);
+   - $\xi_{i, u} \sim \mathcal{N}(0, \sigma_{\text{idio}}^2)$ is the asset-specific calendar return shock in week $u$ ($\sigma_{\text{idio}} = 0.04$).
+   
+   **Invariance Property**: For any two cohorts $t_1, t_2 \le u$ holding asset $i$ in calendar week $u$, the realized return on asset $i$ is identically equal to $R_{i, u}$.
 
 4. **Cohort Portfolio Formation**:
    Each week $t$, cohort base weights $w_t \in \Delta^N$ are solved using canonical simplex-projected Markowitz optimization matching the repo's equicorrelated covariance structure:
-   $$w_t = \arg\min_{w \ge 0, \sum_i w_i = 1} w^\top Q w - \hat{s}_t^\top w \equiv \Pi_{\Delta^N}\left( \frac{\hat{s}_t}{2 \times 0.04} \right)$$
+   $$w_t = \arg\min_{w \ge 0, \sum_i w_i = 1} w^\top Q w - \hat{\mu}_t^\top w \equiv \Pi_{\Delta^N}\left( \frac{\beta \hat{s}_t}{2 \times 0.04} \right)$$
 
 5. **Cohort Stacking & Horizon Expiration**:
-   For horizon $H$, the portfolio in week $t$ aggregates $K = \min(t+1, H)$ active cohorts with equal capital allocation $1/K$:
-   $$w_t^{\text{stacked}} = \frac{1}{K} \sum_{k=0}^{K-1} w_{t-k}$$
+   For horizon $H$, the portfolio in week $u$ aggregates $K = \min(u+1, H)$ active cohorts with equal capital allocation $1/K$:
+   $$w_u^{\text{stacked}} = \frac{1}{K} \sum_{k=0}^{K-1} w_{u-k}$$
    Active cohorts expire and are removed from the portfolio after age $H-1$.
+   The realized gross return of the portfolio in calendar week $u$ is:
+   $$R_{\text{gross}, u} = \sum_{i=1}^N w_{u, i}^{\text{stacked}} R_{i, u} = (w_u^{\text{stacked}})^\top R_u$$
 
 ---
 
@@ -80,7 +86,7 @@ The DGP generates a stationary universe of $N = 30$ assets across $T = 156$ week
 - Total matrix size: $3,000 \times 30 = 90,000$ evaluations.
 - Simulated cohort rollouts: $6 (\rho) \times 4 (\sigma_{\text{noise}}) \times 30 (\text{seeds}) \times 5 (H) = 3,600$ rollouts.
 - Grid transformations over $(c, \gamma)$: vectorized linear array operations.
-- Projected runtime: $\approx 60 - 90\text{ seconds}$ CPU-local.
+- Projected runtime: $\approx 20 - 30\text{ seconds}$ CPU-local.
 
 ---
 
@@ -96,7 +102,7 @@ $$H^*(\rho, c, \sigma_{\text{noise}}, \gamma) = \arg\max_{H \in \{1, 2, 4, 8, 13
 ### Statistical Uncertainty and Indeterminate / Tie Zones
 For parameter cell $(\rho, c, \sigma, \gamma)$, let $H^*$ denote the horizon with maximum sample mean utility. For any competing horizon $H'$, we test the paired seed difference $d_s = U_s(H^*) - U_s(H')$:
 - If a two-sided paired t-test yields $p > 0.05$ (or 95% CI includes 0), $H'$ is statistically indistinguishable from $H^*$.
-- If one or more $H' \ne H^*$ are indistinguishable from $H^*$, the cell is designated as an **Indeterminate / Tie Zone** between $\{H^*, H'\}$.
+- If one or more $H' \ne H^*$ are indistinguishable from $H^*$, the cell is designated an **Indeterminate / Tie Zone** between $\{H^*, H'\}$.
 - If $H^*$ significantly dominates all $H' \ne H^*$ ($p < 0.05$), $H^*$ is designated a **Dominant Winner**.
 
 ---
@@ -127,7 +133,7 @@ where:
 ## 7. Frozen Outcome Classification Tree
 
 - **Outcome A (Coherent Horizon Frontier)**:
-  - All 10 simulator audits pass;
+  - All simulator audits pass (including shared calendar return invariant);
   - Accounting closure holds with error $< 10^{-12}$;
   - At least 4 of 5 primary comparative-static hypotheses (H1-H5) hold with statistical significance ($\ge 80\%$ monotonic slice consistency);
   - Horizon phase diagram exhibits contiguous, non-degenerate frontiers.

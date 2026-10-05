@@ -3,6 +3,7 @@
     "universe": {
       "asset_count": 30,
       "calendar_weeks": 156,
+      "burn_in_weeks": 20,
       "annualization_factor": 52
     },
     "latent_signal_process": {
@@ -12,16 +13,18 @@
       "observation_noise": "sigma_noise * N(0, 1)"
     },
     "return_generating_process": {
-      "formula": "r_{i,t,k} = beta * rho^k * s_{i,t} + eps_{mkt, t+k} + sigma_idio * xi_{i,t,k}",
-      "beta": 0.02,
+      "formula": "R_{i,u} = beta * sum_{k=0}^{K_burn} rho^k * s_{i,u-k} + eps_{mkt,u} + xi_{i,u}",
+      "beta": 0.01,
       "market_factor_sigma": 0.02,
-      "idiosyncratic_sigma": 0.04
+      "idiosyncratic_sigma": 0.04,
+      "calendar_return_invariance": "Each asset has exactly one realized return per calendar week, shared identically across all active cohorts holding that asset."
     },
     "portfolio_construction": {
       "solver": "Markowitz simplex projection",
       "covariance": "0.04 * I + 0.01 * 1 1^T",
       "target_exposure": 1.0,
-      "cohort_allocation": "1 / K equal weighting across active cohorts"
+      "cohort_allocation": "1 / K equal weighting across active cohorts",
+      "portfolio_gross_return": "R_{gross, u} = (w_u^stacked)^T R_u"
     },
     "grid_dimensions": {
       "horizons": [1, 2, 4, 8, 13],

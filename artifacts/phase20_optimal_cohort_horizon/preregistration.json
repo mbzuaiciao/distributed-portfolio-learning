@@ -1,15 +1,18 @@
 {
   "phase": 20,
-  "title": "Optimal Cohort Holding Horizon Experiment",
+  "title": "Optimal Cohort Holding Horizon Experiment (Amended Shared Calendar Return DGP)",
   "dgp_parameters": {
     "num_assets": 30,
     "num_weeks": 156,
-    "signal_strength_beta": 0.02,
+    "burn_in_weeks": 20,
+    "signal_strength_beta": 0.01,
     "market_shock_std": 0.02,
     "idiosyncratic_noise_std": 0.04,
     "covariance_diag_scale": 0.04,
     "covariance_offdiag_scale": 0.01,
-    "target_exposure": 1.0
+    "target_exposure": 1.0,
+    "calendar_return_structure": "shared_single_return_per_asset_per_calendar_week",
+    "cohort_specific_idiosyncratic_shocks": false
   },
   "parameter_grids": {
     "horizons": [1, 2, 4, 8, 13],

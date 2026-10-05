@@ -53,17 +53,21 @@ $$\text{Cost}(H) = c \cdot \text{Turnover}(H) = \frac{c \cdot \text{TO}_0}{H}$$
 
 **Proposition 2 (Cost Amortization)**: $\text{Cost}(H)$ is strictly decreasing and convex in $H$, with marginal cost savings $\Delta \text{Cost} = c \cdot \text{TO}_0 \left(\frac{1}{H_1} - \frac{1}{H_2}\right) > 0$ for $H_2 > H_1$.
 
-### 2.4 Variance and Cohort Diversification
-Let the realized return of the cohort entered at $t-k$ in calendar week $t$ be:
-$$R_{t, k} = \mu_k + \epsilon_{t, k}$$
-where $\epsilon_{t, k} = \epsilon_{\text{sys}, t} + \xi_{t, k}$, with common market systematic shock $\epsilon_{\text{sys}, t} \sim \mathcal{N}(0, \sigma_{\text{sys}}^2)$ and cohort-specific idiosyncratic noise $\xi_{t, k}$ with variance $\sigma_{\text{idio}}^2$.
-The portfolio return in week $t$ is:
-$$R_t = \frac{1}{H} \sum_{k=0}^{H-1} R_{t, k} = \text{Alpha}(H) + \epsilon_{\text{sys}, t} + \frac{1}{H} \sum_{k=0}^{H-1} \xi_{t, k}$$
-Assuming pairwise correlation $\psi \in [0, 1)$ between idiosyncratic shocks across overlapping cohorts:
-$$\text{Var}(R_t) = \sigma_{\text{sys}}^2 + \frac{\sigma_{\text{idio}}^2}{H^2} \left[ H + H(H-1)\psi \right] = \sigma_{\text{sys}}^2 + \psi \sigma_{\text{idio}}^2 + \frac{(1 - \psi)\sigma_{\text{idio}}^2}{H}$$
-We write this compactly as:
-$$\text{Var}(R_t; H) = \sigma_0^2 + \frac{\sigma_1^2}{H}$$
-where $\sigma_0^2 = \sigma_{\text{sys}}^2 + \psi \sigma_{\text{idio}}^2$ is the non-diversifiable variance floor, and $\sigma_1^2 = (1 - \psi)\sigma_{\text{idio}}^2 > 0$ is the diversifiable estimation/cohort variance.
+### 2.4 Variance and Cohort Diversification Under Shared Calendar Asset Returns
+In accordance with realistic financial markets, each asset $i$ has **exactly one realized return per calendar week $u$**:
+$$R_{i, u} = \bar{\mu}_{i, u} + \epsilon_{\text{sys}, u} + \xi_{i, u}$$
+where $\epsilon_{\text{sys}, u} \sim \mathcal{N}(0, \sigma_{\text{sys}}^2)$ is a market-wide factor, and $\xi_{i, u} \sim \mathcal{N}(0, \sigma_{\text{idio}}^2)$ is the asset-specific calendar return shock. Crucially, there are **no cohort-specific idiosyncratic shocks**: any active cohort holding asset $i$ at week $u$ receives the identical return $R_{i, u}$.
+
+The realized portfolio return at calendar week $u$ is the inner product of the stacked weights and the market return vector:
+$$R_u = \sum_{i=1}^N w_{u, i}^{\text{stacked}} R_{i, u} = (w_u^{\text{stacked}})^\top R_u = \text{Alpha}(H) + \epsilon_{\text{sys}, u} + \sum_{i=1}^N w_{u, i}^{\text{stacked}} \xi_{i, u}$$
+
+The portfolio variance conditional on weights is:
+$$\text{Var}(R_u; H) = \sigma_{\text{sys}}^2 + \sigma_{\text{idio}}^2 \sum_{i=1}^N (w_{u, i}^{\text{stacked}})^2 = \sigma_{\text{sys}}^2 + \frac{\sigma_{\text{idio}}^2}{N_{\text{eff}}(H)}$$
+Because stacked weights $w_u^{\text{stacked}} = \frac{1}{H} \sum_{k=0}^{H-1} w_{u-k}$ average asset allocations across $H$ independent entry cohorts with pairwise asset overlap $\psi \in [0, 1)$, the inverse Herfindahl index scales as:
+$$\sum_{i=1}^N (w_{u, i}^{\text{stacked}})^2 \approx \frac{1}{N_0} \left[ \psi + \frac{1 - \psi}{H} \right]$$
+where $N_0$ is the effective holding count of a single cohort. Thus:
+$$\text{Var}(R_u; H) = \sigma_0^2 + \frac{\sigma_1^2}{H}$$
+where $\sigma_0^2 = \sigma_{\text{sys}}^2 + \frac{\psi \sigma_{\text{idio}}^2}{N_0}$ is the systematic and core overlap variance floor, and $\sigma_1^2 = \frac{(1 - \psi)\sigma_{\text{idio}}^2}{N_0} > 0$ is the temporal diversification benefit achieved by averaging entry weights across cohorts.
 
 ### 2.5 Risk-Adjusted Expected Utility
 Under standard mean-variance utility with risk-aversion coefficient $\gamma \ge 0$:

@@ -1,0 +1,57 @@
+{
+  "phase": 20,
+  "title": "Optimal Cohort Holding Horizon Experiment",
+  "dgp_parameters": {
+    "num_assets": 30,
+    "num_weeks": 156,
+    "signal_strength_beta": 0.02,
+    "market_shock_std": 0.02,
+    "idiosyncratic_noise_std": 0.04,
+    "covariance_diag_scale": 0.04,
+    "covariance_offdiag_scale": 0.01,
+    "target_exposure": 1.0
+  },
+  "parameter_grids": {
+    "horizons": [1, 2, 4, 8, 13],
+    "persistence_rho": [0.0, 0.25, 0.50, 0.75, 0.90, 0.97],
+    "implied_half_life_weeks": [0.0, 0.50, 1.00, 2.41, 6.58, 22.76],
+    "transaction_costs_bps": [0, 5, 10, 25, 50],
+    "transaction_costs_rate": [0.0000, 0.0005, 0.0010, 0.0025, 0.0050],
+    "signal_noise_std": [0.0, 0.5, 1.0, 2.0],
+    "risk_aversion_gamma": [0.0, 0.5, 1.0, 2.5, 5.0]
+  },
+  "simulation_seeds": [
+    200001, 200002, 200003, 200004, 200005,
+    200006, 200007, 200008, 200009, 200010,
+    200011, 200012, 200013, 200014, 200015,
+    200016, 200017, 200018, 200019, 200020,
+    200021, 200022, 200023, 200024, 200025,
+    200026, 200027, 200028, 200029, 200030
+  ],
+  "experiment_counts": {
+    "num_seeds": 30,
+    "cells_per_seed": 3000,
+    "total_evaluated_cells": 90000,
+    "simulated_rollouts": 3600
+  },
+  "utility_definition": "mean(r_net) - 0.5 * gamma * var(r_net, ddof=1)",
+  "accounting_closure_tolerance": 1e-12,
+  "significance_alpha": 0.05,
+  "hypotheses": {
+    "H1": "Cost comparative static: dH*/dc >= 0",
+    "H2": "Persistence comparative static: dH*/drho >= 0",
+    "H3": "Short-lived alpha: at rho=0, c=0, sigma=0, gamma<=1, H*=1",
+    "H4": "Noise regularization: dH*/dsigma >= 0",
+    "H5": "Risk aversion effect: dH*/dgamma >= 0"
+  },
+  "outcome_decision_tree": {
+    "Outcome A": "All audits pass, closure holds, >=4 hypotheses confirmed, coherent contiguous frontier",
+    "Outcome B": "All audits pass, closure holds, 2-3 hypotheses confirmed or non-monotonic interactions",
+    "Outcome C": "All audits pass, closure holds, <2 hypotheses confirmed or erratic winners",
+    "Outcome D": "Audit failure or accounting closure error >= 1e-12"
+  },
+  "source_file_hashes": {
+    "src/hypergraph_portfolio/uncertainty.py": "4e77e3b7219e6a245d4b57d15de3067ac338e92b7ad6be70631fb4ad8141fc2c",
+    "src/hypergraph_portfolio/mean_variance.py": "e3e9309b28b3ef13a7b6682c490a9227b836254d7c4363a664e7518f359de81e"
+  }
+}

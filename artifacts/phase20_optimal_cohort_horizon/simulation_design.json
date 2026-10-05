@@ -1,0 +1,35 @@
+{
+  "simulation_design": {
+    "universe": {
+      "asset_count": 30,
+      "calendar_weeks": 156,
+      "annualization_factor": 52
+    },
+    "latent_signal_process": {
+      "distribution": "Gaussian",
+      "mean": 0.0,
+      "std": 1.0,
+      "observation_noise": "sigma_noise * N(0, 1)"
+    },
+    "return_generating_process": {
+      "formula": "r_{i,t,k} = beta * rho^k * s_{i,t} + eps_{mkt, t+k} + sigma_idio * xi_{i,t,k}",
+      "beta": 0.02,
+      "market_factor_sigma": 0.02,
+      "idiosyncratic_sigma": 0.04
+    },
+    "portfolio_construction": {
+      "solver": "Markowitz simplex projection",
+      "covariance": "0.04 * I + 0.01 * 1 1^T",
+      "target_exposure": 1.0,
+      "cohort_allocation": "1 / K equal weighting across active cohorts"
+    },
+    "grid_dimensions": {
+      "horizons": [1, 2, 4, 8, 13],
+      "persistence_rho": [0.0, 0.25, 0.50, 0.75, 0.90, 0.97],
+      "transaction_costs_bps": [0, 5, 10, 25, 50],
+      "signal_noise": [0.0, 0.5, 1.0, 2.0],
+      "risk_aversion_gamma": [0.0, 0.5, 1.0, 2.5, 5.0],
+      "seeds": 30
+    }
+  }
+}

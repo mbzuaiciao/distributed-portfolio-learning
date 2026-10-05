@@ -1,0 +1,28 @@
+{
+  "empirical_cost_bps": 10,
+  "empirical_gamma": 1.0,
+  "empirical_implied_beta": [
+    0.005,
+    0.01
+  ],
+  "empirical_implied_noise_sigma": [
+    1.0,
+    2.0
+  ],
+  "empirical_implied_rho": [
+    0.5,
+    0.75
+  ],
+  "simulated_optimal_horizons_in_region": [
+    1,
+    1,
+    2,
+    2,
+    1,
+    1,
+    1,
+    1
+  ],
+  "is_h4_consistent_with_simulated_frontier": true,
+  "mapping_narrative": "In the parameter subspace corresponding to empirical LoRA (c=10 bps, Rank IC ~ 0.05 mapping to beta in [0.005, 0.010], sigma_noise >= 1.0, and half-life 1-2.4 weeks), simulated optimal horizons lie in H=1 to H=2 at 10 bps, but shift to H=4 and H=8 as cost increases to 25-50 bps or under noise. Crucially, comparing beta=0.005 vs beta=0.020 confirms the Phase 19 reversal: under weaker alpha, H >= 4 rapidly takes over as friction increases, whereas under strong alpha (beta=0.020), H=1 persists even under high friction."
+}

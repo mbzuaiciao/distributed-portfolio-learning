@@ -1,0 +1,41 @@
+{
+  "outcome": "Outcome A",
+  "reason": "All audits passed, accounting closure held (max error 3.14e-17), and 5/5 primary comparative statics confirmed with coherent frontiers.",
+  "audits_passed": true,
+  "max_accounting_closure_error": 3.144186300207963e-17,
+  "hypotheses_confirmed_count": 5,
+  "hypotheses_summary": [
+    {
+      "hypothesis": "H1_cost_monotonicity",
+      "predicted_direction": "dH*/dc >= 0",
+      "empirical_consistency_pct": 100.0,
+      "confirmed": true
+    },
+    {
+      "hypothesis": "H2_persistence_monotonicity",
+      "predicted_direction": "dH*/drho >= 0 (beta > 0)",
+      "empirical_consistency_pct": 90.0,
+      "confirmed": true
+    },
+    {
+      "hypothesis": "H3_short_lived_alpha_reversal",
+      "predicted_direction": "H*=1 at rho=0, c=0; dH*/dbeta <= 0 under fast decay",
+      "empirical_consistency_pct": 100.0,
+      "confirmed": true
+    },
+    {
+      "hypothesis": "H4_noise_regularization",
+      "predicted_direction": "dH*/dsigma >= 0",
+      "empirical_consistency_pct": 100.0,
+      "confirmed": true
+    },
+    {
+      "hypothesis": "H5_risk_aversion_preference",
+      "predicted_direction": "dH*/dgamma >= 0",
+      "empirical_consistency_pct": 100.0,
+      "confirmed": true
+    }
+  ],
+  "runtime_seconds": 71.82747604200267,
+  "git_freeze_sha": "cfdb7529d0a74c7f7fb62b821200a9c3facf4957"
+}

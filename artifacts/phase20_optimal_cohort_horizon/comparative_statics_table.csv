@@ -1,0 +1,6 @@
+hypothesis,predicted_direction,empirical_consistency_pct,confirmed
+H1_cost_monotonicity,dH*/dc >= 0,100.0,True
+H2_persistence_monotonicity,dH*/drho >= 0 (beta > 0),90.0,True
+H3_short_lived_alpha_reversal,"H*=1 at rho=0, c=0; dH*/dbeta <= 0 under fast decay",100.0,True
+H4_noise_regularization,dH*/dsigma >= 0,100.0,True
+H5_risk_aversion_preference,dH*/dgamma >= 0,100.0,True

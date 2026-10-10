@@ -504,7 +504,7 @@ def stage_diagnose() -> None:
         pA = np.array(preds["m2"])
         pB = np.array(preds["m3"])
         X = np.column_stack([pA, pB])
-        clf = LogisticRegression(penalty=None, solver="lbfgs")
+        clf = LogisticRegression(C=1e9, solver="lbfgs")
         clf.fit(X, dev_y)
         coefs = clf.coef_[0]
         # Both coefficients positive indicates complementary predictive signal

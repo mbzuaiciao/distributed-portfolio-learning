@@ -1,0 +1,36 @@
+{
+  "seeds": [
+    42,
+    123,
+    777
+  ],
+  "dgp": {
+    "seed": 20261014,
+    "d_shared": 4,
+    "d_A": 4,
+    "d_B": 4,
+    "d_noise": 8,
+    "beta_scale": 1.5,
+    "prevalence": 0.35,
+    "n_train_target": 128,
+    "n_train_specialist": 256,
+    "n_development": 64,
+    "n_validation": 64,
+    "n_test": 512
+  },
+  "split_config": {
+    "n_train_target": 128,
+    "n_train_specialist_dense": 256,
+    "n_train_specialist_sparse": 16,
+    "n_calibration": 128,
+    "n_fusion_dev": 128,
+    "n_development": 128,
+    "n_test": 512,
+    "data_seed": 20261015
+  },
+  "regimes": [
+    "regime_A",
+    "regime_B"
+  ],
+  "material_brier_gain": 0.01
+}

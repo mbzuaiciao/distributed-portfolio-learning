@@ -1,0 +1,8 @@
+{
+  "benchmark_wall_seconds": 0.6828941670246422,
+  "peak_rss_mb": 348.890625,
+  "projected_full_training_runtime_seconds": 40.973650021478534,
+  "within_20_minute_limit": true,
+  "host_platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "pytorch_threads": 2
+}

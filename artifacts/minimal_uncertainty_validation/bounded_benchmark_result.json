@@ -1,0 +1,9 @@
+{
+  "single_rep_seconds": 0.7469516249839216,
+  "blr_seconds": 0.0005131659563630819,
+  "neural_laplace_seconds": 0.745972582953982,
+  "projected_full_seconds": 74.60752161452547,
+  "projected_minutes": 1.2434586935754244,
+  "peak_memory_mb": 343.640625,
+  "safe_to_proceed": true
+}

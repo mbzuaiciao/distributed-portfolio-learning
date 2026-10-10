@@ -141,6 +141,12 @@ class TargetOnlyLogistic(nn.Module):
             xt = torch.from_numpy(X).float()
             return _sigmoid(self(xt).numpy())
 
+    def predict_logits(self, X: np.ndarray) -> np.ndarray:
+        self.eval()
+        with torch.no_grad():
+            xt = torch.from_numpy(X).float()
+            return self(xt).numpy()
+
     def get_effective_weight(self) -> np.ndarray:
         return self.linear.weight.detach().squeeze(0).numpy()
 
@@ -186,6 +192,12 @@ class PooledLoRA(nn.Module):
         with torch.no_grad():
             xt = torch.from_numpy(X).float()
             return _sigmoid(self(xt).numpy())
+
+    def predict_logits(self, X: np.ndarray) -> np.ndarray:
+        self.eval()
+        with torch.no_grad():
+            xt = torch.from_numpy(X).float()
+            return self(xt).numpy()
 
     def get_effective_weight(self) -> np.ndarray:
         return torch.matmul(self.B, self.A).detach().squeeze(-1).numpy()
@@ -255,6 +267,12 @@ class SharedSubspaceMultiTask(nn.Module):
             xt = torch.from_numpy(X).float()
             return _sigmoid(self.forward_task(xt, task_idx).numpy())
 
+    def predict_logits_task(self, X: np.ndarray, task_idx: int) -> np.ndarray:
+        self.eval()
+        with torch.no_grad():
+            xt = torch.from_numpy(X).float()
+            return self.forward_task(xt, task_idx).numpy()
+
     def get_effective_weight(self, task_idx: int) -> np.ndarray:
         v_k = self.v[task_idx]
         return torch.matmul(self.U, v_k).detach().numpy()
@@ -284,6 +302,12 @@ class StructuralCoLoRA(nn.Module):
         with torch.no_grad():
             xt = torch.from_numpy(X).float()
             return _sigmoid(self.forward_task(xt, task_idx).numpy())
+
+    def predict_logits_task(self, X: np.ndarray, task_idx: int) -> np.ndarray:
+        self.eval()
+        with torch.no_grad():
+            xt = torch.from_numpy(X).float()
+            return self.forward_task(xt, task_idx).numpy()
 
     def get_effective_weight(self, task_idx: int) -> np.ndarray:
         lam = self.Lambdas[task_idx]
@@ -326,3 +350,30 @@ def compute_weight_cosine_similarity(w_hat: np.ndarray, w_true: np.ndarray) -> f
     if norm_hat < 1e-12 or norm_true < 1e-12:
         return 0.0
     return float(np.dot(w_hat, w_true) / (norm_hat * norm_true))
+
+
+@dataclass
+class PlattScaler:
+    """1D post-hoc Platt scaling calibration: p_cal(x) = sigmoid(a * z(x) + b)."""
+
+    a: float  # Slope / inverse temperature
+    b: float  # Intercept
+
+    @classmethod
+    def fit(cls, logits: np.ndarray, y: np.ndarray, C: float = 100.0) -> PlattScaler:
+        """Fit univariate logistic regression on logits using L-BFGS."""
+        from sklearn.linear_model import LogisticRegression
+
+        X = logits.reshape(-1, 1)
+        # Use weak L2 penalty (C=100.0) matching lambda = 0.01
+        clf = LogisticRegression(C=C, solver="lbfgs", max_iter=1000)
+        clf.fit(X, y)
+        a_val = float(clf.coef_[0, 0])
+        b_val = float(clf.intercept_[0])
+        return cls(a=a_val, b=b_val)
+
+    def predict_proba(self, logits: np.ndarray) -> np.ndarray:
+        """Calibrated probability from raw logits."""
+        scaled = self.a * logits + self.b
+        return _sigmoid(scaled)
+

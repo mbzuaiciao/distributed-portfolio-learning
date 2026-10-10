@@ -35,6 +35,7 @@ from hypergraph_portfolio.collaborative_lora import (
     fit_simplex_weights,
 )
 from hypergraph_portfolio.synthetic_models import (
+    CapacityMatchedMLP,
     CoLoRAMLP,
     SmallMLP,
 )
@@ -43,6 +44,9 @@ from hypergraph_portfolio.synthetic_multitask import (
     generate_dgp,
     sample_dataset,
 )
+
+# Strict thread limit to keep host machine completely responsive
+torch.set_num_threads(2)
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT_DIR = ROOT / "artifacts/bayesian_collab_positive_control"
@@ -144,10 +148,11 @@ def train_single_model(
     lr: float = 0.005,
     weight_decay: float = 0.01,
     seed: int = 42,
-) -> SmallMLP:
-    """Train a SmallMLP model using AdamW and binary cross-entropy."""
+    model_cls: type = SmallMLP,
+) -> nn.Module:
+    """Train a SmallMLP or CapacityMatchedMLP model using AdamW and binary cross-entropy."""
     torch.manual_seed(seed)
-    model = SmallMLP(in_features=x_train.shape[1])
+    model = model_cls(in_features=x_train.shape[1])
     optimizer = torch.optim.AdamW(
         model.parameters(), lr=lr, weight_decay=weight_decay, betas=(0.9, 0.999)
     )
@@ -385,6 +390,10 @@ def stage_train(smoke: bool = False) -> None:
             m1 = train_single_model(
                 x_pooled, y_pooled, epochs=epochs, seed=seed + 3
             )
+            # M1-cap: Capacity-matched pooled (2,199 params, matching CoLoRA's 2,193)
+            m1_cap = train_single_model(
+                x_pooled, y_pooled, epochs=epochs, seed=seed + 3, model_cls=CapacityMatchedMLP
+            )
 
             # M6: CoLoRA (multi-task training with task routing)
             m6 = train_colora_model(
@@ -402,6 +411,7 @@ def stage_train(smoke: bool = False) -> None:
             for name, m in [
                 ("m0_target", m0),
                 ("m1_pooled", m1),
+                ("m1_cap_pooled", m1_cap),
                 ("m2_specA", m2),
                 ("m3_specB", m3),
                 ("m6_colora", m6),
@@ -413,6 +423,7 @@ def stage_train(smoke: bool = False) -> None:
             # Generate development predictions
             p_dev_m0 = predict(m0, data["dev_x_full"])
             p_dev_m1 = predict(m1, data["dev_x_full"])
+            p_dev_m1_cap = predict(m1_cap, data["dev_x_full"])
             p_dev_m2 = predict(m2, data["dev_x_A"])
             p_dev_m3 = predict(m3, data["dev_x_B"])
             p_dev_m6 = predict(m6, data["dev_x_full"], task_id=0)
@@ -429,6 +440,7 @@ def stage_train(smoke: bool = False) -> None:
             dev_metrics = {
                 "m0_target": compute_metrics(dev_y, p_dev_m0),
                 "m1_pooled": compute_metrics(dev_y, p_dev_m1),
+                "m1_cap_pooled": compute_metrics(dev_y, p_dev_m1_cap),
                 "m2_specA": compute_metrics(dev_y, p_dev_m2),
                 "m3_specB": compute_metrics(dev_y, p_dev_m3),
                 "m4_equal": compute_metrics(dev_y, p_dev_m4),
@@ -443,6 +455,7 @@ def stage_train(smoke: bool = False) -> None:
                 "dev_predictions": {
                     "m0": p_dev_m0.tolist(),
                     "m1": p_dev_m1.tolist(),
+                    "m1_cap": p_dev_m1_cap.tolist(),
                     "m2": p_dev_m2.tolist(),
                     "m3": p_dev_m3.tolist(),
                     "m4": p_dev_m4.tolist(),
@@ -570,6 +583,11 @@ def stage_evaluate() -> None:
                 torch.load(ckpts["m1_pooled"]["path"], weights_only=True)
             )
 
+            m1_cap = CapacityMatchedMLP(in_features=40)
+            m1_cap.load_state_dict(
+                torch.load(ckpts["m1_cap_pooled"]["path"], weights_only=True)
+            )
+
             m2 = SmallMLP(in_features=40)
             m2.load_state_dict(
                 torch.load(ckpts["m2_specA"]["path"], weights_only=True)
@@ -587,6 +605,7 @@ def stage_evaluate() -> None:
 
             p_m0 = predict(m0, data["test_x_full"])
             p_m1 = predict(m1, data["test_x_full"])
+            p_m1_cap = predict(m1_cap, data["test_x_full"])
             p_m2 = predict(m2, data["test_x_A"])
             p_m3 = predict(m3, data["test_x_B"])
             p_m6 = predict(m6, data["test_x_full"], task_id=0)
@@ -597,7 +616,7 @@ def stage_evaluate() -> None:
             p_m4 = combine_predictions(p_mat, np.array([0.5, 0.5]))
             p_m5 = combine_predictions(p_mat, weights)
 
-            # Diagnostic oracle (test best of M2, M3)
+            # Diagnostic best single specialist (test best of M2, M3)
             brier_m2 = float(np.mean((p_m2 - test_y) ** 2))
             brier_m3 = float(np.mean((p_m3 - test_y) ** 2))
             p_m7 = p_m2 if brier_m2 <= brier_m3 else p_m3
@@ -609,12 +628,13 @@ def stage_evaluate() -> None:
             preds = {
                 "m0_target": p_m0,
                 "m1_pooled": p_m1,
+                "m1_cap_pooled": p_m1_cap,
                 "m2_specA": p_m2,
                 "m3_specB": p_m3,
                 "m4_equal": p_m4,
                 "m5_learned": p_m5,
                 "m6_colora": p_m6,
-                "m7_oracle_diag": p_m7,
+                "m7_best_single_specialist_diag": p_m7,
                 "m8_prevalence_null": p_m8,
             }
             seed_predictions[seed] = preds
@@ -633,10 +653,11 @@ def stage_evaluate() -> None:
         # Paired bootstrap comparison vs M0 (target-only)
         methods_to_compare = [
             "m1_pooled",
+            "m1_cap_pooled",
             "m4_equal",
             "m5_learned",
             "m6_colora",
-            "m7_oracle_diag",
+            "m7_best_single_specialist_diag",
         ]
         comparison_results = {}
         p_values_family = {}

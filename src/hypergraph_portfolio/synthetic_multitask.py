@@ -285,9 +285,9 @@ def sample_dataset(
     if regime == "positive_control":
         mask_A = spec.mask_A
         mask_B = spec.mask_B
-    else:  # negative_control: specialists receive full feature masks (no complementarity)
-        mask_A = spec.mask_full
-        mask_B = spec.mask_full
+    else:  # negative_control: specialists receive redundant feature masks (both observe mask_A, zero complementarity)
+        mask_A = spec.mask_A
+        mask_B = spec.mask_A
 
     x_in_A = apply_observation_mask(x_raw_A, mask_A)
     x_in_B = apply_observation_mask(x_raw_B, mask_B)

@@ -37,6 +37,30 @@ class SmallMLP(nn.Module):
         return torch.sigmoid(logits)
 
 
+class CapacityMatchedMLP(nn.Module):
+    """Capacity-matched 3-layer MLP matching CoLoRAMLP's parameter count (2,199 vs 2,193).
+
+    Architecture:
+        Input: 40 dims (20 features + 20 observation mask)
+        Layer 1: Linear(40 -> 38), ReLU  [1,558 params]
+        Layer 2: Linear(38 -> 16), ReLU  [624 params]
+        Layer 3: Linear(16 -> 1), Sigmoid [17 params]
+        Total: 2,199 trainable parameters (matches CoLoRAMLP's 2,193 within 0.27%).
+    """
+
+    def __init__(self, in_features: int = 40, hidden_dim: int = 38):
+        super().__init__()
+        self.fc1 = nn.Linear(in_features, hidden_dim)
+        self.fc2 = nn.Linear(hidden_dim, 16)
+        self.fc3 = nn.Linear(16, 1)
+
+    def forward(self, x: torch.Tensor, task_id: Optional[int] = None) -> torch.Tensor:
+        h = F.relu(self.fc1(x))
+        h = F.relu(self.fc2(h))
+        logits = self.fc3(h).squeeze(-1)
+        return torch.sigmoid(logits)
+
+
 class CoLoRALinear(nn.Module):
     """Linear layer augmented with collaborative LoRA (shared B, A and per-task Lambda).
 

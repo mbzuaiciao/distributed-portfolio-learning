@@ -20,6 +20,7 @@ from hypergraph_portfolio.collaborative_lora import (
     fit_simplex_weights,
 )
 from hypergraph_portfolio.synthetic_models import (
+    CapacityMatchedMLP,
     CoLoRAMLP,
     SmallMLP,
     count_parameters,
@@ -32,17 +33,20 @@ from hypergraph_portfolio.synthetic_multitask import (
 
 
 def test_model_parameter_counts():
-    """Verify parameter counts match exact numbers in design amendment."""
+    """Verify parameter counts match exact numbers in design amendments."""
     small = SmallMLP(in_features=40)
+    cap_mlp = CapacityMatchedMLP(in_features=40)
     colora = CoLoRAMLP(in_features=40, rank=4, alpha=8.0, tasks=3)
 
     small_counts = count_parameters(small)
+    cap_counts = count_parameters(cap_mlp)
     colora_counts = count_parameters(colora)
 
     assert small_counts["trainable_parameters"] == 1857
+    assert cap_counts["trainable_parameters"] == 2199
     assert colora_counts["trainable_parameters"] == 2193
-    # Extra parameters in CoLoRA: 336 (lora_a: 160, lora_b: 128, lambdas: 48)
-    assert colora_counts["trainable_parameters"] - small_counts["trainable_parameters"] == 336
+    # Capacity match: 2199 vs 2193 matches within 6 parameters (0.27%)
+    assert abs(cap_counts["trainable_parameters"] - colora_counts["trainable_parameters"]) <= 6
 
 
 def test_colora_initialization_identity():

@@ -99,7 +99,7 @@ def test_feature_partition_positive_control():
 
 
 def test_feature_partition_negative_control():
-    """Verify in negative control, both specialists receive full observation masks."""
+    """Verify in negative control, both specialists receive redundant observation masks (mask_A)."""
     spec = generate_dgp(DGPConfig(seed=20261009))
     splits = sample_dataset(spec, regime="negative_control", data_seed=123)
 
@@ -112,13 +112,15 @@ def test_feature_partition_negative_control():
     xA = splits.specialist_A_train["x"]
     xB = splits.specialist_B_train["x"]
 
-    # In negative control, both specialists observe block A and block B
-    np.testing.assert_array_equal(xA[:, 20:], 1.0)
-    np.testing.assert_array_equal(xB[:, 20:], 1.0)
+    # In negative control, both specialists observe block A (mask_A) and neither observes block B
+    np.testing.assert_array_equal(xA[:, 20 + a_start : 20 + a_end], 1.0)
+    np.testing.assert_array_equal(xB[:, 20 + a_start : 20 + a_end], 1.0)
+    np.testing.assert_array_equal(xA[:, 20 + b_start : 20 + b_end], 0.0)
+    np.testing.assert_array_equal(xB[:, 20 + b_start : 20 + b_end], 0.0)
+    np.testing.assert_array_equal(xA[:, b_start:b_end], 0.0)
+    np.testing.assert_array_equal(xB[:, b_start:b_end], 0.0)
     assert np.any(xA[:, a_start:a_end] != 0.0)
-    assert np.any(xA[:, b_start:b_end] != 0.0)
     assert np.any(xB[:, a_start:a_end] != 0.0)
-    assert np.any(xB[:, b_start:b_end] != 0.0)
 
 
 def test_no_leakage_in_features():

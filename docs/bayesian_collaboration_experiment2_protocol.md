@@ -102,3 +102,33 @@ To strictly prevent data leakage and circular weight fitting, Experiment 2 estab
 - Training schedule: AdamW, lr=0.005, wd=0.01, 100 epochs, batch size 32.
 - Memory limit: $< 400$ MB RAM.
 - Held-out test set: **strictly untouched** until final design audit.
+
+---
+
+## 6. Confirmatory Statistical Analysis Plan (SAP)
+
+### 6.1 Sample Size and Quarantined Data
+- Confirmatory evaluation is conducted strictly on the quarantined held-out test split ($N=512$).
+- Ground truth test labels remain unread and unblinded until the execution of Stage 4.
+
+### 6.2 Primary Confirmatory Hypothesis (H2.3-Confirmatory)
+- **Comparison:** Calibrated Log-Odds Fusion ($M6_{\text{cal}}$) vs. Target-Only ($M0$).
+- **Metric:** Brier Score reduction: $\Delta \text{Brier} = \text{Brier}(M0) - \text{Brier}(M6_{\text{cal}})$.
+- **Effect-Size Criterion:** Point estimate $\widehat{\Delta \text{Brier}} \ge 0.010$.
+- **Statistical Superiority Criterion:** Two-sided $\alpha = 0.05$ (equivalent to 95% bootstrap CI lower bound $> 0.0$).
+- **Confirmatory Confirmation Requirement:** Both effect-size success ($\ge 0.010$) AND statistical superiority (95% CI $> 0.0$) must be satisfied simultaneously.
+
+### 6.3 Secondary Confirmatory Family & Multiplicity Adjustment
+A prespecified family of four secondary confirmatory contrasts is evaluated with step-down Holm-Bonferroni correction ($\alpha = 0.05$):
+1. **$C_1$ (Log-Odds vs. Equal-Weight):** $\text{Brier}(M4_{\text{cal}}) - \text{Brier}(M6_{\text{cal}}) > 0.0$
+2. **$C_2$ (Log-Odds vs. Simplex-Weight):** $\text{Brier}(M5_{\text{cal}}) - \text{Brier}(M6_{\text{cal}}) > 0.0$
+3. **$C_3$ (Log-Odds vs. Capacity-Matched Pooled):** $\text{Brier}(M1_{\text{cap}}) - \text{Brier}(M6_{\text{cal}}) > 0.0$
+4. **$C_4$ (Matched Diagnostic Contrast):** $\Delta \text{Brier}_{\text{pos}}(M0, M6_{\text{cal}}) - \Delta \text{Brier}_{\text{neg}}(M0, M6_{\text{cal}}) > 0.0$
+
+### 6.4 Paired Instance Resampling Design
+- **Cluster Unit:** Evaluation instances $i \in \{0, \dots, N-1\}$ ($N=512$).
+- **Bootstrap Replicates:** $B = 2,000$ paired instance resamples with replacement, using fixed seed `bootstrap_seed = 20261012`.
+- **Exact Pairing:** Each bootstrap draw resamples the exact same instance index tuple across all methods and across all training seeds ($s \in \{42, 123, 777\}$).
+- **Seed Treatment:** For each bootstrap draw $b$, loss is evaluated for each seed $s$ and averaged across seeds prior to computing contrast differences.
+- **Inference:** 95% percentile bootstrap confidence intervals $[q_{0.025}, q_{0.975}]$ and two-sided empirical bootstrap $p$-values.
+

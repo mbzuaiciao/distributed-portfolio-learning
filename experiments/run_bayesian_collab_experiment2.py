@@ -45,6 +45,12 @@ from hypergraph_portfolio.synthetic_multitask_exp2 import (
     Exp2SplitConfig,
     sample_exp2_dataset,
 )
+from hypergraph_portfolio.statistical_testing import (
+    apply_holm_bonferroni,
+    paired_contrast_bootstrap,
+    paired_instance_bootstrap,
+)
+
 
 # Host safeguard: strictly limit PyTorch CPU threads to 2
 torch.set_num_threads(2)
@@ -661,11 +667,267 @@ def stage_evaluate_dev() -> Dict[str, Any]:
     return eval_report
 
 
+def stage_evaluate_test() -> Dict[str, Any]:
+    """Stage 4: Confirmatory Evaluation on Quarantined Held-Out Test Split (N=512).
+
+    Executes the frozen Confirmatory Statistical Analysis Plan (SAP) using paired
+    cluster bootstrap over test instances preserving method and seed pairing.
+    """
+    if not (OUT_DIR / "frozen_exp2.json").exists():
+        raise RuntimeError("Must run --stage train before running confirmatory evaluation.")
+
+    config = json.loads((OUT_DIR / "config_exp2.json").read_text())
+    frozen = json.loads((OUT_DIR / "frozen_exp2.json").read_text())
+    dgp_data = json.loads((OUT_DIR / "dgp_spec_exp2.json").read_text())
+    seeds = config["seeds"]
+
+    csv_rows = []
+    summary_results: Dict[str, Any] = {}
+    regime_seed_method_preds: Dict[str, Dict[str, Dict[int, np.ndarray]]] = {
+        "positive_control": {},
+        "negative_control": {},
+    }
+    regime_test_y: Dict[str, np.ndarray] = {}
+
+    for regime in config["regimes"]:
+        data = np.load(OUT_DIR / f"splits_exp2_{regime.split('_')[0]}.npz")
+        test_y = data["test_y"]
+        test_x_full = data["test_x_full"]
+        test_x_A = data["test_x_A"]
+        test_x_B = data["test_x_B"]
+        regime_test_y[regime] = test_y
+        n_test = len(test_y)
+
+        seed_method_preds: Dict[int, Dict[str, np.ndarray]] = {}
+
+        for seed in seeds:
+            seed_info = frozen["runs"][regime][str(seed)]
+            ckpts = seed_info["checkpoints"]
+
+            # Load models
+            m0 = SmallMLP(in_features=40)
+            m0.load_state_dict(torch.load(ckpts["m0_target"]["path"], weights_only=True))
+
+            m1 = SmallMLP(in_features=40)
+            m1.load_state_dict(torch.load(ckpts["m1_pooled"]["path"], weights_only=True))
+
+            m1_cap = CapacityMatchedMLP(in_features=40)
+            m1_cap.load_state_dict(torch.load(ckpts["m1_cap_pooled"]["path"], weights_only=True))
+
+            m2 = SmallMLP(in_features=40)
+            m2.load_state_dict(torch.load(ckpts["m2_specA"]["path"], weights_only=True))
+
+            m3 = SmallMLP(in_features=40)
+            m3.load_state_dict(torch.load(ckpts["m3_specB"]["path"], weights_only=True))
+
+            m7 = CoLoRAMLP(in_features=40)
+            m7.load_state_dict(torch.load(ckpts["m7_colora"]["path"], weights_only=True))
+
+            # Reconstruct fitted post-hoc transforms
+            cal_A = PlattCalibrator.from_dict(seed_info["calibrator_A"])
+            cal_B = PlattCalibrator.from_dict(seed_info["calibrator_B"])
+            simplex_raw = SimplexFusion.from_dict(seed_info["simplex_raw"])
+            simplex_cal = SimplexFusion.from_dict(seed_info["simplex_cal"])
+            logodds_raw = LogOddsFusion.from_dict(seed_info["logodds_raw"])
+            logodds_cal = LogOddsFusion.from_dict(seed_info["logodds_cal"])
+
+            # Base predictions on held-out test split
+            p0 = predict(m0, test_x_full)
+            p1 = predict(m1, test_x_full)
+            p1_cap = predict(m1_cap, test_x_full)
+            p2_raw = predict(m2, test_x_A)
+            p3_raw = predict(m3, test_x_B)
+            p7_colora = predict(m7, test_x_full, task_id=0)
+
+            # Calibrated predictions
+            p2_cal = cal_A.predict(p2_raw)
+            p3_cal = cal_B.predict(p3_raw)
+
+            # Combination predictions
+            p4_equal_raw = 0.5 * (p2_raw + p3_raw)
+            p4_equal_cal = 0.5 * (p2_cal + p3_cal)
+
+            p5_simplex_raw = simplex_raw.predict(p2_raw, p3_raw)
+            p5_simplex_cal = simplex_cal.predict(p2_cal, p3_cal)
+
+            p6_logodds_raw = logodds_raw.predict(p2_raw, p3_raw)
+            p6_logodds_cal = logodds_cal.predict(p2_cal, p3_cal)
+
+            # Prevalence null baseline
+            p8_prev_null = np.full(n_test, float(data["target_train_y"].mean()))
+
+            # Ground truth joint Bayes oracle on test features
+            d_s = dgp_data["config"]["d_shared"]
+            d_A = dgp_data["config"]["d_A"]
+            d_B = dgp_data["config"]["d_B"]
+            beta_s = np.array(dgp_data["beta_s"])
+            beta_A = np.array(dgp_data["beta_A"])
+            beta_B = np.array(dgp_data["beta_B"])
+            intercept = dgp_data["intercept"]
+
+            xs = test_x_full[:, :d_s]
+            xa = test_x_full[:, d_s : d_s + d_A]
+            xb = test_x_full[:, d_s + d_A : d_s + d_A + d_B]
+            p9_oracle = _sigmoid(xs @ beta_s + xa @ beta_A + xb @ beta_B + intercept)
+
+            preds = {
+                "m0_target": p0,
+                "m1_pooled": p1,
+                "m1_cap_pooled": p1_cap,
+                "m2_specA_raw": p2_raw,
+                "m2_specA_cal": p2_cal,
+                "m3_specB_raw": p3_raw,
+                "m3_specB_cal": p3_cal,
+                "m4_equal_raw": p4_equal_raw,
+                "m4_equal_cal": p4_equal_cal,
+                "m5_simplex_raw": p5_simplex_raw,
+                "m5_simplex_cal": p5_simplex_cal,
+                "m6_logodds_raw": p6_logodds_raw,
+                "m6_logodds_cal": p6_logodds_cal,
+                "m7_colora": p7_colora,
+                "m8_prev_null": p8_prev_null,
+                "m9_bayes_oracle": p9_oracle,
+            }
+            seed_method_preds[seed] = preds
+
+            for meth_name, prob in preds.items():
+                m = compute_metrics(test_y, prob)
+                csv_rows.append(
+                    {
+                        "regime": regime,
+                        "seed": seed,
+                        "method": meth_name,
+                        **m,
+                    }
+                )
+
+        # Re-index for paired bootstrap: method -> {seed -> preds}
+        meth_keys = list(seed_method_preds[seeds[0]].keys())
+        for m_name in meth_keys:
+            regime_seed_method_preds[regime][m_name] = {
+                s: seed_method_preds[s][m_name] for s in seeds
+            }
+
+        # Aggregate mean across seeds
+        agg_metrics = {}
+        for m_name in meth_keys:
+            briers = [
+                compute_metrics(test_y, seed_method_preds[s][m_name])["brier"]
+                for s in seeds
+            ]
+            eces = [
+                compute_metrics(test_y, seed_method_preds[s][m_name])["ece"]
+                for s in seeds
+            ]
+            aurocs = [
+                compute_metrics(test_y, seed_method_preds[s][m_name])["auroc"]
+                for s in seeds
+            ]
+            agg_metrics[m_name] = {
+                "mean_brier": float(np.mean(briers)),
+                "std_brier": float(np.std(briers)),
+                "mean_ece": float(np.mean(eces)),
+                "mean_auroc": float(np.mean(aurocs)),
+            }
+        summary_results[regime] = agg_metrics
+
+    # Save summary and CSV
+    write_csv(OUT_DIR / "confirmatory_metrics_exp2.csv", csv_rows)
+    save_json(OUT_DIR / "confirmatory_summary_exp2.json", summary_results)
+
+    # ------------------ CONFIRMATORY STATISTICAL ANALYSIS ------------------
+    pos_preds = regime_seed_method_preds["positive_control"]
+    neg_preds = regime_seed_method_preds["negative_control"]
+    y_pos = regime_test_y["positive_control"]
+    y_neg = regime_test_y["negative_control"]
+
+    # 1. Primary Confirmatory Hypothesis: M6_cal vs M0
+    primary_res = paired_instance_bootstrap(
+        y_true=y_pos,
+        preds_A=pos_preds["m6_logodds_cal"],
+        preds_B=pos_preds["m0_target"],
+        n_bootstraps=2000,
+        seed=20261012,
+        effect_size_threshold=0.010,
+    )
+
+    # 2. Secondary Confirmatory Family:
+    # C1: M6_cal vs M4_cal (Equal-weight)
+    c1 = paired_instance_bootstrap(
+        y_true=y_pos,
+        preds_A=pos_preds["m6_logodds_cal"],
+        preds_B=pos_preds["m4_equal_cal"],
+        n_bootstraps=2000,
+        seed=20261012,
+        effect_size_threshold=0.0,
+    )
+    # C2: M6_cal vs M5_cal (Simplex)
+    c2 = paired_instance_bootstrap(
+        y_true=y_pos,
+        preds_A=pos_preds["m6_logodds_cal"],
+        preds_B=pos_preds["m5_simplex_cal"],
+        n_bootstraps=2000,
+        seed=20261012,
+        effect_size_threshold=0.0,
+    )
+    # C3: M6_cal vs M1_cap (Capacity-matched pooled)
+    c3 = paired_instance_bootstrap(
+        y_true=y_pos,
+        preds_A=pos_preds["m6_logodds_cal"],
+        preds_B=pos_preds["m1_cap_pooled"],
+        n_bootstraps=2000,
+        seed=20261012,
+        effect_size_threshold=0.0,
+    )
+    # C4: Matched Complementarity Diagnostic Contrast
+    c4 = paired_contrast_bootstrap(
+        y_true_pos=y_pos,
+        preds_A_pos=pos_preds["m6_logodds_cal"],
+        preds_B_pos=pos_preds["m0_target"],
+        y_true_neg=y_neg,
+        preds_A_neg=neg_preds["m6_logodds_cal"],
+        preds_B_neg=neg_preds["m0_target"],
+        n_bootstraps=2000,
+        seed=20261012,
+        effect_size_threshold=0.0,
+    )
+
+    secondary_adjusted = apply_holm_bonferroni([c1, c2, c3, c4])
+
+    confirmatory_report = {
+        "status": "COMPLETED",
+        "primary_hypothesis_H2_3": primary_res.to_dict(),
+        "secondary_family_holm": [r.to_dict() for r in secondary_adjusted],
+        "overall_confirmatory_success": bool(
+            primary_res.confirmatory_pass
+            and any(r.confirmatory_pass for r in secondary_adjusted)
+        ),
+    }
+
+    save_json(OUT_DIR / "confirmatory_evaluation_report_exp2.json", confirmatory_report)
+
+    print("\n================ EXPERIMENT 2 CONFIRMATORY EVALUATION ================")
+    print(f"Primary Contrast (M6_cal vs M0):")
+    print(f"  Point Gain:            {primary_res.point_estimate:.4f} (Threshold >= {primary_res.effect_size_threshold:.4f})")
+    print(f"  95% Bootstrap CI:      [{primary_res.ci_lower:.4f}, {primary_res.ci_upper:.4f}]")
+    print(f"  Bootstrap p-value:     {primary_res.p_value_raw:.4e}")
+    print(f"  Effect Size Pass:      {primary_res.effect_size_pass}")
+    print(f"  Statistical Sig Pass:  {primary_res.statistical_significance_pass}")
+    print(f"  CONFIRMATORY PASS:     {primary_res.confirmatory_pass}")
+    print("----------------------------------------------------------------------")
+    print("Secondary Confirmatory Family (Holm Adjusted):")
+    for r in secondary_adjusted:
+        print(f"  {r.contrast_name}: Gain={r.point_estimate:.4f}, 95% CI=[{r.ci_lower:.4f}, {r.ci_upper:.4f}], p_holm={r.p_value_holm:.4e}, ConfPass={r.confirmatory_pass}")
+    print("======================================================================")
+
+    return confirmatory_report
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Experiment 2 Harness")
     parser.add_argument(
         "--stage",
-        choices=["generate", "train", "evaluate_dev"],
+        choices=["generate", "train", "evaluate_dev", "evaluate_test"],
         required=True,
     )
     parser.add_argument("--smoke", action="store_true")
@@ -677,7 +939,10 @@ def main() -> None:
         stage_train(smoke=args.smoke)
     elif args.stage == "evaluate_dev":
         stage_evaluate_dev()
+    elif args.stage == "evaluate_test":
+        stage_evaluate_test()
 
 
 if __name__ == "__main__":
     main()
+

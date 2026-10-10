@@ -249,3 +249,21 @@ flowchart TD
    - Maintain strict CPU compute safeguards and quarantined evaluation splits.
 
 ---
+
+## 9. Provenance-Preserving Scientific Corrections & Caveats
+
+To ensure uncompromising scientific integrity and prevent overinterpretation, the following four qualifications are formally entered into the permanent record:
+
+### 9.1 Experiment 2: Superiority Over Target-Only Was Statistically Unconfirmed
+While calibrated log-odds fusion ($M_6$) achieved statistically confirmed superiority over linear ensembling ($M_4, M_5$) and capacity-matched pooled training ($M_1$) under Holm-Bonferroni correction ($p_{\text{holm}} < 0.05$), its primary contrast against Target-Only ($M_0$) yielded an empirical Brier gain of $+0.0187$ with a 95% paired cluster bootstrap confidence interval of **[-0.0089, +0.0486]** ($p = 0.190$). Because this interval spans zero at $\alpha=0.05$, **superiority over target-only remains statistically unconfirmed**. It must not be cited as proven.
+
+### 9.2 Experiment 4: Epistemic Uncertainty & Error Orthogonality is Conditional, Not Universal
+Experiment 4 demonstrated that sorting instances by epistemic variance failed to improve selective Brier risk (AU-RC $= 0.1807$ vs. $0.1510$ for random abstention). However, this finding is **strictly conditional** on the evaluated setting: a well-specified logistic link function under directional linear extrapolation where true latent logits $|z^*(x)|$ grow large, driving label probabilities toward 0 or 1 with low Brier error. Under alternative conditions—such as non-monotonic covariate shift, model misspecification, drifting labels, or bounded target functions—epistemic uncertainty can correlate differently with prediction error. Experiment 4 disproves the assumption of automatic error reduction, but does not establish universal orthogonality across all machine learning tasks.
+
+### 9.3 Experiment 3: Representation Collapse Remains a Mechanistic Hypothesis
+The observation that penultimate Laplace variance failed to track spatial support in Experiment 3 ($\rho_s \in [0.17, 0.25]$) was diagnosed in Experiment 4 as stemming from feature-masking zero-fill collapse in ReLU representations. While mathematically consistent and supported by condition-number diagnostics ($\kappa > 700$), this explanation **remains a mechanistic hypothesis rather than an experimentally isolated causal proof**. Other interacting factors—such as gradient optimization dynamics during specialist pre-training, small-sample readout estimation noise, or hyperparameter sensitivity—may have contributed to the failure.
+
+### 9.4 General Scope: No Established Collaborative Bayesian LoRA or Financial Portfolio Utility
+The collective evidence across Experiments 1–4 does **not** establish the superiority of collaborative Bayesian LoRA over competitive non-Bayesian baselines. Furthermore, because all experiments to date have been conducted on synthetic classification data Generating Processes (DGPs), **no claims regarding real-world financial portfolio performance, asset-pricing utility, risk-adjusted returns, or trading execution have been demonstrated**.
+
+---

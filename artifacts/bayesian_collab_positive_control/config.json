@@ -1,0 +1,29 @@
+{
+  "seeds": [
+    42,
+    123,
+    777
+  ],
+  "dgp": {
+    "seed": 20261009,
+    "d_shared": 4,
+    "d_A": 4,
+    "d_B": 4,
+    "d_noise": 8,
+    "beta_scale": 1.5,
+    "prevalence": 0.35,
+    "n_train_target": 128,
+    "n_train_specialist": 256,
+    "n_development": 64,
+    "n_validation": 64,
+    "n_test": 512
+  },
+  "analytical_oracle_gap": 0.04194909921431722,
+  "learnability_delta": 0.015,
+  "material_brier_gain": 0.005,
+  "bootstrap_replicates": 1000,
+  "regimes": [
+    "positive_control",
+    "negative_control"
+  ]
+}

@@ -49,3 +49,7 @@ uv.lock
 *.log
 *.out
 *.synctex.gz
+
+# Binary artifacts (checkpoints and data arrays)
+artifacts/**/*.pt
+artifacts/**/*.npz

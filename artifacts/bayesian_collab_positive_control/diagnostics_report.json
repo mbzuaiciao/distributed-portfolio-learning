@@ -1,0 +1,26 @@
+{
+  "prevalence_null_brier": 0.208740234375,
+  "theta_learn": 0.193740234375,
+  "gates": {
+    "H2_learnability": {
+      "pass": false,
+      "threshold": 0.193740234375,
+      "per_seed_pass": [
+        false,
+        false,
+        false
+      ]
+    },
+    "H3_complementarity": {
+      "pass": true,
+      "analytical_gap": 0.04194909921431722,
+      "analytical_pass": true,
+      "conditional_info_passes": [
+        true,
+        true,
+        true
+      ]
+    }
+  },
+  "overall_pass": false
+}

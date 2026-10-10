@@ -1,0 +1,50 @@
+{
+  "status": "DEVELOPMENT_EVALUATION_COMPLETED",
+  "evaluation_seconds": 0.3868208749918267,
+  "peak_memory_mb": 277.21875,
+  "gate_results": {
+    "regime_A": {
+      "U1_support_sparsity_tracking": {
+        "specialist_A_spearman": 0.25027276750289934,
+        "specialist_B_spearman": 0.23917132088140144,
+        "threshold": 0.4,
+        "pass": false
+      },
+      "U2_residual_error_partial_corr": {
+        "specialist_A_partial_corr": -0.14782756700325067,
+        "specialist_B_partial_corr": -0.2293254884695203,
+        "threshold": 0.1,
+        "pass": false
+      },
+      "selected_strongest_nonbayes_comparator": "m6_logodds_cal",
+      "brier_selected_comparator": 0.16462866245267443,
+      "brier_bayes_learn": 0.17463390254029984,
+      "brier_bayes_inv": 0.19906963208877468,
+      "ablation_gain_brier": 8.187287650041064e-05
+    },
+    "regime_B": {
+      "U1_support_sparsity_tracking": {
+        "specialist_A_spearman": 0.17033472196789354,
+        "specialist_B_spearman": 0.17529222364646277,
+        "threshold": 0.4,
+        "pass": false
+      },
+      "U2_residual_error_partial_corr": {
+        "specialist_A_partial_corr": -0.034933677646298004,
+        "specialist_B_partial_corr": -0.15615482523267324,
+        "threshold": 0.1,
+        "pass": false
+      },
+      "selected_strongest_nonbayes_comparator": "m6_logodds_cal",
+      "brier_selected_comparator": 0.1736369549389346,
+      "brier_bayes_learn": 0.186421049493253,
+      "brier_bayes_inv": 0.19570941524903349,
+      "ablation_gain_brier": 0.0010944689418358744
+    }
+  },
+  "selected_comparators": {
+    "regime_A": "m6_logodds_cal",
+    "regime_B": "m6_logodds_cal"
+  },
+  "held_out_test_status": "STRICTLY_LOCKED_AND_UNTOUCHED"
+}

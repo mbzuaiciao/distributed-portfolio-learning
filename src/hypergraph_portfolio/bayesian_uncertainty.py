@@ -270,6 +270,23 @@ class DensityRouter:
         w_B = dens_B / total
         return w_A * p_A + w_B * p_B
 
+    def to_dict(self) -> Dict[str, Any]:
+        return {
+            "mu_A": self.mu_A.tolist(),
+            "cov_inv_A": self.cov_inv_A.tolist(),
+            "mu_B": self.mu_B.tolist(),
+            "cov_inv_B": self.cov_inv_B.tolist(),
+        }
+
+    @classmethod
+    def from_dict(cls, d: Dict[str, Any]) -> DensityRouter:
+        return cls(
+            mu_A=np.array(d["mu_A"]),
+            cov_inv_A=np.array(d["cov_inv_A"]),
+            mu_B=np.array(d["mu_B"]),
+            cov_inv_B=np.array(d["cov_inv_B"]),
+        )
+
 
 @dataclass
 class ConfidenceRouter:
@@ -328,6 +345,13 @@ class InverseVarianceRouter:
         wB = precB / total
         z = self.intercept + wA * logitA + wB * logitB
         return _sigmoid(z)
+
+    def to_dict(self) -> Dict[str, Any]:
+        return {"intercept": float(self.intercept)}
+
+    @classmethod
+    def from_dict(cls, d: Dict[str, Any]) -> InverseVarianceRouter:
+        return cls(intercept=float(d["intercept"]))
 
 
 class MatchedAblationRouter(nn.Module):

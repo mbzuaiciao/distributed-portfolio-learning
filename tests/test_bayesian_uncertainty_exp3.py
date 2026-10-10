@@ -120,6 +120,15 @@ def test_inverse_variance_and_density_routers():
     p_inv = inv_router.predict(p_A, p_B, s2_A, s2_B)
     assert np.all((p_inv >= 0.0) & (p_inv <= 1.0))
 
+    # Test serialization roundtrip
+    d_dens = dens_router.to_dict()
+    dens_recon = DensityRouter.from_dict(d_dens)
+    np.testing.assert_allclose(dens_recon.predict(x_s, p_A, p_B), p_dens)
+
+    d_inv = inv_router.to_dict()
+    inv_recon = InverseVarianceRouter.from_dict(d_inv)
+    np.testing.assert_allclose(inv_recon.predict(p_A, p_B, s2_A, s2_B), p_inv)
+
     # Confidence router
     p_conf = ConfidenceRouter.predict(p_A, p_B)
     assert np.all((p_conf >= 0.0) & (p_conf <= 1.0))

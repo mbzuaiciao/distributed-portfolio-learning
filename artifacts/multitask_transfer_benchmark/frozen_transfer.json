@@ -1,0 +1,297 @@
+{
+  "regimes": [
+    "positive_control",
+    "negative_control"
+  ],
+  "seeds": [
+    42,
+    123,
+    777
+  ],
+  "steps": 500,
+  "batch_size": 16,
+  "checkpoints": {
+    "positive_control": {
+      "42": {
+        "m0_target": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_positive_control_seed_42_m0.pt",
+          "sha256": "716e377145ffa684af92a7b1852e87221fbd096a25cda66f7512257620c6b525"
+        },
+        "m0_cal_matched": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_positive_control_seed_42_m0_cal_matched.pt",
+          "sha256": "58e218e35f34a24c007ff8679a0e0300b3247de1dc491def991690e61cba5dd3"
+        },
+        "m_lora0": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_positive_control_seed_42_m_lora0.pt",
+          "sha256": "4d671430bf84dc15fde8460857f844e9ee88871700dffcb517a0a7b99ea8ce8c"
+        },
+        "m1_pooled": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_positive_control_seed_42_m1_pooled.pt",
+          "sha256": "fc3c6dcd09e2f447a3ae2f6d59c01f580aa1847e4bffa04bb9dbc97762b0abe0"
+        },
+        "source_spec_1": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_positive_control_seed_42_spec_1.pt",
+          "sha256": "b55c25b46a1d7c4621f1d883a3a334eeb6d6ff9909a70aadac6214f48feda76b"
+        },
+        "source_spec_2": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_positive_control_seed_42_spec_2.pt",
+          "sha256": "149a8deac947c84027d6fa9086faaad2904e3fbd6646ea15e490a82c15aa840d"
+        },
+        "source_spec_3": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_positive_control_seed_42_spec_3.pt",
+          "sha256": "a88ade0ffdf4e0de14f0c72385c67f91a9f95f38acecbf27a3d959eef5c7b97c"
+        },
+        "m_fuse_weights": {
+          "weights": [
+            0.28668474413631045,
+            -0.15673992487238653,
+            0.5300525977509236
+          ],
+          "intercept": 0.11435613880263096
+        },
+        "m_subspace": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_positive_control_seed_42_m_subspace.pt",
+          "sha256": "cd6452690a2b261ad6aa4d7ede92a426c03438a7b85179229671cf626ece4c03"
+        },
+        "m_colora": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_positive_control_seed_42_m_colora.pt",
+          "sha256": "c863dfea5cb6a9b530926e2792321ca22767b487689050c1074e07e48fd5aa96"
+        }
+      },
+      "123": {
+        "m0_target": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_positive_control_seed_123_m0.pt",
+          "sha256": "ff20fe84ea1adbeedbb727aa50e40bc9968f31ad68d38e3185f79e3e84dfb672"
+        },
+        "m0_cal_matched": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_positive_control_seed_123_m0_cal_matched.pt",
+          "sha256": "98cbb9e6f2dbe1956208e685b7d1379b2c3878bf110015b0a834d6cfec5d0af8"
+        },
+        "m_lora0": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_positive_control_seed_123_m_lora0.pt",
+          "sha256": "bdab753fa923539f02bf1b7f2df040873c649806126a10441b7f761e5a685f0f"
+        },
+        "m1_pooled": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_positive_control_seed_123_m1_pooled.pt",
+          "sha256": "045ed6b6d4608e957001d4d16264ce553afd08776b5e466a8c791d3a36d5fe24"
+        },
+        "source_spec_1": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_positive_control_seed_123_spec_1.pt",
+          "sha256": "e818e782e08a8b3d4805b9ddfb1e9bb08f1be184e6b0164e5e562182fbce34a7"
+        },
+        "source_spec_2": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_positive_control_seed_123_spec_2.pt",
+          "sha256": "80471f8e1ee4043742911474738ab5e1eb2fb18637aafc54186b8b48fe396446"
+        },
+        "source_spec_3": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_positive_control_seed_123_spec_3.pt",
+          "sha256": "bc424a71b71f85bf0835ac394804c0bd7914239ae558780b4c32eff9c06d88f5"
+        },
+        "m_fuse_weights": {
+          "weights": [
+            0.06272025387758463,
+            0.8507976097525142,
+            0.4139919218591264
+          ],
+          "intercept": 0.1273572850734737
+        },
+        "m_subspace": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_positive_control_seed_123_m_subspace.pt",
+          "sha256": "ff857a830bac6c8016e13d47f0265d86a2c1fa22f82786712a86edda4e9de2b7"
+        },
+        "m_colora": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_positive_control_seed_123_m_colora.pt",
+          "sha256": "3b7918fe69bf55a4a4d4278e4be508d0ba947b86a7b4c9a562883f31054c029d"
+        }
+      },
+      "777": {
+        "m0_target": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_positive_control_seed_777_m0.pt",
+          "sha256": "ba99d7f38091b670cdf9e84284322893fdbca02e59e5c6decacdb04ace65319d"
+        },
+        "m0_cal_matched": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_positive_control_seed_777_m0_cal_matched.pt",
+          "sha256": "d6072bec7de0af833ba307374d3140d3cd410e4fd21ac3a4c303b6565807ec47"
+        },
+        "m_lora0": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_positive_control_seed_777_m_lora0.pt",
+          "sha256": "18418e93bdb9a58e0d7d12039e0c9ab5bc8fddeff776fae7072169823fecaf02"
+        },
+        "m1_pooled": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_positive_control_seed_777_m1_pooled.pt",
+          "sha256": "692ca5dcd3d52cb3bee610dd71ee233e5689bbef6bb205ea3eb0f077f06214bb"
+        },
+        "source_spec_1": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_positive_control_seed_777_spec_1.pt",
+          "sha256": "b9d1d0b6dd5520f3c645afa6bd186c4211c0cc018237b66e083cd009e834f3a7"
+        },
+        "source_spec_2": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_positive_control_seed_777_spec_2.pt",
+          "sha256": "3f221d592e7aa9f9d454442e96b3e83c27f19a25969ff2c07093a4d746c1c8de"
+        },
+        "source_spec_3": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_positive_control_seed_777_spec_3.pt",
+          "sha256": "985c7f35cde563911895be19be90865b841aa0b97bfa628bda687c44e35084e9"
+        },
+        "m_fuse_weights": {
+          "weights": [
+            0.01235760827311933,
+            0.4294719405006851,
+            -0.1977576553219877
+          ],
+          "intercept": -0.2118426396538352
+        },
+        "m_subspace": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_positive_control_seed_777_m_subspace.pt",
+          "sha256": "3ada25f5894ff76b49a1c788a5ef6163a66a0fc563ceb4f6c066019b9c9ae1e6"
+        },
+        "m_colora": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_positive_control_seed_777_m_colora.pt",
+          "sha256": "b436f2b0831cbcb2f0ff108783a549054996c99f4fab83bbd6960ce593465fd3"
+        }
+      }
+    },
+    "negative_control": {
+      "42": {
+        "m0_target": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_negative_control_seed_42_m0.pt",
+          "sha256": "861c69e105cc02e931e97dd6cb9f60d046712aef7a04f6e46de59cac9329cd75"
+        },
+        "m0_cal_matched": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_negative_control_seed_42_m0_cal_matched.pt",
+          "sha256": "566ad2116e8f2108d693a2a7b962dc5155602b4de7f0a9f22ba3f3eaf0497d15"
+        },
+        "m_lora0": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_negative_control_seed_42_m_lora0.pt",
+          "sha256": "5b888f041eddb35dfe9b980843807d8b023659681610c900f5f0abf149d709c9"
+        },
+        "m1_pooled": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_negative_control_seed_42_m1_pooled.pt",
+          "sha256": "90824faa9414fd761a6942c15c7166b3015289fa107a4d4eb11a942b58ccc57b"
+        },
+        "source_spec_1": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_negative_control_seed_42_spec_1.pt",
+          "sha256": "ce1cc76f54660807e3fe7419eea46f83da78abaeec0170a443316262ed6d7f3b"
+        },
+        "source_spec_2": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_negative_control_seed_42_spec_2.pt",
+          "sha256": "29e01a3f7ea34f58c8f096a5e64c614bd1a84fe595b98b2aaaacf46e55bd8ab6"
+        },
+        "source_spec_3": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_negative_control_seed_42_spec_3.pt",
+          "sha256": "1510bf394f4919750656e8ca24c521f727edc67341e5dd15f0f74918f73c90df"
+        },
+        "m_fuse_weights": {
+          "weights": [
+            0.1263024099684432,
+            -0.02931754714939056,
+            0.10278491359011523
+          ],
+          "intercept": 0.3378073157631186
+        },
+        "m_subspace": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_negative_control_seed_42_m_subspace.pt",
+          "sha256": "307dbd04f268a01db3953f5184126ce7db21b4df74c85eae7376711a6da3e037"
+        },
+        "m_colora": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_negative_control_seed_42_m_colora.pt",
+          "sha256": "540b66deb4c9d73fded1225d9262c782fc175e06f35b8adbc515cc4cdae653d5"
+        }
+      },
+      "123": {
+        "m0_target": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_negative_control_seed_123_m0.pt",
+          "sha256": "45f9bf2c3b52b66ed0da44b0e36538dc21d921a5d51fb7c4a730bc09e05185bf"
+        },
+        "m0_cal_matched": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_negative_control_seed_123_m0_cal_matched.pt",
+          "sha256": "fe92d6cf9b3c6d54c990d1419cf9ab49cb32ffb86842d837f0f86c709d9c3735"
+        },
+        "m_lora0": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_negative_control_seed_123_m_lora0.pt",
+          "sha256": "774dfcbed164c1f22e93914870a0885abcece79900492b90804e19352b99209f"
+        },
+        "m1_pooled": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_negative_control_seed_123_m1_pooled.pt",
+          "sha256": "745a96e95e0f1f17547e6706b1aafbf9a9bb3a74acdafc43369b8497bd5110b4"
+        },
+        "source_spec_1": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_negative_control_seed_123_spec_1.pt",
+          "sha256": "898f8b20b0c15f17670b6d141339e37f35084cc483c7a9b1998a175ea0784cc5"
+        },
+        "source_spec_2": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_negative_control_seed_123_spec_2.pt",
+          "sha256": "5e1faf713f6eb8562d52221243d873dcd64ee4a8c951c9a9c8c93cd8ae1b9795"
+        },
+        "source_spec_3": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_negative_control_seed_123_spec_3.pt",
+          "sha256": "df0699065d67e1c9674ce7e57de40b5a4ed7a9bed4a83f79aed1d10ce3bb5dfa"
+        },
+        "m_fuse_weights": {
+          "weights": [
+            0.11002790748355315,
+            0.268747493236366,
+            -0.14980747695928745
+          ],
+          "intercept": -0.05187351930583003
+        },
+        "m_subspace": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_negative_control_seed_123_m_subspace.pt",
+          "sha256": "da4c447874ef29fd3f265644b75db131dd079556da4f009cbc7af56c98baf638"
+        },
+        "m_colora": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_negative_control_seed_123_m_colora.pt",
+          "sha256": "39ca749cf83a17523c7dbb722e1903245f7922f586a313bbd2e07ce1c5e0480c"
+        }
+      },
+      "777": {
+        "m0_target": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_negative_control_seed_777_m0.pt",
+          "sha256": "f2488054a27c4fca4d59a0fc36e6825a860db2edeb9b65d16444fd3c6ade8035"
+        },
+        "m0_cal_matched": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_negative_control_seed_777_m0_cal_matched.pt",
+          "sha256": "b085b8345391e8a15f1107db6fe54eacc1dfd5d1a381a61c631964c01081938e"
+        },
+        "m_lora0": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_negative_control_seed_777_m_lora0.pt",
+          "sha256": "1bc2afc3d155d8201c97de9a2bba1b9777fde2ed80af66e7f0c592e55210186e"
+        },
+        "m1_pooled": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_negative_control_seed_777_m1_pooled.pt",
+          "sha256": "a3374444a0de46ff8d4912f0ab43f6042413a2ccd408db5323e0c09c29c7ff66"
+        },
+        "source_spec_1": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_negative_control_seed_777_spec_1.pt",
+          "sha256": "3a2154a95585eb7e1c9bdafb2d1dd6e73882982072b996da2a458c9802c97442"
+        },
+        "source_spec_2": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_negative_control_seed_777_spec_2.pt",
+          "sha256": "2e571996c23cf4712cf13944797d77e3238ba5cce328b854e26adf6f1959eb4b"
+        },
+        "source_spec_3": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_negative_control_seed_777_spec_3.pt",
+          "sha256": "47fb5315cbb9858cca84f515c806c468cbfe31f7d9b8fdd7dfb55a7f4a2b6528"
+        },
+        "m_fuse_weights": {
+          "weights": [
+            -0.13314604832778718,
+            0.028594484683367238,
+            0.13989634283075458
+          ],
+          "intercept": 0.16383304266476953
+        },
+        "m_subspace": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_negative_control_seed_777_m_subspace.pt",
+          "sha256": "8baf9a07d1b6a2ce05f1370f55a39ab35a21592649b7d0017787d3ffd93daefd"
+        },
+        "m_colora": {
+          "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/multitask_transfer_benchmark/ckpt_transfer_negative_control_seed_777_m_colora.pt",
+          "sha256": "2c96b089974ba5fa290d594bd9814fd1261ca9b29a8e1e6776be3b3baa289376"
+        }
+      }
+    }
+  },
+  "total_training_seconds": 13.083601832971908,
+  "peak_memory_mb": 323.796875
+}

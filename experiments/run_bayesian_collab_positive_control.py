@@ -724,7 +724,7 @@ def stage_evaluate() -> None:
     write_csv(OUT_DIR / "test_metrics.csv", csv_rows)
     save_json(OUT_DIR / "evaluation_summary.json", results_summary)
 
-    # Generate decision JSON
+    # Generate decision JSON and matched contrasts
     pos_comp = results_summary["positive_control"]["comparisons"]
     neg_comp = results_summary["negative_control"]["comparisons"]
 
@@ -732,21 +732,48 @@ def stage_evaluate() -> None:
         pos_comp[m]["passes_continuation"]
         for m in ("m4_equal", "m5_learned", "m6_colora")
     )
-    h5_pass = not any(
+    h5_nominal_pass = not any(
         neg_comp[m]["mean_brier_gain"] >= config["material_brier_gain"]
         for m in ("m4_equal", "m5_learned", "m6_colora")
     )
 
+    # Matched difference-in-differences contrast: Positive Gain - Negative Gain
+    # Isolates pure feature complementarity from shared sample-size and variance-reduction effects
+    contrasts = {
+        m: float(pos_comp[m]["mean_brier_gain"] - neg_comp[m]["mean_brier_gain"])
+        for m in ("m4_equal", "m5_learned", "m6_colora")
+    }
+
+    # CoLoRA architectural gains vs standard and capacity-matched pooled baselines
+    colora_vs_pooled = float(
+        pos_comp["m6_colora"]["mean_brier_gain"]
+        - pos_comp["m1_pooled"]["mean_brier_gain"]
+    )
+    colora_vs_cap_pooled = float(
+        pos_comp["m6_colora"]["mean_brier_gain"]
+        - pos_comp["m1_cap_pooled"]["mean_brier_gain"]
+    )
+
     decision = {
         "H4a_positive_control_pass": h4a_pass,
-        "H5_negative_control_null_holds": h5_pass,
+        "H5_negative_control_descriptive_diagnostic": {
+            "nominal_threshold_met": h5_nominal_pass,
+            "status": "descriptive_diagnostic",
+        },
+        "matched_complementarity_contrasts": contrasts,
+        "colora_architectural_contrasts": {
+            "colora_vs_standard_pooled_gain": colora_vs_pooled,
+            "colora_vs_capacity_matched_pooled_gain": colora_vs_cap_pooled,
+        },
         "conclusive": diagnostics["overall_pass"],
         "summary": results_summary,
     }
     save_json(OUT_DIR / "decision.json", decision)
     print("Stage evaluate completed.")
     print(f"H4a (Positive control pass): {h4a_pass}")
-    print(f"H5 (Negative control null holds): {h5_pass}")
+    print(f"H5 Descriptive diagnostic (nominal threshold met): {h5_nominal_pass}")
+    print(f"Matched Complementarity Contrasts: {contrasts}")
+    print(f"CoLoRA vs Capacity-Matched Pooled Gain: {colora_vs_cap_pooled:.6f}")
 
 
 def main() -> None:

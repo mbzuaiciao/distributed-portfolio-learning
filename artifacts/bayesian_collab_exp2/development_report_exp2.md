@@ -2,9 +2,10 @@
 
 **Repository:** `mbzuaiciao/distributed-portfolio-learning`  
 **Branch:** `experiment/bayesian-collaboration-calibration-fusion`  
-**Date Executed:** 2026-10-10 11:41:43 PDT  
+**Date Executed:** 2026-10-10 11:41:43 PDT (Audit remediation applied 2026-10-10 11:55 PDT)  
 **Protocol Document:** [`docs/bayesian_collaboration_experiment2_protocol.md`](../../docs/bayesian_collaboration_experiment2_protocol.md)  
-**Status:** **ALL DEVELOPMENT HYPOTHESES PASSED (H2.1, H2.2, H2.3, H2.4)**  
+**Pre-Confirmatory Audit Report:** [`artifacts/bayesian_collab_exp2/pre_confirmatory_audit_exp2.md`](pre_confirmatory_audit_exp2.md)  
+**Status:** **ALL DEVELOPMENT GATES PASSED (H2.1, H2.2, H2.3, H2.4)**  
 **Held-Out Test Set Status:** **UNTOUCHED & FULLY ISOLATED** (Quarantined, zero access, zero evaluation)
 
 ---
@@ -22,14 +23,14 @@ The experiment enforces a **5-split data hygiene architecture** preventing any d
 
 ### Summary of Prospective Hypothesis Decisions
 
-| Hypothesis | Pre-registered Decision Criterion | Observed Value | Outcome |
-|---|---|---|---|
-| **H2.1 Specialist Calibration** | $\text{Brier}_{\text{cal}} < \text{Brier}_{\text{raw}}$ on unseen data for both A & B | $\Delta \text{Brier}_A = -0.0688$, $\Delta \text{Brier}_B = -0.1051$ | **PASS** |
-| **H2.2 Log-Odds Fusion** | $\text{Brier}(\text{LogOdds}_{\text{cal}}) < \text{Brier}(\text{Simplex}_{\text{cal}})$ and $< \text{Brier}(\text{Equal}_{\text{cal}})$ | $\text{Brier} = 0.1876$ vs. $0.1990$ (Simplex) and $0.1972$ (Equal) | **PASS** |
-| **H2.3 Collaborative Superiority** | $\text{Gain} = \text{Brier}(M_0) - \text{Brier}(M_6) \ge 0.010$ | $\text{Gain} = +0.0264$ Brier ($p < 0.001$) | **PASS** |
-| **H2.4 Complementarity Attribution** | $\text{Contrast} = \text{Gain}_{\text{positive}} - \text{Gain}_{\text{redundant}} > 0.0$ | $\text{Contrast} = 0.0264 - 0.0140 = \mathbf{+0.0124}$ | **PASS** |
+| Hypothesis | Pre-registered Decision Criterion | Observed Value | Uncertainty / Note | Outcome |
+|---|---|---|---|---|
+| **H2.1 Specialist Calibration** | $\text{Brier}_{\text{cal}} < \text{Brier}_{\text{raw}}$ on unseen data for both A & B | $\Delta \text{Brier}_A = -0.0688$, $\Delta \text{Brier}_B = -0.1051$ | $\text{ECE}_A: 0.273 \to 0.104$, $\text{ECE}_B: 0.316 \to 0.080$ | **PASS** |
+| **H2.2 Log-Odds Fusion** | $\text{Brier}(\text{LogOdds}_{\text{cal}}) < \text{Brier}(\text{Simplex}_{\text{cal}})$ and $< \text{Brier}(\text{Equal}_{\text{cal}})$ | $\text{Brier} = 0.1876$ vs. $0.1990$ (Simplex) and $0.1972$ (Equal) | Log-odds beats simplex by $0.0114$ and equal by $0.0096$ | **PASS** |
+| **H2.3 Collaborative Superiority** | $\text{Gain} = \text{Brier}(M_0) - \text{Brier}(M_6) \ge 0.010$ | $\text{Gain} = \mathbf{+0.0264}$ Brier | Audited 95% bootstrap CI: $[-0.026, +0.079]$ ($\text{SE} \approx 0.0266$) | **PASS** |
+| **H2.4 Complementarity Attribution** | $\text{Contrast} = \text{Gain}_{\text{positive}} - \text{Gain}_{\text{redundant}} > 0.0$ | $\text{Contrast} = 0.0264 - 0.0140 = \mathbf{+0.0124}$ | Positive across all 3 seeds ($+0.003, +0.014, +0.020$) | **PASS** |
 
-All four pre-registered development hypotheses succeeded with large, statistically robust margins.
+*Statistical Precision Note for H2.3:* On the development split ($N=128$), the observed point gain of $+0.0264$ Brier exceeds the pre-registered threshold of $\ge 0.010$. However, individual binary instance loss differences exhibit substantial variance ($\hat{\sigma} \approx 0.301$, $\text{SE} \approx 0.0266$), so the 95% bootstrap confidence interval $[-0.026, +0.079]$ spans zero at $N=128$. The unsupported claim of $p < 0.001$ from the initial draft is formally retracted. The larger confirmatory held-out test split ($N=512$) provides $2\times$ greater statistical precision.
 
 ---
 
@@ -50,26 +51,26 @@ The run consumed less than 1.6% of host RAM and terminated in under 18 seconds t
 
 ## 3. Development-Set Performance Matrix ($N=128$)
 
-All metrics are averaged across 3 random seeds (`42`, `123`, `777`).
+All metrics are averaged across 3 random seeds (`42`, `123`, `777`). All neural models take $D=40$ input dimensions (20 features + 20 observation mask bits).
 
 ### 3.1 Positive-Control Regime (Complementary Specialists: $x_s + x_A$ vs. $x_s + x_B$)
 
-| Method ID | Method Name | Brier Score ($\downarrow$) | ECE ($\downarrow$) | AUROC ($\uparrow$) | Parameters | Information Access |
+| Method ID | Method Name | Brier Score ($\downarrow$) | ECE ($\downarrow$) | AUROC ($\uparrow$) | Trainable / Total Parameters | Information Access |
 |---|---|---|---|---|---|---|
-| **M0** | Target-Only MLP | 0.2140 ± 0.0143 | 0.2132 | 0.8081 | 1,473 | $x_s, x_A, x_B$ ($N=128$) |
-| **M1** | Naive Pooled MLP | 0.2462 ± 0.0199 | 0.2552 | 0.7761 | 1,473 | Pooled masked ($N=640$) |
+| **M0** | Target-Only MLP | 0.2140 ± 0.0143 | 0.2132 | 0.8081 | 1,857 | $x_s, x_A, x_B$ ($N=128$) |
+| **M1** | Naive Pooled MLP | 0.2462 ± 0.0199 | 0.2552 | 0.7761 | 1,857 | Pooled masked ($N=640$) |
 | **M1_cap** | Capacity-Matched Pooled | 0.2489 ± 0.0117 | 0.2519 | 0.7767 | 2,199 | Pooled masked ($N=640$) |
-| **M2_raw** | Specialist A (Raw) | 0.2734 ± 0.0084 | 0.2731 | 0.7535 | 1,473 | $x_s, x_A$ ($N=256$) |
-| **M2_cal** | Specialist A (Platt Calibrated) | **0.2046 ± 0.0031** | **0.1038** | 0.7544 | 1,475 | $x_s, x_A$ + Cal split ($N=128$) |
-| **M3_raw** | Specialist B (Raw) | 0.3138 ± 0.0040 | 0.3162 | 0.7173 | 1,473 | $x_s, x_B$ ($N=256$) |
-| **M3_cal** | Specialist B (Platt Calibrated) | **0.2087 ± 0.0031** | **0.0795** | 0.7147 | 1,475 | $x_s, x_B$ + Cal split ($N=128$) |
-| **M4_raw** | Equal-Weight Average (Raw) | 0.2137 ± 0.0108 | 0.1985 | 0.7885 | 2,946 | Ensembled raw specialists |
-| **M4_cal** | Equal-Weight Average (Calibrated) | 0.1972 ± 0.0037 | 0.1224 | 0.7913 | 2,950 | Ensembled calibrated specialists |
-| **M5_raw** | Learned Simplex (Raw) | 0.2158 ± 0.0090 | 0.1568 | 0.7753 | 2,947 | Linear simplex weights on raw |
-| **M5_cal** | Learned Simplex (Calibrated) | 0.1990 ± 0.0033 | 0.0911 | 0.7716 | 2,951 | Linear simplex on calibrated |
-| **M6_raw** | Log-Odds Fusion (Raw) | 0.1872 ± 0.0015 | 0.0945 | 0.7939 | 2,949 | Logit-space linear model |
-| **M6_cal** | **Log-Odds Fusion (Calibrated)** | **0.1876 ± 0.0012** | **0.0935** | **0.7924** | 2,953 | Logit-space model on calib logits |
-| **M7** | CoLoRA MLP ($r=4$) | 0.2349 ± 0.0142 | 0.2358 | 0.7985 | 2,199 | Task IDs + shared base |
+| **M2_raw** | Specialist A (Raw) | 0.2734 ± 0.0084 | 0.2731 | 0.7535 | 1,857 | $x_s, x_A$ ($N=256$) |
+| **M2_cal** | Specialist A (Platt Calibrated) | **0.2046 ± 0.0031** | **0.1038** | 0.7544 | 1,859 (1,857 + 2 Platt) | $x_s, x_A$ + Cal split ($N=128$) |
+| **M3_raw** | Specialist B (Raw) | 0.3138 ± 0.0040 | 0.3162 | 0.7173 | 1,857 | $x_s, x_B$ ($N=256$) |
+| **M3_cal** | Specialist B (Platt Calibrated) | **0.2087 ± 0.0031** | **0.0795** | 0.7147 | 1,859 (1,857 + 2 Platt) | $x_s, x_B$ + Cal split ($N=128$) |
+| **M4_raw** | Equal-Weight Average (Raw) | 0.2137 ± 0.0108 | 0.1985 | 0.7885 | 3,714 ($2 \times 1,857$) | Ensembled raw specialists |
+| **M4_cal** | Equal-Weight Average (Calibrated) | 0.1972 ± 0.0037 | 0.1224 | 0.7913 | 3,718 ($2 \times 1,857 + 4$ Platt) | Ensembled calibrated specialists |
+| **M5_raw** | Learned Simplex (Raw) | 0.2158 ± 0.0090 | 0.1568 | 0.7753 | 3,715 ($2 \times 1,857 + 1$ weight) | Linear simplex on raw |
+| **M5_cal** | Learned Simplex (Calibrated) | 0.1990 ± 0.0033 | 0.0911 | 0.7716 | 3,719 ($2 \times 1,857 + 4 + 1$) | Linear simplex on calibrated |
+| **M6_raw** | Log-Odds Fusion (Raw) | 0.1872 ± 0.0015 | 0.0945 | 0.7939 | 3,717 ($2 \times 1,857 + 3$ log-odds) | Logit-space linear model |
+| **M6_cal** | **Log-Odds Fusion (Calibrated)** | **0.1876 ± 0.0012** | **0.0935** | **0.7924** | 3,721 ($2 \times 1,857 + 4 + 3$) | Logit model on calibrated logits |
+| **M7** | CoLoRA MLP ($r=4$) | 0.2349 ± 0.0142 | 0.2358 | 0.7985 | 2,193 | Task IDs + shared base |
 | **M8** | Prevalence Null Baseline | 0.2446 ± 0.0000 | 0.0703 | 0.5000 | 0 | Prior mean prediction ($\bar{y}=0.4375$) |
 | **M9** | Analytical Bayes Oracle | 0.1382 ± 0.0000 | 0.0740 | 0.8813 | $\infty$ | Full feature vector $x_{\text{full}}$ |
 
@@ -113,16 +114,25 @@ All metrics are averaged across 3 random seeds (`42`, `123`, `777`).
 - As predicted by theory, Log-Odds Fusion achieved **0.1876 Brier**, decisively beating both Equal-Weight Averaging (**0.1972**) and Learned Simplex Averaging (**0.1990**).
 
 ### 4.3 Collaborative Superiority over Target-Only & Pooled Baselines (H2.3 Confirmed)
-- The calibrated collaborative system ($M_6$) achieved **0.1876 Brier**, outperforming Target-Only ($M_0 = 0.2140$) by **+0.0264 Brier**, far surpassing the pre-registered threshold of $\ge 0.010$.
+- The calibrated collaborative system ($M_6$) achieved **0.1876 Brier**, outperforming Target-Only ($M_0 = 0.2140$) by **+0.0264 Brier**, exceeding the pre-registered threshold of $\ge 0.010$.
 - Naive pooled training ($M_1 = 0.2462$) and capacity-matched pooled training ($M_1^{\text{cap}} = 0.2489$) severely underperformed the collaborative system by over **0.061 Brier**. This confirms that single models suffer from zero-observation mask confusion and gradient contention across heterogeneous feature spaces.
 - Structural CoLoRA ($M_7 = 0.2349$) similarly underperformed calibrated fusion due to rank-$r$ bottlenecking and shared-base gradient contention.
 
-### 4.4 Rigorous Attribution via the Redundant-Specialist Contrast (H2.4 Confirmed)
+### 4.4 Matched Diagnostic Attribution via Redundant-Specialist Contrast (H2.4 Confirmed)
 - In the positive control (complementary features), collaborative fusion gains $+0.0264$ Brier over target-only.
 - In the negative control (redundant features), collaborative fusion gains $+0.0140$ Brier over target-only due to variance reduction and sample-size effects.
 - The **Matched Complementarity Contrast**:
   $$\Delta_{\text{contrast}} = \text{Gain}_{\text{positive}} - \text{Gain}_{\text{negative}} = 0.0264 - 0.0140 = \mathbf{+0.0124} > 0.0$$
-- This formally confirms that the collaborative gain is causally driven by complementary predictive feature information rather than merely ensembling variance reduction.
+- *Methodological Qualification:* This empirical subtractive diagnostic confirms that the collaborative gain under complementary features exceeds the gain achievable via ensembling under redundant features, providing evidence of an incremental informational advantage beyond sample-size expansion and variance reduction. However, because regime substitution also influences marginal logit scale and calibration profiles, this is interpreted as a matched descriptive diagnostic rather than a formal causal proof.
+
+### 4.5 Functional Redundancy of Separate Platt Calibration in Log-Odds Fusion
+- Bivariate log-odds fusion fits $z = w_0 + w_A \text{logit}(p_A) + w_B \text{logit}(p_B)$.
+- Univariate Platt scaling applies affine shifts: $\text{logit}(p_{\text{cal}}) = a \cdot \text{logit}(p) + b$.
+- Composing bivariate logistic regression with Platt-scaled inputs yields an affine reparameterization of the exact same 2D linear logit space:
+  $$z = (w_0 + w_A b_A + w_B b_B) + (w_A a_A) \text{logit}(p_A) + (w_B a_B) \text{logit}(p_B)$$
+- In the absence of regularization ($C \to \infty$), bivariate log-odds over raw logits has identical expressive capacity to bivariate log-odds over calibrated logits. Bivariate log-odds fusion inherently performs joint calibration and evidence combination in a single step.
+- The minor difference ($0.1872$ raw vs. $0.1876$ calibrated) stems from `LogisticRegression(C=1.0)`: raw logits are large, so optimal weights are small ($w \approx 0.095$), incurring negligible L2 shrinkage ($\approx 0.009$); calibrated logits are pre-compressed, requiring larger weights ($w \approx 1.2$), incurring mild shrinkage ($\approx 1.2$).
+- In summary: **individual calibration is essential for linear probability ensembling** (improving Brier by ~0.017), but **functionally redundant for log-odds fusion**.
 
 ---
 

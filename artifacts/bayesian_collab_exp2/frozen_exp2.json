@@ -1,0 +1,385 @@
+{
+  "timestamp": 1791657685.8214011,
+  "hardware": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "torch_version": "2.14.1",
+  "smoke": false,
+  "runs": {
+    "positive_control": {
+      "42": {
+        "checkpoints": {
+          "m0_target": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_positive_control_seed_42_m0_target.pt",
+            "sha256": "195fb43e02cb0c48351e6aaa1b9325452e80125498b4553d6c98f9993608f161"
+          },
+          "m1_pooled": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_positive_control_seed_42_m1_pooled.pt",
+            "sha256": "82fb29b8bc079cfd52550fd73d3b499fabd31baf2a48a2326741a37796948c54"
+          },
+          "m1_cap_pooled": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_positive_control_seed_42_m1_cap_pooled.pt",
+            "sha256": "7046e313e26544f196b4c2d9f0fd6e85ad9eca1283b3ae22c565053fe927033e"
+          },
+          "m2_specA": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_positive_control_seed_42_m2_specA.pt",
+            "sha256": "68c6e4f4cb2cace415b4426701e45f8f7b1d079ab2c110169c0d890de9e38748"
+          },
+          "m3_specB": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_positive_control_seed_42_m3_specB.pt",
+            "sha256": "bbbebba4028a9cc37360ff7a1bad721bd612b091c4b7b6a837f3580655305885"
+          },
+          "m7_colora": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_positive_control_seed_42_m7_colora.pt",
+            "sha256": "7bcf0e91e8a2a37cc115be7e13a2f2fd4c3df331632a88c69f9a5f812e4053ef"
+          }
+        },
+        "calibrator_A": {
+          "weight": 0.0655265599489212,
+          "intercept": -0.3731341063976288
+        },
+        "calibrator_B": {
+          "weight": 0.09877613186836243,
+          "intercept": -0.31477028131484985
+        },
+        "simplex_raw": {
+          "weights": [
+            0.478663247511649,
+            0.5213367524883511
+          ]
+        },
+        "simplex_cal": {
+          "weights": [
+            0.46450009228312655,
+            0.5354999077168735
+          ]
+        },
+        "logodds_raw": {
+          "weights": [
+            0.09665855765342712,
+            0.09270408749580383
+          ],
+          "intercept": -0.2804495394229889
+        },
+        "logodds_cal": {
+          "weights": [
+            1.289065957069397,
+            0.8760793209075928
+          ],
+          "intercept": 0.4524400234222412
+        }
+      },
+      "123": {
+        "checkpoints": {
+          "m0_target": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_positive_control_seed_123_m0_target.pt",
+            "sha256": "cffbebc7745571d94e1d2531d71ce000270fa5ed65e1344d02be885361f56d6e"
+          },
+          "m1_pooled": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_positive_control_seed_123_m1_pooled.pt",
+            "sha256": "41cda2f0f3c5065d8e0e0717bd7a3343fc83705524daa6ee8ae2ee435119ad22"
+          },
+          "m1_cap_pooled": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_positive_control_seed_123_m1_cap_pooled.pt",
+            "sha256": "8f564654303f11dcfe31eba3caeb2aa26911f093b3d35a6f5c96655d6828d174"
+          },
+          "m2_specA": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_positive_control_seed_123_m2_specA.pt",
+            "sha256": "054749ddf4da0972753e9545c31ea47cabce96035193cc310fd49ac6bc0edcf6"
+          },
+          "m3_specB": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_positive_control_seed_123_m3_specB.pt",
+            "sha256": "2557af56ff31f28735dbf5ee1f40d2998bd729b1d89af191cb3a3769772dd97f"
+          },
+          "m7_colora": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_positive_control_seed_123_m7_colora.pt",
+            "sha256": "4e6ac19d8a06f960956c08160016482bd535962e7ce6da96280e9153bee48761"
+          }
+        },
+        "calibrator_A": {
+          "weight": 0.0603129044175148,
+          "intercept": -0.3792848289012909
+        },
+        "calibrator_B": {
+          "weight": 0.08139548450708389,
+          "intercept": -0.2964371144771576
+        },
+        "simplex_raw": {
+          "weights": [
+            0.4807635721239983,
+            0.5192364278760018
+          ]
+        },
+        "simplex_cal": {
+          "weights": [
+            0.33895267171555216,
+            0.6610473282844478
+          ]
+        },
+        "logodds_raw": {
+          "weights": [
+            0.10847945511341095,
+            0.10624029487371445
+          ],
+          "intercept": -0.08812853693962097
+        },
+        "logodds_cal": {
+          "weights": [
+            1.4758681058883667,
+            1.1783573627471924
+          ],
+          "intercept": 0.7513877153396606
+        }
+      },
+      "777": {
+        "checkpoints": {
+          "m0_target": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_positive_control_seed_777_m0_target.pt",
+            "sha256": "a86f351c0aac57a00fed6a02a93ea8b7c8cc003a9294bc835ecc9806f560e076"
+          },
+          "m1_pooled": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_positive_control_seed_777_m1_pooled.pt",
+            "sha256": "b94842bc548c21aed560481cc8933580e0f91c28f08bef899ce6b3178aba228b"
+          },
+          "m1_cap_pooled": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_positive_control_seed_777_m1_cap_pooled.pt",
+            "sha256": "77eeb708d348280f051f55714172d23b2eefe1f6f2d31e07469571840aec2971"
+          },
+          "m2_specA": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_positive_control_seed_777_m2_specA.pt",
+            "sha256": "ad53d1129b0a62f6ee59b91b8320a7507b755a39a3bff7b563de76df8ad84cde"
+          },
+          "m3_specB": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_positive_control_seed_777_m3_specB.pt",
+            "sha256": "8f823517271890c3d2d063476cfc08bbf5b6f455e963879ebd527b71af28423d"
+          },
+          "m7_colora": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_positive_control_seed_777_m7_colora.pt",
+            "sha256": "aa1e36aeb5f938099a77495a085239dbd07e9ce97d41ad92bdcdac5963a06a4e"
+          }
+        },
+        "calibrator_A": {
+          "weight": 0.07529301196336746,
+          "intercept": -0.37373584508895874
+        },
+        "calibrator_B": {
+          "weight": 0.09001024067401886,
+          "intercept": -0.3838571310043335
+        },
+        "simplex_raw": {
+          "weights": [
+            0.4329596684334763,
+            0.5670403315665238
+          ]
+        },
+        "simplex_cal": {
+          "weights": [
+            0.2729773585180696,
+            0.7270226414819304
+          ]
+        },
+        "logodds_raw": {
+          "weights": [
+            0.06474887579679489,
+            0.10996998846530914
+          ],
+          "intercept": -0.4123024344444275
+        },
+        "logodds_cal": {
+          "weights": [
+            0.7978296279907227,
+            1.1291242837905884
+          ],
+          "intercept": 0.30244016647338867
+        }
+      }
+    },
+    "negative_control": {
+      "42": {
+        "checkpoints": {
+          "m0_target": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_negative_control_seed_42_m0_target.pt",
+            "sha256": "9ee3e12f85cab4c5ab492b44eeaf7cb927c926e0d42412fdcdb8f807902fe1d6"
+          },
+          "m1_pooled": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_negative_control_seed_42_m1_pooled.pt",
+            "sha256": "1d1bfb3a2ce231c64a4fd05c5b181a8e156864a712ef7af91800f402e34a5a62"
+          },
+          "m1_cap_pooled": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_negative_control_seed_42_m1_cap_pooled.pt",
+            "sha256": "5b9b2820e07346a191d52d0fb60cb2a014af4780497e86df8cad8ee57495bead"
+          },
+          "m2_specA": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_negative_control_seed_42_m2_specA.pt",
+            "sha256": "5dce230dca0de5bf3e149b296c17e14aa75e4bb7e684f49a106d09340d66bef4"
+          },
+          "m3_specB": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_negative_control_seed_42_m3_specB.pt",
+            "sha256": "400ecf9a336d0ae17b242f71637aa57b8fedda5833c9b82cdf6316551af16369"
+          },
+          "m7_colora": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_negative_control_seed_42_m7_colora.pt",
+            "sha256": "ab6b37a63d1e22620c0742c3233795430f7c97d8fb7fa0c02969bda50be31ba3"
+          }
+        },
+        "calibrator_A": {
+          "weight": 0.0655265599489212,
+          "intercept": -0.3731341063976288
+        },
+        "calibrator_B": {
+          "weight": 0.08367989957332611,
+          "intercept": -0.2692691683769226
+        },
+        "simplex_raw": {
+          "weights": [
+            0.5694271254642504,
+            0.43057287453574966
+          ]
+        },
+        "simplex_cal": {
+          "weights": [
+            0.6615980654612086,
+            0.3384019345387915
+          ]
+        },
+        "logodds_raw": {
+          "weights": [
+            0.08049367368221283,
+            0.04976871609687805
+          ],
+          "intercept": -0.5050336718559265
+        },
+        "logodds_cal": {
+          "weights": [
+            1.095787525177002,
+            0.589137852191925
+          ],
+          "intercept": 0.05810945853590965
+        }
+      },
+      "123": {
+        "checkpoints": {
+          "m0_target": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_negative_control_seed_123_m0_target.pt",
+            "sha256": "cf06c2f422ca1d1e32cc8bb5a27dde3f0fe703b3808158f67d0ae712985169d8"
+          },
+          "m1_pooled": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_negative_control_seed_123_m1_pooled.pt",
+            "sha256": "d84923464da88d37ebcea105a847f30f2242ceb18c0244e1b74f09c949f7a4f8"
+          },
+          "m1_cap_pooled": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_negative_control_seed_123_m1_cap_pooled.pt",
+            "sha256": "fb0a70d8f5a2b6320282b0288f7dc5e326a06eb0b4ba577a7c0a25167e3b2c53"
+          },
+          "m2_specA": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_negative_control_seed_123_m2_specA.pt",
+            "sha256": "6e73a8cd5bcabb3f1a79e71d2cf58be975b2e614472ac2435482378b4c7dcb56"
+          },
+          "m3_specB": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_negative_control_seed_123_m3_specB.pt",
+            "sha256": "1604ce930afeffc98d235f3c3f2fbe36766ff926d8a6ad6851c6d1094f4e5a78"
+          },
+          "m7_colora": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_negative_control_seed_123_m7_colora.pt",
+            "sha256": "001ece7a2a3432efa1b5794d514e236864ea674cd74dff1f0cc77a35c26b0923"
+          }
+        },
+        "calibrator_A": {
+          "weight": 0.0603129044175148,
+          "intercept": -0.3792848289012909
+        },
+        "calibrator_B": {
+          "weight": 0.09986362606287003,
+          "intercept": -0.2294067144393921
+        },
+        "simplex_raw": {
+          "weights": [
+            0.7592983500307064,
+            0.2407016499692936
+          ]
+        },
+        "simplex_cal": {
+          "weights": [
+            1.0,
+            0.0
+          ]
+        },
+        "logodds_raw": {
+          "weights": [
+            0.11674695461988449,
+            0.0015123527264222503
+          ],
+          "intercept": -0.5039590001106262
+        },
+        "logodds_cal": {
+          "weights": [
+            1.515911340713501,
+            0.15104824304580688
+          ],
+          "intercept": 0.09594831615686417
+        }
+      },
+      "777": {
+        "checkpoints": {
+          "m0_target": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_negative_control_seed_777_m0_target.pt",
+            "sha256": "6a3db6e20fce15e05ef4bcd557b61d623f1d405cc44644571174fcc370765107"
+          },
+          "m1_pooled": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_negative_control_seed_777_m1_pooled.pt",
+            "sha256": "b5b2a18f25faea36db0d89d1334f22503a84a2e8202df11f23423fbef10cbc25"
+          },
+          "m1_cap_pooled": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_negative_control_seed_777_m1_cap_pooled.pt",
+            "sha256": "aeef8ca351727fa573310e3635e2d30b8e4fb317859f4639343c106e1bdae35a"
+          },
+          "m2_specA": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_negative_control_seed_777_m2_specA.pt",
+            "sha256": "d2b3ebbb93928980808e8315088f0afe1cc4f38519621fb43ed3298aeab9c802"
+          },
+          "m3_specB": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_negative_control_seed_777_m3_specB.pt",
+            "sha256": "ce034434760f5a9a6f530564caa808f0aae8ba7c3fecd786f77e3041cd3ef2ab"
+          },
+          "m7_colora": {
+            "path": "/Users/xq/Documents/GitHub/distributed-portfolio-learning/artifacts/bayesian_collab_exp2/ckpt_exp2_negative_control_seed_777_m7_colora.pt",
+            "sha256": "51ef35f09df2a98e0f1d62d99d1acd5b8269c56331b0e978f829b5e9fe519ff3"
+          }
+        },
+        "calibrator_A": {
+          "weight": 0.07529301196336746,
+          "intercept": -0.37373584508895874
+        },
+        "calibrator_B": {
+          "weight": 0.08245811611413956,
+          "intercept": -0.3502437174320221
+        },
+        "simplex_raw": {
+          "weights": [
+            0.6030388094525516,
+            0.39696119054744844
+          ]
+        },
+        "simplex_cal": {
+          "weights": [
+            0.8596660942968755,
+            0.1403339057031245
+          ]
+        },
+        "logodds_raw": {
+          "weights": [
+            0.07865466922521591,
+            0.011865469627082348
+          ],
+          "intercept": -0.7135511040687561
+        },
+        "logodds_cal": {
+          "weights": [
+            0.9516515135765076,
+            0.1803790181875229
+          ],
+          "intercept": -0.28351837396621704
+        }
+      }
+    }
+  },
+  "total_training_seconds": 13.441082832985558
+}

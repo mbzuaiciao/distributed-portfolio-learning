@@ -1,0 +1,16 @@
+{
+  "H2.1_specialist_calibration_pass": true,
+  "H2.2_log_odds_fusion_pass": true,
+  "H2.3_system_vs_target_pass": true,
+  "H2.4_complementarity_attribution_pass": true,
+  "metrics_summary": {
+    "gain_vs_target_only": 0.02636028428505996,
+    "matched_complementarity_contrast": 0.012357496585135852,
+    "brier_target_only": 0.21396754759214007,
+    "brier_capacity_matched_pooled": 0.2489309244996186,
+    "brier_calibrated_log_odds": 0.1876072633070801,
+    "brier_calibrated_simplex": 0.19901632961097007,
+    "brier_calibrated_equal": 0.19716031966677572,
+    "brier_bayes_oracle": 0.13818575741026515
+  }
+}

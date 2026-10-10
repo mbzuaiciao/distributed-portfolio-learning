@@ -1,0 +1,17 @@
+{
+  "single_replication_all_models_seconds": 1.5721298339776695,
+  "timings_by_model": {
+    "target_only_logistic": 0.9080866670701653,
+    "target_only_lora": 0.06261854199692607,
+    "pooled_lora": 0.0635276249377057,
+    "independent_specialists_and_fusion": 0.1910387499956414,
+    "shared_subspace_multitask": 0.15592633292544633,
+    "structural_colora": 0.1845024999929592
+  },
+  "projected_full_experiment_seconds": 9.432779003866017,
+  "projected_full_experiment_minutes": 0.15721298339776696,
+  "peak_memory_mb": 328.3125,
+  "safe_to_proceed": true,
+  "host_platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+  "torch_threads": 2
+}

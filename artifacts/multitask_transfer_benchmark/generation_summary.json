@@ -1,0 +1,14 @@
+{
+  "status": "DATASETS_GENERATED",
+  "elapsed_seconds": 0.2677896668901667,
+  "peak_memory_mb": 251.5,
+  "splits": {
+    "source_1_train": 512,
+    "source_2_train": 512,
+    "source_3_train": 512,
+    "target_train": 64,
+    "target_cal": 128,
+    "target_dev": 256,
+    "target_test_quarantined": 512
+  }
+}

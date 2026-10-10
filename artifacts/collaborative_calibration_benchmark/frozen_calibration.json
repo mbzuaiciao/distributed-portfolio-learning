@@ -1,0 +1,98 @@
+{
+  "seeds": [
+    20261101,
+    20261102,
+    20261103,
+    20261104,
+    20261105,
+    20261106,
+    20261107,
+    20261108,
+    20261109,
+    20261110
+  ],
+  "train_records": [
+    {
+      "seed": 20261101,
+      "ckpt_m0": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261101_m0.pt",
+      "ckpt_m0_pooled_128": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261101_m0_pooled_128.pt",
+      "ckpt_m1_pooled": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261101_m1_pooled.pt",
+      "ckpt_m_subspace": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261101_m_subspace.pt",
+      "ckpt_m_colora": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261101_m_colora.pt"
+    },
+    {
+      "seed": 20261102,
+      "ckpt_m0": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261102_m0.pt",
+      "ckpt_m0_pooled_128": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261102_m0_pooled_128.pt",
+      "ckpt_m1_pooled": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261102_m1_pooled.pt",
+      "ckpt_m_subspace": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261102_m_subspace.pt",
+      "ckpt_m_colora": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261102_m_colora.pt"
+    },
+    {
+      "seed": 20261103,
+      "ckpt_m0": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261103_m0.pt",
+      "ckpt_m0_pooled_128": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261103_m0_pooled_128.pt",
+      "ckpt_m1_pooled": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261103_m1_pooled.pt",
+      "ckpt_m_subspace": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261103_m_subspace.pt",
+      "ckpt_m_colora": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261103_m_colora.pt"
+    },
+    {
+      "seed": 20261104,
+      "ckpt_m0": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261104_m0.pt",
+      "ckpt_m0_pooled_128": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261104_m0_pooled_128.pt",
+      "ckpt_m1_pooled": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261104_m1_pooled.pt",
+      "ckpt_m_subspace": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261104_m_subspace.pt",
+      "ckpt_m_colora": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261104_m_colora.pt"
+    },
+    {
+      "seed": 20261105,
+      "ckpt_m0": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261105_m0.pt",
+      "ckpt_m0_pooled_128": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261105_m0_pooled_128.pt",
+      "ckpt_m1_pooled": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261105_m1_pooled.pt",
+      "ckpt_m_subspace": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261105_m_subspace.pt",
+      "ckpt_m_colora": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261105_m_colora.pt"
+    },
+    {
+      "seed": 20261106,
+      "ckpt_m0": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261106_m0.pt",
+      "ckpt_m0_pooled_128": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261106_m0_pooled_128.pt",
+      "ckpt_m1_pooled": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261106_m1_pooled.pt",
+      "ckpt_m_subspace": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261106_m_subspace.pt",
+      "ckpt_m_colora": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261106_m_colora.pt"
+    },
+    {
+      "seed": 20261107,
+      "ckpt_m0": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261107_m0.pt",
+      "ckpt_m0_pooled_128": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261107_m0_pooled_128.pt",
+      "ckpt_m1_pooled": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261107_m1_pooled.pt",
+      "ckpt_m_subspace": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261107_m_subspace.pt",
+      "ckpt_m_colora": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261107_m_colora.pt"
+    },
+    {
+      "seed": 20261108,
+      "ckpt_m0": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261108_m0.pt",
+      "ckpt_m0_pooled_128": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261108_m0_pooled_128.pt",
+      "ckpt_m1_pooled": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261108_m1_pooled.pt",
+      "ckpt_m_subspace": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261108_m_subspace.pt",
+      "ckpt_m_colora": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261108_m_colora.pt"
+    },
+    {
+      "seed": 20261109,
+      "ckpt_m0": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261109_m0.pt",
+      "ckpt_m0_pooled_128": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261109_m0_pooled_128.pt",
+      "ckpt_m1_pooled": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261109_m1_pooled.pt",
+      "ckpt_m_subspace": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261109_m_subspace.pt",
+      "ckpt_m_colora": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261109_m_colora.pt"
+    },
+    {
+      "seed": 20261110,
+      "ckpt_m0": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261110_m0.pt",
+      "ckpt_m0_pooled_128": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261110_m0_pooled_128.pt",
+      "ckpt_m1_pooled": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261110_m1_pooled.pt",
+      "ckpt_m_subspace": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261110_m_subspace.pt",
+      "ckpt_m_colora": "artifacts/collaborative_calibration_benchmark/ckpt_calibration_seed_20261110_m_colora.pt"
+    }
+  ],
+  "total_training_seconds": 7.758131791022606,
+  "peak_rss_mb": 345.875
+}

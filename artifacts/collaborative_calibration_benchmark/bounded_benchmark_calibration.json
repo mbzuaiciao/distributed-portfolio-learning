@@ -1,0 +1,10 @@
+{
+  "single_rep_seconds": 1.3750765000004321,
+  "replications_count": 10,
+  "projected_total_seconds": 13.750765000004321,
+  "projected_total_minutes": 0.2291794166667387,
+  "peak_rss_mb": 345.234375,
+  "thread_cap": 2,
+  "hard_stop_limit_minutes": 20.0,
+  "within_budget": true
+}

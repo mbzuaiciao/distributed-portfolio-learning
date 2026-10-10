@@ -1,0 +1,196 @@
+{
+  "replications_count": 10,
+  "seeds": [
+    20261101,
+    20261102,
+    20261103,
+    20261104,
+    20261105,
+    20261106,
+    20261107,
+    20261108,
+    20261109,
+    20261110
+  ],
+  "models": {
+    "m_oracle": {
+      "mean_brier": 0.17777653003650093,
+      "std_brier": 0.02030087822764172,
+      "mean_auroc": 0.8088294658654279,
+      "std_auroc": 0.045710002930685965,
+      "mean_ece": 0.08799140534063137,
+      "std_ece": 0.025288815220281126
+    },
+    "m0_raw": {
+      "mean_brier": 0.3327813267707825,
+      "std_brier": 0.03041163079413567,
+      "mean_auroc": 0.6550875880531458,
+      "std_auroc": 0.042304138466321695,
+      "mean_ece": 0.3201882621509867,
+      "std_ece": 0.03088419565300181
+    },
+    "m0_cal": {
+      "mean_brier": 0.2356519177556038,
+      "std_brier": 0.013629325141438036,
+      "mean_auroc": 0.6550747675403252,
+      "std_auroc": 0.042312820562689556,
+      "mean_ece": 0.09647289371641818,
+      "std_ece": 0.026597417877630813
+    },
+    "m0_pooled_128": {
+      "mean_brier": 0.2766053259372711,
+      "std_brier": 0.042143742209336,
+      "mean_auroc": 0.6945841037217557,
+      "std_auroc": 0.052490535089950066,
+      "mean_ece": 0.23908047145814634,
+      "std_ece": 0.05472251382502655
+    },
+    "m1_raw": {
+      "mean_brier": 0.26093644797801974,
+      "std_brier": 0.03646166086423126,
+      "mean_auroc": 0.5211205653270137,
+      "std_auroc": 0.12361860906156798,
+      "mean_ece": 0.1339989610365592,
+      "std_ece": 0.06772162699023074
+    },
+    "m1_cal": {
+      "mean_brier": 0.2478206694126129,
+      "std_brier": 0.022926705648971434,
+      "mean_auroc": 0.5304839681492723,
+      "std_auroc": 0.121427666723362,
+      "mean_ece": 0.09384538610465824,
+      "std_ece": 0.04060974684400078
+    },
+    "m_subspace_raw": {
+      "mean_brier": 0.3176563084125519,
+      "std_brier": 0.030807109639751678,
+      "mean_auroc": 0.7003879624515256,
+      "std_auroc": 0.03645438920362322,
+      "mean_ece": 0.31724037268868416,
+      "std_ece": 0.03427048479233098
+    },
+    "m_subspace_cal": {
+      "mean_brier": 0.22145479768514634,
+      "std_brier": 0.012107655837845314,
+      "mean_auroc": 0.7003631561581406,
+      "std_auroc": 0.03649119806044307,
+      "mean_ece": 0.09949177043163218,
+      "std_ece": 0.026797054548650816
+    },
+    "m_colora_raw": {
+      "mean_brier": 0.34552621841430664,
+      "std_brier": 0.02471696754657634,
+      "mean_auroc": 0.6919991414634122,
+      "std_auroc": 0.03267049920377203,
+      "mean_ece": 0.35091104463972445,
+      "std_ece": 0.02287532538833143
+    },
+    "m_colora_cal": {
+      "mean_brier": 0.22387931495904922,
+      "std_brier": 0.01067722711522356,
+      "mean_auroc": 0.6922411837436196,
+      "std_auroc": 0.03342520382036129,
+      "mean_ece": 0.10142662232392467,
+      "std_ece": 0.03589315341414359
+    },
+    "m_fuse": {
+      "mean_brier": 0.19893580622119927,
+      "std_brier": 0.026219801978030415,
+      "mean_auroc": 0.7633934655355159,
+      "std_auroc": 0.06535884163404504,
+      "mean_ece": 0.09812757897385607,
+      "std_ece": 0.0319582113604058
+    },
+    "m_null": {
+      "mean_brier": 0.2518310546875,
+      "std_brier": 0.00838512380653271,
+      "mean_auroc": 0.5,
+      "std_auroc": 0.0,
+      "mean_ece": 0.0484375,
+      "std_ece": 0.05472468973568207
+    }
+  },
+  "comparisons": [
+    {
+      "comparison": "Primary 1: Calibration Bridge (CoLoRA_cal vs CoLoRA_raw)",
+      "model_A": "m_colora_cal",
+      "model_B": "m_colora_raw",
+      "mean_brier_A": 0.22387931495904922,
+      "mean_brier_B": 0.34552621841430664,
+      "mean_diff": -0.12164690345525742,
+      "se_diff": 0.005290405405190445,
+      "ci_95_low": -0.13019655998796223,
+      "ci_95_high": -0.11013557583093643,
+      "wilcoxon_p_raw": 0.001953125,
+      "wilcoxon_p_holm": 0.009765625,
+      "holm_significant_at_05": true
+    },
+    {
+      "comparison": "Primary 2: Collaborative Value under Equal Calibrated Budget (CoLoRA_cal vs M0_cal)",
+      "model_A": "m_colora_cal",
+      "model_B": "m0_cal",
+      "mean_brier_A": 0.22387931495904922,
+      "mean_brier_B": 0.2356519177556038,
+      "mean_diff": -0.011772602796554565,
+      "se_diff": 0.003287258949322527,
+      "ci_95_low": -0.01801034975796938,
+      "ci_95_high": -0.006201171018183232,
+      "wilcoxon_p_raw": 0.005859375,
+      "wilcoxon_p_holm": 0.017578125,
+      "holm_significant_at_05": true
+    },
+    {
+      "comparison": "Primary 3: Transfer vs Target Sample Collection (CoLoRA_cal vs M0_pooled_128)",
+      "model_A": "m_colora_cal",
+      "model_B": "m0_pooled_128",
+      "mean_brier_A": 0.22387931495904922,
+      "mean_brier_B": 0.2766053259372711,
+      "mean_diff": -0.052726010978221896,
+      "se_diff": 0.013177639335091387,
+      "ci_95_low": -0.07823985964059829,
+      "ci_95_high": -0.03158305041491986,
+      "wilcoxon_p_raw": 0.001953125,
+      "wilcoxon_p_holm": 0.0078125,
+      "holm_significant_at_05": true
+    },
+    {
+      "comparison": "Primary 4: Subspace Invariance (CoLoRA_cal vs Subspace_cal)",
+      "model_A": "m_colora_cal",
+      "model_B": "m_subspace_cal",
+      "mean_brier_A": 0.22387931495904922,
+      "mean_brier_B": 0.22145479768514634,
+      "mean_diff": 0.002424517273902893,
+      "se_diff": 0.0018810916013017264,
+      "ci_95_low": -0.0007780211791396141,
+      "ci_95_high": 0.006004610359668729,
+      "wilcoxon_p_raw": 0.375,
+      "wilcoxon_p_holm": 0.375,
+      "holm_significant_at_05": false
+    },
+    {
+      "comparison": "Primary 5: Representation vs Output Fusion (CoLoRA_cal vs M_fuse)",
+      "model_A": "m_colora_cal",
+      "model_B": "m_fuse",
+      "mean_brier_A": 0.22387931495904922,
+      "mean_brier_B": 0.19893580622119927,
+      "mean_diff": 0.024943508737849986,
+      "se_diff": 0.006463729252884096,
+      "ci_95_low": 0.013247803532462282,
+      "ci_95_high": 0.03743944999795819,
+      "wilcoxon_p_raw": 0.005859375,
+      "wilcoxon_p_holm": 0.01171875,
+      "holm_significant_at_05": true
+    }
+  ],
+  "subspace_recovery": {
+    "colora_alignment_mean": 0.6824377549266931,
+    "colora_alignment_std": 0.06509325100390229,
+    "subspace_alignment_mean": 0.7020046077020451,
+    "subspace_alignment_std": 0.0635931248660972,
+    "colora_cos_sim_mean": 0.6856975293728033,
+    "subspace_cos_sim_mean": 0.7097303669367994,
+    "m0_cos_sim_mean": 0.5788299536328975,
+    "m0_pooled_128_cos_sim_mean": 0.6960059907589831,
+    "m1_cos_sim_mean": 0.02767510927251453
+  }
+}

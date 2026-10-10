@@ -1,0 +1,42 @@
+[
+  {
+    "seed": 20261101,
+    "path": "artifacts/collaborative_calibration_benchmark/dataset_calibration_seed_20261101.npz"
+  },
+  {
+    "seed": 20261102,
+    "path": "artifacts/collaborative_calibration_benchmark/dataset_calibration_seed_20261102.npz"
+  },
+  {
+    "seed": 20261103,
+    "path": "artifacts/collaborative_calibration_benchmark/dataset_calibration_seed_20261103.npz"
+  },
+  {
+    "seed": 20261104,
+    "path": "artifacts/collaborative_calibration_benchmark/dataset_calibration_seed_20261104.npz"
+  },
+  {
+    "seed": 20261105,
+    "path": "artifacts/collaborative_calibration_benchmark/dataset_calibration_seed_20261105.npz"
+  },
+  {
+    "seed": 20261106,
+    "path": "artifacts/collaborative_calibration_benchmark/dataset_calibration_seed_20261106.npz"
+  },
+  {
+    "seed": 20261107,
+    "path": "artifacts/collaborative_calibration_benchmark/dataset_calibration_seed_20261107.npz"
+  },
+  {
+    "seed": 20261108,
+    "path": "artifacts/collaborative_calibration_benchmark/dataset_calibration_seed_20261108.npz"
+  },
+  {
+    "seed": 20261109,
+    "path": "artifacts/collaborative_calibration_benchmark/dataset_calibration_seed_20261109.npz"
+  },
+  {
+    "seed": 20261110,
+    "path": "artifacts/collaborative_calibration_benchmark/dataset_calibration_seed_20261110.npz"
+  }
+]

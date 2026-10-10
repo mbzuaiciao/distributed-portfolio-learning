@@ -1,0 +1,86 @@
+{
+  "status": "COMPLETED",
+  "primary_hypothesis_H2_3": {
+    "contrast_name": "contrast",
+    "point_estimate": 0.01866393622270389,
+    "bootstrap_mean": 0.018979226836716667,
+    "standard_error": 0.014638189619435863,
+    "ci_95": [
+      -0.008900197036015566,
+      0.0486227458934875
+    ],
+    "p_value_raw": 0.19,
+    "p_value_holm": 0.19,
+    "effect_size_threshold": 0.01,
+    "effect_size_pass": true,
+    "statistical_significance_pass": false,
+    "confirmatory_pass": false
+  },
+  "secondary_family_holm": [
+    {
+      "contrast_name": "contrast",
+      "point_estimate": 0.009335556311963991,
+      "bootstrap_mean": 0.00932838993104774,
+      "standard_error": 0.003541821330500512,
+      "ci_95": [
+        0.0021864704592740856,
+        0.01620097793393677
+      ],
+      "p_value_raw": 0.013,
+      "p_value_holm": 0.039,
+      "effect_size_threshold": 0.0,
+      "effect_size_pass": true,
+      "statistical_significance_pass": true,
+      "confirmatory_pass": true
+    },
+    {
+      "contrast_name": "contrast",
+      "point_estimate": 0.00819127931991417,
+      "bootstrap_mean": 0.008148876344750346,
+      "standard_error": 0.0035014784171820525,
+      "ci_95": [
+        0.0012020148542492973,
+        0.014817216261007718
+      ],
+      "p_value_raw": 0.021,
+      "p_value_holm": 0.042,
+      "effect_size_threshold": 0.0,
+      "effect_size_pass": true,
+      "statistical_significance_pass": true,
+      "confirmatory_pass": true
+    },
+    {
+      "contrast_name": "contrast",
+      "point_estimate": 0.042893623429903896,
+      "bootstrap_mean": 0.04304484666317326,
+      "standard_error": 0.012215537808519339,
+      "ci_95": [
+        0.020364847374272608,
+        0.06774004200812446
+      ],
+      "p_value_raw": 0.0005,
+      "p_value_holm": 0.002,
+      "effect_size_threshold": 0.0,
+      "effect_size_pass": true,
+      "statistical_significance_pass": true,
+      "confirmatory_pass": true
+    },
+    {
+      "contrast_name": "matched_complementarity_contrast",
+      "point_estimate": 0.02337628427509912,
+      "bootstrap_mean": 0.023925434394263534,
+      "standard_error": 0.02139298781786602,
+      "ci_95": [
+        -0.018084223245486968,
+        0.06708770027293529
+      ],
+      "p_value_raw": 0.274,
+      "p_value_holm": 0.274,
+      "effect_size_threshold": 0.0,
+      "effect_size_pass": true,
+      "statistical_significance_pass": false,
+      "confirmatory_pass": false
+    }
+  ],
+  "overall_confirmatory_success": false
+}

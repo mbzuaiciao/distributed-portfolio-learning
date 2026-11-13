@@ -1,0 +1,293 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import StatusBadge from '../../components/StatusBadge.astro';
+import MethodBadge from '../../components/MethodBadge.astro';
+import { EXPERIMENT_PHASES } from '../../lib/experiments';
+---
+
+<BaseLayout
+  title="Experiment Archive & Reports — Hypergraph Portfolio Lab"
+  description="Explore the permanent scientific archive of 20+ experimental phases, forensic audits, pre-registrations, and canonical reports."
+>
+  <div class="exp-hero">
+    <div class="container">
+      <div class="exp-tag">Experimental Archive</div>
+      <h1 class="exp-title">Laboratory Experiments & Artifacts</h1>
+      <p class="exp-subtitle">
+        Every phase in this laboratory is frozen, pre-registered, and audited. Browse canonical scientific reports, provenance tracing, compute cost ledgers, and forensic data audits.
+      </p>
+
+      <!-- Status Filter Tabs -->
+      <div class="filter-tab-bar">
+        <button class="filter-tab active" data-filter="all">All Phases ({EXPERIMENT_PHASES.length})</button>
+        <button class="filter-tab" data-filter="confirmed">Confirmed</button>
+        <button class="filter-tab" data-filter="audited">Audited & Corrected</button>
+        <button class="filter-tab" data-filter="negative">Negative Results</button>
+        <button class="filter-tab" data-filter="mixed">Mixed / Inconclusive</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container exp-content">
+    <div class="exp-grid">
+      {EXPERIMENT_PHASES.map((phase) => (
+        <article class="exp-card" data-status={phase.status}>
+          <div class="exp-card-header">
+            <div class="exp-badge-row">
+              <span class="phase-number-chip">{phase.phaseNumber}</span>
+              <StatusBadge status={phase.status} label={phase.statusLabel} />
+              <MethodBadge methodology={phase.methodology} label={phase.methodologyLabel} />
+            </div>
+            <h3 class="exp-card-title">{phase.title}</h3>
+          </div>
+
+          <p class="exp-card-desc">{phase.summary}</p>
+
+          <div class="exp-metric-box">
+            <span class="metric-label">Primary Metric / Finding:</span>
+            <span class="metric-val">{phase.primaryMetric}</span>
+          </div>
+
+          <div class="exp-reports-section">
+            <div class="reports-header">Canonical Reports & Artifacts:</div>
+            <ul class="reports-list">
+              {phase.reports.map((rep) => (
+                <li>
+                  <a href={`/experiments/${rep.path}`} class="report-link">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                      <polyline points="14 2 14 8 20 8"></polyline>
+                      <line x1="16" y1="13" x2="8" y2="13"></line>
+                      <line x1="16" y1="17" x2="8" y2="17"></line>
+                    </svg>
+                    <span>{rep.title}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .exp-hero {
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 5rem 0 3.5rem;
+    text-align: center;
+  }
+
+  .exp-tag {
+    display: inline-block;
+    font-size: 0.775rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-blue);
+    background: var(--color-blue-tint);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-pill);
+    margin-bottom: 1rem;
+  }
+
+  .exp-title {
+    font-size: 3rem;
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+  }
+
+  .exp-subtitle {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    max-width: 760px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.6;
+  }
+
+  .filter-tab-bar {
+    display: inline-flex;
+    align-items: center;
+    background: var(--bg-surface-secondary);
+    border: 1px solid var(--border-subtle);
+    padding: 0.3rem;
+    border-radius: var(--radius-pill);
+    gap: 0.25rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .filter-tab {
+    padding: 0.45rem 1rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.825rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: all 0.15s ease;
+  }
+
+  .filter-tab:hover {
+    color: var(--text-primary);
+  }
+
+  .filter-tab.active {
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .exp-content {
+    padding: 4rem 1.5rem 6rem;
+  }
+
+  .exp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 1.75rem;
+  }
+
+  .exp-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .exp-card:hover {
+    border-color: var(--color-blue);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .exp-badge-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.85rem;
+    flex-wrap: wrap;
+  }
+
+  .phase-number-chip {
+    font-family: var(--font-mono);
+    font-size: 0.725rem;
+    font-weight: 600;
+    padding: 0.15rem 0.55rem;
+    border-radius: var(--radius-sm);
+    background: var(--bg-surface-secondary);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+  }
+
+  .exp-card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.35;
+    margin: 0 0 0.85rem;
+  }
+
+  .exp-card-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin-bottom: 1.25rem;
+  }
+
+  .exp-metric-box {
+    background: var(--bg-surface-secondary);
+    border-radius: var(--radius-md);
+    padding: 0.85rem 1rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .metric-label {
+    font-size: 0.725rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-tertiary);
+  }
+
+  .metric-val {
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    line-height: 1.4;
+  }
+
+  .exp-reports-section {
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border-subtle);
+    margin-top: auto;
+  }
+
+  .reports-header {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-tertiary);
+    margin-bottom: 0.6rem;
+  }
+
+  .reports-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .report-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.85rem;
+    color: var(--color-blue);
+    line-height: 1.4;
+  }
+
+  .report-link:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 640px) {
+    .exp-title {
+      font-size: 2.25rem;
+    }
+    .exp-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const tabs = document.querySelectorAll('.filter-tab') as NodeListOf<HTMLButtonElement>;
+  const cards = document.querySelectorAll('.exp-card') as NodeListOf<HTMLElement>;
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      tabs.forEach((t) => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      const filter = tab.getAttribute('data-filter');
+      cards.forEach((card) => {
+        const status = card.getAttribute('data-status');
+        if (filter === 'all' || status === filter) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

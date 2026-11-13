@@ -1,0 +1,49 @@
+---
+interface Props {
+  methodology: 'synthetic' | 'empirical' | 'mathematical' | 'protocol';
+  label?: string;
+}
+
+const { methodology, label } = Astro.props;
+
+const classMap = {
+  synthetic: 'badge-blue',
+  empirical: 'badge-neutral',
+  mathematical: 'badge-purple',
+  protocol: 'badge-orange',
+};
+
+const defaultLabelMap = {
+  synthetic: 'Synthetic DGP',
+  empirical: 'Empirical Holdout',
+  mathematical: 'Analytical Proof',
+  protocol: 'Pre-registered Protocol',
+};
+
+const displayLabel = label || defaultLabelMap[methodology];
+---
+
+<span class={`badge ${classMap[methodology]}`}>
+  {methodology === 'synthetic' && (
+    <svg width="10" height="10" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 9.5C3.5 9.5 4.5 4 6 4C7.5 4 8.5 9.5 10 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  )}
+  {methodology === 'mathematical' && (
+    <svg width="10" height="10" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2.5 3H9.5M4 3V9M8 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  )}
+  {methodology === 'empirical' && (
+    <svg width="10" height="10" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="2" width="8" height="8" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M4 6H8M4 8.5H6.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
+    </svg>
+  )}
+  {methodology === 'protocol' && (
+    <svg width="10" height="10" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M3 2H9C9.55228 2 10 2.44772 10 3V10L6 8L2 10V3C2 2.44772 2.44772 2 3 2Z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
+    </svg>
+  )}
+  <span>{displayLabel}</span>
+</span>

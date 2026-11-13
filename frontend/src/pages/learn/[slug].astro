@@ -1,0 +1,44 @@
+---
+import TutorialLayout from '../../layouts/TutorialLayout.astro';
+import { getAllTutorials } from '../../lib/tutorials';
+import { renderMarkdown } from '../../lib/markdown';
+
+export async function getStaticPaths() {
+  const tutorials = getAllTutorials();
+
+  const paths = await Promise.all(
+    tutorials.map(async (tutorial, idx) => {
+      const { html, toc } = await renderMarkdown(tutorial.rawContent);
+      const prev = idx > 0 ? tutorials[idx - 1] : null;
+      const next = idx < tutorials.length - 1 ? tutorials[idx + 1] : null;
+
+      return {
+        params: { slug: tutorial.slug },
+        props: {
+          tutorial,
+          html,
+          toc,
+          prev,
+          next,
+        },
+      };
+    })
+  );
+
+  return paths;
+}
+
+interface Props {
+  tutorial: any;
+  html: string;
+  toc: any[];
+  prev: any;
+  next: any;
+}
+
+const { tutorial, html, toc, prev, next } = Astro.props;
+---
+
+<TutorialLayout tutorial={tutorial} prev={prev} next={next} toc={toc}>
+  <div set:html={html} />
+</TutorialLayout>

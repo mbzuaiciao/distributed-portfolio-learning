@@ -1,0 +1,456 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import StatusBadge from '../../components/StatusBadge.astro';
+import MethodBadge from '../../components/MethodBadge.astro';
+import { RESEARCH_FINDINGS } from '../../lib/research';
+---
+
+<BaseLayout
+  title="Research Findings & Audits — Hypergraph Portfolio Lab"
+  description="Audited findings, mathematical proofs, negative results, and temporal regularization frontiers from the Hypergraph Portfolio Lab."
+>
+  <div class="research-hero">
+    <div class="container">
+      <div class="hero-tag">Scientific Integrity</div>
+      <h1 class="research-title">Research Findings & Audits</h1>
+      <p class="research-subtitle">
+        A rigorous accounting of mathematical proofs, empirical audits, negative results, and theoretical frontiers. We treat negative findings and audit corrections with the same prominence as positive confirmations.
+      </p>
+
+      <div class="principles-grid">
+        <div class="principle-card">
+          <div class="principle-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+            </svg>
+          </div>
+          <h4>No Phantom Results</h4>
+          <p>Claims must be grounded in committed code and reproducible artifacts, not unverified text or selective reporting.</p>
+        </div>
+
+        <div class="principle-card">
+          <div class="principle-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="m4.93 4.93 14.14 14.14"/>
+            </svg>
+          </div>
+          <h4>Honored Stopping Rules</h4>
+          <p>When pre-registered criteria fail (e.g., Collaborative LoRA), branches are formally closed as negative results.</p>
+        </div>
+
+        <div class="principle-card">
+          <div class="principle-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="m21 16-4 4-4-4"/>
+              <path d="M17 20V4"/>
+              <path d="m3 8 4-4 4 4"/>
+              <path d="M7 4v16"/>
+            </svg>
+          </div>
+          <h4>Synthetic vs Empirical</h4>
+          <p>Theoretical DGPs (Phase 20) are explicitly separated from noisy retrospective and prospective market backtests.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container research-content">
+    <!-- Major Research Breakthroughs & Audits -->
+    <section class="findings-section">
+      <h2 class="section-heading">Canonical Research Syntheses</h2>
+      <p class="section-subheading">
+        In-depth evaluations of the five primary scientific pillars investigated in this laboratory.
+      </p>
+
+      <div class="findings-list">
+        {RESEARCH_FINDINGS.map((finding) => (
+          <article class="finding-card" id={finding.id}>
+            <div class="finding-header">
+              <div class="finding-meta">
+                <span class="finding-number">Finding #{finding.number}</span>
+                <StatusBadge status={finding.status} label={finding.statusLabel} />
+                <MethodBadge methodology={finding.methodology} label={finding.methodologyLabel} />
+              </div>
+              <h3 class="finding-title">{finding.question}</h3>
+            </div>
+
+            <div class="finding-summary-box">
+              <strong>Core Result:</strong> {finding.summary}
+            </div>
+
+            <div class="finding-body">
+              <p>{finding.detailedFindings}</p>
+
+              {finding.caveats && finding.caveats.length > 0 && (
+                <div class="caveats-box">
+                  <div class="caveats-title">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+                      <line x1="12" y1="9" x2="12" y2="13"/>
+                      <line x1="12" y1="17" x2="12.01" y2="17"/>
+                    </svg>
+                    Critical Limitations & Epistemic Boundaries
+                  </div>
+                  <ul>
+                    {finding.caveats.map((c) => (
+                      <li>{c}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+
+            <div class="finding-footer">
+              <div class="related-tutorials">
+                <span class="related-label">Related Chapters:</span>
+                {finding.relatedTutorials.map((num) => (
+                  <a href={`/learn/${num.toString().padStart(2, '0')}_${num === 0 ? 'mean_variance' : num === 41 ? 'temporal_regularization_optimal_horizon' : 'bayesian_uncertainty'}`} class="tutorial-chip">
+                    Ch {num.toString().padStart(2, '0')}
+                  </a>
+                ))}
+              </div>
+              <a href={finding.canonicalSource.path} class="btn btn-secondary btn-sm">
+                Read Canonical Report →
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- Comprehensive Research Status Matrix -->
+    <section class="matrix-section">
+      <h2 class="section-heading">Scientific Status & Questions Matrix</h2>
+      <p class="section-subheading">
+        Cross-reference of core research questions across the laboratory's 20 phases.
+      </p>
+
+      <div class="table-wrapper">
+        <table class="status-table">
+          <thead>
+            <tr>
+              <th style="width: 50px;">#</th>
+              <th>Research Question</th>
+              <th>Methodology</th>
+              <th>Scientific Status</th>
+              <th>Key Result / Verdict</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td><strong>Distributed Equivalence</strong><br/>Is the distributed hypergraph objective equivalent to Markowitz?</td>
+              <td>Mathematical Proof & CVXPY</td>
+              <td><StatusBadge status="audited" label="Audited (Non-equivalent)" /></td>
+              <td>Paper objective (0.8573) omits cross-subportfolio covariance; true lifted system Q<sub>lifted</sub> = E Q E<sup>T</sup> restores equivalence.</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td><strong>Controlled Bayesian Allocation</strong><br/>Does Bayesian uncertainty improve cross-sectional allocation?</td>
+              <td>Synthetic Audit (30 Seeds)</td>
+              <td><StatusBadge status="confirmed" label="Confirmed (Synthetic)" /></td>
+              <td>True confidence shrinkage improves Sharpe (&Delta; +0.094) only when uncertainty is well-calibrated; uninformative noise degrades Sharpe.</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td><strong>LLM Bayesian-LoRA Calibration</strong><br/>Is LLM epistemic uncertainty well-calibrated on real financial text?</td>
+              <td>Empirical FinBERT LoRA</td>
+              <td><StatusBadge status="negative" label="Falsified (Discredited)" /></td>
+              <td>Prior entropy correlation was an artifact of 80/20 class imbalance; null base-rate predictor (p = 0.20) beats Bayesian LoRA.</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td><strong>Training Text Leakage Audit</strong><br/>Did outcome leakage contaminate earlier LoRA evaluations?</td>
+              <td>Forensic Provenance Audit</td>
+              <td><StatusBadge status="audited" label="Audited & Resolved" /></td>
+              <td>Phase 11/16 training text leaked `move_1d`. Clean regularized deterministic LoRA strictly dominates Bayesian LoRA (Brier 0.1597 vs 0.1932).</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td><strong>Collaborative LoRA Coordination</strong><br/>Can sector LoRAs collaborate to improve a held-out domain?</td>
+              <td>Pre-registered 3-Seed Pilot</td>
+              <td><StatusBadge status="negative" label="Closed (Negative)" /></td>
+              <td>Learned mixture collapsed into banking-only selection; failed all frozen gates. Branch permanently closed.</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td><strong>Relative Epistemic Timing</strong><br/>Does market-level uncertainty timing avoid drawdowns?</td>
+              <td>15 Adversarial Falsification Tests</td>
+              <td><StatusBadge status="confirmed" label="Confirmed with Hysteresis" /></td>
+              <td>Survived 4-week block placebos and walk-forward testing, but raw signals churn. Two-threshold hysteresis cuts turnover >70%.</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td><strong>H=4 Cohort Stacking Revalidation</strong><br/>Does overlapping cohort stacking provide net economic alpha?</td>
+              <td>Empirical Reconstructed Holdout</td>
+              <td><StatusBadge status="mixed" label="Architecture Confirmed" /></td>
+              <td>Turnover cut -74%, volatility cut -66%. Net alpha delta +13.8 bp not statistically significant (95% CI [-54.7, +84.3] bp).</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td><strong>Temporal Regularization Frontier</strong><br/>What determines optimal cohort holding horizon $H^*$?</td>
+              <td>Synthetic DGP (288k Cells)</td>
+              <td><StatusBadge status="confirmed" label="Outcome A Confirmed" /></td>
+              <td>5/5 comparative statics confirmed: optimal horizon increases with costs, persistence, noise, and risk aversion.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .research-hero {
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 5rem 0 4rem;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.775rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-purple);
+    background: var(--color-purple-tint);
+    padding: 0.25rem 0.75rem;
+    border-radius: var(--radius-pill);
+    margin-bottom: 1rem;
+  }
+
+  .research-title {
+    font-size: 3rem;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.25rem;
+    color: var(--text-primary);
+  }
+
+  .research-subtitle {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    max-width: 820px;
+    line-height: 1.65;
+    margin-bottom: 3rem;
+  }
+
+  .principles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .principle-card {
+    background: var(--bg-canvas);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+  }
+
+  .principle-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    background: var(--bg-surface-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-blue);
+    margin-bottom: 1rem;
+  }
+
+  .principle-card h4 {
+    font-size: 1.05rem;
+    margin-bottom: 0.4rem;
+    color: var(--text-primary);
+  }
+
+  .principle-card p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .research-content {
+    padding: 4.5rem 1.5rem 6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+  }
+
+  .section-heading {
+    font-size: 2rem;
+    color: var(--text-primary);
+    margin-bottom: 0.4rem;
+  }
+
+  .section-subheading {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+  }
+
+  .findings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .finding-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .finding-header {
+    margin-bottom: 1.25rem;
+  }
+
+  .finding-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .finding-number {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+  }
+
+  .finding-title {
+    font-size: 1.35rem;
+    color: var(--text-primary);
+    line-height: 1.35;
+    margin: 0;
+  }
+
+  .finding-summary-box {
+    background: var(--bg-surface-secondary);
+    border-left: 3px solid var(--color-blue);
+    padding: 1rem 1.25rem;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    margin-bottom: 1.25rem;
+    line-height: 1.55;
+  }
+
+  .finding-body p {
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    line-height: 1.65;
+    margin-bottom: 1.25rem;
+  }
+
+  .caveats-box {
+    background: var(--color-orange-tint);
+    border: 1px solid rgba(255, 149, 0, 0.25);
+    border-radius: var(--radius-md);
+    padding: 1.15rem 1.25rem;
+    margin: 1.25rem 0;
+  }
+
+  .caveats-title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-orange-text);
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .caveats-box ul {
+    margin: 0 0 0 1.25rem;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+  }
+
+  .caveats-box li {
+    margin-bottom: 0.35rem;
+  }
+
+  .finding-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-subtle);
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .related-tutorials {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+  }
+
+  .related-label {
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+  }
+
+  .tutorial-chip {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: var(--radius-sm);
+    background: var(--bg-surface-secondary);
+    color: var(--color-blue);
+    border: 1px solid var(--border-subtle);
+  }
+
+  .btn-sm {
+    padding: 0.45rem 1rem;
+    font-size: 0.825rem;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+  }
+
+  .status-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+    text-align: left;
+  }
+
+  .status-table th, .status-table td {
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--border-subtle);
+    line-height: 1.5;
+  }
+
+  .status-table th {
+    background: var(--bg-surface-secondary);
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .status-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  @media (max-width: 640px) {
+    .research-title {
+      font-size: 2.25rem;
+    }
+  }
+</style>

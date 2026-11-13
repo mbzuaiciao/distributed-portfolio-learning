@@ -1,0 +1,51 @@
+---
+interface Props {
+  status: 'confirmed' | 'negative' | 'audited' | 'mixed' | 'neutral';
+  label?: string;
+}
+
+const { status, label } = Astro.props;
+
+const classMap = {
+  confirmed: 'badge-green',
+  negative: 'badge-red',
+  audited: 'badge-purple',
+  mixed: 'badge-orange',
+  neutral: 'badge-neutral',
+};
+
+const defaultLabelMap = {
+  confirmed: 'Confirmed',
+  negative: 'Negative Result / Closed',
+  audited: 'Audited & Corrected',
+  mixed: 'Mixed / Inconclusive',
+  neutral: 'Reference',
+};
+
+const displayLabel = label || defaultLabelMap[status];
+---
+
+<span class={`badge ${classMap[status]}`}>
+  {status === 'confirmed' && (
+    <svg width="10" height="10" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2.5 6.5L4.5 8.5L9.5 3.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  )}
+  {status === 'negative' && (
+    <svg width="10" height="10" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M3.5 3.5L8.5 8.5M8.5 3.5L3.5 8.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+    </svg>
+  )}
+  {status === 'audited' && (
+    <svg width="10" height="10" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="6" cy="6" r="4.5" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M6 3.5V6.5L8 7.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
+    </svg>
+  )}
+  {status === 'mixed' && (
+    <svg width="10" height="10" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6 2.5V7M6 9.5H6.01" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+    </svg>
+  )}
+  <span>{displayLabel}</span>
+</span>

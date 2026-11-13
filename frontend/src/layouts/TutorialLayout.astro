@@ -1,0 +1,270 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import TutorialSidebar from '../components/TutorialSidebar.astro';
+import TableOfContents from '../components/TableOfContents.astro';
+import type { TutorialMeta } from '../lib/tutorials';
+import type { TocItem } from '../lib/markdown';
+
+interface Props {
+  tutorial: TutorialMeta;
+  prev: TutorialMeta | null;
+  next: TutorialMeta | null;
+  toc: TocItem[];
+}
+
+const { tutorial, prev, next, toc } = Astro.props;
+---
+
+<BaseLayout
+  title={`Chapter ${tutorial.formattedNumber}: ${tutorial.title} — Hypergraph Portfolio Lab`}
+  description={tutorial.description}
+>
+  <div class="tutorial-page-layout">
+    <TutorialSidebar currentSlug={tutorial.slug} />
+
+    <div class="tutorial-content-wrap">
+      <div class="tutorial-content-container">
+        <!-- Top Breadcrumbs & Metadata -->
+        <div class="tutorial-meta-header">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <span class="sep">/</span>
+            <a href="/learn">Learn</a>
+            <span class="sep">/</span>
+            <span class="part-ref">Part {tutorial.part.number}</span>
+          </nav>
+
+          <div class="chapter-pill-row">
+            <span class="chapter-number-pill">Chapter {tutorial.formattedNumber}</span>
+            <span class="part-tag">{tutorial.part.title}</span>
+            <span class="reading-time">{tutorial.readingTimeMinutes} min read</span>
+          </div>
+
+          <h1 class="tutorial-h1">{tutorial.title}</h1>
+
+          <div class="tutorial-quick-actions">
+            <a
+              href={`https://github.com/mbzuaiciao/distributed-portfolio-learning/blob/main/tutorials/${tutorial.filename}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="github-source-link"
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+              </svg>
+              View Canonical Source on GitHub ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Rendered Article Body -->
+        <article class="prose tutorial-body">
+          <slot />
+        </article>
+
+        <!-- Chapter Navigation Bottom Controls -->
+        <nav class="chapter-nav-bottom" aria-label="Chapter Navigation">
+          {prev ? (
+            <a href={`/learn/${prev.slug}`} class="prev-next-card prev-card">
+              <span class="nav-dir">← Previous Chapter</span>
+              <span class="nav-chapter-title">{prev.formattedNumber}. {prev.title}</span>
+            </a>
+          ) : (
+            <div class="empty-nav-slot"></div>
+          )}
+
+          {next ? (
+            <a href={`/learn/${next.slug}`} class="prev-next-card next-card">
+              <span class="nav-dir">Next Chapter →</span>
+              <span class="nav-chapter-title">{next.formattedNumber}. {next.title}</span>
+            </a>
+          ) : (
+            <div class="empty-nav-slot"></div>
+          )}
+        </nav>
+      </div>
+
+      <!-- Right Column In-Page Table of Contents -->
+      <aside class="toc-sidebar desktop-toc">
+        <TableOfContents toc={toc} />
+      </aside>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .tutorial-page-layout {
+    display: flex;
+    min-height: calc(100vh - var(--nav-height));
+  }
+
+  .tutorial-content-wrap {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding: 3rem 2rem 5rem;
+    gap: 3rem;
+    max-width: 1300px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .tutorial-content-container {
+    max-width: var(--prose-max-width);
+    width: 100%;
+    min-width: 0;
+  }
+
+  .toc-sidebar {
+    width: 240px;
+    flex-shrink: 0;
+  }
+
+  .breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.825rem;
+    color: var(--text-tertiary);
+    margin-bottom: 1.25rem;
+  }
+
+  .breadcrumbs a {
+    color: var(--text-tertiary);
+  }
+
+  .breadcrumbs a:hover {
+    color: var(--text-primary);
+  }
+
+  .breadcrumbs .sep {
+    color: var(--text-quaternary);
+  }
+
+  .breadcrumbs .part-ref {
+    color: var(--text-secondary);
+  }
+
+  .chapter-pill-row {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 0.85rem;
+    flex-wrap: wrap;
+  }
+
+  .chapter-number-pill {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-pill);
+    background: var(--color-blue);
+    color: #ffffff;
+  }
+
+  .part-tag {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+
+  .reading-time {
+    font-size: 0.775rem;
+    color: var(--text-tertiary);
+  }
+
+  .tutorial-h1 {
+    font-size: 2.35rem;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+  }
+
+  .tutorial-quick-actions {
+    margin-bottom: 2.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .github-source-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+    transition: color 0.15s ease;
+  }
+
+  .github-source-link:hover {
+    color: var(--text-primary);
+  }
+
+  .tutorial-body {
+    margin-bottom: 4rem;
+  }
+
+  .chapter-nav-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  .prev-next-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.25rem 1.5rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-surface);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .prev-next-card:hover {
+    border-color: var(--color-blue);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .next-card {
+    text-align: right;
+  }
+
+  .nav-dir {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-blue);
+    margin-bottom: 0.35rem;
+  }
+
+  .nav-chapter-title {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.35;
+  }
+
+  @media (max-width: 1200px) {
+    .desktop-toc {
+      display: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .tutorial-content-wrap {
+      padding: 1.5rem 1rem 3rem;
+    }
+    .tutorial-h1 {
+      font-size: 1.85rem;
+    }
+    .chapter-nav-bottom {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

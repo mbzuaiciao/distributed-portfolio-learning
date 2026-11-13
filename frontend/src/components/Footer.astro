@@ -1,0 +1,63 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-column">
+        <h4>Hypergraph Portfolio Lab</h4>
+        <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;">
+          A pedagogical, mathematically rigorous, and auditable research laboratory investigating distributed optimization, hypergraphs, Bayesian LoRA uncertainty calibration, and overlapping cohort dynamics.
+        </p>
+        <p style="font-size: 0.8rem; color: var(--text-tertiary);">
+          Based on <em>"Distributed Portfolio Optimization & Decentralized Pricing"</em> (Papastaikoudis, Watson, Lestas, 2025).
+        </p>
+      </div>
+
+      <div class="footer-column">
+        <h4>Learn & Textbook</h4>
+        <ul>
+          <li><a href="/learn">All 42 Chapters</a></li>
+          <li><a href="/learn/00_mean_variance">Part I: Foundations (Ch 00)</a></li>
+          <li><a href="/learn/09_equivalence_audit">Part II: Equivalence Audit (Ch 09)</a></li>
+          <li><a href="/learn/11_bayesian_uncertainty">Part III: Bayesian Allocation (Ch 11)</a></li>
+          <li><a href="/learn/29_timing_robustness">Part IV: Falsification (Ch 29)</a></li>
+          <li><a href="/learn/33_hysteresis_and_persistence">Part V: Execution Friction (Ch 33)</a></li>
+          <li><a href="/learn/41_temporal_regularization_optimal_horizon">Part VII: Regularization Frontier (Ch 41)</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Research & Findings</h4>
+        <ul>
+          <li><a href="/research#distributed-equivalence-audit">Lifted Equivalence Proof</a></li>
+          <li><a href="/research#bayesian-lora-leakage-audit">Phase 16.1 Leakage Audit</a></li>
+          <li><a href="/research#collaborative-lora-closure">Collaborative LoRA Negative Result</a></li>
+          <li><a href="/research#temporal-regularization-frontier">Phase 20 Temporal Regularization</a></li>
+          <li><a href="/research#epistemic-exposure-timing">15 Falsification Stress Tests</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h4>Experiments & Source</h4>
+        <ul>
+          <li><a href="/experiments">Experiment Archive</a></li>
+          <li><a href="/experiments/artifacts/phase20_optimal_cohort_horizon/scientific_report">Phase 20 Report</a></li>
+          <li><a href="/experiments/docs/collaborative_lora_branch_closure">LoRA Closure Notice</a></li>
+          <li><a href="/experiments/artifacts/phase16_1_audit/phase16_1_report">Phase 16.1 Audit</a></li>
+          <li><a href="https://github.com/mbzuaiciao/distributed-portfolio-learning" target="_blank" rel="noopener noreferrer">GitHub Repository ↗</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>
+        © {currentYear} Hypergraph Portfolio Lab Contributors. Open-source under MIT License.
+      </div>
+      <div style="max-width: 600px; text-align: right;">
+        Scientific Disclaimer: Experimental findings and algorithms are published strictly for academic and computational research.
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,100 @@
+---
+import type { TocItem } from '../lib/markdown';
+
+interface Props {
+  toc: TocItem[];
+}
+
+const { toc } = Astro.props;
+---
+
+{toc && toc.length > 0 && (
+  <nav class="toc-container" aria-label="Table of Contents">
+    <div class="toc-title">On this page</div>
+    <ul class="toc-list">
+      {toc.map((item) => (
+        <li class={`toc-item depth-${item.depth}`}>
+          <a href={`#${item.id}`} class="toc-link">
+            {item.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+)}
+
+<style>
+  .toc-container {
+    position: sticky;
+    top: calc(var(--nav-height) + 2rem);
+    max-height: calc(100vh - var(--nav-height) - 4rem);
+    overflow-y: auto;
+    padding-left: 1rem;
+    border-left: 1px solid var(--border-subtle);
+    font-size: 0.825rem;
+  }
+
+  .toc-title {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-tertiary);
+    margin-bottom: 0.75rem;
+  }
+
+  .toc-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .toc-item.depth-3 {
+    padding-left: 0.75rem;
+  }
+
+  .toc-link {
+    color: var(--text-secondary);
+    line-height: 1.4;
+    display: block;
+    transition: color 0.15s ease;
+  }
+
+  .toc-link:hover,
+  .toc-link.active {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  .toc-link.active {
+    color: var(--color-blue);
+  }
+</style>
+
+<script>
+  // Simple intersection observer to highlight current heading in TOC
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          if (id) {
+            document.querySelectorAll('.toc-link').forEach((link) => {
+              if (link.getAttribute('href') === `#${id}`) {
+                link.classList.add('active');
+              } else {
+                link.classList.remove('active');
+              }
+            });
+          }
+        }
+      });
+    },
+    { rootMargin: '-60px 0px -75% 0px' }
+  );
+
+  document.querySelectorAll('article h2, article h3').forEach((h) => {
+    observer.observe(h);
+  });
+</script>

@@ -1,0 +1,546 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import StatusBadge from '../components/StatusBadge.astro';
+import { RESEARCH_FINDINGS } from '../lib/research';
+import { TUTORIAL_PARTS } from '../lib/tutorials';
+
+const featuredFindings = RESEARCH_FINDINGS.slice(0, 4);
+---
+
+<BaseLayout
+  title="Hypergraph Portfolio Lab — Distributed Portfolio Optimization & Uncertainty Audits"
+  description="An auditable research laboratory and textbook exploring distributed hypergraphs, Bayesian LoRA uncertainty calibration, and temporal regularization."
+>
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="container hero-container">
+      <div class="hero-eyebrow">Astro Research Textbook & Laboratory</div>
+      <h1 class="hero-title">Distributed Portfolio Optimization & Uncertainty Audits</h1>
+      <p class="hero-desc">
+        A mathematically rigorous, peer-audited research textbook based on <em>"Distributed Portfolio Optimization & Decentralized Pricing"</em> (Papastaikoudis, Watson, Lestas, 2025). Featuring 42 numbered chapters, forensic training leakage audits, negative results, and the Phase 20 temporal regularization frontier.
+      </p>
+
+      <div class="hero-cta-group">
+        <a href="/learn/00_mean_variance" class="btn btn-primary">
+          Start Reading (Chapter 00) →
+        </a>
+        <a href="/learn" class="btn btn-secondary">
+          Explore All 42 Chapters
+        </a>
+        <a href="/research" class="btn btn-subtle">
+          Research Findings & Audits ↗
+        </a>
+      </div>
+
+      <!-- Quick Metrics Strip -->
+      <div class="hero-metrics-strip">
+        <div class="metric-block">
+          <span class="m-val">42</span>
+          <span class="m-lbl">Textbook Chapters</span>
+        </div>
+        <div class="m-div"></div>
+        <div class="metric-block">
+          <span class="m-val">288k</span>
+          <span class="m-lbl">Simulated DGP Cells</span>
+        </div>
+        <div class="m-div"></div>
+        <div class="metric-block">
+          <span class="m-val">1e-16</span>
+          <span class="m-lbl">Accounting Closure Precision</span>
+        </div>
+        <div class="m-div"></div>
+        <div class="metric-block">
+          <span class="m-val">100%</span>
+          <span class="m-lbl">Audited Reproducibility</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Core Research Pillars & Findings Section -->
+  <section class="pillars-section section-spacing">
+    <div class="container">
+      <div class="section-header-centered">
+        <span class="section-tag">Key Research Findings</span>
+        <h2 class="section-title">Independent Audits & Theoretical Frontiers</h2>
+        <p class="section-subtitle">
+          We uphold strict scientific integrity by presenting confirmed mathematical proofs alongside falsified hypotheses and closed negative results.
+        </p>
+      </div>
+
+      <div class="featured-grid">
+        {featuredFindings.map((finding) => (
+          <div class="featured-card">
+            <div class="card-meta">
+              <span class="card-num">Finding #{finding.number}</span>
+              <StatusBadge status={finding.status} label={finding.statusLabel} />
+            </div>
+            <h3 class="card-headline">{finding.question}</h3>
+            <p class="card-summary">{finding.summary}</p>
+            <div class="card-caveat-snippet">
+              <span class="caveat-label">Epistemic Status:</span> {finding.methodologyLabel}
+            </div>
+            <div class="card-action">
+              <a href={finding.canonicalSource.path} class="link-arrow">
+                View detailed analysis →
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Textbook Curriculum Overview -->
+  <section class="curriculum-section section-spacing">
+    <div class="container">
+      <div class="section-header-centered">
+        <span class="section-tag">First-Principles Curriculum</span>
+        <h2 class="section-title">The 7 Parts of the Textbook</h2>
+        <p class="section-subtitle">
+          From basic centralized Markowitz to consensus hypergraphs, Bayesian-LoRA calibration, and optimal holding horizon frontiers.
+        </p>
+      </div>
+
+      <div class="parts-grid">
+        {TUTORIAL_PARTS.map((part) => (
+          <div class="part-overview-card">
+            <div class="part-badge">Part {part.number}</div>
+            <h3 class="part-title">{part.title}</h3>
+            <p class="part-description">{part.description}</p>
+            <a href={`/learn#${part.id}`} class="part-link">
+              Browse Part {part.number} chapters →
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 Core Lab Purposes -->
+  <section class="twelve-purposes-section section-spacing">
+    <div class="container">
+      <div class="section-header-centered">
+        <span class="section-tag">Methodological Framework</span>
+        <h2 class="section-title">The Twelve Lab Purposes</h2>
+        <p class="section-subtitle">
+          The Hypergraph Portfolio Lab was designed from first principles to be fully pedagogical, mathematically auditable, and falsifiable.
+        </p>
+      </div>
+
+      <div class="purposes-grid">
+        <div class="purpose-card">
+          <span class="p-num">01</span>
+          <h4>First-Principles Education</h4>
+          <p>Teaching distributed portfolio optimization step-by-step: intuition → tiny example → mathematics → code → experiment → interpretation.</p>
+        </div>
+        <div class="purpose-card">
+          <span class="p-num">02</span>
+          <h4>Critical Mathematical Audit</h4>
+          <p>Auditing why distributed objectives appear lower (0.8573 vs 2.8408) and proving lifted equivalence (Q&#771;<sub>lifted</sub> = E Q E<sup>T</sup>).</p>
+        </div>
+        <div class="purpose-card">
+          <span class="p-num">03</span>
+          <h4>Bayesian Uncertainty Audit</h4>
+          <p>Ingesting real LLM Bayesian-LoRA uncertainty to test whether epistemic variance translates into cross-sectional allocation gains.</p>
+        </div>
+        <div class="purpose-card">
+          <span class="p-num">04</span>
+          <h4>15 Falsification Stress Tests</h4>
+          <p>Adversarial testing across nested walk-forward folds, 4-week block placebos, lag decays, and leave-one-out asset exclusions.</p>
+        </div>
+        <div class="purpose-card">
+          <span class="p-num">05</span>
+          <h4>Cost-Aware Execution Rules</h4>
+          <p>Implementing hysteresis state machines and rebalancing bands to prevent turnover friction from eroding capital preservation.</p>
+        </div>
+        <div class="purpose-card">
+          <span class="p-num">06</span>
+          <h4>Accounting Audit & Closure</h4>
+          <p>Formal turnover accounting (risky vs cash), resolving utility double-counting bugs, and proving exact 4-quadrant attribution closure.</p>
+        </div>
+        <div class="purpose-card">
+          <span class="p-num">07</span>
+          <h4>Metric Reconciliation</h4>
+          <p>Harmonizing multi-seed arithmetic aggregations vs single-seed evaluations to establish a single canonical reference benchmark.</p>
+        </div>
+        <div class="purpose-card">
+          <span class="p-num">08</span>
+          <h4>Base Churn Diagnostic</h4>
+          <p>Deconstructing underlying risky portfolio turnover (~72x/year traded) and diagnosing optimizer boundary corner behavior.</p>
+        </div>
+        <div class="purpose-card">
+          <span class="p-num">09</span>
+          <h4>Multi-Week Cohort Stacking</h4>
+          <p>Rolling overlapping cohorts across horizon <em>H</em> to slash structural churn (TO &prop; 1/H) and diversify timing variance.</p>
+        </div>
+        <div class="purpose-card">
+          <span class="p-num">10</span>
+          <h4>Reproduction & Verification</h4>
+          <p>Validating mark-to-market weekly returns without cumulative reuse; asserting machine-precision reproduction between $H=1$ and Phase 8.3.</p>
+        </div>
+        <div class="purpose-card">
+          <span class="p-num">11</span>
+          <h4>Frozen Confirmation Protocols</h4>
+          <p>Pre-registering exact parameter manifests prior to holdout unblinding; establishing rigorous data cutoffs (2025-05-15).</p>
+        </div>
+        <div class="purpose-card">
+          <span class="p-num">12</span>
+          <h4>Hardware Profiling & Minimality</h4>
+          <p>Profiling Apple Silicon (M2 MPS) vs Cloud L4 Spot instances with preemption-safe sharding and zero market-data cloud transfer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bottom CTA Banner -->
+  <section class="cta-banner-section">
+    <div class="container">
+      <div class="cta-banner-card">
+        <h2>Begin with Tutorial 00</h2>
+        <p>
+          Walk through centralized mean-variance optimization, the KKT conditions, and the motivation for distributed hypergraph allocation.
+        </p>
+        <div class="cta-btn-row">
+          <a href="/learn/00_mean_variance" class="btn btn-primary">
+            Start Chapter 00 →
+          </a>
+          <a href="/experiments" class="btn btn-secondary">
+            View Experiment Reports
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Hero Styles */
+  .hero-section {
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 6rem 0 5rem;
+    text-align: center;
+  }
+
+  .hero-container {
+    max-width: 860px;
+  }
+
+  .hero-eyebrow {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-blue);
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-title {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    letter-spacing: -0.035em;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-desc {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin-bottom: 2.75rem;
+  }
+
+  .hero-cta-group {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 4rem;
+  }
+
+  .hero-metrics-strip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1rem 2.5rem;
+    background: var(--bg-surface-secondary);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-pill);
+    flex-wrap: wrap;
+  }
+
+  .metric-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .m-val {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  .m-lbl {
+    font-size: 0.725rem;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .m-div {
+    width: 1px;
+    height: 28px;
+    background: var(--border-subtle);
+  }
+
+  /* Section Header Centered */
+  .section-header-centered {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 3.5rem;
+  }
+
+  .section-tag {
+    font-size: 0.775rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-blue);
+    display: inline-block;
+    margin-bottom: 0.6rem;
+  }
+
+  .section-title {
+    font-size: 2.35rem;
+    letter-spacing: -0.025em;
+    color: var(--text-primary);
+    margin-bottom: 0.85rem;
+  }
+
+  .section-subtitle {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Featured Grid */
+  .featured-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.75rem;
+  }
+
+  .featured-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s ease;
+  }
+
+  .featured-card:hover {
+    border-color: var(--color-blue);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .card-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .card-num {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+  }
+
+  .card-headline {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.35;
+    margin: 0 0 0.85rem;
+  }
+
+  .card-summary {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+    flex: 1;
+  }
+
+  .card-caveat-snippet {
+    font-size: 0.775rem;
+    color: var(--text-tertiary);
+    padding: 0.5rem 0.75rem;
+    background: var(--bg-surface-secondary);
+    border-radius: var(--radius-sm);
+    margin-bottom: 1.25rem;
+  }
+
+  .caveat-label {
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  .link-arrow {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-blue);
+  }
+
+  /* Curriculum Parts Grid */
+  .parts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .part-overview-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.2s ease;
+  }
+
+  .part-overview-card:hover {
+    border-color: var(--border-medium);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .part-badge {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-blue);
+    margin-bottom: 0.5rem;
+  }
+
+  .part-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 0.6rem;
+    line-height: 1.3;
+  }
+
+  .part-description {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin-bottom: 1.25rem;
+    flex: 1;
+  }
+
+  .part-link {
+    font-size: 0.825rem;
+    font-weight: 600;
+    color: var(--color-blue);
+  }
+
+  /* Twelve Purposes Grid */
+  .purposes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .purpose-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    padding: 1.35rem;
+  }
+
+  .p-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--color-blue);
+    display: inline-block;
+    margin-bottom: 0.5rem;
+  }
+
+  .purpose-card h4 {
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-bottom: 0.4rem;
+  }
+
+  .purpose-card p {
+    font-size: 0.825rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* CTA Banner */
+  .cta-banner-section {
+    padding: 2rem 0 6rem;
+  }
+
+  .cta-banner-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+    padding: 3.5rem 2rem;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .cta-banner-card h2 {
+    font-size: 2.25rem;
+    margin-bottom: 0.85rem;
+    color: var(--text-primary);
+  }
+
+  .cta-banner-card p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto 2rem;
+    line-height: 1.6;
+  }
+
+  .cta-btn-row {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2.5rem;
+    }
+    .hero-metrics-strip {
+      flex-direction: column;
+      gap: 0.75rem;
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+    }
+    .m-div {
+      display: none;
+    }
+  }
+</style>

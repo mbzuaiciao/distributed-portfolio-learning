@@ -1,0 +1,205 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TableOfContents from '../../components/TableOfContents.astro';
+import { getAllArtifactDocs } from '../../lib/experiments';
+import { renderMarkdown } from '../../lib/markdown';
+
+export async function getStaticPaths() {
+  const docs = getAllArtifactDocs();
+
+  const paths = await Promise.all(
+    docs.map(async (doc) => {
+      const { html, toc } = await renderMarkdown(doc.content);
+      return {
+        params: { path: doc.relativePath },
+        props: {
+          doc,
+          html,
+          toc,
+        },
+      };
+    })
+  );
+
+  return paths;
+}
+
+interface Props {
+  doc: any;
+  html: string;
+  toc: any[];
+}
+
+const { doc, html, toc } = Astro.props;
+---
+
+<BaseLayout
+  title={`${doc.title} — Experiment Report`}
+  description={`Canonical experimental report and artifact: ${doc.title}`}
+>
+  <div class="artifact-page-wrap">
+    <div class="container artifact-container">
+      <div class="artifact-content-area">
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="/">Home</a>
+          <span class="sep">/</span>
+          <a href="/experiments">Experiments</a>
+          <span class="sep">/</span>
+          <span class="curr-doc">{doc.category === 'doc' ? 'Docs' : 'Artifacts'}</span>
+        </nav>
+
+        <div class="artifact-meta-header">
+          <span class="artifact-badge">{doc.category === 'doc' ? 'Design & Closure Doc' : 'Canonical Artifact'}</span>
+          <h1 class="artifact-title">{doc.title}</h1>
+          <div class="artifact-source-info">
+            <code>{doc.relativePath}.md</code>
+            <a
+              href={`https://github.com/mbzuaiciao/distributed-portfolio-learning/blob/main/${doc.relativePath}.md`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="github-link"
+            >
+              View on GitHub ↗
+            </a>
+          </div>
+        </div>
+
+        <article class="prose artifact-prose">
+          <div set:html={html} />
+        </article>
+
+        <div class="artifact-footer-nav">
+          <a href="/experiments" class="btn btn-secondary">
+            ← Back to Experiment Archive
+          </a>
+        </div>
+      </div>
+
+      <aside class="artifact-toc-sidebar desktop-only">
+        <TableOfContents toc={toc} />
+      </aside>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .artifact-page-wrap {
+    padding: 3.5rem 0 6rem;
+  }
+
+  .artifact-container {
+    display: flex;
+    gap: 3.5rem;
+    justify-content: center;
+  }
+
+  .artifact-content-area {
+    max-width: var(--prose-max-width);
+    width: 100%;
+    min-width: 0;
+  }
+
+  .artifact-toc-sidebar {
+    width: 240px;
+    flex-shrink: 0;
+  }
+
+  .breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.825rem;
+    color: var(--text-tertiary);
+    margin-bottom: 1.5rem;
+  }
+
+  .breadcrumbs a {
+    color: var(--text-tertiary);
+  }
+
+  .breadcrumbs a:hover {
+    color: var(--text-primary);
+  }
+
+  .breadcrumbs .sep {
+    color: var(--text-quaternary);
+  }
+
+  .breadcrumbs .curr-doc {
+    color: var(--text-secondary);
+    text-transform: capitalize;
+  }
+
+  .artifact-meta-header {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .artifact-badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.725rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: var(--radius-sm);
+    background: var(--bg-surface-secondary);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-subtle);
+    margin-bottom: 0.85rem;
+  }
+
+  .artifact-title {
+    font-size: 2.25rem;
+    line-height: 1.25;
+    letter-spacing: -0.025em;
+    color: var(--text-primary);
+    margin-bottom: 0.85rem;
+  }
+
+  .artifact-source-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 0.825rem;
+    color: var(--text-tertiary);
+  }
+
+  .artifact-source-info code {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    background: var(--bg-surface-secondary);
+    padding: 0.15rem 0.45rem;
+    border-radius: 4px;
+    border: 1px solid var(--border-subtle);
+  }
+
+  .github-link {
+    color: var(--color-blue);
+  }
+
+  .artifact-prose {
+    margin-bottom: 3.5rem;
+  }
+
+  .artifact-footer-nav {
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  @media (max-width: 1024px) {
+    .desktop-only {
+      display: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .artifact-title {
+      font-size: 1.85rem;
+    }
+    .artifact-source-info {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+  }
+</style>

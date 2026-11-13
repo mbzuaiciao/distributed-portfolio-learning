@@ -9,6 +9,9 @@ A pedagogical, mathematically rigorous, and auditable laboratory based on the re
 > **"Distributed Portfolio Optimization & Decentralized Pricing"**  
 > *Ioannis Papastaikoudis, Jeremy Watson, Ioannis Lestas (2025)*
 
+> [!TIP]
+> **Interactive Research Textbook**: A static, Apple-inspired research website and textbook is available in [`frontend/`](frontend/). See [`frontend/README.md`](frontend/README.md) for quick-start instructions.
+
 This repository serves twelve core purposes:
 1. **First-Principles Education**: Teach distributed portfolio optimization, hypergraphs, consensus methods, continuous-time primal-dual dynamics, and decentralized pricing step-by-step (`intuition -> tiny example -> mathematics -> code -> experiment -> interpretation`).
 2. **Critical Mathematical Audit**:

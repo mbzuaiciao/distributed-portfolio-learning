@@ -179,3 +179,448 @@ To model relationships where an asset is shared across three, four, or dozens of
 
 - If we force $x_1^A = x_2^A = x_3^A$, what is the economic cost of that constraint?
 - If two desks have fundamentally different return views on Asset A ($\mu_1^A \neq \mu_2^A$), who bears the penalty when they are forced to agree?
+
+
+# ==t01.py
+
+Yes. The key purpose of this code is to demonstrate the **consistency problem caused by overlapping subportfolios**.
+
+You have three assets:
+
+* `A`
+* `B`
+* `C`
+
+and three portfolio managers/subportfolios:
+
+$$
+S_1=\{A,B,C\},\qquad S_2=\{A,B\},\qquad S_3=\{A,C\}.
+$$
+
+Notice that **asset A appears in all three subportfolios**. The code lets each subportfolio optimize independently and then asks:
+
+> Do they independently choose the same allocation for A?
+
+Usually, they don't.
+
+### 1. Define the data
+
+```python
+import numpy as np
+from hypergraph_portfolio.mean_variance import MeanVariancePortfolio
+```
+
+`numpy` handles the vectors and matrices. `MeanVariancePortfolio` is your project's class that solves the portfolio optimization problem.
+
+Then:
+
+```python
+Q = np.array([
+    [4.1294, 1.4527, 0.9273],
+    [1.4527, 4.4150, 1.1068],
+    [0.9273, 1.1068, 3.3435]
+])
+```
+
+`Q` is the **risk/covariance-like matrix** for assets \(A,B,C\).
+
+You can read it as:
+
+$$
+Q=
+\begin{bmatrix}
+4.1294 & 1.4527 & 0.9273\\
+1.4527 & 4.4150 & 1.1068\\
+0.9273 & 1.1068 & 3.3435
+\end{bmatrix}.
+$$
+
+The diagonal entries describe the individual risk contributions:
+
+* `Q[0,0] = 4.1294` → A
+* `Q[1,1] = 4.4150` → B
+* `Q[2,2] = 3.3435` → C
+
+The off-diagonal entries describe how the assets interact/covary.
+
+Then:
+
+```python
+mu = np.array([0.3, 0.25, 0.1])
+```
+
+These are the expected returns:
+
+$$
+\mu =
+\begin{bmatrix}
+0.30\\
+0.25\\
+0.10
+\end{bmatrix}
+$$
+
+so:
+
+```text
+A → 0.30
+B → 0.25
+C → 0.10
+```
+
+A has the highest expected return.
+
+---
+
+### 2. Subportfolio 1 gets all three assets
+
+```python
+sp1 = MeanVariancePortfolio(Q=Q, mu=mu, budget=1.0)
+x1_opt, _ = sp1.solve()
+```
+
+This manager solves a portfolio optimization problem using:
+
+$$
+\{A,B,C\}.
+$$
+
+The budget is:
+
+```python
+budget=1.0
+```
+
+so, roughly speaking, the manager has one unit of capital to allocate.
+
+If:
+
+```python
+x1_opt
+```
+
+were, for example,
+
+```text
+[0.40, 0.35, 0.25]
+```
+
+that would mean:
+
+$$
+x_1^A=0.40,\quad
+x_1^B=0.35,\quad
+x_1^C=0.25.
+$$
+
+The important quantity for this experiment is:
+
+```python
+x1_opt[0]
+```
+
+because index `0` corresponds to asset A.
+
+---
+
+### 3. Subportfolio 2 only gets A and B
+
+```python
+sp2 = MeanVariancePortfolio(
+    Q=Q[:2, :2],
+    mu=mu[:2],
+    budget=1.0
+)
+```
+
+This syntax is worth unpacking.
+
+```python
+Q[:2, :2]
+```
+
+means:
+
+> take rows 0 and 1, and columns 0 and 1.
+
+So:
+
+$$
+Q[:2,:2]
+=
+\begin{bmatrix}
+4.1294 & 1.4527\\
+1.4527 & 4.4150
+\end{bmatrix}.
+$$
+
+This is just the part of the covariance/risk matrix concerning A and B.
+
+Similarly:
+
+```python
+mu[:2]
+```
+
+gives:
+
+```text
+[0.3, 0.25]
+```
+
+so manager 2 only knows about:
+
+$$
+\{A,B\}.
+$$
+
+Then:
+
+```python
+x2_opt, _ = sp2.solve()
+```
+
+might produce something like:
+
+```text
+[0.55, 0.45]
+```
+
+and again,
+
+```python
+x2_opt[0]
+```
+
+means this manager's allocation to A.
+
+---
+
+### 4. Subportfolio 3 gets A and C
+
+This line looks more complicated:
+
+```python
+Q[[0, 2]][:, [0, 2]]
+```
+
+because A and C are **not adjacent** in the original matrix.
+
+Their indices are:
+
+```text
+A → 0
+B → 1
+C → 2
+```
+
+First:
+
+```python
+Q[[0, 2]]
+```
+
+selects rows `0` and `2`:
+
+$$
+\begin{bmatrix}
+4.1294 & 1.4527 & 0.9273\\
+0.9273 & 1.1068 & 3.3435
+\end{bmatrix}.
+$$
+
+Then:
+
+```python
+[:, [0, 2]]
+```
+
+means:
+
+> keep every selected row (`:`), but only columns 0 and 2.
+
+Therefore you end up with:
+
+$$
+\begin{bmatrix}
+4.1294 & 0.9273\\
+0.9273 & 3.3435
+\end{bmatrix}.
+$$
+
+That's precisely the A–C submatrix.
+
+Likewise:
+
+```python
+mu[[0, 2]]
+```
+
+produces:
+
+```text
+[0.3, 0.1]
+```
+
+So:
+
+```python
+sp3 = MeanVariancePortfolio(...)
+x3_opt, _ = sp3.solve()
+```
+
+optimizes only over:
+
+$$
+\{A,C\}.
+$$
+
+Again:
+
+```python
+x3_opt[0]
+```
+
+is A's allocation.
+
+---
+
+## 5. Now comes the point of the experiment
+
+The code prints:
+
+```python
+print(f"  Subportfolio 1: x_1^A = {x1_opt[0]:.4f}")
+print(f"  Subportfolio 2: x_2^A = {x2_opt[0]:.4f}")
+print(f"  Subportfolio 3: x_3^A = {x3_opt[0]:.4f}")
+```
+
+Suppose you got:
+
+```text
+Subportfolio 1: x_1^A = 0.30
+Subportfolio 2: x_2^A = 0.45
+Subportfolio 3: x_3^A = 0.60
+```
+
+Then you have three different answers to the question:
+
+> **How much A should we hold?**
+
+Manager 1 says:
+
+$$
+x_1^A=0.30
+$$
+
+Manager 2 says:
+
+$$
+x_2^A=0.45
+$$
+
+Manager 3 says:
+
+$$
+x_3^A=0.60.
+$$
+
+That's the **overlap consistency problem**.
+
+And this connects directly to what we were discussing about the paper.
+
+---
+
+## Why would they choose different amounts of A?
+
+Because A is being evaluated in a **different local context** each time.
+
+Manager 1 asks:
+
+> How much A should I own when I can diversify against both B and C?
+
+Manager 2 asks:
+
+> How much A should I own when my only alternative is B?
+
+Manager 3 asks:
+
+> How much A should I own when my only alternative is C?
+
+Those are different optimization problems.
+
+So even though the underlying asset A is identical, its optimal allocation can change depending on which other assets are available.
+
+That's exactly why overlap creates a problem.
+
+---
+
+## 6. Maximum disagreement
+
+Finally:
+
+```python
+max(x1_opt[0], x2_opt[0], x3_opt[0]) -
+min(x1_opt[0], x2_opt[0], x3_opt[0])
+```
+
+finds:
+
+$$
+\max(x_1^A,x_2^A,x_3^A)
+-
+\min(x_1^A,x_2^A,x_3^A).
+$$
+
+Using my made-up example:
+
+$$
+0.60-0.30=0.30.
+$$
+
+So the managers disagree by as much as **30 percentage points** on A.
+
+The `:.4f` here:
+
+```python
+{x1_opt[0]:.4f}
+```
+
+just means:
+
+> print the floating-point number with four decimal places.
+
+---
+
+### The deeper idea
+
+Conceptually, your program is doing this:
+
+```text
+                  Global assets
+                  {A, B, C}
+                      │
+        ┌─────────────┼─────────────┐
+        │             │             │
+        ▼             ▼             ▼
+     {A,B,C}        {A,B}         {A,C}
+       SP1            SP2           SP3
+        │              │             │
+        ▼              ▼             ▼
+      x₁ᴬ            x₂ᴬ           x₃ᴬ
+
+         possibly all different
+```
+
+If these are supposed to describe **one underlying portfolio**, you don't really want three different versions of A.
+
+You want a consistency condition such as:
+
+$$
+\boxed{x_1^A=x_2^A=x_3^A}
+$$
+
+That equality constraint is the thing the hypergraph/decentralized optimization machinery is ultimately trying to enforce.
+
+So this little program is essentially a **counterexample** showing why you cannot just solve all overlapping subportfolios independently and assume they'll automatically agree.
+
